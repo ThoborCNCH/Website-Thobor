@@ -120,6 +120,7 @@ function App() {
           </svg>
         </div>
       </div>
+    
       <div className="cifre">
         <h3>thobor in cifre:</h3>
         <div className="tab">
