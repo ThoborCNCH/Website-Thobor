@@ -40,8 +40,8 @@ const Incercare = (props) => {
       },
       particles: {
         number: {
-          density: 30,
-          value:200,
+          density: window.innerWidth > 700 ? 30 : 10,
+          value: window.innerWidth > 700 ? 200 : 80,
         },
         color: {
           value: "#146622",
