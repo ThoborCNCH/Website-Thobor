@@ -576,6 +576,7 @@ nav {
   font-size: 25px;
   margin: 20px;
   z-index: 9;
+  border: 5px solid $dark_green;
 }
 
 :root {
@@ -865,7 +866,7 @@ nav {
   text-transform: uppercase;
   background: url(../img/altu.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: right;
 
   .text {
@@ -893,16 +894,23 @@ nav {
       margin-top: -25px;
     }
   }
+}
 
-  .button {
-    width: auto;
-    padding: 30px 60px;
-    background: $dark_green;
-    color: white;
-    font-size: 30px;
-    margin: 40px;
-    border-radius: 10px;
-    cursor: pointer;
+@media screen and (max-width: 700px) {
+  .contact {
+    .text {
+      line-height: 1.5;
+      
+      h1 {
+        font-size: 30px !important;
+      }
+      .ful{
+        text-shadow: 0 0 5px $black2 !important;
+      }
+      .op {
+        color: rgba($black2, 0.5) !important;
+      }
+    }
   }
 }
 
