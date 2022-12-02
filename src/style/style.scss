@@ -257,6 +257,7 @@ nav {
     img {
       width: 100%;
       z-index: 5;
+      user-select: none;
       max-width: 700px;
     }
 
@@ -271,7 +272,7 @@ nav {
     min-height: 30px;
     display: flex;
     flex-direction: column;
-    margin: 84px 0;
+    margin: 84px 50px;
     user-select: none;
 
     h1,
@@ -574,6 +575,7 @@ nav {
   background: $main_green;
   color: white;
   font-size: 25px;
+  user-select: none;
   margin: 20px;
   z-index: 9;
   border: 5px solid $dark_green;
@@ -900,11 +902,11 @@ nav {
   .contact {
     .text {
       line-height: 1.5;
-      
+
       h1 {
         font-size: 30px !important;
       }
-      .ful{
+      .ful {
         text-shadow: 0 0 5px $black2 !important;
       }
       .op {

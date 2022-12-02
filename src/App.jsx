@@ -5,6 +5,8 @@ import Txt from "./components/Txt";
 import $ from "jquery";
 import { useEffect, useRef } from "react";
 import Incercare from "./components/Incercare";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 $("nav ul li > a:not(:only-child)").on("click", function (e) {
   $(this).siblings(".nav-dropdown").slideToggle();
@@ -24,6 +26,10 @@ $("#nav-toggle").on("click", function () {
 
 function App() {
   const h1 = useRef(null);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   window.addEventListener("scroll", () => {
     document.querySelector(".despre h1").style.transform = `translateX(${
@@ -77,11 +83,15 @@ function App() {
       </section>
       <div className="home">
         <div className="text">
-          <h2>we are the</h2>
-          <h1>thobor</h1>
-          <h2>team</h2>
+          <h2 data-aos="fade-right" data-aos-delay="300">
+            we are the
+          </h2>
+          <h1 data-aos="fade-right">thobor</h1>
+          <h2 data-aos="fade-right" data-aos-delay="300">
+            team
+          </h2>
         </div>
-        <div className="img">
+        <div className="img" data-aos="fade-left">
           <img src={require("./img/first.svg").default} alt="" />
           <img
             className="cerc"
@@ -122,8 +132,8 @@ function App() {
       </div>
 
       <div className="cifre">
-        <h3>thobor in cifre:</h3>
-        <div className="tab">
+        <h3 data-aos="fade-down">thobor in cifre:</h3>
+        <div className="tab" data-aos="fade-down">
           <div className="linie">
             <div className="cifra">
               <h1>
@@ -200,8 +210,8 @@ function App() {
           </svg>
         </div>
         <h1 ref={h1}>Despre</h1>
-        <h2>Despre</h2>
-        <p>
+        <h2 data-aos="zoom-in-up">Despre</h2>
+        <p data-aos="zoom-in-up">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, iusto
           odit. Culpa, nulla doloribus blanditiis sunt voluptatem, quisquam
           ipsam voluptates fugit beatae neque similique laborum adipisci porro
@@ -212,12 +222,12 @@ function App() {
           similique laborum adipisci porro vel eaque rem ad consequuntur id
           deserunt! Voluptates magnam vitae incidunt. Repellendus eaqu
         </p>
-        <a href="#" className="button">
+        <a href="#" className="button" data-aos="zoom-in-up">
           afla mai multe
         </a>
       </div>
       <div className="cards">
-        <div className="card">
+        <div className="card" data-aos="fade-right">
           <img src={require("./img/icon.svg").default} />
           <h1>work</h1>
           <p>
@@ -225,7 +235,7 @@ function App() {
             iusto odit.
           </p>
         </div>
-        <div className="card">
+        <div className="card" data-aos="fade-right" data-aos-delay="200">
           <img src={require("./img/icon.svg").default} />
           <h1>work</h1>
           <p>
@@ -233,7 +243,7 @@ function App() {
             iusto odit.
           </p>
         </div>
-        <div className="card">
+        <div className="card" data-aos="fade-right" data-aos-delay="400">
           <img src={require("./img/icon.svg").default} />
           <h1>work</h1>
           <p>
@@ -241,7 +251,7 @@ function App() {
             iusto odit.
           </p>
         </div>
-        <div className="card">
+        <div className="card" data-aos="fade-right" data-aos-delay="600">
           <img src={require("./img/icon.svg").default} />
           <h1>work</h1>
           <p>
@@ -252,13 +262,20 @@ function App() {
       </div>
       <section className="contact">
         <div className="text">
-          <h1 className="op">Do you HAVE</h1>
-          <h1 className="ful">A MESSAGE</h1>
-          <h1 className="op d">for us?</h1>
+          <h1 className="op" data-aos="fade-down" data-aos-delay="300">
+            Do you HAVE
+          </h1>
+          <h1 className="ful" data-aos="fade-down">
+            A MESSAGE
+          </h1>
+          <h1 className="op d" data-aos="fade-down" data-aos-delay="300">
+            for us?
+          </h1>
         </div>
         <a
           href="mailto: contacto@institutohispanorumano.org"
           className="button"
+          data-aos="zoom-in"
         >
           contact us
         </a>
