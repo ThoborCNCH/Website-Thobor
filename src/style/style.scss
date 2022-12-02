@@ -57,6 +57,7 @@ h4 {
 
 html,
 body {
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -1040,4 +1041,17 @@ nav {
   .footer__nav {
     flex: 2 0px;
   }
+}
+.up{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: $main_green;
+  border-radius: 50%;
+  padding: 10px;
+  z-index: 999;
+  box-sizing: content-box;
+  border: 5px solid $dark_green;
 }

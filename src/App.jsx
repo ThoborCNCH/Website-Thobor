@@ -618,6 +618,10 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <a href="#" className="up" data-aos="fade-up">
+          <img src={ require("./img/up.svg").default} alt="" />
+      </a>
     </>
   );
 }
