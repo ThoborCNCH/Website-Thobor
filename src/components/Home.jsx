@@ -6,6 +6,7 @@ import Incercare from "./Incercare";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 $("nav ul li > a:not(:only-child)").on("click", function (e) {
   $(this).siblings(".nav-dropdown").slideToggle();
   $(".nav-dropdown").not($(this).siblings()).hide();
@@ -224,7 +225,7 @@ function Home() {
       </a>
     </div>
     <div className="cards">
-      <div className="card" data-aos="fade-right">
+        <div className="card" data-aos="fade-right">
         <img src={require("../img/icon.svg").default} />
         <h1>work</h1>
         <p>

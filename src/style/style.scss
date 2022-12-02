@@ -6,6 +6,25 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 $font_anek: "Anek Devanagari", sans-serif;
 $font_karla: "Karla", sans-serif;
 $font_mont: "Montserrat", sans-serif;
@@ -451,6 +470,7 @@ nav {
 
   h1 {
     z-index: 5;
+    user-select: none;
     font-size: 180px;
     position: absolute;
     top: 10%;
@@ -1059,6 +1079,7 @@ nav {
   width: 50px;
   height: 50px;
   background: $main_green;
+  user-select: none;
   border-radius: 50%;
   padding: 10px;
   z-index: 999;
