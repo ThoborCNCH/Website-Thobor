@@ -858,6 +858,16 @@ nav {
     }
   }
 }
+.al{
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  img{
+    width: 100vw;
+  }
+}
 .contact {
   width: 100vw;
   min-height: 300px;

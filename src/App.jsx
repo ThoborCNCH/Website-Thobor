@@ -260,6 +260,9 @@ function App() {
           </p>
         </div>
       </div>
+      <div className="al">
+
+      <img src={require("./img/robots.png")} alt="" />
       <section className="contact">
         <div className="text">
           <h1 className="op" data-aos="fade-down" data-aos-delay="300">
@@ -280,6 +283,7 @@ function App() {
           contact us
         </a>
       </section>
+      </div>
 
       {/* <div className="membrii">
         <ul className="team">
