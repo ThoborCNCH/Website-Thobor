@@ -143,7 +143,7 @@ function App() {
                   <CountUp
                     end={100}
                     enableScrollSpy
-                    scrollSpyDelay={1000}
+                    scrollSpyDelay={600}
                   />{" "}
                 </span>
               </h1>
@@ -154,7 +154,7 @@ function App() {
               <h1>
                 <span> + </span>
                 <span id="cifra_nat">
-                  <CountUp end={100} enableScrollSpy scrollSpyDelay={1000} />
+                  <CountUp end={100} enableScrollSpy scrollSpyDelay={600} />
                 </span>
               </h1>
               <h2>Participari la nationala</h2>
@@ -166,7 +166,7 @@ function App() {
               <h1>
                 <span> + </span>
                 <span id="cifra_mem">
-                  <CountUp end={100} enableScrollSpy scrollSpyDelay={1000} />
+                  <CountUp end={100} enableScrollSpy scrollSpyDelay={600} />
                 </span>
               </h1>
               <h2>Membrii</h2>
@@ -176,7 +176,7 @@ function App() {
               <h1>
                 <span> + </span>
                 <span id="cifra_al">
-                  <CountUp end={100} enableScrollSpy scrollSpyDelay={1000} />
+                  <CountUp end={100} enableScrollSpy scrollSpyDelay={600} />
                 </span>
               </h1>
               <h2>Alumni</h2>
