@@ -3,6 +3,8 @@ import "./blog.scss";
 import Post from "./components/Post";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Contact from "../utils/Contact";
+import Up from "../utils/Up";
 
 function Blog() {
   useEffect(() => {
@@ -19,7 +21,7 @@ function Blog() {
       <div className="blog">
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -258,6 +260,8 @@ function Blog() {
           }
         />
       </div>
+      <Contact />
+      <Up />
     </>
   );
 }

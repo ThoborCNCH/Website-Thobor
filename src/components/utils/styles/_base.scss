@@ -53,6 +53,20 @@ body {
   overflow-x: hidden;
 }
 
+.header {
+  padding-top: 70px;
+  width: 100vw !important ;
+  position: relative;
+  top: 0;
+  height: auto;
+  left: 0;
+  object-fit: cover;
+  max-height: 500px;
+}
+
 @import "./scrollbar";
 @import "./navbar";
 @import "./button";
+@import "./up";
+@import "./anim";
+@import "./contact";

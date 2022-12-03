@@ -1,12 +1,12 @@
 import "./style.scss";
 import CountUp from "react-countup";
-
+import Up from "../utils/Up";
 import { useEffect, useRef } from "react";
 import Incercare from "../utils/Incercare";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Svg from "../utils/Svg";
-
+import Contact from "../utils/Contact";
 
 function Home() {
   const h1 = useRef(null);
@@ -22,11 +22,10 @@ function Home() {
   });
   return (
     <>
-     
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are the  
+            we are the
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
@@ -47,11 +46,11 @@ function Home() {
           />
         </div>
         <Incercare id="tsparticles" />
-
-       
       </div>
 
-      <div className="cifre"> <div className="custom-shape-divider-bottom-1669758197">
+      <div className="cifre">
+        {" "}
+        <div className="custom-shape-divider-bottom-1669758197">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -204,98 +203,10 @@ function Home() {
       </div>
       <div className="al">
         <Svg />
-        <section className="contact">
-          <div className="text">
-            <h1 className="op" data-aos="fade-down" data-aos-delay="300">
-              Do you HAVE
-            </h1>
-            <h1 className="ful" data-aos="fade-down">
-              A MESSAGE
-            </h1>
-            <h1 className="op d" data-aos="fade-down" data-aos-delay="500">
-              for us?
-            </h1>
-          </div>
-          <a
-            href="mailto: contacto@institutohispanorumano.org"
-            className="button"
-            data-aos="zoom-in"
-          >
-            contact us
-          </a>
-        </section>
+        <Contact />
       </div>
 
-      <footer className="footer">
-        <div className="footer__addr">
-          <h1 className="footer__logo">Genii ale Culturii Românești</h1>
-
-          <h2>Contact</h2>
-
-          <address>
-            contacto@institutohispanorumano.org
-            <br />
-            <a
-              className="footer__btn"
-              href="mailto:contacto@institutohispanorumano.org"
-            >
-              Email Us
-            </a>
-          </address>
-        </div>
-
-        <ul className="footer__nav">
-          <li className="nav__item">
-            <h2 className="nav__title">Our channels</h2>
-
-            <ul className="nav__ul">
-              <li>
-                <a href="https://institutohispanorumano.org/">
-                  Institutul Hispano-Român
-                </a>
-              </li>
-
-              <li>
-                <a href="https://scoala.institutohispanorumano.org/">
-                  Scoala Nicolae Iorga
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li className="nav__item">
-            <h2 className="nav__title">Legal</h2>
-
-            <ul className="nav__ul">
-              <li>
-                <a href="#">Privacy Policy</a>
-              </li>
-
-              <li>
-                <a href="#">Terms of Use</a>
-              </li>
-
-              <li>
-                <a href="#">Sitemap</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-        <div className="legal">
-          <p>&copy; 2022 Instituto Hispano-Rumano All rights reserved.</p>
-
-          <div className="legal__links">
-            <span>
-              Editors Matei <span className="heart">&</span> Mihail
-            </span>
-          </div>
-        </div>
-      </footer>
-
-      <a href="#" className="up" data-aos="fade-up">
-        <img src={require("../../img/up.svg").default} alt="" />
-      </a>
+      <Up />
     </>
   );
 }

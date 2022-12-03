@@ -1,0 +1,19 @@
+@import "../utils/styles/base";
+
+.blog_post {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  p{
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+}
+
+@import "./style/slider_post"
