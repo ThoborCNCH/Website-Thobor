@@ -2,7 +2,6 @@
 .contact {
     width: 100vw;
     min-height: 300px;
-    // padding: 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -26,7 +25,10 @@
   
       .op {
         font-size: 60px;
+        // -webkit-text-stroke: 0.22vw #232323;
         color: rgba($main_green, 0.4);
+        // color: $main_green;
+        // text-shadow: 0 0 5px black;
       }
       .ful {
         margin-top: -25px;

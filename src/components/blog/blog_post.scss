@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 40px;
-  p{
+  p {
     color: white;
     font-size: 17px;
     font-weight: 500;
@@ -15,5 +15,26 @@
     margin-bottom: 20px;
   }
 }
+.title {
+  margin: 20px;
 
-@import "./style/slider_post"
+  h1 {
+    font-size: 40px;
+    color: gray;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+
+    a {
+      margin-left: 15px;
+      color: gray;
+    }
+  }
+}
+
+@import "./style/slider_post";
