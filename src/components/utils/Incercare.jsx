@@ -1,13 +1,39 @@
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; // loads tsparticles-slim
 //import { loadFull } from "tsparticles"; // loads tsparticles
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { useEffect } from "react";
 
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
 // tsParticles Repository: https://github.com/matteobruni/tsparticles
 // tsParticles Website: https://particles.js.org/
 const Incercare = (props) => {
   // using useMemo is not mandatory, but it's recommended since this value can be memoized if static
-  const options = useMemo(() => {
+  let options = useMemo(() => {
     // using an empty options object will load the default options, which are static particles with no background and 3px radius, opacity 100%, white color
     // all options can be found here: https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html
     return {
@@ -70,6 +96,21 @@ const Incercare = (props) => {
     loadSlim(engine);
     // loadFull(engine); // for this sample the slim version is enough, choose whatever you prefer, slim is smaller in size but doesn't have all the plugins and the mouse trail feature
   }, []);
+
+  const size = useWindowSize();
+
+  // useEffect(() => {
+  //   console.log(size.width);
+  //   if (size.width <= 700) {
+  //   console.log("s-a facut resize");
+  //   options.particles.number.density = 5;
+  //     options.particles.number.value = 40;
+  //   } else {
+  //   console.log("NUUUUUUUUUUUU s-a facut resize");
+  //     options.particles.number.density = 30;
+  //     options.particles.number.value = 250;
+  //   }
+  // }, [size]);
 
   // setting an id can be useful for identifying the right particles component, this is useful for multiple instances or reusable components
   return (

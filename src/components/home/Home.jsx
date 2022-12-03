@@ -26,7 +26,7 @@ function Home() {
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are the <span id="visits"></span> 
+            we are the  
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
@@ -48,7 +48,10 @@ function Home() {
         </div>
         <Incercare id="tsparticles" />
 
-        <div className="custom-shape-divider-bottom-1669758197">
+       
+      </div>
+
+      <div className="cifre"> <div className="custom-shape-divider-bottom-1669758197">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -71,9 +74,6 @@ function Home() {
             ></path>
           </svg>
         </div>
-      </div>
-
-      <div className="cifre">
         <h3 data-aos="fade-down">thobor in cifre:</h3>
         <div className="tab" data-aos="fade-down">
           <div className="linie">
