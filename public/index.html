@@ -9,6 +9,10 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <script
+      src="https://api.countapi.xyz/hit/florin-pop.com/visits?callback=liveViews"
+      async
+    ></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -49,6 +53,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-   
+
+    <script>
+      function callbackName(response) {
+        console.log("Sad");
+        document.getElementById("visits").innerText = response.value;
+      }
+    </script>
   </body>
 </html>

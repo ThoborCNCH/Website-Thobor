@@ -309,11 +309,6 @@
     padding: 30px;
     border-bottom: $dark_green 2px solid;
     margin: 0 20px 80px 20px;
-    transition: 0.1s ease-in-out transform;
-
-    &:hover {
-      transform: translateY(-10px);
-    }
 
     p {
       text-align: center;
