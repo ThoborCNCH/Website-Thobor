@@ -47,6 +47,9 @@ function Navbar() {
               <Link to="/blog">Blog</Link>
             </li>
             <li>
+              <Link to="/despre">Despre</Link>
+            </li>
+            <li>
               <a href="#!">Services</a>
               <ul className="nav-dropdown">
                 <li>
@@ -59,9 +62,6 @@ function Navbar() {
                   <a href="#!">Graphic Design</a>
                 </li>
               </ul>
-            </li>
-            <li>
-              <a href="#!">About Us</a>
             </li>
             <li>
               <a href="#!">Contact</a>

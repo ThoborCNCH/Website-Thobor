@@ -66,8 +66,8 @@ const Incercare = (props) => {
       },
       particles: {
         number: {
-          density: window.innerWidth > 700 ? 30 : 5,
-          value: window.innerWidth > 700 ? 250 : 40,
+          density: window.innerWidth > 700 ? 20 : 5,
+          value: window.innerWidth > 700 ? 150 : 40,
         },
         color: {
           value: "#146622",
@@ -79,7 +79,7 @@ const Incercare = (props) => {
         },
         move: {
           enable: true, // enabling this will make particles move in the canvas
-          speed: { min: 1, max: 10 }, // using a range in speed value will make particles move in a random speed between min/max values, each particles have its own value, it won't change in time by default
+          speed: { min: 1, max: 4 }, // using a range in speed value will make particles move in a random speed between min/max values, each particles have its own value, it won't change in time by default
         },
         opacity: {
           value: { min: 0.3, max: 0.7 }, // using a different opacity, to have some semitransparent effects

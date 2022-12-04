@@ -1,0 +1,79 @@
+@import "../utils/styles/base";
+
+.part {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  height: 800px;
+  flex-wrap: wrap;
+  top: -10px;
+
+  &:nth-of-type(odd) {
+    flex-direction: row-reverse;
+  }
+
+  .text,
+  .img, .img2 {
+    width: 50%;
+    height: 800px;
+  }
+  .img {
+    background: url("../../img/team_fain.png") white;
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  .img2{
+    object-fit: cover;
+  }
+
+  .text {
+    padding: 30px;
+    background: url("../../img/cevaidksimcer.png") white;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    p {
+      padding: 0 10px;
+    }
+    .title {
+      margin: 30px 0 0px 0;
+      position: relative;
+
+      h1 {
+        position: relative;
+        z-index: 3;
+        color: $black2;
+        font-weight: 800;
+      }
+
+      .linie {
+        z-index: 2;
+        position: relative;
+        width: 300px;
+        height: 20px;
+        background: $main_green;
+        left: 80px;
+        top: -38px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .part {
+    height: auto;
+    flex-direction: column;
+    .text,
+    .img {
+      width: 100vw;
+    }
+    .text {
+      height: auto;
+    }
+  }
+}
