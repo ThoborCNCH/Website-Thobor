@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import React from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
@@ -18,13 +20,18 @@ $("#nav-toggle").on("click", function () {
   this.classList.toggle("active");
 });
 
-
 function Navbar() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <section className="navigation">
       <div className="nav-container">
         <div className="brand">
-          <a href="#!"> THOBOR </a>
+          <Link to="/"> THOBOR </Link>
         </div>
         <nav>
           <div className="nav-mobile">
@@ -37,7 +44,7 @@ function Navbar() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/blog" >Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li>
               <a href="#!">Services</a>

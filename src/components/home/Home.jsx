@@ -84,6 +84,7 @@ function Home() {
                   <CountUp
                     end={100}
                     enableScrollSpy
+                    redraw={true}
                     scrollSpyDelay={600}
                   />{" "}
                 </span>
@@ -95,7 +96,9 @@ function Home() {
               <h1>
                 <span> + </span>
                 <span id="cifra_nat">
-                  <CountUp end={100} enableScrollSpy scrollSpyDelay={600} />
+                  <CountUp end={100}
+                    redraw={true}
+                    enableScrollSpy scrollSpyDelay={600} />
                 </span>
               </h1>
               <h2>Participari la nationala</h2>
@@ -107,7 +110,9 @@ function Home() {
               <h1>
                 <span> + </span>
                 <span id="cifra_mem">
-                  <CountUp end={100} enableScrollSpy scrollSpyDelay={600} />
+                  <CountUp end={100}
+                    redraw={true}
+                    enableScrollSpy scrollSpyDelay={600} />
                 </span>
               </h1>
               <h2>Membrii</h2>
@@ -117,7 +122,9 @@ function Home() {
               <h1>
                 <span> + </span>
                 <span id="cifra_al">
-                  <CountUp end={100} enableScrollSpy scrollSpyDelay={600} />
+                  <CountUp end={100}
+                    redraw={true}
+                    enableScrollSpy scrollSpyDelay={600} />
                 </span>
               </h1>
               <h2>Alumni</h2>
@@ -202,7 +209,8 @@ function Home() {
         </div>
       </div>
       <div className="al">
-        <Svg />
+       
+          <Svg />
         <Contact />
       </div>
 

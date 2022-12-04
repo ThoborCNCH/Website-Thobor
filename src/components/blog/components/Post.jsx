@@ -8,7 +8,7 @@ function Post({ poza, titlu, link, data }) {
       <div className="text">
         <h2>{titlu}</h2>
       </div>
-      <Link to={link} className="button">
+      <Link to={link} preventScrollReset={true} className="button">
         citeste mai multe
       </Link>
     </div>
