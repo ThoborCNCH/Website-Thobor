@@ -3,7 +3,7 @@
 .part {
   width: 100vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
@@ -11,33 +11,26 @@
   flex-wrap: wrap;
   top: -10px;
 
-  &:nth-of-type(odd) {
-    flex-direction: row-reverse;
-  }
-
   .text,
-  .img, .img2 {
+  .img {
     width: 50%;
     height: 800px;
   }
   .img {
-    background: url("../../img/about_team.svg") white;
+    background: url("../../img/about_team.svg") $black2;
     background-position: top right;
     background-repeat: no-repeat;
     background-size: contain;
   }
-  
-  .img2{
-    object-fit: cover;
-  }
 
   .text {
     padding: 30px;
-    background: url("../../img/cevaidksimcer.png") white;
+    background: url("../../img/cevaidksimcer.png") $black2;
     background-repeat: no-repeat;
     background-size: cover;
 
     p {
+        color: white;
       padding: 0 10px;
     }
     .title {
@@ -47,7 +40,7 @@
       h1 {
         position: relative;
         z-index: 3;
-        color: $black2;
+        color: white;
         font-weight: 800;
       }
 
@@ -72,8 +65,48 @@
     .img {
       width: 100vw;
     }
+    .img {
+      height: 350px;
+    }
     .text {
       height: auto;
     }
   }
 }
+
+.stem {
+  width: 100vw;
+  min-height: 40vh;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 70px 0;
+  display: flex;
+
+  img {
+    width: 500px;
+    height: auto;
+    padding: 0 0 0 20px;
+  }
+  .steamtext {
+    padding: 0 0 0 50px;
+    width: 600px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .more {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d4d4d4;
+  }
+  .hide {
+    overflow: hidden;
+  }
+  span {
+    font-weight: 700;
+  }
+}
+
+@import "./style/stem";

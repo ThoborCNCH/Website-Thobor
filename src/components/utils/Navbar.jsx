@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
-
+import logo from "../../img/logo_thobor_celalalt.png";
 $("nav ul li > a:not(:only-child)").on("click", function (e) {
   $(this).siblings(".nav-dropdown").slideToggle();
   $(".nav-dropdown").not($(this).siblings()).hide();
@@ -31,7 +31,12 @@ function Navbar() {
     <section className="navigation">
       <div className="nav-container">
         <div className="brand">
-          <Link to="/"> THOBOR </Link>
+          <Link to="/">
+            <img
+              src={logo}
+              alt=""
+            />
+          </Link>
         </div>
         <nav>
           <div className="nav-mobile">

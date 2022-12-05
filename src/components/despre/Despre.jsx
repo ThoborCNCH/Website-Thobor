@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./despre.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Stem from "./components/Stem";
 
 function Despre() {
   useEffect(() => {
@@ -9,7 +10,7 @@ function Despre() {
   }, []);
   return (
     <>
-      <div style={{ background: "white" }}>
+      <div style={{ background: "#2f2f2f" }}>
         <img
           src={require("../../img/despre_banner.svg").default}
           alt=""
@@ -18,14 +19,22 @@ function Despre() {
       </div>
 
       <div className="part">
+        <div
+          data-aos="fade-up"
+          data-aos-delay={window.innerWidth > 700 ? 600 : 0}
+          className="img"
+        />
         <div className="text">
           <div className="title">
-            <h1 data-aos="fade-right" data-aos-delay="600">
+            <h1
+              data-aos="fade-right"
+              data-aos-delay={window.innerWidth > 700 ? 600 : 0}
+            >
               Despre Thobor
             </h1>
             <div
               data-aos="fade-right"
-              data-aos-delay="900"
+              data-aos-delay={window.innerWidth > 700 ? 900 : 0}
               className="linie"
             ></div>
           </div>
@@ -42,48 +51,9 @@ function Despre() {
             să te dedici și mai mult.
           </p>
         </div>
-        <div
-          data-aos="fade-up"
-          // src={require("../../img/team_fain.png")}
-          data-aos-delay="600"
-          // alt=""
-          className="img"
-        />
       </div>
-      <div className="part">
-        <div className="text">
-          <div className="title">
-            <h1 data-aos="fade-right">Despre Thobor</h1>
-            <div
-              data-aos="fade-right"
-              data-aos-delay="200"
-              className="linie"
-            ></div>
-          </div>
-          <p data-aos="fade-down">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-            necessitatibus corporis hic totam consequuntur cumque laboriosam,
-            ipsam sunt, ea cum est tempora eaque officiis consequatur
-            temporibus, non sequi rerum accusantium! Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Repellat delectus, at maxime debitis,
-            eaque sunt, consequatur labore repudiandae libero ipsa iure! Harum
-            quidem magnam dolor adipisci molestias? Fugit, voluptates quae?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in
-            incidunt officia distinctio quasi natus minus maiores voluptatum
-            reiciendis? Harum. Repellat delectus, at maxime debitis, eaque sunt,
-            consequatur labore repudiandae libero ipsa iure! Harum quidem magnam
-            dolor adipisci molestias? Fugit, voluptates quae? Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Minima in incidunt officia
-            distinctio quasi natus minus maiores voluptatum reiciendis? Harum.
-          </p>
-        </div>
-        <img
-          data-aos="fade-up"
-          src={require("../../img/echipa.jpeg")}
-          alt=""
-          className="img2"
-        />
-      </div>
+
+      <Stem/>
     </>
   );
 }
