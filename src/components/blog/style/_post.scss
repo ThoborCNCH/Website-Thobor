@@ -7,7 +7,33 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+  background: $black2;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    z-index: 0;
+    width: 100%;
+    max-width: 250px;
+    height: 300px;
+    background: $light_green;
+    position: absolute;
+    top: -30px;
+    left: -30px;
+  }
+
+  &::after {
+    content: "";
+    z-index: 0;
+    width: 100%;
+    max-width: 250px;
+    height: 300px;
+    background: $dark_green;
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+  }
 
   .img {
     width: 100%;
@@ -35,6 +61,9 @@
     height: 55%;
     display: flex;
     flex-direction: column;
+    padding: 5px 10px;
+    background: $black2;
+    z-index: 2;
 
     .title {
       width: 100%;
@@ -46,21 +75,21 @@
         z-index: 5;
         color: white;
         font-weight: 500;
-        font-size: 22px;
+        font-size: 20px;
         width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
 
       .linie {
         z-index: 4;
         position: relative;
-        width: 300px;
-        height: 20px;
+        width: 240px;
+        height: 17px;
         background: $main_green;
         left: 80px;
-        bottom: 10.5px;
+        bottom: 12px;
       }
     }
     .para {
@@ -115,6 +144,20 @@
         .coca {
           width: 100%;
         }
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 400px) {
+  .post {
+    width: 330px;
+    .text {
+      padding: 5px 0;
+      .para{
+        padding: 0 5px;
       }
     }
   }

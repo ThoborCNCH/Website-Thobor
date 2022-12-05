@@ -20,6 +20,9 @@ function Blog() {
 
       <div className="blog">
         <Post
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -28,6 +31,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -36,6 +43,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -44,6 +55,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -52,6 +67,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -60,6 +79,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -68,6 +91,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -76,6 +103,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -84,6 +115,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -92,6 +127,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -100,6 +139,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -108,6 +151,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -116,6 +163,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -124,6 +175,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -132,6 +187,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -140,6 +199,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -148,6 +211,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -156,6 +223,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -164,6 +235,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -172,6 +247,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -180,6 +259,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -188,6 +271,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -196,6 +283,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -204,6 +295,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -212,6 +307,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -220,6 +319,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -228,6 +331,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -236,6 +343,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -244,6 +355,10 @@ function Blog() {
           }
         />
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
@@ -252,6 +367,10 @@ function Blog() {
           }
         />{" "}
         <Post
+         
+          dalay={300}
+          data2={"fade-down"}
+          key={Math.random() * 92342423}
           data="fade-right"
           link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}

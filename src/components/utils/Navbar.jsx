@@ -10,7 +10,7 @@ import useWindowSize from "./WindowSize";
 function Navbar() {
   const { pathname } = useLocation();
   const nav = useRef(null);
-  const drop_ref = useRef(null);
+  // const drop_ref = useRef(null);
 
   const drop = (e) => {
     console.log("e");
@@ -21,9 +21,9 @@ function Navbar() {
 
   const size = useWindowSize();
 
-  $("html").on("click", function () {
-    $(".nav-dropdown").hide();
-  });
+  // $("html").on("click", function () {
+  //   $(".nav-dropdown").hide();
+  // });
   const nav_click = () => {
     $("nav ul").slideToggle();
     nav.current.classList.toggle("active");
@@ -37,13 +37,12 @@ function Navbar() {
   useEffect(() => {
     const ul = document.querySelector("nav ul");
     if (size.width >= 799) {
-      ul.style.display = "block";
-      nav.current.classList.remove("active");
+      // ul.style.display = "block";
+      // nav.current.classList.remove("active");
     } else {
-      if (ul.style.display == "block") {
-        ul.style.display = "block";
-      } else {
-        ul.style.display = "none";
+      if (ul.style.display != "block") {
+        console.log("lasndlkdnasldnln")
+        // ul.style.display = "none";
       }
     }
   }, [size]);
@@ -81,7 +80,7 @@ function Navbar() {
             <li>
               <Link to="/despre">Despre</Link>
             </li>
-            <li>
+            {/* <li>
               <a href="#!" onClick={drop} ref={drop_ref}>
                 Services
               </a>
@@ -96,7 +95,7 @@ function Navbar() {
                   <a href="#!">Graphic Design</a>
                 </li>
               </ul>
-            </li>
+            </li> */}
             <li>
               <a href="#!">Contact</a>
             </li>
