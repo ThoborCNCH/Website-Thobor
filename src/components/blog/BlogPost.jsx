@@ -53,7 +53,11 @@ function BlogPost({ id }) {
       />
       <div className="blog_post">
         <div className="title">
+          <div className="title2">
+
           <h1>Titlul ala blanao </h1>
+<div className="linie"></div>
+          </div>
           <h3>
             See post on social media:{" "}
             <a href="https://facebook.com">

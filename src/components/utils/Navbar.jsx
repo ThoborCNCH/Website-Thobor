@@ -80,6 +80,15 @@ function Navbar() {
             <li>
               <Link to="/despre">Despre</Link>
             </li>
+            <li>
+              <Link to="/despre">Apps</Link>
+            </li>
+            <li>
+              <Link to="/despre">Alumni</Link>
+            </li>
+            <li>
+              <Link to="/despre">Team</Link>
+            </li>
             {/* <li>
               <a href="#!" onClick={drop} ref={drop_ref}>
                 Services
@@ -96,9 +105,6 @@ function Navbar() {
                 </li>
               </ul>
             </li> */}
-            <li>
-              <a href="#!">Contact</a>
-            </li>
           </ul>
         </nav>
       </div>

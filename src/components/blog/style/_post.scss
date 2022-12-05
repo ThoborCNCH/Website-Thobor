@@ -37,6 +37,7 @@
 
   .img {
     width: 100%;
+    background: $black2;
     height: 45%;
     position: relative;
 
@@ -149,14 +150,12 @@
   }
 }
 
-
-
 @media screen and (max-width: 400px) {
   .post {
     width: 330px;
     .text {
       padding: 5px 0;
-      .para{
+      .para {
         padding: 0 5px;
       }
     }
