@@ -3,11 +3,15 @@ import "./despre.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Stem from "./components/Stem";
+import Slider from "./components/Slider";
+import Contact from "../utils/Contact";
+import Up from "../utils/Up";
 
 function Despre() {
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>
@@ -53,7 +57,11 @@ function Despre() {
         </div>
       </div>
 
-      <Stem/>
+      <Stem />
+          <Slider />
+          
+      <Contact />
+      <Up />
     </>
   );
 }
