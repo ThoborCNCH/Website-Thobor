@@ -1,214 +1,264 @@
-import React from "react";
+// bad animation handling. timing is 2x too long
+import React, { useEffect } from "react";
 
-function Slider() {
-  const slider_fct = (e) => {
-    const options = document.querySelectorAll(".option");
-    options.forEach((o) => {
-      o.classList.remove("active");
+class Slider extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loaded: false,
+      animating: false,
+      animationDirection: "",
+      animationDuration: 300,
+      currentSlide: 0,
+      slides: [
+        {
+          title: "Raika",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant1.png",
+          description: "An incredible plant to beautify your living room.",
+          details: {
+            temperature: "70 degrees F day 65 degrees F night",
+            water: "Summer: 2 litres Winter: 1 litre",
+            nutrition: "Garden loam, perlite, peat moss",
+          },
+        },
+        {
+          title: "Another Plant",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant2.png",
+          description: "This is another nice plant.",
+          details: {
+            temperature: "75 degrees F day 62 degrees F night",
+            water: "Summer: 3 litres Winter: 1.5 litre",
+            nutrition: "A thing, something, other thing",
+          },
+        },{
+          title: "Another Plant",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant2.png",
+          description: "This is another nice plant.",
+          details: {
+            temperature: "75 degrees F day 62 degrees F night",
+            water: "Summer: 3 litres Winter: 1.5 litre",
+            nutrition: "A thing, something, other thing",
+          },
+        },{
+          title: "Another Plant",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant2.png",
+          description: "This is another nice plant.",
+          details: {
+            temperature: "75 degrees F day 62 degrees F night",
+            water: "Summer: 3 litres Winter: 1.5 litre",
+            nutrition: "A thing, something, other thing",
+          },
+        },{
+          title: "Another Plant",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant2.png",
+          description: "This is another nice plant.",
+          details: {
+            temperature: "75 degrees F day 62 degrees F night",
+            water: "Summer: 3 litres Winter: 1.5 litre",
+            nutrition: "A thing, something, other thing",
+          },
+        },{
+          title: "Another Plant",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant2.png",
+          description: "This is another nice plant.",
+          details: {
+            temperature: "75 degrees F day 62 degrees F night",
+            water: "Summer: 3 litres Winter: 1.5 litre",
+            nutrition: "A thing, something, other thing",
+          },
+        },{
+          title: "Another Plant",
+          imageUrl:
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/36124/plant2.png",
+          description: "This is another nice plant.",
+          details: {
+            temperature: "75 degrees F day 62 degrees F night",
+            water: "Summer: 3 litres Winter: 1.5 litre",
+            nutrition: "A thing, something, other thing",
+          },
+        },
+      ],
+    };
+
+    this.changeSlide = this.changeSlide.bind(this);
+  }
+
+  fireAnims(duration) {
+    this.setState({
+      animating: true,
+      animationDirection: "out",
     });
-    options[e].classList.add("active");
-  };
-  return (
-    <div data-aos="fade-down">
-      <div className="options" >
-        <div
-          className="option active"
-          onClick={() => slider_fct(0)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-walking"></i>
-            </div>
-            <div className="info">
-              <div className="main">Blonkisoaz</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="option"
-          onClick={() => slider_fct(1)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-snowflake"></i>
-            </div>
-            <div className="info">
-              <div className="main">Oretemauw</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="option"
-          onClick={() => slider_fct(2)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tree"></i>
-            </div>
-            <div className="info">
-              <div className="main">Iteresuselle</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="option"
-          onClick={() => slider_fct(3)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="option"
-          onClick={() => slider_fct(4)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
+    // halfway
+    setTimeout(() => {
+      this.setState({
+        animating: true,
+        animationDirection: "in",
+      });
+    }, duration / 2);
+    // done
+    setTimeout(() => {
+      this.setState({
+        animating: false,
+        animationDirection: "",
+      });
+    }, duration);
+  }
 
-        <div
-          className="option"
-          onClick={() => slider_fct(5)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
+  changeSlide(dir) {
+    const currentSlide = this.state.currentSlide;
+    const slides = this.state.slides;
 
-        <div
-          className="option"
-          onClick={() => slider_fct(6)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
+    if (dir === "right") {
+      if (currentSlide < slides.length - 1) {
+        this.fireAnims(this.state.animationDuration * 2);
+        window.setTimeout(() => {
+          this.setState({
+            currentSlide: currentSlide + 1,
+          });
+        }, this.state.animationDuration);
+      }
+    } else {
+      if (currentSlide > 0) {
+        this.fireAnims(this.state.animationDuration * 2);
+        window.setTimeout(() => {
+          this.setState({
+            currentSlide: currentSlide - 1,
+          });
+        }, this.state.animationDuration);
+      }
+    }
+  }
 
-        <div
-          className="option"
-          onClick={() => slider_fct(7)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
+  determineDir(delta) {
+    if (delta > 0) {
+      return "right";
+    } else {
+      return "left";
+    }
+  }
 
-        <div
-          className="option"
-          onClick={() => slider_fct(8)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="option"
-          onClick={() => slider_fct(9)}
-          style={{
-            background:
-              "url(https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
-          }}
-        >
-          <div className="shadow"></div>
-          <div className="label">
-            <div className="icon">
-              <i className="fas fa-tint"></i>
-            </div>
-            <div className="info">
-              <div className="main">Idiefe</div>
-              <div className="sub">Omuke trughte a otufta</div>
-            </div>
-          </div>
-        </div>
+  componentDidMount() {
+    this.setState({
+      loaded: true,
+    });
+  }
+  render() {
+    let classes = ["slideshow"];
+    if (this.state.animating) {
+      classes.push(
+        "slideshow--animated slideshow--" + this.state.animationDirection
+      );
+    } else {
+      classes = ["slideshow"];
+    }
+    return (
+      <div className={classes.join(" ")}>
+        <Slide
+          title={this.state.slides[this.state.currentSlide].title}
+          image={this.state.slides[this.state.currentSlide].imageUrl}
+          description={this.state.slides[this.state.currentSlide].description}
+          details={this.state.slides[this.state.currentSlide].details}
+          count={this.state.currentSlide + 1}
+          changeSlide={this.changeSlide}
+          slideLength={this.state.slides.length}
+        />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
+class Slide extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+  render() {
+    return (
+      <div className="slide">
+        <div className="slide__decorative-sidebar">
+          <img src={this.props.image} />
+        </div>
+
+        <div className="slide__info">
+          <div className="slide__info__text">
+            <h1 className="slide__info__title">{this.props.title}</h1>
+            <p className="slide__info__description">{this.props.description}</p>
+          </div>
+          <img
+            src={this.props.image}
+            alt={this.props.title}
+            className="slide__info__image"
+          />
+          <div className="slide__arrows">
+            <a
+              className={
+                this.props.count > 1
+                  ? `slide__arrows__arrow`
+                  : `slide__arrows__arrow slide__arrows__arrow--disabled`
+              }
+              onClick={(e) => this.props.changeSlide("left")}
+            >
+              {`<`}
+              {/* shrug */}
+            </a>
+            <a
+              className={
+                this.props.count < this.props.slideLength
+                  ? `slide__arrows__arrow`
+                  : `slide__arrows__arrow slide__arrows__arrow--disabled`
+              }
+              onClick={(e) => this.props.changeSlide("right")}
+            >
+              {`>`}
+            </a>
+          </div>
+        </div>
+
+        <div className="slide__next">
+          <span>Next: Factors</span>
+        </div>
+
+        <div className="slide__details">
+          <div className="slide__details__title">Discover the details</div>
+
+          <div className="slide__details__block slide__details__block--temp">
+            <h3 className="slide__details__subtitle">Temperature</h3>
+            <p className="slide__details__block__description">
+              {this.props.details.temperature}
+            </p>
+          </div>
+
+          <div className="slide__details__block slide__details__block--water">
+            <h3 className="slide__details__subtitle">Water</h3>
+            <p className="slide__details__block__description">
+              {this.props.details.water}
+            </p>
+          </div>
+
+          <div className="slide__details__block slide__details__block--nutrition">
+            <h3 className="slide__details__subtitle">Nutrition</h3>
+            <p className="slide__details__block__description">
+              {this.props.details.nutrition}
+            </p>
+          </div>
+        </div>
+
+        <div className="slide__count">
+          <p className="slide__count__title">Explore</p>
+          <span className="slide__count__count">
+            0<span>{this.props.count}</span>
+          </span>
+        </div>
+      </div>
+    );
+  }
+}
 export default Slider;
