@@ -1,43 +1,42 @@
-
 .contact {
-    width: 100vw;
-    min-height: 300px;
+  width: 100vw;
+  min-height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  background: url(../../../img/altu.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+
+  .text {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    text-transform: uppercase;
-    background: url(../../../img/altu.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right;
-  
-    .text {
-      display: flex;
-      flex-direction: column;
-      font-weight: 800;
-      line-height: 1;
-      margin: 40px;
-  
-      h1 {
-        font-weight: 900;
-      }
-  
-      .op {
-        font-size: 60px;
-        // -webkit-text-stroke: 0.22vw #232323;
-        color: rgba($main_green, 0.4);
-        // color: $main_green;
-        // text-shadow: 0 0 5px black;
-      }
-      .ful {
-        margin-top: -25px;
-        font-size: 60px;
-        margin-left: 25px;
-        color: $main_green;
-      }
-      .d {
-        margin-top: -25px;
-      }
+    flex-direction: column;
+    font-weight: 800;
+    line-height: 1;
+    margin: 40px;
+
+    h1 {
+      font-weight: 900;
+    }
+
+    .op {
+      font-size: 60px;
+      // -webkit-text-stroke: 0.22vw #232323;
+      color: rgba($main_green, 0.4);
+      // color: $main_green;
+      // text-shadow: 0 0 5px black;
+    }
+    .ful {
+      margin-top: -25px;
+      font-size: 60px;
+      margin-left: 25px;
+      color: $main_green;
+    }
+    .d {
+      margin-top: -25px;
     }
   }
+}
