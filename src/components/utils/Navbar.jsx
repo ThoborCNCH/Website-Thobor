@@ -5,6 +5,7 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
+import useWindowSize from "./WindowSize";
 
 function Navbar() {
   const { pathname } = useLocation();
@@ -17,6 +18,8 @@ function Navbar() {
     // $(".nav-dropdown").not(drop_ref.current.siblings()).hide();
     // e.stopPropagation();
   };
+
+  const size = useWindowSize();
 
   $("html").on("click", function () {
     $(".nav-dropdown").hide();
@@ -32,6 +35,26 @@ function Navbar() {
   // });
 
   useEffect(() => {
+    const ul = document.querySelector("nav ul");
+    if (size.width >= 799) {
+      ul.style.display = "block";
+      nav.current.classList.remove("active");
+    } else {
+      if (ul.style.display == "block") {
+        ul.style.display = "block";
+        console.log("e mic dar deschis");
+      } else {
+        ul.style.display = "none";
+      }
+    }
+  }, [size]);
+
+  useEffect(() => {
+    if (size.width <= 799) {
+      const ul = document.querySelector("nav ul");
+      nav.current.classList.remove("active");
+      ul.style.display = "none";
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
 
