@@ -3,13 +3,15 @@ import React from 'react'
 function Footer() {
   return (
     <footer className="footer">
-    <div className="footer__addr">
-      <h1 className="footer__logo">Thobor</h1>
+      <div className="footer__addr">
+      <img src={require("../../img/logo_thobor_celalalt.png")} alt="" className="footer__logo" />
+        {/* <h1 className="footer__logo">Thobor</h1> */}
 
       <h2>Contact</h2>
 
       <address>
         thoborcnch@gmail.com
+        <br />
         <br />
         <a
           className="footer__btn"
