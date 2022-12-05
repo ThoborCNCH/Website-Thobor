@@ -42,7 +42,6 @@ function Navbar() {
     } else {
       if (ul.style.display == "block") {
         ul.style.display = "block";
-        console.log("e mic dar deschis");
       } else {
         ul.style.display = "none";
       }

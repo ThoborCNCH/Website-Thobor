@@ -184,7 +184,7 @@ class Slide extends React.Component {
     return (
       <div className="slide">
         <div className="slide__decorative-sidebar">
-          <img  data-aos="fade-right" src={this.props.image} />
+          <img   src={this.props.image} />
         </div>
 
         <div className="slide__info">
@@ -193,7 +193,7 @@ class Slide extends React.Component {
             <p className="slide__info__description">{this.props.description}</p>
           </div>
           <img
-             data-aos="fade-right"
+             
             src={this.props.image}
             alt={this.props.title}
             className="slide__info__image"
@@ -228,7 +228,7 @@ class Slide extends React.Component {
         </div>
 
         <div className="slide__details">
-          <div className="slide__details__title" data-aos="fade-right">Discover the details</div>
+          <div className="slide__details__title" >Discover the details</div>
 
           <div className="slide__details__block slide__details__block--temp">
             <h3 className="slide__details__subtitle">Temperature</h3>
@@ -237,24 +237,24 @@ class Slide extends React.Component {
             </p>
           </div>
 
-          <div className="slide__details__block slide__details__block--water"  data-aos="fade-right">
-            <h3 className="slide__details__subtitle"  data-aos="fade-right">Water</h3>
-            <p className="slide__details__block__description"  data-aos="fade-right">
+          <div className="slide__details__block slide__details__block--water"  >
+            <h3 className="slide__details__subtitle"  >Water</h3>
+            <p className="slide__details__block__description"  >
               {this.props.details.water}
             </p>
           </div>
 
-          <div className="slide__details__block slide__details__block--nutrition"  data-aos="fade-right">
-            <h3 className="slide__details__subtitle" data-aos="fade-right">Nutrition</h3>
-            <p className="slide__details__block__description" data-aos="fade-right">
+          <div className="slide__details__block slide__details__block--nutrition"  >
+            <h3 className="slide__details__subtitle" >Nutrition</h3>
+            <p className="slide__details__block__description" >
               {this.props.details.nutrition}
             </p>
           </div>
         </div>
 
         <div className="slide__count">
-          <p className="slide__count__title"  data-aos="fade-right">Explore</p>
-          <span className="slide__count__count"  data-aos="fade-right">
+          <p className="slide__count__title"  >Explore</p>
+          <span className="slide__count__count"  >
             0<span>{this.props.count}</span>
           </span>
         </div>
