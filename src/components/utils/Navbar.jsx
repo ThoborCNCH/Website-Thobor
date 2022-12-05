@@ -4,24 +4,32 @@ import React from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo_thobor_celalalt.png";
-$("nav ul li > a:not(:only-child)").on("click", function (e) {
-  $(this).siblings(".nav-dropdown").slideToggle();
-  $(".nav-dropdown").not($(this).siblings()).hide();
-  e.stopPropagation();
-});
-$("html").on("click", function () {
-  $(".nav-dropdown").hide();
-});
-// Toggle open and close nav styles on click
-$("#nav-toggle").on("click", function () {
-  $("nav ul").slideToggle();
-});
-$("#nav-toggle").on("click", function () {
-  this.classList.toggle("active");
-});
+import { useRef } from "react";
 
 function Navbar() {
   const { pathname } = useLocation();
+  const nav = useRef(null);
+  const drop_ref = useRef(null);
+
+  const drop = (e) => {
+    console.log("e");
+    //    drop_ref.current.siblings(".nav-dropdown").slideToggle();
+    // $(".nav-dropdown").not(drop_ref.current.siblings()).hide();
+    // e.stopPropagation();
+  };
+
+  $("html").on("click", function () {
+    $(".nav-dropdown").hide();
+  });
+  const nav_click = () => {
+    $("nav ul").slideToggle();
+    nav.current.classList.toggle("active");
+  };
+  // Toggle open and close nav styles on click
+  // $("#nav-toggle").on("click", function () {
+  // });
+  // $("#nav-toggle").on("click", function () {
+  // });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,15 +40,12 @@ function Navbar() {
       <div className="nav-container">
         <div className="brand">
           <Link to="/">
-            <img
-              src={logo}
-              alt=""
-            />
+            <img src={logo} alt="" />
           </Link>
         </div>
         <nav>
           <div className="nav-mobile">
-            <a id="nav-toggle" href="#!">
+            <a id="nav-toggle" href="#!" onClick={nav_click} ref={nav}>
               <span></span>
             </a>
           </div>
@@ -55,7 +60,9 @@ function Navbar() {
               <Link to="/despre">Despre</Link>
             </li>
             <li>
-              <a href="#!">Services</a>
+              <a href="#!" onClick={drop} ref={drop_ref}>
+                Services
+              </a>
               <ul className="nav-dropdown">
                 <li>
                   <a href="#!">Web Design</a>
