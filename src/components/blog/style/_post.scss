@@ -1,33 +1,121 @@
 .post {
   width: 100%;
   max-width: 400px;
-  height: 500px;
+  height: 600px;
   position: relative;
-  padding: 15px;
-  background-color: rgba(white, 0.1);
-  box-shadow: 0 0 10px white;
-  border-radius: 20px;
   margin: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-bottom: 50px;
 
-  img {
-    border-radius: 20px;
+  .img {
     width: 100%;
     height: 45%;
-    object-fit: cover;
+    position: relative;
+
+    .poza_main {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+    }
+    .svg {
+      width: 100%;
+      position: absolute;
+      z-index: 3;
+      left: 0;
+      height: auto;
+      bottom: 0;
+      object-fit: cover;
+    }
   }
-  h2 {
-    text-align: center;
-    font-size: 20px;
-    margin: 20px;
-    font-weight: 600;
-    color: white;
-  }
-  a {
-    text-align: center;
-    text-transform: uppercase;
-    padding: 15px 20px;
+  .text {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      width: 100%;
+      margin: 30px 0 0px 0;
+      position: relative;
+
+      h2 {
+        position: relative;
+        z-index: 5;
+        color: white;
+        font-weight: 500;
+        font-size: 22px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .linie {
+        z-index: 4;
+        position: relative;
+        width: 300px;
+        height: 20px;
+        background: $main_green;
+        left: 80px;
+        bottom: 10.5px;
+      }
+    }
+    .para {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px 20px;
+      margin: 20px 0;
+      position: relative;
+
+      .linie_vert {
+        width: 30px;
+        height: 120%;
+        position: relative;
+        background: $dark_green;
+        margin-right: 20px;
+      }
+      p {
+        color: white;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    .link {
+      width: 256px;
+      font-size: 20px;
+      font-weight: 500;
+      color: $main_green;
+      position: relative;
+      padding: 10px;
+
+      .coca {
+        width: 0;
+        height: 100%;
+        background: white;
+        transition: 0.2s ease-in-out;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 3;
+      }
+      span {
+        z-index: 4;
+        position: relative;
+
+        i {
+          margin-left: 10px;
+        }
+      }
+      &:hover {
+        .coca {
+          width: 100%;
+        }
+      }
+    }
   }
 }

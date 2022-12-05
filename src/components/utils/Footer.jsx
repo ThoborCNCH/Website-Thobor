@@ -4,16 +4,16 @@ function Footer() {
   return (
     <footer className="footer">
     <div className="footer__addr">
-      <h1 className="footer__logo">Genii ale Culturii Românești</h1>
+      <h1 className="footer__logo">Thobor</h1>
 
       <h2>Contact</h2>
 
       <address>
-        contacto@institutohispanorumano.org
+        thoborcnch@gmail.com
         <br />
         <a
           className="footer__btn"
-          href="mailto:contacto@institutohispanorumano.org"
+          href="mailto:thoborcnch@gmail.com"
         >
           Email Us
         </a>
@@ -26,14 +26,20 @@ function Footer() {
 
         <ul className="nav__ul">
           <li>
-            <a href="https://institutohispanorumano.org/">
-              Institutul Hispano-Român
+            <a href="https://www.facebook.com/ThoborCNCH">
+              Facebook
             </a>
           </li>
 
           <li>
-            <a href="https://scoala.institutohispanorumano.org/">
-              Scoala Nicolae Iorga
+            <a href="https://www.instagram.com/thoborcnch/">
+              Instagram
+            </a>
+            </li>
+            
+          <li>
+              <a href="https://www.youtube.com/@thobor7033">
+                Youtube
             </a>
           </li>
         </ul>
