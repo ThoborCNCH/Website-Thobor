@@ -29,7 +29,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -37,7 +37,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -45,7 +45,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -53,7 +53,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -61,7 +61,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -69,7 +69,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -77,7 +77,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -85,7 +85,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -93,7 +93,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -101,7 +101,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -109,7 +109,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -117,7 +117,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -125,7 +125,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -133,7 +133,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -141,7 +141,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -149,7 +149,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -157,7 +157,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -165,7 +165,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -173,7 +173,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -181,7 +181,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -189,7 +189,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -197,7 +197,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -205,7 +205,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -213,7 +213,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -221,7 +221,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -229,7 +229,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -237,7 +237,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -245,7 +245,7 @@ function Blog() {
         />
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
@@ -253,7 +253,7 @@ function Blog() {
         />{" "}
         <Post
           data="fade-right"
-          link={"#"}
+          link={"/blog/1"}
           poza={require("../../img/robo_px.jpg")}
           titlu={
             "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"

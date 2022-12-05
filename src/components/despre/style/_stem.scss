@@ -7,7 +7,7 @@
   align-items: flex-start;
   // position: relative;
   padding: 70px 0;
-
+  
   img {
     width: 500px;
     height: auto;
@@ -52,7 +52,8 @@
 
   .press {
     cursor: pointer;
-    width: 250px;
+  user-select: none;
+  width: 250px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
