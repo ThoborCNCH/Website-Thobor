@@ -19,12 +19,13 @@ function Stem() {
 
   return (
     <>
-      <div className="stem">
+      <div className="stem" data-aos="fade-down">
         <img
-          src={require("../../../img/stem.png")} 
+          src={require("../../../img/stem.png")}
           alt=""
+          data-aos="fade-right"
         />
-        <div className="stemText">
+        <div className="stemText" data-aos="fade-left">
           <h3>Despre modelul STEM</h3>
           <h6>
             <span id="STEM">Educația STEM </span>
