@@ -7,22 +7,22 @@ import Navbar from "./components/utils/Navbar";
 import Footer from "./components/utils/Footer";
 import Despre from "./components/despre/Despre";
 import Loading from "./components/utils/Loading";
+import Apps from "./components/apps/Apps";
 
 // const Home = React.lazy(() => import("./components/home/Home"));
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Suspense  fallback={<Loading/>}> */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
+        <Route path="/apps" element={<Apps />} />
       </Routes>
       <Footer />
-      {/* </Suspense>       */}
     </BrowserRouter>
   );
 }

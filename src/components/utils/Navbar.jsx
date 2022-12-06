@@ -81,7 +81,7 @@ function Navbar() {
               <Link to="/despre">Despre</Link>
             </li>
             <li>
-              <Link to="/despre">Apps</Link>
+              <Link to="/apps">Apps</Link>
             </li>
             <li>
               <Link to="/despre">Alumni</Link>
