@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 
-function App({ titlu, p, img, link, codeQR }) {
-  useEffect(() => {
-    // console.log(data[0]);
-  }, []);
+function App({ titlu, p, img, link, codeQR, data }) {
+//   useEffect(() => {
+//     if(data != undefined)
+//       console.log(data[0]);
+//   }, [data]);
   return (
     <>
       <div className="app">
