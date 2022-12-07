@@ -21,9 +21,6 @@ function Apps() {
       />
       <div className="apps">
         <App
-          data1={"fade-right"}
-          data2={"fade-left"}
-          data3={"fade-down"}
           titlu={"Aplicatia noastră - Realitate Augmentata -"}
           p={
             "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."

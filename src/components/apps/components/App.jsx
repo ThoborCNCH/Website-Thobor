@@ -1,29 +1,37 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 
-function App({ titlu, p, img, link, codeQR, data1, data2 }) {
+function App({ titlu, p, img, link, codeQR }) {
   return (
     <>
       <div className="app">
         <div className="top">
-          <img src={img} alt=""   />
+          <img src={img} alt="" data-aos="fade-right" />
           <div className="txt">
             <div className="title">
-              <h1>{titlu}</h1>
-              <div className="linie"></div>
+              <h1 data-aos="fade-down">{titlu}</h1>
+              <div
+                className="linie"
+                data-aos="fade-left"
+                data-aos-delay="300"
+              ></div>
             </div>
             <div className="text">
-              <div className="linie_vert"></div>
-              <p>{p}</p>
+              <div
+                className="linie_vert"
+                data-aos="fade-left"
+                data-aos-delay="400"
+              ></div>
+              <p data-aos="fade-left">{p}</p>
             </div>
           </div>
         </div>
 
-        <a href={link} className="button">
+        <a href={link} className="button" data-aos="fade-down">
           Download
         </a>
-        {codeQR && <img src={codeQR} className="qr" alt="" />}
+        {codeQR && (
+          <img src={codeQR} className="qr" alt="" data-aos="fade-down" />
+        )}
       </div>
     </>
   );
