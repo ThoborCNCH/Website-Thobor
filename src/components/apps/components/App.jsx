@@ -1,22 +1,22 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 
-function App({ titlu, p, img, link, codeQR, data }) {
-//   useEffect(() => {
-//     if(data != undefined)
-//       console.log(data[0]);
-//   }, [data]);
+function App({ titlu, p, img, link, codeQR, data1, data2 }) {
   return (
     <>
       <div className="app">
         <div className="top">
-          <img src={img} alt="" />
+          <img src={img} alt=""   />
           <div className="txt">
             <div className="title">
               <h1>{titlu}</h1>
               <div className="linie"></div>
             </div>
-            <p>{p}</p>
+            <div className="text">
+              <div className="linie_vert"></div>
+              <p>{p}</p>
+            </div>
           </div>
         </div>
 

@@ -8,11 +8,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function Apps() {
-    useEffect(() => {
-        AOS.init();      
-  },[])
-  
-    return (
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  return (
     <>
       <img
         src={require("../../img/apps_banner.svg").default}
@@ -21,7 +21,9 @@ function Apps() {
       />
       <div className="apps">
         <App
-          data={["right", "left", "down", "up"]}
+          data1={"fade-right"}
+          data2={"fade-left"}
+          data3={"fade-down"}
           titlu={"Aplicatia noastră - Realitate Augmentata -"}
           p={
             "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."

@@ -29,7 +29,9 @@
     .txt {
       width: auto;
       padding: 20px;
-      width: calc(100vw - 800px - 50px);
+      width: 100%;
+      max-width: 500px;
+      position: relative;
 
       .title {
         margin: 30px 0 20px 0;
@@ -52,10 +54,25 @@
           bottom: 18px;
         }
       }
-      p {
-        color: white;
-        font-size: 19px;
+      .text {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+
+        .linie_vert {
+          width: 30px;
+          height: 200px;
+          margin: 0 20px;
+          background: $main_green;
+        }
+        p {
+          color: white;
+          font-size: 19px;
+        }
       }
     }
   }
 }
+
