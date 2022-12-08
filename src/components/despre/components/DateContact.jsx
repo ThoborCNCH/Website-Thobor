@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Date() {
+function DateContact() {
     return (
         <>
         
@@ -8,4 +8,4 @@ function Date() {
   )
 }
 
-export default Date
+export default DateContact
