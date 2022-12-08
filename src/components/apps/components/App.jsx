@@ -6,9 +6,9 @@ function App({ titlu, p, img, link, codeQR }) {
       <div className="app">
         <div className="top">
           <div className="img">
-            <div className="before" data-aos="fade-right"></div>
+            {/* <div className="before" data-aos="fade-right"></div> */}
             <img src={img} alt="" data-aos="fade-up" />
-            <div className="after" data-aos="fade-left"></div>
+            {/* <div className="after" data-aos="fade-left"></div> */}
           </div>
           <div className="txt">
             <div className="title">
@@ -34,8 +34,11 @@ function App({ titlu, p, img, link, codeQR }) {
           Download
         </a>
         {codeQR && (
-          <img src={codeQR} className="qr" alt="" data-aos="fade-down" />
+          <div className="qr_cont">
+            <img src={codeQR} className="qr" alt="" data-aos="fade-down" />
+          </div>
         )}
+        <div className="linie_sep"></div>
       </div>
     </>
   );

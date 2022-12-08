@@ -7,9 +7,21 @@
   flex-direction: column;
   min-height: 400px;
 
-  .qr {
-    width: 320px;
-    margin: 20px;
+  .qr_cont {
+    width: calc(100% + 30px);
+    max-width: 360px;
+    background: url(../../../../img/before.svg), url(../../../../img/after.svg);
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top left, bottom right;
+    margin: 40px 20px;
+    padding: 30px;
+
+    .qr {
+      width: 300px;
+      height: 300px;
+      margin: 0;
+    }
   }
   .top {
     width: 100vw;
@@ -23,40 +35,51 @@
     .img {
       position: relative;
       margin: 0 55px;
+      width: calc(100% + 30px);
+      max-width: 500px;
+      background: url(../../../../img/before.svg),
+        url(../../../../img/after.svg);
+      background-repeat: no-repeat;
+      background-size: 50%;
+      background-position: top left, bottom right;
+      // width: calc(100% - 30px);
+      padding: 30px;
+      // .before {
+      //   content: "";
+      //   z-index: 0;
+      //   width: 100%;
+      //   max-width: 250px;
+      //   height: 50%;
+      //   background: url(../../../../img/before.svg);
+      //   background-repeat: no-repeat;
+      //   background-size: contain;
+      //   background-position: top left;
+      //   position: absolute;
+      //   top: -15px;
+      //   left: -15px;
+      // }
 
-      .before {
-        z-index: 0;
-        width: 100%;
-        max-width: 250px;
-        height: 300px;
-        background: url(../../../../img/before.svg);
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: top left;
-        position: absolute;
-        top: -13px;
-        left: -13px;
-      }
+      // .after {
+      //   z-index: 0;
+      //   content: "";
+      //   width: 100%;
+      //   max-width: 250px;
+      //   height: 50%;
+      //   background: url(../../../../img/after.svg);
+      //   background-repeat: no-repeat;
+      //   background-position: bottom right;
+      //   background-size: contain;
+      //   position: absolute;
+      //   bottom: -15px;
+      //   right: -15px;
+      // }
 
-      .after {
-        z-index: 0;
-        width: 100%;
-        max-width: 250px;
-        height: 300px;
-        background: url(../../../../img/after.svg);
-        background-repeat: no-repeat;
-        background-position: bottom right;
-        background-size: contain;
-        position: absolute;
-        bottom: -13px;
-        right: -13px;
-      }
       img {
         position: relative;
         z-index: 5;
-        width: 100%;
-        max-width: 600px;
-        margin: 20px;
+
+        width: 100%; // max-width: 600px;
+        // margin: 20px;
       }
     }
 
@@ -107,5 +130,12 @@
         }
       }
     }
+  }
+  .linie_sep {
+    align-self: flex-start;
+    width: 50vw;
+    height: 20px;
+    background: $light_green;
+    margin: 20px 0 50px 50px;
   }
 }
