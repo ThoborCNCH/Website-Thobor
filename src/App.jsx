@@ -8,6 +8,7 @@ import Footer from "./components/utils/Footer";
 import Despre from "./components/despre/Despre";
 import Loading from "./components/utils/Loading";
 import Apps from "./components/apps/Apps";
+import Sponsors from "./components/sponsors/Sponsors";
 
 // const Home = React.lazy(() => import("./components/home/Home"));
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
         <Route path="/apps" element={<Apps />} />
+        <Route path="/sponsors" element={<Sponsors />} />
       </Routes>
       <Footer />
     </BrowserRouter>

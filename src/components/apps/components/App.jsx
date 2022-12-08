@@ -1,6 +1,6 @@
 import React from "react";
 
-function App({ titlu, p, img, link, codeQR }) {
+function App({ titlu, p, img, link, codeQR, txt_link }) {
   return (
     <>
       <div className="app">
@@ -30,8 +30,8 @@ function App({ titlu, p, img, link, codeQR }) {
           </div>
         </div>
 
-        <a href={link} className="button" data-aos="fade-down">
-          Download
+        <a href={link} target="_blank" className="button" data-aos="fade-down">
+          {txt_link}
         </a>
         {codeQR && (
           <div className="qr_cont">

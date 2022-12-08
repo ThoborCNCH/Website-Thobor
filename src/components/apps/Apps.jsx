@@ -22,6 +22,7 @@ function Apps() {
       <div className="apps">
         <App
           titlu={"Aplicatia noastră - Realitate Augmentata -"}
+          txt_link="Download"
           p={
             "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."
           }
@@ -30,6 +31,7 @@ function Apps() {
         />
         <App
           titlu={"Aplicatia noastră - Realitate Augmentata -"}
+          txt_link="Download"
           p={
             "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."
           }
@@ -39,6 +41,7 @@ function Apps() {
         />
         <App
           titlu={"Aplicatia noastră - Realitate Augmentata -"}
+          txt_link="Download"
           p={
             "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."
           }

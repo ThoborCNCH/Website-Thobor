@@ -6,6 +6,7 @@ import Stem from "./components/Stem";
 import Slider from "./components/Slider";
 import Contact from "../utils/Contact";
 import Up from "../utils/Up";
+import Date from "./components/Date";
 
 function Despre() {
   useEffect(() => {
@@ -59,7 +60,7 @@ function Despre() {
 
       <Stem />
       <Slider />
-
+      <Date />
       <Contact />
       <Up />
     </>
