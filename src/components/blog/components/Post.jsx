@@ -14,19 +14,35 @@ function Post({ poza, titlu, link, data, data2, dalay }) {
       </div>
       <div className="text">
         <div className="title">
-          <h2  data-aos={data2} data-aos-delay={dalay}>{titlu}</h2>
-          <div data-aos={data} data-aos-delay={dalay+300} className="linie"></div>
+          <h2 data-aos={data2} data-aos-delay={dalay}>
+            {titlu}
+          </h2>
+          <div
+            data-aos={data}
+            data-aos-delay={dalay + 300}
+            className="linie"
+          ></div>
         </div>
         <div className="para" data-aos={data2} data-aos-delay={dalay}>
-          <div className="linie_vert"  data-aos={data2} data-aos-delay={dalay+400}></div>
-          <p  data-aos={data} data-aos-delay={dalay}>
+          <div
+            className="linie_vert"
+            data-aos={data2}
+            data-aos-delay={dalay + 400}
+          ></div>
+          <p data-aos={data} data-aos-delay={dalay}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quod
             laborum soluta, iure in veritatis dolores dolore laboriosam atque
             veniam nihil itaque, mollitia quaerat illo obcaecati ipsum explicabo
             ratione labore.
           </p>
         </div>
-        <Link  data-aos={data2} data-aos-delay={dalay} to={link} preventScrollReset={true} className="link">
+        <Link
+          data-aos={data2}
+          data-aos-delay={dalay}
+          to={link}
+          preventScrollReset={true}
+          className="link"
+        >
           <div className="coca"></div>
           <span>
             Citeste mai multe <i className="fas fa-caret-right"></i>

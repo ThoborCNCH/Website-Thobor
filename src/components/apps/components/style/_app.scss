@@ -20,10 +20,44 @@
     padding: 20px 40px;
     flex-wrap: wrap;
 
-    img {
-      width: 100%;
-      max-width: 600px;
-      margin: 20px;
+    .img {
+      position: relative;
+      margin: 0 55px;
+
+      .before {
+        z-index: 0;
+        width: 100%;
+        max-width: 250px;
+        height: 300px;
+        background: url(../../../../img/before.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top left;
+        position: absolute;
+        top: -13px;
+        left: -13px;
+      }
+
+      .after {
+        z-index: 0;
+        width: 100%;
+        max-width: 250px;
+        height: 300px;
+        background: url(../../../../img/after.svg);
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: contain;
+        position: absolute;
+        bottom: -13px;
+        right: -13px;
+      }
+      img {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        max-width: 600px;
+        margin: 20px;
+      }
     }
 
     .txt {
@@ -75,4 +109,3 @@
     }
   }
 }
-

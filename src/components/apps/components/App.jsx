@@ -5,7 +5,11 @@ function App({ titlu, p, img, link, codeQR }) {
     <>
       <div className="app">
         <div className="top">
-          <img src={img} alt="" data-aos="fade-right" />
+          <div className="img">
+            <div className="before" data-aos="fade-right"></div>
+            <img src={img} alt="" data-aos="fade-up" />
+            <div className="after" data-aos="fade-left"></div>
+          </div>
           <div className="txt">
             <div className="title">
               <h1 data-aos="fade-down">{titlu}</h1>
