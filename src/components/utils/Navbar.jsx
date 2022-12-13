@@ -84,10 +84,10 @@ function Navbar() {
               <Link to="/apps">Apps</Link>
             </li>
             <li>
-              <Link to="/despre">Alumni</Link>
+              <Link to="/alumni">Alumni</Link>
             </li>
             <li>
-              <Link to="/despre">Team</Link>
+              <Link to="/team">Team</Link>
             </li>
             <li>
               <Link to="/sponsors">Sponsors</Link>
