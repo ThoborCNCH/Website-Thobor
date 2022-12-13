@@ -67,13 +67,13 @@ function Footer() {
     </ul>
 
     <div className="legal">
-      <p>&copy; 2022 Instituto Hispano-Rumano All rights reserved.</p>
+      <p> Copyright &copy; 2022 Thobor #RO068 All rights reserved.</p>
 
-      <div className="legal__links">
+      {/* <div className="legal__links">
         <span>
           Editors Matei <span className="heart">&</span> Mihail
         </span>
-      </div>
+      </div> */}
     </div>
   </footer>
   )
