@@ -13,7 +13,7 @@ function Generatie({ years, team }) {
       <div className="title_gen">
         <div className="linie" data-aos="fade-right"></div>
         <h1 className="year" data-aos="fade-up">
-         {team ? "generația": "Echipa din anii"}: {years}
+         {team ? "Echipa din anii": "Generația"}: {years}
         </h1>
       </div>
       <Swiper
