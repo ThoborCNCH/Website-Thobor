@@ -6,7 +6,9 @@
   height: 50px;
   background: $main_green;
   user-select: none;
+  cursor: pointer;
   border-radius: 50%;
+  scroll-behavior: smooth;
   padding: 10px;
   z-index: 999;
   box-sizing: content-box;
