@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 import Persoana from "./AlumniPersoana";
 
-function Generatie({ years, team }) {
+function Generatie({ years, team, persoane }) {
   return (
     <>
       <div className="title_gen">
@@ -42,102 +42,14 @@ function Generatie({ years, team }) {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nulla dolorem quia velit cumque error. Ad, incidunt quia voluptatibus provident dicta sed reiciendis similique non dolores molestiae. Dolores, numquam iusto?"
-            faculta="Politehnica - FIIR -"
-          />
-        </SwiperSlide>
+        {
+          persoane && persoane.map(pers=>(
+
+            <SwiperSlide>
+              {pers}
+            </SwiperSlide>
+          ))
+        }
       </Swiper>
     </>
   );
