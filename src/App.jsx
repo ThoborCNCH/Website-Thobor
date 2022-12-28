@@ -6,13 +6,11 @@ import Home from "./components/home/Home";
 import Navbar from "./components/utils/Navbar";
 import Footer from "./components/utils/Footer";
 import Despre from "./components/despre/Despre";
-import Loading from "./components/utils/Loading";
 import Apps from "./components/apps/Apps";
 import Sponsors from "./components/sponsors/Sponsors";
 import Alumni from "./components/alumni/Alumni";
 import Team from "./components/team/Team";
-
-// const Home = React.lazy(() => import("./components/home/Home"));
+import Assembly from "./components/simulator/TeleOP/Assembly";
 
 function App() {
   return (
@@ -27,6 +25,7 @@ function App() {
         <Route path="/alumni" element={<Alumni />} />
         <Route path="/team" element={<Team />} />
         <Route path="/sponsors" element={<Sponsors />} />
+        <Route path="/simulator" element={<Assembly />} />
       </Routes>
       <Footer />
     </BrowserRouter>

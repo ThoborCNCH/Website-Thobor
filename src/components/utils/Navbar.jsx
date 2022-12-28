@@ -41,7 +41,7 @@ function Navbar() {
       // nav.current.classList.remove("active");
     } else {
       if (ul.style.display != "block") {
-        console.log("lasndlkdnasldnln")
+        console.log("lasndlkdnasldnln");
         // ul.style.display = "none";
       }
     }
@@ -108,6 +108,13 @@ function Navbar() {
                 </li>
               </ul>
             </li> */}
+            {size.width > 1000 && (
+              <>
+                <li>
+                  <Link to="/simulator">Simulator</Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

@@ -1,0 +1,44 @@
+body,
+html,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 9999;
+  border-radius: 8px;
+  margin: 10px;
+  background: black;
+  opacity: 0.88;
+  color: white;
+  padding: 12px;
+  z-index: 10;
+  /* width: 220px; */
+  height: 70px;
+  animation: fade;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 10s;
+}
+
+@keyframes fade {
+  to {
+    transform: translate(0, -20px);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
