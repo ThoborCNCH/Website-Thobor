@@ -163,12 +163,12 @@ function Admin() {
           onChange={(e) => setTitlu(e.target.value)}
         />
         <input
-          type="text"
+          type="url"
           placeholder="fb"
           onChange={(e) => setFb(e.target.value)}
         />
         <input
-          type="text"
+          type="url"
           placeholder="insta"
           onChange={(e) => setInsta(e.target.value)}
         />
