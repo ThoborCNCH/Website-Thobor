@@ -6,10 +6,31 @@ import "aos/dist/aos.css";
 import Contact from "../utils/Contact";
 import Up from "../utils/Up";
 
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
+  authDomain: "thobor-9436b.firebaseapp.com",
+  projectId: "thobor-9436b",
+  storageBucket: "thobor-9436b.appspot.com",
+  messagingSenderId: "496274391107",
+  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
+});
+
+const firestore = firebase.firestore();
+
 function Blog() {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const blogRef = firestore.collection("blog");
+  const query = blogRef.orderBy("createAt");
+
+  const [blog] = useCollectionData(query, { idField: "id" });
   return (
     <>
       <img
@@ -19,365 +40,20 @@ function Blog() {
       />
 
       <div className="blog">
-        <Post
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />{" "}
-        <Post
-         
-          dalay={300}
-          data2={"fade-down"}
-          key={Math.random() * 92342423}
-          data="fade-right"
-          link={"/blog/1"}
-          poza={require("../../img/robo_px.jpg")}
-          titlu={
-            "Titlul postarii dar nush ce sa pun acum, asa ca pun ceva mai lung"
-          }
-        />
+        {blog &&
+          blog.map((bl) => (
+            <Post
+              dalay={300}
+              data2={"fade-down"}
+              ajutor={false}
+              key={Math.random() * 92342423}
+              data="fade-right"
+              link={`/blog/${bl.id}`}
+              poza={bl.img0}
+              titlu={bl.titlu}
+              text_scurt={bl.text0.slice(0, 200)+" ..."}
+            />
+          ))}
       </div>
       <Contact />
       <Up />

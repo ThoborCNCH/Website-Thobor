@@ -11,6 +11,7 @@ import Sponsors from "./components/sponsors/Sponsors";
 import Alumni from "./components/alumni/Alumni";
 import Team from "./components/team/Team";
 import Assembly from "./components/simulator/TeleOP/Assembly";
+import Admin from "./components/admin/Admin";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/simulator" element={<Assembly />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </BrowserRouter>

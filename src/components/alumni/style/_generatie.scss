@@ -1,6 +1,7 @@
 .swiper {
   width: 100vw;
-  height: 500px;
+  height: auto;
+  padding: 50px 0;
 }
 
 .swiper-slide {
@@ -24,7 +25,7 @@
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 15px;
-
+z-index: 9;
       .imgs {
         width: 50%;
         position: relative;

@@ -1,55 +1,84 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Post({ poza, titlu, link, data, data2, dalay }) {
-  return (
-    <div className="post" data-aos={data}>
-      <div className="img">
-        <img src={poza} alt="" className="poza_main" />
-        <img
-          src={require("../../../img/post_card_img.svg").default}
-          className="svg"
-          alt=""
-        />
-      </div>
-      <div className="text">
-        <div className="title">
-          <h2 data-aos={data2} data-aos-delay={dalay}>
-            {titlu}
-          </h2>
-          <div
-            data-aos={data}
-            data-aos-delay={dalay + 300}
-            className="linie"
-          ></div>
+function Post({ ajutor, poza, titlu, link, data, data2, dalay, text_scurt }) {
+  return ajutor ? (
+    <>
+      {" "}
+      <div className="post">
+        <div className="img">
+          <img src={poza} alt="" className="poza_main" />
+          <img
+            src={require("../../../img/post_card_img.svg").default}
+            className="svg"
+            alt=""
+          />
         </div>
-        <div className="para" data-aos={data2} data-aos-delay={dalay}>
-          <div
-            className="linie_vert"
+        <div className="text">
+          <div className="title">
+            <h2>{titlu}</h2>
+            <div className="linie"></div>
+          </div>
+          <div className="para">
+            <div className="linie_vert"></div>
+            <p>{text_scurt}</p>
+          </div>
+          <Link to={link} preventScrollReset={true} className="link">
+            <div className="coca"></div>
+            <span>
+              Citeste mai multe <i className="fas fa-caret-right"></i>
+            </span>
+          </Link>
+        </div>
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="post" data-aos={data}>
+        <div className="img">
+          <img src={poza} alt="" className="poza_main" />
+          <img
+            src={require("../../../img/post_card_img.svg").default}
+            className="svg"
+            alt=""
+          />
+        </div>
+        <div className="text">
+          <div className="title">
+            <h2 data-aos={data2} data-aos-delay={dalay}>
+              {titlu}
+            </h2>
+            <div
+              data-aos={data}
+              data-aos-delay={dalay + 300}
+              className="linie"
+            ></div>
+          </div>
+          <div className="para" data-aos={data2} data-aos-delay={dalay}>
+            <div
+              className="linie_vert"
+              data-aos={data2}
+              data-aos-delay={dalay + 400}
+            ></div>
+            <p data-aos={data} data-aos-delay={dalay}>
+              {text_scurt}
+            </p>
+          </div>
+          <Link
             data-aos={data2}
-            data-aos-delay={dalay + 400}
-          ></div>
-          <p data-aos={data} data-aos-delay={dalay}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quod
-            laborum soluta, iure in veritatis dolores dolore laboriosam atque
-            veniam nihil itaque, mollitia quaerat illo obcaecati ipsum explicabo
-            ratione labore.
-          </p>
+            data-aos-delay={dalay}
+            to={link}
+            preventScrollReset={true}
+            className="link"
+          >
+            <div className="coca"></div>
+            <span>
+              Citeste mai multe <i className="fas fa-caret-right"></i>
+            </span>
+          </Link>
         </div>
-        <Link
-          data-aos={data2}
-          data-aos-delay={dalay}
-          to={link}
-          preventScrollReset={true}
-          className="link"
-        >
-          <div className="coca"></div>
-          <span>
-            Citeste mai multe <i className="fas fa-caret-right"></i>
-          </span>
-        </Link>
       </div>
-    </div>
+    </>
   );
 }
 
