@@ -66,7 +66,6 @@ function Post({ ajutor, poza, titlu, link, data, data2, dalay, text_scurt }) {
           </div>
           <Link
             data-aos={data2}
-            data-aos-delay={dalay}
             to={link}
             preventScrollReset={true}
             className="link"

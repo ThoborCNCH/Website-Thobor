@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Svg from "../utils/Svg";
 import Contact from "../utils/Contact";
+import { Link } from "react-router-dom";
 
 function Home() {
   const h1 = useRef(null);
@@ -171,9 +172,9 @@ function Home() {
           similique laborum adipisci porro vel eaque rem ad consequuntur id
           deserunt! Voluptates magnam vitae incidunt. Repellendus eaqu
         </p>
-        <a href="#" className="button" data-aos="zoom-in-up">
+        <Link to={"/despre"} className="button" data-aos="zoom-in-up">
           afla mai multe
-        </a>
+        </Link>
       </div>
       <div className="cards">
         <div className="card" data-aos="fade-right">

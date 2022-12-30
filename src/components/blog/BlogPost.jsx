@@ -12,8 +12,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
 import { useCollectionData } from "react-firebase-hooks/firestore";
-
-
+import { useState } from "react";
 
 firebase.initializeApp({
   apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
@@ -28,32 +27,75 @@ const firestore = firebase.firestore();
 let arr_p = [];
 let arr_img = [];
 function BlogPost() {
+  const [postare, setPosare] = useState({});
+  const [img, setImg] = useState([]);
   const { id } = useParams();
   console.log(id);
 
   const blogRef = firestore.collection("blog").where("id", "==", id);
-
-  const [messages] = useCollectionData(blogRef, { idField: "id" });
+  const messages = useCollectionData(blogRef, { idField: "id" });
+  const ceva = useCollectionData(blogRef, { idField: "id" });
 
   useEffect(() => {
-    console.log(messages);
     AOS.init();
-
-    if (messages) {
-      for (const [key, value] of Object.entries(messages[0])) {
-        if (key.includes("text")) arr_p.push(value);
-        if (key.includes("img")) arr_img.push(value);
-      }
-    }
-
     document.querySelectorAll(".blog_post p ").forEach((p, index) => {
       if (index % 2 == 0) {
-        p.setAttribute("data-aos", "fade-right");
+        // p.setAttribute("data-aos", "fade-right");
       } else {
-        p.setAttribute("data-aos", "fade-left");
+        // p.setAttribute("data-aos", "fade-left");
       }
     });
   }, []);
+
+  useEffect(() => {
+    ceva && ceva[0] && console.log(ceva[0][0]);
+    ceva && ceva[0] && setPosare(ceva[0][0]);
+    ceva && ceva[0] && console.log(postare);
+    ceva &&
+      ceva[0] &&
+      postare &&
+      Object.entries(postare).map(([key, value]) => {
+        if (key.includes("img")) {
+          if(!img.includes(value))
+          setImg((old) => [...old, value]);
+        }
+      });
+    // if (ceva && ceva[0] && postare)
+    //   for (const [key, value] of Object.entries(postare)) {
+    //     if (key.includes("text")) {
+    //       console.log(key);
+    //       let new_key = +key.replace("text", "");
+    //       if (arr_p[new_key] == null) {
+    //         arr_p[new_key] = value;
+    //       }
+    //     }
+    //     if (key.includes("img")) arr_img.push(value);
+    //   }
+    // console.log(arr_p);
+    // for (let i = 0; i < arr_p.length; i++) {
+    //   setPara((old) => [...old, arr_p[i]]);
+    // }
+    // // arr_p = [];
+
+    //   messages && console.log(messages[0]);
+    // if (ceva[0]!=undefined) {
+    //   for (const [key, value] of Object.entries(ceva[0])) {
+    //     if (key.includes("text")) {
+    //       console.log(key);
+    //       let new_key = +key.replace("text", "");
+    //       if (arr_p[new_key] == null) {
+    //         arr_p[new_key] = value;
+    //       }
+    //     }
+    //     if (key.includes("img")) arr_img.push(value);
+    //   }
+    //   console.log(arr_p);
+    //   for (let i = 0; i < arr_p.length; i++) {
+    //     setPara((old) => [...old, arr_p[i]]);
+    //   }
+    //   // arr_p = [];
+    // }
+  }, [ceva]);
 
   return (
     <>
@@ -65,12 +107,12 @@ function BlogPost() {
       <div className="blog_post">
         <div className="title">
           <div className="title2">
-            <h1>{messages && messages[0].titlu} </h1>
+            <h1>{postare && postare.titlu} </h1>
             <div className="linie"></div>
           </div>
           <h3>
             See post on social media:{" "}
-            <a href={messages && messages[0].fb} target="_blank">
+            <a href={postare && postare.fb} target="_blank">
               <svg
                 xmlnsXlink="http://www.w3.org/2000/svg"
                 width="24"
@@ -83,7 +125,7 @@ function BlogPost() {
                 />
               </svg>
             </a>
-            <a href={messages && messages[0].insta} target="_blank">
+            <a href={postare && postare.insta} target="_blank">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -98,24 +140,28 @@ function BlogPost() {
             </a>
           </h3>
         </div>
-        {messages &&
+        {/* {messages &&
           Object.entries(messages[0]).map(([key, value]) => {
             if (key.includes("text")) {
               let new_key = +key.replace("text", "");
               if (arr_p[new_key] == null) {
-                arr_p[new_key] = value;                
+                arr_p[new_key] = value;
               }
-            } else if(key.includes("img")){
+            } else if (key.includes("img")) {
               let new_key = +key.replace("img", "");
               if (arr_img[new_key] == null) {
-                arr_img[new_key] = value;                
+                arr_img[new_key] = value;
               }
             }
           }) &&
-          arr_p.map((p) => <p>{p}</p>)}
+          arr_p.map((p) => <p>{p}</p>)} */}
+        {postare && postare.texts && postare.texts.map((p) => <p>{p}</p>)}
+        {/* {arr_p ? arr_p.map((p) => <p>{p}</p>) : <h1>Loading...</h1>} */}
+        {/* {para && para.map((p) => <p>{p}</p>)} */}
       </div>
       <Svg />
-      <Slider slides={arr_img} />
+      {postare && img && <Slider slides={img} />}
+      {/* {postare && <Slider slides={postare.imgs} />} */}
       <Contact />
       <Up />
     </>

@@ -51,7 +51,11 @@ function Blog() {
               link={`/blog/${bl.id}`}
               poza={bl.img0}
               titlu={bl.titlu}
-              text_scurt={bl.text0.slice(0, 200)+" ..."}
+              text_scurt={
+                bl.texts[0].length > 200
+                  ? bl.texts[0].slice(0, 200) + " ..."
+                  : bl.texts[0]
+              }
             />
           ))}
       </div>

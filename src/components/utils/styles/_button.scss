@@ -1,17 +1,21 @@
-
-
 .button {
-    width: auto;
-    padding: 15px 25px;
-    border-radius: 15px;
-    background: $main_green;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    user-select: none;
-    margin: 20px;
-    z-index: 9;
-    border: 5px solid $dark_green;
+  width: auto;
+  padding: 15px 25px;
+  border-radius: 15px;
+  background: $main_green;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  user-select: none;
+  cursor: pointer;
+  margin: 20px;
+  z-index: 9;
+  border: 5px solid $dark_green;
+
+  &,& *::first-letter{
+    text-transform: capitalize;
   }
+
+}

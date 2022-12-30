@@ -1,0 +1,99 @@
+@import "../utils/styles/base";
+
+// G41BaSVvR2P146qD7C1QJvg1XWR2
+
+.admin {
+  margin-top: 100px;
+
+  .logged {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .out {
+      // width: 100vw;
+      margin: 30px 0;
+    }
+
+    .form form {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+
+      input,
+      textarea {
+        width: calc(100% - 100px);
+        padding: 20px 30px;
+        font-size: 20px;
+        background-color: rgb(189, 189, 189);
+        font-family: $font_karla;
+        border-radius: 10px;
+        border: 5px solid $dark_green;
+        color: $dark_green;
+        font-weight: 700;
+        margin: 10px 0;
+        outline: none;
+        
+      }
+      textarea {
+        height: 200px;
+      }
+
+      .info {
+        width: 100vw;
+        margin: 10px 0;
+        margin-top: 20px;
+        padding: 0 30px;
+        color: rgb(189, 189, 189);
+        font-size: 17px;
+        &::before {
+          content: "*";
+        }
+      }
+    }
+  }
+  .login {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .title {
+      width: 100vw;
+      z-index: 2;
+      padding: 20px 100px;
+      position: relative;
+      h1 {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        font-family: $font_karla;
+        color: rgb(189, 189, 189);
+        z-index: 2;
+        position: relative;
+      }
+      .linie {
+        position: absolute;
+        width: 200px;
+        height: 20px;
+        background: $dark_green;
+        z-index: 1;
+        bottom: 12px;
+        right: 280px;
+      }
+    }
+    .error_cont{
+        font-size: 17px;
+        font-weight: 700;
+        margin: 20px 0;
+        font-family: $font_mont;
+        color: #9D2030;
+    }
+  }
+}
