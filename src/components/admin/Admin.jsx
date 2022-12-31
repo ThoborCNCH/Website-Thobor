@@ -36,7 +36,7 @@ function Admin() {
   };
 
   const blogRef = firestore.collection("blog");
-  const query = blogRef.orderBy("createAt");
+  const query = blogRef.orderBy("createAt", "desc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
 
@@ -68,7 +68,7 @@ function Admin() {
     ) {
       try {
         added[`img${scapa_copiii_din_pivnita}`] =
-        imgs[`img${scapa_copiii_din_pivnita}`];
+          imgs[`img${scapa_copiii_din_pivnita}`];
       } catch (error) {
         alert(error);
         return;
@@ -157,7 +157,7 @@ function Admin() {
         success: (compressedResult) => {
           getBase64(compressedResult)
             .then((result) => {
-              console.log(`img${i}`,result);
+              console.log(`img${i}`, result);
               // setImgs({ ...imgs, i: result });
               obj[`img${i}`] = result;
               setImgs(obj);
@@ -168,14 +168,13 @@ function Admin() {
         },
       });
     }
-      // if (file.size * e.target.files.length > 1048487 / e.target.files.length) {
-      //   alert("total img e prea mare si trb sa o schimbi")
-      //   return
-      // }
-    }
+    // if (file.size * e.target.files.length > 1048487 / e.target.files.length) {
+    //   alert("total img e prea mare si trb sa o schimbi")
+    //   return
+    // }
+  };
 
-    // setImgs([...obj]);
-
+  // setImgs([...obj]);
 
   return (
     <>
@@ -247,27 +246,28 @@ function Admin() {
                   </button>
                 </form>
               </div>
-              <div className="blog_posts">
-                <div className="blog">
-                  {/* {blog &&
-                    blog.map((bl) => (
-                      <Post
-                        dalay={300}
-                        data2={"fade-down"}
-                        key={Math.random() * 92342423}
-                        data="fade-right"
-                        ajutor={true}
-                        link={`/blog/${bl.id}`}
-                        poza={bl.img0}
-                        titlu={bl.titlu}
-                        text_scurt={
-                          bl.text0.length > 200
-                            ? bl.text0.slice(0, 200) + " ..."
-                            : bl.text0
-                        }
-                      />
-                    ))} */}
-                </div>
+              <br />
+              <hr />
+              <br />
+              <div className="blog">
+                {blog &&
+                  blog.map((bl) => (
+                    <Post
+                      dalay={300}
+                      data2={"fade-down"}
+                      ajutor={true}
+                      key={Math.random() * 92342423}
+                      data="fade-right"
+                      link={`/blog/${bl.id}`}
+                      poza={bl.img0}
+                      titlu={bl.titlu}
+                      text_scurt={
+                        bl.texts[0].length > 200
+                          ? bl.texts[0].slice(0, 200) + " ..."
+                          : bl.texts[0]
+                      }
+                    />
+                  ))}
               </div>
             </div>
           </>
@@ -294,40 +294,6 @@ function Admin() {
           </>
         )}
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      {/* <button
-        onClick={() => {
-          console.log("Ads");
-          auth.signOut();
-        }}
-      >
-        Sign Out
-      </button> */}
-      <br />
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   );
 }

@@ -24,8 +24,6 @@ firebase.initializeApp({
 });
 
 const firestore = firebase.firestore();
-let arr_p = [];
-let arr_img = [];
 function BlogPost() {
   const [postare, setPosare] = useState({});
   const [img, setImg] = useState([]);
@@ -33,21 +31,21 @@ function BlogPost() {
   console.log(id);
 
   const blogRef = firestore.collection("blog").where("id", "==", id);
-  const messages = useCollectionData(blogRef, { idField: "id" });
   const ceva = useCollectionData(blogRef, { idField: "id" });
+
+  // useEffect(() => {
+   
+  // }, []);
 
   useEffect(() => {
     AOS.init();
     document.querySelectorAll(".blog_post p ").forEach((p, index) => {
-      if (index % 2 == 0) {
-        // p.setAttribute("data-aos", "fade-right");
-      } else {
-        // p.setAttribute("data-aos", "fade-left");
-      }
-    });
-  }, []);
-
-  useEffect(() => {
+    if (index % 2 == 0) {
+      p.setAttribute("data-aos", "fade-right");
+    } else {
+      p.setAttribute("data-aos", "fade-left");
+    }
+  });
     ceva && ceva[0] && console.log(ceva[0][0]);
     ceva && ceva[0] && setPosare(ceva[0][0]);
     ceva && ceva[0] && console.log(postare);
