@@ -28,7 +28,7 @@ function Blog() {
   }, []);
 
   const blogRef = firestore.collection("blog");
-  const query = blogRef.orderBy("createAt");
+  const query = blogRef.orderBy("createAt", "desc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
   return (
