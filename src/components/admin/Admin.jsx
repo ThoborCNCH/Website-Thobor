@@ -36,9 +36,12 @@ function Admin() {
   };
 
   const blogRef = firestore.collection("blog");
+  const appsRef = firestore.collection("apps");
   const query = blogRef.orderBy("createAt", "desc");
+  const query_app = appsRef.orderBy("createAt", "desc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
+  const [apps] = useCollectionData(query_app, { idField: "id" });
 
   const [plaintext, setPlainText] = useState();
   const [titlu, setTitlu] = useState("");
@@ -174,27 +177,57 @@ function Admin() {
     // }
   };
 
-  // setImgs([...obj]);
+  // -----------------APPS-------------------
+  const [descriere, setDescriere] = useState("");
+  const [cod_qr, setCodqr] = useState("");
+  const [img, setImg] = useState("");
+  const [titlu_app, setTitluApp] = useState("");
+  const [link, setLink] = useState("");
+  const [link_text, setLinkText] = useState("");
 
+  const submit_app = async (e) => {
+    e.preventDefault();
+    const { uid } = auth.currentUser;
+    let added = {
+      id,
+      titlu: titlu_app,
+      uid: uid,
+      descriere,
+      link,
+      link_text,
+      cod_qr,
+      img,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+
+    await appsRef
+      .add(added)
+      .then((res) => {
+        alert("Postare adaugata");
+        console.log("gata", res);
+      })
+      .catch((err) => alert(err));
+  };
   return (
     <>
       <div className="admin">
         {user && user.uid == "G41BaSVvR2P146qD7C1QJvg1XWR2" ? (
           <>
             <div className="logged">
-              <div className="out">
-                <button
-                  className="button"
-                  onClick={() => {
-                    console.log("Ads");
-                    auth.signOut();
-                  }}
-                >
-                  Sign Out
-                </button>
-              </div>
-              <div className="form">
+              <div className="blogs_part">
+                <div className="out">
+                  <button
+                    className="button"
+                    onClick={() => {
+                      console.log("Ads");
+                      auth.signOut();
+                    }}
+                  >
+                    Sign Out
+                  </button>
+                </div>
                 <form onSubmit={upload_blog}>
+                  <h1>FOR BLOG</h1>
                   <h4 className="info">Poti alege mai multe poze</h4>
                   <input
                     required
@@ -245,29 +278,101 @@ function Admin() {
                     send
                   </button>
                 </form>
+                <br />
+                <hr />
+                <br />
+                <div className="blog">
+                  {blog &&
+                    blog.map((bl) => (
+                      <Post
+                        dalay={300}
+                        data2={"fade-down"}
+                        ajutor={true}
+                        key={Math.random() * 92342423}
+                        data="fade-right"
+                        link={`/blog/${bl.id}`}
+                        poza={bl.img0}
+                        titlu={bl.titlu}
+                        text_scurt={
+                          bl.texts[0].length > 200
+                            ? bl.texts[0].slice(0, 200) + " ..."
+                            : bl.texts[0]
+                        }
+                      />
+                    ))}
+                </div>
               </div>
-              <br />
-              <hr />
-              <br />
-              <div className="blog">
-                {blog &&
-                  blog.map((bl) => (
-                    <Post
-                      dalay={300}
-                      data2={"fade-down"}
-                      ajutor={true}
-                      key={Math.random() * 92342423}
-                      data="fade-right"
-                      link={`/blog/${bl.id}`}
-                      poza={bl.img0}
-                      titlu={bl.titlu}
-                      text_scurt={
-                        bl.texts[0].length > 200
-                          ? bl.texts[0].slice(0, 200) + " ..."
-                          : bl.texts[0]
-                      }
-                    />
-                  ))}
+              <div className="apps_part">
+                <h1>FOR APPS</h1>
+                <form onSubmit={submit_app}>
+                <h4 className="info">
+                  Set the img.
+                  </h4>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      let file = e.target.files[0];
+                      new Compressor(file, {
+                        quality: 0.8,
+                        success: (compressedResult) => {
+                          getBase64(compressedResult)
+                            .then((result) => {
+                              setImg(result);
+                            })
+                            .catch((err) => {
+                              alert(err);
+                              return;
+                            });
+                        },
+                      });
+                    }}
+                  />
+                  <h4 className="info">
+                    Set the Qr code
+                  </h4>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      let file = e.target.files[0];
+                      new Compressor(file, {
+                        quality: 0.8,
+                        success: (compressedResult) => {
+                          getBase64(compressedResult)
+                            .then((result) => {
+                              setCodqr(result);
+                            })
+                            .catch((err) => {
+                              alert(err);
+                              return;
+                            });
+                        },
+                      });
+                    }}
+                  />
+                  <input
+                    type="url"
+                    placeholder="link"
+                    onChange={(e) => setLink(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="link text"
+                    onChange={(e) => setLinkText(e.target.value)}
+                  />
+                  <textarea
+                    placeholder="descriere"
+                    onChange={(e) => setDescriere(e.target.value)}
+                  />
+                  <textarea
+                    placeholder="titlu"
+                    onChange={(e) => setTitluApp(e.target.value)}
+                  />
+                  <button type="submit" className="button">
+                    Submit
+                  </button>
+                </form>
               </div>
             </div>
           </>

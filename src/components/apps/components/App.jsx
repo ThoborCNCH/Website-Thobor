@@ -6,9 +6,7 @@ function App({ titlu, p, img, link, codeQR, txt_link }) {
       <div className="app">
         <div className="top">
           <div className="img">
-            {/* <div className="before" data-aos="fade-right"></div> */}
             <img src={img} alt="" data-aos="fade-up" />
-            {/* <div className="after" data-aos="fade-left"></div> */}
           </div>
           <div className="txt">
             <div className="title">
@@ -16,14 +14,14 @@ function App({ titlu, p, img, link, codeQR, txt_link }) {
               <div
                 className="linie"
                 data-aos="fade-left"
-                data-aos-delay="300"
+                data-aos-delay="200"
               ></div>
             </div>
             <div className="text">
               <div
                 className="linie_vert"
                 data-aos="fade-left"
-                data-aos-delay="400"
+                data-aos-delay="250"
               ></div>
               <p data-aos="fade-left">{p}</p>
             </div>
