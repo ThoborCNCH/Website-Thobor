@@ -31,6 +31,7 @@ function Blog() {
   const query = blogRef.orderBy("createAt", "desc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
+  console.log(blog);
   return (
     <>
       <img

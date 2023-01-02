@@ -1,7 +1,5 @@
 @import "../utils/styles/base";
-*{
-    user-select: none;
-}
+
 @-moz-keyframes rocket-movement {
   100% {
     -moz-transform: translate(1200px, -600px);

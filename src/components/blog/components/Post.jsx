@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Post({ ajutor, poza, titlu, link, data, data2, dalay, text_scurt }) {
+function Post({
+  ajutor,
+  poza,
+  deleted,
+  titlu,
+  link,
+  data,
+  data2,
+  dalay,
+  text_scurt,
+}) {
   return ajutor ? (
     <>
       {" "}
-      <div className="post">
+      <div className="post" style={{height:"auto"}}>
         <div className="img">
           <img src={poza} alt="" className="poza_main" />
           <img
@@ -23,6 +33,7 @@ function Post({ ajutor, poza, titlu, link, data, data2, dalay, text_scurt }) {
             <div className="linie_vert"></div>
             <p>{text_scurt}</p>
           </div>
+          <button onClick={deleted} className="button" style={{margin:20}}>delete</button>
           <Link to={link} preventScrollReset={true} className="link">
             <div className="coca"></div>
             <span>

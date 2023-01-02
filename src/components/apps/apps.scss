@@ -2,6 +2,10 @@
 
 @import "./components/style/app";
 
+.apps{
+position: relative;
+}
+
 @media screen and (max-width: 400px){
     .apps{
         .app{

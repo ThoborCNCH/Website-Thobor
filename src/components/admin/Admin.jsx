@@ -2,6 +2,7 @@ import React from "react";
 import nextId from "react-id-generator";
 import "../blog/blog.scss";
 import "./admin.scss";
+import "../apps/apps.scss";
 import Compressor from "compressorjs";
 
 import firebase from "firebase/compat/app";
@@ -11,8 +12,9 @@ import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useState } from "react";
-import { useEffect } from "react";
 import Post from "../blog/components/Post";
+import App from "../apps/components/App";
+import { useEffect } from "react";
 
 firebase.initializeApp({
   apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
@@ -42,6 +44,11 @@ function Admin() {
 
   const [blog] = useCollectionData(query, { idField: "id" });
   const [apps] = useCollectionData(query_app, { idField: "id" });
+  const [finalapp, setFinalapp] = useState([]);
+
+  useEffect(() => {
+    // apps && apps[0] && setFinalapp(apps[0]);
+  }, [apps]);
 
   const [plaintext, setPlainText] = useState();
   const [titlu, setTitlu] = useState("");
@@ -49,6 +56,69 @@ function Admin() {
   const [insta, setInsta] = useState("");
   const [imgs, setImgs] = useState();
   const [length, setL] = useState();
+
+  const deleteblog = async (e) => {
+    await blogRef
+
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
+
+    // bl_q.get().then(function (querySnapshot) {
+    //   querySnapshot.forEach(function (doc) {
+    //     console.log("si aici");
+    //     doc.ref.delete();
+    //   });
+    // });
+  };
+
+  const deleteapp = async (e) => {
+    await appsRef
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
+
+    // bl_q.get().then(function (querySnapshot) {
+    //   querySnapshot.forEach(function (doc) {
+    //     console.log("si aici");
+    //     doc.ref.delete();
+    //   });
+    // });
+  };
 
   const upload_blog = async (e) => {
     e.preventDefault();
@@ -125,7 +195,6 @@ function Admin() {
       .add(added)
       .then((res) => {
         alert("Postare adaugata");
-        console.log("gata", res);
       })
       .catch((err) => alert(err));
   };
@@ -160,13 +229,12 @@ function Admin() {
         success: (compressedResult) => {
           getBase64(compressedResult)
             .then((result) => {
-              console.log(`img${i}`, result);
               // setImgs({ ...imgs, i: result });
               obj[`img${i}`] = result;
               setImgs(obj);
             })
             .catch((err) => {
-              console.log(err);
+              alert(err);
             });
         },
       });
@@ -204,7 +272,6 @@ function Admin() {
       .add(added)
       .then((res) => {
         alert("app adaugat");
-        console.log("gata", res);
       })
       .catch((err) => alert(err));
   };
@@ -219,7 +286,6 @@ function Admin() {
                   <button
                     className="button"
                     onClick={() => {
-                      console.log("Ads");
                       auth.signOut();
                     }}
                   >
@@ -283,31 +349,34 @@ function Admin() {
                 <br />
                 <div className="blog">
                   {blog &&
-                    blog.map((bl) => (
-                      <Post
-                        dalay={300}
-                        data2={"fade-down"}
-                        ajutor={true}
-                        key={Math.random() * 92342423}
-                        data="fade-right"
-                        link={`/blog/${bl.id}`}
-                        poza={bl.img0}
-                        titlu={bl.titlu}
-                        text_scurt={
-                          bl.texts[0].length > 200
-                            ? bl.texts[0].slice(0, 200) + " ..."
-                            : bl.texts[0]
-                        }
-                      />
-                    ))}
+                    blog.map((bl) => {
+                      const i = bl.id;
+
+                      return (
+                        <Post
+                          deleted={() => deleteblog(bl.id)}
+                          dalay={300}
+                          data2={"fade-down"}
+                          ajutor={true}
+                          key={Math.random() * 92342423}
+                          data="fade-right"
+                          link={`/blog/${bl.id}`}
+                          poza={bl.img0}
+                          titlu={bl.titlu}
+                          text_scurt={
+                            bl.texts[0].length > 200
+                              ? bl.texts[0].slice(0, 200) + " ..."
+                              : bl.texts[0]
+                          }
+                        />
+                      );
+                    })}
                 </div>
               </div>
               <div className="apps_part">
                 <h1>FOR APPS</h1>
                 <form onSubmit={submit_app}>
-                <h4 className="info">
-                  Set the img.
-                  </h4>
+                  <h4 className="info">Set the img.</h4>
                   <input
                     type="file"
                     accept="image/*"
@@ -328,9 +397,7 @@ function Admin() {
                       });
                     }}
                   />
-                  <h4 className="info">
-                    Set the Qr code
-                  </h4>
+                  <h4 className="info">Set the Qr code</h4>
                   <input
                     type="file"
                     accept="image/*"
@@ -373,6 +440,61 @@ function Admin() {
                     Submit
                   </button>
                 </form>
+                <br />
+                <br />
+
+                <div className="apps">
+                  {apps &&
+                    apps.map((app) => (
+                      // <App
+                      //   deleteapp={() => deleteapp(app.id)}
+                      //   ajutor={true}
+                      //   titlu={app.titlu}
+                      //   codeQR={app.cod_qr}
+                      //   img={app.img}
+                      //   link={app.link}
+                      //   p={app.descriere}
+                      //   txt_link={app.link_text}
+                      //   key={app.id}
+                      // />
+                      <>
+                        <div className="app">
+                          <div className="top">
+                            <div className="img">
+                              <img src={app.img} alt="" />
+                            </div>
+                            <div className="txt">
+                              <div className="title">
+                                <h1>{app.titlu}</h1>
+                                <div className="linie"></div>
+                              </div>
+                              <div className="text">
+                                <div className="linie_vert"></div>
+                                <p>{app.descriere}</p>
+                              </div>
+                              <button
+                                className="button"
+                                style={{ width: "100%", margin: "30px 0" }}
+                                onClick={() => deleteapp(app.id)}
+                              >
+                                delete app
+                              </button>
+                            </div>
+                          </div>
+
+                          <a href={app.link} target="_blank" className="button">
+                            {app.link_text}
+                          </a>
+                          {app.cod_qr && (
+                            <div className="qr_cont">
+                              <img src={app.cod_qr} className="qr" alt="" />
+                            </div>
+                          )}
+                          <div className="linie_sep"></div>
+                        </div>
+                      </>
+                    ))}
+                </div>
               </div>
             </div>
           </>

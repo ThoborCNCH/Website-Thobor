@@ -6,6 +6,7 @@
   align-items: center;
   flex-direction: column;
   min-height: 400px;
+  z-index: 85;
 
   .qr_cont {
     width: calc(100% + 30px);
