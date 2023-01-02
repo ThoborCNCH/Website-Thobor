@@ -203,7 +203,7 @@ function Admin() {
     await appsRef
       .add(added)
       .then((res) => {
-        alert("Postare adaugata");
+        alert("app adaugat");
         console.log("gata", res);
       })
       .catch((err) => alert(err));
@@ -314,7 +314,7 @@ function Admin() {
                     onChange={(e) => {
                       let file = e.target.files[0];
                       new Compressor(file, {
-                        quality: 0.8,
+                        quality: 0.5,
                         success: (compressedResult) => {
                           getBase64(compressedResult)
                             .then((result) => {
