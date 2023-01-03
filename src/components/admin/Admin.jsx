@@ -44,16 +44,22 @@ function Admin() {
   const appsRef = firestore.collection("apps");
   const alumniRef = firestore.collection("alumni");
   const aniRef = firestore.collection("ani");
+  const memRef = firestore.collection("team_member");
+  const sponRef = firestore.collection("sponsors");
 
   const query = blogRef.orderBy("createAt", "desc");
   const query_app = appsRef.orderBy("createAt", "desc");
   const query_alumni = alumniRef.orderBy("createAt", "desc");
   const query_ani = aniRef.orderBy("createAt", "desc");
+  const query_mem = memRef.orderBy("createAt", "desc");
+  const query_spon = sponRef.orderBy("createAt", "desc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
   const [apps] = useCollectionData(query_app, { idField: "id" });
   const [alumni] = useCollectionData(query_alumni, { idField: "id" });
   const [ani] = useCollectionData(query_ani, { idField: "id" });
+  const [mem] = useCollectionData(query_mem, { idField: "id" });
+  const [spon] = useCollectionData(query_spon, { idField: "id" });
 
   const [plaintext, setPlainText] = useState();
   const [titlu, setTitlu] = useState("");
@@ -85,13 +91,6 @@ function Admin() {
         alert(error);
         return;
       });
-
-    // bl_q.get().then(function (querySnapshot) {
-    //   querySnapshot.forEach(function (doc) {
-    //     console.log("si aici");
-    //     doc.ref.delete();
-    //   });
-    // });
   };
 
   const deleteapp = async (e) => {
@@ -116,13 +115,29 @@ function Admin() {
         alert(error);
         return;
       });
-
-    // bl_q.get().then(function (querySnapshot) {
-    //   querySnapshot.forEach(function (doc) {
-    //     console.log("si aici");
-    //     doc.ref.delete();
-    //   });
-    // });
+  };
+  const delete_alumni = async (e) => {
+    await alumniRef
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
   };
 
   const upload_blog = async (e) => {
@@ -280,6 +295,13 @@ function Admin() {
       .catch((err) => alert(err));
   };
 
+  //----------------ALUMNI------------------
+  const [anistate, setAni] = useState("");
+  const [nume_alumni, setAlumninume] = useState("");
+  const [detalii_alumni, setdetaliialumni] = useState("");
+  const [poza_alumni, setPozealumni] = useState("");
+  const [text_alumni, setTextalumni] = useState("");
+
   const upload_alumni = async (e) => {
     e.preventDefault();
     const { uid } = auth.currentUser;
@@ -297,18 +319,10 @@ function Admin() {
     await alumniRef
       .add(added)
       .then((res) => {
-        alert("Postare adaugata");
+        alert("alumni adaugat");
       })
       .catch((err) => alert(err));
   };
-
-  //----------------ALUMNI------------------
-  const [anistate, setAni] = useState("");
-  const [nume_alumni, setAlumninume] = useState("");
-  const [detalii_alumni, setdetaliialumni] = useState("");
-  const [poza_alumni, setPozealumni] = useState("");
-  const [text_alumni, setTextalumni] = useState("");
-
   //--------------ANI-------------
   const [ani_efectiv, setAniEfectiv] = useState("");
 
@@ -349,6 +363,77 @@ function Admin() {
         alert(error);
         return;
       });
+  };
+
+  //--------------MEMBERS----------------
+  const [ani_mem, setanimem] = useState("");
+  const [nume_mem, setnumemem] = useState("");
+  const [detalii_mem, setdetaliimem] = useState("");
+  const [poza_mem, setpozamem] = useState("");
+
+  const upload_mem = async (e) => {
+    e.preventDefault();
+    const { uid } = auth.currentUser;
+
+    let added = {
+      id,
+      nume: nume_mem,
+      uid: uid,
+      ani: ani_mem,
+      detalii: detalii_mem,
+      poza: poza_mem,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    await memRef
+      .add(added)
+      .then((res) => {
+        alert("Postare adaugata");
+      })
+      .catch((err) => alert(err));
+  };
+
+  const delete_mem = async (e) => {
+    await memRef
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
+  };
+
+  //--------------sponsori-------------
+  const [logo, setlogo] = useState("");
+  const upload_sponsor = async (e) => {
+    e.preventDefault();
+    const { uid } = auth.currentUser;
+
+    let added = {
+      id,
+      uid,
+      logo,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    await sponRef
+      .add(added)
+      .then((res) => {
+        alert("sponsor adaugat");
+      })
+      .catch((err) => alert(err));
   };
 
   return (
@@ -653,25 +738,131 @@ function Admin() {
                       no={true}
                       years={ani.ani}
                       team={false}
+                      key={ani.id}
                       persoane={[
                         alumni &&
                           alumni.map((alumni) => {
-                            alumni.ani == ani.ani && console.log(alumni);
-                            return (
-                              alumni.ani == ani.ani && (
-                                <Persoana
-                                  no={true}
-                                  img={alumni.poza}
-                                  nume={alumni.nume}
-                                  faculta={alumni.detalii}
-                                  text={alumni.text}
-                                />
-                              )
-                            );
+                            if (alumni.ani == ani.ani)
+                              return {
+                                key: alumni.id,
+                                no: true,
+                                id: alumni.id,
+                                delete_this: delete_alumni,
+                                img: alumni.poza,
+                                nume: alumni.nume,
+                                faculta: alumni.detalii,
+                                text: alumni.text,
+                              };
                           }),
                       ]}
                     />
                   ))}
+              </div>
+              <div className="members_part">
+                <h1>MEMBER</h1>
+                <form onSubmit={upload_mem}>
+                  <select onChange={(e) => setanimem(e.target.value)}>
+                    {ani &&
+                      ani.map((an) => {
+                        return <option value={an.ani}>{an.ani}</option>;
+                      })}
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="nume"
+                    onChange={(e) => setnumemem(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="detalii"
+                    onChange={(e) => setdetaliimem(e.target.value)}
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      let file = e.target.files[0];
+                      new Compressor(file, {
+                        quality: 0.5,
+                        success: (compressedResult) => {
+                          getBase64(compressedResult)
+                            .then((result) => {
+                              setpozamem(result);
+                            })
+                            .catch((err) => {
+                              alert(err);
+                              return;
+                            });
+                        },
+                      });
+                    }}
+                  />
+                  <button type="submit">add member</button>
+                </form>
+                {ani &&
+                  ani.map((ani) => (
+                    <Generatie
+                      no={true}
+                      years={ani.ani}
+                      team={true}
+                      key={ani.id}
+                      persoane={[
+                        mem &&
+                          mem.map((alumni) => {
+                            if (alumni.ani == ani.ani)
+                              return {
+                                key: alumni.id,
+                                no: true,
+                                id: alumni.id,
+                                delete_this: delete_mem,
+                                img: alumni.poza,
+                                nume: alumni.nume,
+                                faculta: alumni.detalii,
+                              };
+                          }),
+                      ]}
+                    />
+                  ))}
+              </div>
+              <div className="sponsor_part">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    let file = e.target.files[0];
+                    new Compressor(file, {
+                      quality: 0.5,
+                      success: (compressedResult) => {
+                        getBase64(compressedResult)
+                          .then((result) => {
+                            setlogo(result);
+                          })
+                          .catch((err) => {
+                            alert(err);
+                            return;
+                          });
+                      },
+                    });
+                  }}
+                />
+                <form onSubmit={upload_sponsor}>
+                  <button type="submit">add_sponsor</button>
+                </form>
+                <div className="sponsors">
+                  {spon && spon.map((sp) => <img src={sp.logo} />)}
+                </div>
               </div>
             </div>
           </>

@@ -8,8 +8,6 @@ import { Navigation, Pagination } from "swiper";
 import Persoana from "./AlumniPersoana";
 
 function Generatie({ years, team, persoane, no }) {
-  console.log(persoane[0]);
-  console.log(persoane);
   return no ? (
     <>
       <div className="title_gen">
@@ -44,8 +42,28 @@ function Generatie({ years, team, persoane, no }) {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {persoane && persoane.map((pers) => <SwiperSlide>{pers}</SwiperSlide>)}
-      </Swiper>
+      {persoane &&
+          persoane.map(
+            (pers) =>
+              pers &&
+              pers.map((p) => {
+                return (
+                  <SwiperSlide>
+                    {p && (
+                      <Persoana
+                        no={true}
+                        img={p.img}
+                        id={p.id}
+                        delete_this={p.delete_this}
+                        nume={p.nume}
+                        faculta={p.faculta}
+                        text={p.text}
+                      />
+                    )}
+                  </SwiperSlide>
+                );
+              })
+          )}</Swiper>
     </>
   ) : (
     <>
@@ -86,7 +104,6 @@ function Generatie({ years, team, persoane, no }) {
             (pers) =>
               pers &&
               pers.map((p) => {
-                console.log(p);
                 return (
                   <SwiperSlide>
                     {p && (

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Persoana({ no, nume, faculta, text, img }) {
+function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
   return no ? (
     <div className="alumn">
       <div className="top">
@@ -21,6 +21,7 @@ function Persoana({ no, nume, faculta, text, img }) {
       <div className="text">
         <p>{text}</p>
       </div>
+      <button className="button" onClick={()=>delete_this(id)}>delete this one</button>
       <img
         src={require("../../../img/absolute_alumni.svg").default}
         alt=""
