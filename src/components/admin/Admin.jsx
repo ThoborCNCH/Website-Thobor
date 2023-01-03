@@ -3,6 +3,7 @@ import nextId from "react-id-generator";
 import "../blog/blog.scss";
 import "./admin.scss";
 import "../apps/apps.scss";
+import "../alumni/alumni.scss";
 import Compressor from "compressorjs";
 
 import firebase from "firebase/compat/app";
@@ -15,6 +16,8 @@ import { useState } from "react";
 import Post from "../blog/components/Post";
 import App from "../apps/components/App";
 import { useEffect } from "react";
+import Persoana from "../alumni/components/AlumniPersoana";
+import Generatie from "../alumni/components/Generatie";
 
 firebase.initializeApp({
   apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
@@ -39,16 +42,18 @@ function Admin() {
 
   const blogRef = firestore.collection("blog");
   const appsRef = firestore.collection("apps");
+  const alumniRef = firestore.collection("alumni");
+  const aniRef = firestore.collection("ani");
+
   const query = blogRef.orderBy("createAt", "desc");
   const query_app = appsRef.orderBy("createAt", "desc");
+  const query_alumni = alumniRef.orderBy("createAt", "desc");
+  const query_ani = aniRef.orderBy("createAt", "desc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
   const [apps] = useCollectionData(query_app, { idField: "id" });
-  const [finalapp, setFinalapp] = useState([]);
-
-  useEffect(() => {
-    // apps && apps[0] && setFinalapp(apps[0]);
-  }, [apps]);
+  const [alumni] = useCollectionData(query_alumni, { idField: "id" });
+  const [ani] = useCollectionData(query_ani, { idField: "id" });
 
   const [plaintext, setPlainText] = useState();
   const [titlu, setTitlu] = useState("");
@@ -221,7 +226,6 @@ function Admin() {
   const uploadimg = async (e) => {
     let obj = {};
     setL(e.target.files.length);
-    console.log(e.target.files.length);
     for (let i = 0; i < e.target.files.length; i++) {
       let file = e.target.files[i];
       new Compressor(file, {
@@ -275,6 +279,78 @@ function Admin() {
       })
       .catch((err) => alert(err));
   };
+
+  const upload_alumni = async (e) => {
+    e.preventDefault();
+    const { uid } = auth.currentUser;
+    let added = {
+      id,
+      nume: nume_alumni,
+      uid: uid,
+      ani: anistate,
+      detalii: detalii_alumni,
+      poza: poza_alumni,
+      text: text_alumni,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+
+    await alumniRef
+      .add(added)
+      .then((res) => {
+        alert("Postare adaugata");
+      })
+      .catch((err) => alert(err));
+  };
+
+  //----------------ALUMNI------------------
+  const [anistate, setAni] = useState("");
+  const [nume_alumni, setAlumninume] = useState("");
+  const [detalii_alumni, setdetaliialumni] = useState("");
+  const [poza_alumni, setPozealumni] = useState("");
+  const [text_alumni, setTextalumni] = useState("");
+
+  //--------------ANI-------------
+  const [ani_efectiv, setAniEfectiv] = useState("");
+
+  const add_ani = async (e) => {
+    e.preventDefault();
+    let added = {
+      ani: ani_efectiv,
+      id,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    await aniRef
+      .add(added)
+      .then((res) => {
+        alert("ani adaugata");
+      })
+      .catch((err) => alert(err));
+  };
+
+  const delete_year = async (e) => {
+    await aniRef
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
+  };
+
   return (
     <>
       <div className="admin">
@@ -495,6 +571,107 @@ function Admin() {
                       </>
                     ))}
                 </div>
+              </div>
+              <div className="ani_part">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <form onSubmit={add_ani}>
+                  <input
+                    type="text"
+                    onChange={(e) => setAniEfectiv(e.target.value)}
+                  />
+                  <button type="submit">submit</button>
+                </form>
+                <br />
+                <br />
+                {ani &&
+                  ani.map((an) => {
+                    return (
+                      <>
+                        <div>
+                          <h1>{an.ani}</h1>
+                          <button onClick={() => delete_year(an.id)}>
+                            delete year
+                          </button>
+                        </div>
+                      </>
+                    );
+                  })}
+                <br />
+                <br />
+              </div>
+              <div className="alumni_part">
+                <form onSubmit={upload_alumni}>
+                  <select onChange={(e) => setAni(e.target.value)}>
+                    {ani &&
+                      ani.map((an) => {
+                        return <option value={an.ani}>{an.ani}</option>;
+                      })}
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="nume"
+                    onChange={(e) => setAlumninume(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="detalii"
+                    onChange={(e) => setdetaliialumni(e.target.value)}
+                  />
+                  <textarea
+                    placeholder="text"
+                    onChange={(e) => setTextalumni(e.target.value)}
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      let file = e.target.files[0];
+                      new Compressor(file, {
+                        quality: 0.5,
+                        success: (compressedResult) => {
+                          getBase64(compressedResult)
+                            .then((result) => {
+                              setPozealumni(result);
+                            })
+                            .catch((err) => {
+                              alert(err);
+                              return;
+                            });
+                        },
+                      });
+                    }}
+                  />
+                  <button type="submit">add alumni</button>
+                </form>
+                {ani &&
+                  ani.map((ani) => (
+                    <Generatie
+                      no={true}
+                      years={ani.ani}
+                      team={false}
+                      persoane={[
+                        alumni &&
+                          alumni.map((alumni) => {
+                            alumni.ani == ani.ani && console.log(alumni);
+                            return (
+                              alumni.ani == ani.ani && (
+                                <Persoana
+                                  no={true}
+                                  img={alumni.poza}
+                                  nume={alumni.nume}
+                                  faculta={alumni.detalii}
+                                  text={alumni.text}
+                                />
+                              )
+                            );
+                          }),
+                      ]}
+                    />
+                  ))}
               </div>
             </div>
           </>

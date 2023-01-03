@@ -2,30 +2,28 @@
 
 @import "./components/style/app";
 
-.apps{
-position: relative;
+.apps {
+  position: relative;
 }
 
-@media screen and (max-width: 400px){
-    .apps{
-        .app{
-            .linie_sep{
-                height: 10px;
-                width: 70vw;
-            }
-            .top{
-                padding: 10px;
-                
-                .img{
-                    margin: 0;
-                    
-                    img{
-                        margin: 0;
-                    }
-                    .after, .before{
-                    }
-                }
-            }
+@media screen and (max-width: 400px) {
+  .apps {
+    .app {
+      .linie_sep {
+        height: 10px;
+        width: 70vw;
+      }
+      .top {
+        padding: 10px;
+
+        .img {
+          margin: 0;
+
+          img {
+            margin: 0;
+          }
         }
+      }
     }
+  }
 }
