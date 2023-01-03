@@ -1,0 +1,65 @@
+.datecontact {
+  width: 100vw;
+  min-height: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  background: $main_green;
+flex-wrap: wrap;
+
+  .left {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    padding: 20px;
+    color: $black2;
+
+    .title {
+      position: relative;
+      margin: 0;
+      margin-bottom: 30px;
+      padding: 20px;
+      
+      h1 {
+        font-size: 25px;
+        font-weight: 600;
+        z-index: 2;
+        position: relative;
+        font-family: $font_mont;
+      }
+      .linie{
+        width: 250px;
+        height: 20px;
+        position: absolute;
+        bottom: 14px;
+        right: 100px;
+        background: white;
+        z-index: 1;
+      }
+    }
+    ul{
+        list-style-type: repeating-emoji;
+        margin: 50px;
+        position: relative;
+        li, li a{
+            font-size: 20px;
+            font-weight: 600;
+            font-family: $font_karla;
+            margin-bottom: 10px;
+            color: $black2;
+        }
+    }
+  }
+  .right {
+    width: 500px;
+    min-height: 400px;
+    background: red;
+  }
+}
+
+@counter-style repeating-emoji {
+    system: cyclic;
+    symbols: "🤖"; // unicode code point
+    suffix: " ";
+  }
