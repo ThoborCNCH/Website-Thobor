@@ -5,8 +5,36 @@ import Up from "../utils/Up";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Persoana from "../alumni/components/AlumniPersoana";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
+  authDomain: "thobor-9436b.firebaseapp.com",
+  projectId: "thobor-9436b",
+  storageBucket: "thobor-9436b.appspot.com",
+  messagingSenderId: "496274391107",
+  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
+});
+
+const firestore = firebase.firestore();
 
 function Team() {
+
+  const teamRef = firestore.collection("team_member");
+  const aniRef = firestore.collection("ani");
+
+  const query_team = teamRef.orderBy("createAt", "desc");
+  const query_ani = aniRef.orderBy("createAt", "desc");
+
+  const [team] = useCollectionData(query_team, { idField: "id" });
+  const [ani] = useCollectionData(query_ani, { idField: "id" });
+
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -17,447 +45,29 @@ function Team() {
         alt=""
         className="header"
       />
+ {ani &&
+        ani.map((ani) => (
+          <Generatie
+            no={false}
+            years={ani.ani}
+            team={false}
+            key={ani.id}
+            persoane={[
+              team &&
+              team.map((team) => {
+                  if (team.ani == ani.ani)
+                    return {
+                      key: team.id,
+                      no: false,
+                      img: team.poza,
+                      nume: team.nume,
+                      faculta: team.detalii,
+                    };
+                }),
+            ]}
+          />
+        ))}
 
-      <Generatie
-        years="2017-2018"
-        team={true}
-        persoane={[
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Băraru Alex"
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Elisa Chicoș"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Radu Cătălina"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Boeru Alin"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Lupu Alexandru"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Drăguțu Rareș"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Costea Bogdan"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Munteanu Andrei"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Șerban Iulian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Panaite Dănuț"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Spăsenie Viorica"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hahui Marian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-        ]}
-      />
-      <Generatie
-        years="2018-2019"
-        team={true}
-        persoane={[
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Lupu Alexandru"
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Elisa Chicoș"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Radu Cătălina"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Ciolacu Cosmin"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Cristea Radu"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Anghel Adrian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Băraru Alex"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Chiscop Robert"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Dimitriu Ilie"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Spăsenie Viorica"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Șerban Iulian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Panaite Danuț"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Costea Bogdan"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-        ]}
-      />
-      <Generatie
-        years="2019-2020"
-        team={true}
-        persoane={[
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Danuț Panaite"
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Anghel Adrian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Bors Alexandru"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Baducu Alexandru"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Popa Amira"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Costea Bogdan"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Hanga Mihail"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Constantin Patricia"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Postolache Elis"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Epure Radu"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Rarinca Mădălina"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Popescu Robert"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Drăguțu Matei"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Rolea Alex"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Sevastre Beatrice"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-        ]}
-      />
-
-      <Generatie
-        years="2021-2022"
-        team={true}
-        persoane={[
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Bors Alexandru"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Popa Amira"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Epure Radu"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Popescu Robert"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Drăguțu Matei"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Sevastre Beatrice"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Borșan Claudiu"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Marcello Oprea"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Irimia Mihai"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Donici Roberto"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Mereuță Ionuț"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Mazilu Teodora"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Panaite Cristian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-        ]}
-      />
-
-      <Generatie
-        years="2022-2023"
-        team={true}
-        persoane={[
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Bors Alexandru"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Popa Amira"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Epure Radu"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Popescu Robert"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Drăguțu Matei"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Sevastre Beatrice"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Borșan Claudiu"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Marcello Oprea"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Irimia Mihai"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Donici Roberto"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Mereuță Ionuț"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Mazilu Teodora"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-          <Persoana
-            img="https://scontent.fsbz1-2.fna.fbcdn.net/v/t1.6435-9/86695369_2663907933657090_2295697635035578368_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=Cuu-kgupuvcAX-LrotL&_nc_ht=scontent.fsbz1-2.fna&oh=00_AfAzrMERSCdvnLlEuOfSHFR5IT2TbHWe_OY3U-vkhD-haQ&oe=63D19073"
-            nume="Panaite Cristian"
-            
-            faculta="Politehnica - FIIR -"
-          />,
-        ]}
-      />
       <Contact />
       <Up />
     </div>
