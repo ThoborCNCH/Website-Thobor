@@ -21,7 +21,7 @@ function Map() {
   return (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
-      zoom={10}
+      zoom={16}
       center={center}
     >
       <Marker position={center} />
