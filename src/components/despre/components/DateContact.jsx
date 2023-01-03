@@ -48,25 +48,33 @@
 //   );
 // }
 
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Map from "./Map";
 
 function DateContact() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="datecontact">
       <div className="left">
         <div className="title">
-          <h1>
+          <h1 data-aos="fade-down">
             Suntem de la <span>Colegiul Național "Calistrat Hogaș"</span>
           </h1>
-          <div className="linie"></div>
+          <div className="linie" data-aos="fade-right"></div>
         </div>
         <ul>
-          <li>Strada Costache Racoviţă, nr.20, Tecuci, 805300</li>
-          <li>
+          <li data-aos="fade-right">
+            Strada Costache Racoviţă, nr.20, Tecuci, 805300
+          </li>
+          <li data-aos="fade-right">
             <a href="tel: 0236/820010">0236/820010</a>
           </li>
-          <li>
+          <li data-aos="fade-right">
             <a href="mailto:lchogas@yahoo.com">lchogas@yahoo.com</a>
           </li>
         </ul>
