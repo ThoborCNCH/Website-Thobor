@@ -49,6 +49,7 @@
 // }
 
 import React from "react";
+import Map from "./Map";
 
 function DateContact() {
   return (
@@ -70,7 +71,9 @@ function DateContact() {
           </li>
         </ul>
       </div>
-      <div className="right"></div>
+      <div className="right">
+        <Map />
+      </div>
     </div>
   );
 }
