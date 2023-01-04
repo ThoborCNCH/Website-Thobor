@@ -4,6 +4,7 @@ import "../blog/blog.scss";
 import "./admin.scss";
 import "../apps/apps.scss";
 import "../alumni/alumni.scss";
+import "../sponsors/sponsors.scss";
 import Compressor from "compressorjs";
 
 import firebase from "firebase/compat/app";
@@ -436,6 +437,106 @@ function Admin() {
       .catch((err) => alert(err));
   };
 
+  const delete_sponsor = async (e) => {
+    await sponRef
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
+  };
+
+  const [clasa, setClasa] = useState("fas fa-caret-right");
+  const [h, setH] = useState("0");
+
+  function more() {
+    if (clasa === "fas fa-caret-up") {
+      setClasa("fas fa-caret-right");
+      setH("0");
+    } else {
+      setClasa("fas fa-caret-up");
+      setH("auto");
+    }
+  }
+
+  const [clasa2, setClasa2] = useState("fas fa-caret-right");
+  const [h2, setH2] = useState("0");
+
+  function more2() {
+    if (clasa2 === "fas fa-caret-up") {
+      setClasa2("fas fa-caret-right");
+      setH2("0");
+    } else {
+      setClasa2("fas fa-caret-up");
+      setH2("auto");
+    }
+  }
+  const [clasa3, setClasa3] = useState("fas fa-caret-right");
+  const [h3, setH3] = useState("0");
+
+  function more3() {
+    if (clasa3 === "fas fa-caret-up") {
+      setClasa3("fas fa-caret-right");
+      setH3("0");
+    } else {
+      setClasa3("fas fa-caret-up");
+      setH3("auto");
+    }
+  }
+
+  const [clasa4, setClasa4] = useState("fas fa-caret-right");
+  const [h4, setH4] = useState("0");
+
+  function more4() {
+    if (clasa4 === "fas fa-caret-up") {
+      setClasa4("fas fa-caret-right");
+      setH4("0");
+    } else {
+      setClasa4("fas fa-caret-up");
+      setH4("auto");
+    }
+  }
+
+  const [clasa5, setClasa5] = useState("fas fa-caret-right");
+  const [h5, setH5] = useState("0");
+
+  function more5() {
+    if (clasa5 === "fas fa-caret-up") {
+      setClasa5("fas fa-caret-right");
+      setH5("0");
+    } else {
+      setClasa5("fas fa-caret-up");
+      setH5("auto");
+    }
+  }
+  const [clasa6, setClasa6] = useState("fas fa-caret-right");
+  const [h6, setH6] = useState("0");
+
+  function more6() {
+    if (clasa6 === "fas fa-caret-up") {
+      setClasa6("fas fa-caret-right");
+      setH6("0");
+    } else {
+      setClasa6("fas fa-caret-up");
+      setH6("auto");
+    }
+  }
+
   return (
     <>
       <div className="admin">
@@ -505,35 +606,44 @@ function Admin() {
                     send
                   </button>
                 </form>
-                <br />
-                <hr />
-                <br />
-                <div className="blog">
-                  {blog &&
-                    blog.map((bl) => {
-                      const i = bl.id;
-
-                      return (
-                        <Post
-                          deleted={() => deleteblog(bl.id)}
-                          dalay={300}
-                          data2={"fade-down"}
-                          ajutor={true}
-                          key={Math.random() * 92342423}
-                          data="fade-right"
-                          link={`/blog/${bl.id}`}
-                          poza={bl.img0}
-                          titlu={bl.titlu}
-                          text_scurt={
-                            bl.texts[0].length > 200
-                              ? bl.texts[0].slice(0, 200) + " ..."
-                              : bl.texts[0]
-                          }
-                        />
-                      );
-                    })}
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more}>
+                      <i className={clasa}></i>
+                      <span id="STEM">Arată toti postarile</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h, transition: "0.5s ease-in-out" }}
+                    >
+                      <div className="blog">
+                        {blog &&
+                          blog.map((bl) => {
+                            return (
+                              <Post
+                                deleted={() => deleteblog(bl.id)}
+                                dalay={300}
+                                data2={"fade-down"}
+                                ajutor={true}
+                                key={Math.random() * 92342423}
+                                data="fade-right"
+                                link={`/blog/${bl.id}`}
+                                poza={bl.img0}
+                                titlu={bl.titlu}
+                                text_scurt={
+                                  bl.texts[0].length > 200
+                                    ? bl.texts[0].slice(0, 200) + " ..."
+                                    : bl.texts[0]
+                                }
+                              />
+                            );
+                          })}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <hr />
               <div className="apps_part">
                 <h1>FOR APPS</h1>
                 <form onSubmit={submit_app}>
@@ -601,96 +711,144 @@ function Admin() {
                     Submit
                   </button>
                 </form>
-                <br />
-                <br />
 
-                <div className="apps">
-                  {apps &&
-                    apps.map((app) => (
-                      // <App
-                      //   deleteapp={() => deleteapp(app.id)}
-                      //   ajutor={true}
-                      //   titlu={app.titlu}
-                      //   codeQR={app.cod_qr}
-                      //   img={app.img}
-                      //   link={app.link}
-                      //   p={app.descriere}
-                      //   txt_link={app.link_text}
-                      //   key={app.id}
-                      // />
-                      <>
-                        <div className="app">
-                          <div className="top">
-                            <div className="img">
-                              <img src={app.img} alt="" />
-                            </div>
-                            <div className="txt">
-                              <div className="title">
-                                <h1>{app.titlu}</h1>
-                                <div className="linie"></div>
-                              </div>
-                              <div className="text">
-                                <div className="linie_vert"></div>
-                                <p>{app.descriere}</p>
-                              </div>
-                              <button
-                                className="button"
-                                style={{ width: "100%", margin: "30px 0" }}
-                                onClick={() => deleteapp(app.id)}
-                              >
-                                delete app
-                              </button>
-                            </div>
-                          </div>
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more2}>
+                      <i className={clasa2}></i>
+                      <span id="STEM">Arată toti apps</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h2, transition: "0.5s ease-in-out" }}
+                    >
+                      <div className="apps">
+                        {apps &&
+                          apps.map((app) => (
+                            <>
+                              <div className="app">
+                                <div className="top">
+                                  <div className="img">
+                                    <img src={app.img} alt="" />
+                                  </div>
+                                  <div className="txt">
+                                    <div className="title">
+                                      <h1>{app.titlu}</h1>
+                                      <div className="linie"></div>
+                                    </div>
+                                    <div className="text">
+                                      <div className="linie_vert"></div>
+                                      <p>{app.descriere}</p>
+                                    </div>
+                                    <button
+                                      className="button"
+                                      style={{
+                                        width: "100%",
+                                        margin: "30px 0",
+                                      }}
+                                      onClick={() => deleteapp(app.id)}
+                                    >
+                                      delete app
+                                    </button>
+                                  </div>
+                                </div>
 
-                          <a href={app.link} target="_blank" className="button">
-                            {app.link_text}
-                          </a>
-                          {app.cod_qr && (
-                            <div className="qr_cont">
-                              <img src={app.cod_qr} className="qr" alt="" />
-                            </div>
-                          )}
-                          <div className="linie_sep"></div>
-                        </div>
-                      </>
-                    ))}
+                                <a
+                                  href={app.link}
+                                  target="_blank"
+                                  className="button"
+                                >
+                                  {app.link_text}
+                                </a>
+                                {app.cod_qr && (
+                                  <div className="qr_cont">
+                                    <img
+                                      src={app.cod_qr}
+                                      className="qr"
+                                      alt=""
+                                    />
+                                  </div>
+                                )}
+                                <div className="linie_sep"></div>
+                              </div>
+                            </>
+                          ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <hr />
               <div className="ani_part">
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+                <h1>FOR ANI</h1>
                 <form onSubmit={add_ani}>
+                  <h4 className="info">
+                    Anul se va scrie in formatul an-an, ex: 2021-2022
+                  </h4>{" "}
                   <input
+                    placeholder="adauga anul curent"
                     type="text"
                     onChange={(e) => setAniEfectiv(e.target.value)}
                   />
-                  <button type="submit">submit</button>
+                  <button className="button" type="submit">
+                    submit
+                  </button>
                 </form>
-                <br />
-                <br />
-                {ani &&
-                  ani.map((an) => {
-                    return (
-                      <>
-                        <div>
-                          <h1>{an.ani}</h1>
-                          <button onClick={() => delete_year(an.id)}>
-                            delete year
-                          </button>
-                        </div>
-                      </>
-                    );
-                  })}
-                <br />
-                <br />
+
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more3}>
+                      <i className={clasa3}></i>
+                      <span id="STEM">Arată toti anii</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h3, transition: "0.5s ease-in-out" }}
+                    >
+                      <div
+                        style={{
+                          width: "100vw",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          alignItems: "flex-start",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        {ani &&
+                          ani.map((an) => {
+                            return (
+                              <>
+                                <div
+                                  style={{
+                                    width: "max-content",
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    alignItems: "center",
+                                    padding: "20px 30px",
+                                  }}
+                                >
+                                  <h1 style={{ color: "white" }}>{an.ani}</h1>
+                                  <button
+                                    className="button"
+                                    onClick={() => delete_year(an.id)}
+                                  >
+                                    delete year
+                                  </button>
+                                </div>
+                              </>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <hr />
               <div className="alumni_part">
+                <h1>FOR ALUMNI</h1>
                 <form onSubmit={upload_alumni}>
                   <select onChange={(e) => setAni(e.target.value)}>
+                    <option value="null">Alege un an</option>
                     {ani &&
                       ani.map((an) => {
                         return <option value={an.ani}>{an.ani}</option>;
@@ -701,6 +859,9 @@ function Admin() {
                     placeholder="nume"
                     onChange={(e) => setAlumninume(e.target.value)}
                   />
+                  <h4 className="info">
+                    Sa se scrie facultatea terminata/actuala
+                  </h4>
                   <input
                     type="text"
                     placeholder="detalii"
@@ -730,36 +891,53 @@ function Admin() {
                       });
                     }}
                   />
-                  <button type="submit">add alumni</button>
+                  <button type="submit" className="button">
+                    add alumni
+                  </button>
                 </form>
-                {ani &&
-                  ani.map((ani) => (
-                    <Generatie
-                      no={true}
-                      years={ani.ani}
-                      team={false}
-                      key={ani.id}
-                      persoane={[
-                        alumni &&
-                          alumni.map((alumni) => {
-                            if (alumni.ani == ani.ani)
-                              return {
-                                key: alumni.id,
-                                no: true,
-                                id: alumni.id,
-                                delete_this: delete_alumni,
-                                img: alumni.poza,
-                                nume: alumni.nume,
-                                faculta: alumni.detalii,
-                                text: alumni.text,
-                              };
-                          }),
-                      ]}
-                    />
-                  ))}
+
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more4}>
+                      <i className={clasa4}></i>
+                      <span id="STEM">Arată toti alumnii</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h4, transition: "0.5s ease-in-out" }}
+                    >
+                      {ani &&
+                        ani.map((ani) => (
+                          <Generatie
+                            no={true}
+                            years={ani.ani}
+                            team={false}
+                            key={ani.id}
+                            persoane={[
+                              alumni &&
+                                alumni.map((alumni) => {
+                                  if (alumni.ani == ani.ani)
+                                    return {
+                                      key: alumni.id,
+                                      no: true,
+                                      id: alumni.id,
+                                      delete_this: delete_alumni,
+                                      img: alumni.poza,
+                                      nume: alumni.nume,
+                                      faculta: alumni.detalii,
+                                      text: alumni.text,
+                                    };
+                                }),
+                            ]}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                </div>
               </div>
+              <hr />
               <div className="members_part">
-                <h1>MEMBER</h1>
+                <h1>FOR MEMBERS</h1>
                 <form onSubmit={upload_mem}>
                   <select onChange={(e) => setanimem(e.target.value)}>
                     {ani &&
@@ -772,6 +950,9 @@ function Admin() {
                     placeholder="nume"
                     onChange={(e) => setnumemem(e.target.value)}
                   />
+                  <h4 className="info">
+                    Sa se scrie departamentul main din care face parte
+                  </h4>
                   <input
                     type="text"
                     placeholder="detalii"
@@ -797,71 +978,101 @@ function Admin() {
                       });
                     }}
                   />
-                  <button type="submit">add member</button>
+                  <button type="submit" className="button">
+                    add member
+                  </button>
                 </form>
-                {ani &&
-                  ani.map((ani) => (
-                    <Generatie
-                      no={true}
-                      years={ani.ani}
-                      team={true}
-                      key={ani.id}
-                      persoane={[
-                        mem &&
-                          mem.map((alumni) => {
-                            if (alumni.ani == ani.ani)
-                              return {
-                                key: alumni.id,
-                                no: true,
-                                id: alumni.id,
-                                delete_this: delete_mem,
-                                img: alumni.poza,
-                                nume: alumni.nume,
-                                faculta: alumni.detalii,
-                              };
-                          }),
-                      ]}
-                    />
-                  ))}
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more5}>
+                      <i className={clasa5}></i>
+                      <span id="STEM">Arată toti alumnii</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h5, transition: "0.5s ease-in-out" }}
+                    >
+                      {ani &&
+                        ani.map((ani) => (
+                          <Generatie
+                            no={true}
+                            years={ani.ani}
+                            team={true}
+                            key={ani.id}
+                            persoane={[
+                              mem &&
+                                mem.map((alumni) => {
+                                  if (alumni.ani == ani.ani)
+                                    return {
+                                      key: alumni.id,
+                                      no: true,
+                                      id: alumni.id,
+                                      delete_this: delete_mem,
+                                      img: alumni.poza,
+                                      nume: alumni.nume,
+                                      faculta: alumni.detalii,
+                                    };
+                                }),
+                            ]}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                </div>
               </div>
+              <hr />
               <div className="sponsor_part">
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    let file = e.target.files[0];
-                    new Compressor(file, {
-                      quality: 0.5,
-                      success: (compressedResult) => {
-                        getBase64(compressedResult)
-                          .then((result) => {
-                            setlogo(result);
-                          })
-                          .catch((err) => {
-                            alert(err);
-                            return;
-                          });
-                      },
-                    });
-                  }}
-                />
                 <form onSubmit={upload_sponsor}>
-                  <button type="submit">add_sponsor</button>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      let file = e.target.files[0];
+                      new Compressor(file, {
+                        quality: 0.5,
+                        success: (compressedResult) => {
+                          getBase64(compressedResult)
+                            .then((result) => {
+                              setlogo(result);
+                            })
+                            .catch((err) => {
+                              alert(err);
+                              return;
+                            });
+                        },
+                      });
+                    }}
+                  />
+                  <button type="submit" className="button">
+                    add_sponsor
+                  </button>
                 </form>
-                <div className="sponsors">
-                  {spon && spon.map((sp) => <img src={sp.logo} />)}
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more6}>
+                      <i className={clasa6}></i>
+                      <span id="STEM">Arată toti sponsorii</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h6, transition: "0.5s ease-in-out" }}
+                    >
+                      <div className="sponsors">
+                        {spon &&
+                          spon.map((sp) => (
+                            <div>
+                              <img src={sp.logo} />
+                              <button
+                                className="button"
+                                onClick={() => delete_sponsor(sp.id)}
+                              >
+                                delete this sponsor
+                              </button>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -7,7 +7,7 @@
   align-items: flex-start;
   // position: relative;
   padding: 70px 0;
-  
+
   img {
     width: 500px;
     height: auto;
@@ -52,8 +52,8 @@
 
   .press {
     cursor: pointer;
-  user-select: none;
-  width: 250px;
+    user-select: none;
+    width: 250px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -86,7 +86,7 @@
       width: 70%;
       padding-bottom: 50px;
     }
-  } 
+  }
 }
 
 @media screen and (max-width: 600px) {
