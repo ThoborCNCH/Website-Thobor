@@ -535,12 +535,18 @@
 //   display: flex;
 //   align-items: stretch;
 // }
+
+.poate{
+  transition: undefined 0s ease 0s;
+  pointer-events: auto;
+  transform: none;display: inline-flex;
+}
 .cardd {
-  width: 250px;
-  height: 200px;
-  background: red;
-  margin: 30px;
-  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0;
+  height: 145px;
+  justify-content: center;
+  width: 145px;
 }
 
 .al {

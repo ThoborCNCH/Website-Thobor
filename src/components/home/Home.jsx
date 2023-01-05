@@ -222,155 +222,157 @@ function Home() {
         </div>
       </div>
       <ScrollContainer className="scc">
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
+        <div className="poate">
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
           </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
-          </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
-          </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
-          </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
-          </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
-          </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
-          </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
-          </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
-          </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
-          </div>
-        </div>
-        <div className="cardd">
-          <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-            officia veritatis labore itaque numquam, reprehenderit, iure
-            placeat. Porro, ratione iure?
-          </div>
-          <div className="linie"></div>
-          <div className="text2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
-            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
-            error in est nemo?
-          </div>
+          <div className="cardd">
+            <div className="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              velit eligendi eos asperiores nemo. Iusto deleniti quia quas
+              perspiciatis officia veritatis labore itaque numquam,
+              reprehenderit, iure placeat. Porro, ratione iure?
+            </div>
+            <div className="linie"></div>
+            <div className="text2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              tempora veniam non reprehenderit a? Culpa, similique deleniti.
+              Accusamus quod fugiat, reiciendis modi explicabo aliquid, eveniet
+              provident error in est nemo?
+            </div>
+          </div>{" "}
         </div>
       </ScrollContainer>
 
