@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
-import logo from "../../img/logo.png";
+import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
 

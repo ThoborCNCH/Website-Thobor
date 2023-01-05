@@ -27,10 +27,16 @@
   a:visited {
     color: white;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
 
     img {
       width: auto;
-      height: 60px;
+      margin: auto;
+      position: relative;
+      height: 50px;
     }
   }
 }
