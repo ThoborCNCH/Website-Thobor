@@ -8,6 +8,8 @@ import "aos/dist/aos.css";
 import Svg from "../utils/Svg";
 import Contact from "../utils/Contact";
 import { Link } from "react-router-dom";
+import { ScrollContainer } from "react-indiana-drag-scroll";
+import "react-indiana-drag-scroll/dist/style.css";
 
 function Home() {
   const h1 = useRef(null);
@@ -17,10 +19,10 @@ function Home() {
   }, []);
 
   window.addEventListener("scroll", () => {
-    if(document.querySelector(".despre h1") != null)
-    document.querySelector(".despre h1").style.transform = `translateX(${
-      window.innerWidth > 700 ? window.scrollY / 1.6 : window.scrollY / 4.5
-    }px)`;
+    if (document.querySelector(".despre h1") != null)
+      document.querySelector(".despre h1").style.transform = `translateX(${
+        window.innerWidth > 700 ? window.scrollY / 1.6 : window.scrollY / 4.5
+      }px)`;
   });
   return (
     <>
@@ -98,9 +100,12 @@ function Home() {
               <h1>
                 <span> + </span>
                 <span id="cifra_nat">
-                  <CountUp end={100}
+                  <CountUp
+                    end={100}
                     redraw={true}
-                    enableScrollSpy scrollSpyDelay={600} />
+                    enableScrollSpy
+                    scrollSpyDelay={600}
+                  />
                 </span>
               </h1>
               <h2>Participari la nationala</h2>
@@ -112,9 +117,12 @@ function Home() {
               <h1>
                 <span> + </span>
                 <span id="cifra_mem">
-                  <CountUp end={100}
+                  <CountUp
+                    end={100}
                     redraw={true}
-                    enableScrollSpy scrollSpyDelay={600} />
+                    enableScrollSpy
+                    scrollSpyDelay={600}
+                  />
                 </span>
               </h1>
               <h2>Membrii</h2>
@@ -124,9 +132,12 @@ function Home() {
               <h1>
                 <span> + </span>
                 <span id="cifra_al">
-                  <CountUp end={100}
+                  <CountUp
+                    end={100}
                     redraw={true}
-                    enableScrollSpy scrollSpyDelay={600} />
+                    enableScrollSpy
+                    scrollSpyDelay={600}
+                  />
                 </span>
               </h1>
               <h2>Alumni</h2>
@@ -210,9 +221,161 @@ function Home() {
           </p>
         </div>
       </div>
+      <ScrollContainer className="scc">
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+        <div className="cardd">
+          <div className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
+            eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
+            officia veritatis labore itaque numquam, reprehenderit, iure
+            placeat. Porro, ratione iure?
+          </div>
+          <div className="linie"></div>
+          <div className="text2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
+            veniam non reprehenderit a? Culpa, similique deleniti. Accusamus
+            quod fugiat, reiciendis modi explicabo aliquid, eveniet provident
+            error in est nemo?
+          </div>
+        </div>
+      </ScrollContainer>
+
       <div className="al">
-       
-          <Svg />
+        <Svg />
         <Contact />
       </div>
 

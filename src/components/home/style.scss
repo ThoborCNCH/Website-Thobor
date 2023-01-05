@@ -530,97 +530,19 @@
   margin-right: 2px;
 }
 
-.premii {
-  width: auto;
-  // width: max-content;
-  // margin: 30px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 600px;
-  position: relative;
-  overflow-y: hidden;
-
-  .left,
-  .right {
-    height: 100%;
-  }
-
-  .left {
-    width: 300px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    background: $main_green;
-  }
-
-  .right {
-    padding-left: 300px;
-    z-index: 8;
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-x: visible;
-
-    .an {
-      width: 400px;
-      height: 100%;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      scroll-snap-align: start;
-      scroll-snap-stop: normal;
-
-      .text {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 30px;
-        width: 100%;
-        height: 250px;
-
-        p {
-          text-align: center;
-          font-size: 15px;
-          line-height: 1.2;
-          text-indent: 0;
-        }
-      }
-      &:nth-of-type(even) {
-        .text {
-          align-items: flex-end;
-        }
-      }
-
-      .linie_an {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 10px;
-        background: $main_green;
-        h3 {
-          font-size: 30px;
-          font-weight: 800;
-          font-family: $font_anek;
-        }
-      }
-
-      img {
-        width: 100%;
-        height: 244px;
-        object-fit: cover;
-      }
-    }
-  }
+// .scc {
+//   width: 100vw;
+//   display: flex;
+//   align-items: stretch;
+// }
+.cardd {
+  width: 250px;
+  height: 200px;
+  background: red;
+  margin: 30px;
+  overflow: hidden;
 }
+
 .al {
   width: 100vw;
   display: flex;

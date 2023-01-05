@@ -22,6 +22,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-google-maps": "^9.4.5",
     "react-id-generator": "^3.0.2",
+    "react-indiana-drag-scroll": "^3.0.3-alpha",
     "react-loading": "^2.0.3",
     "react-particles": "^2.5.3",
     "react-router-dom": "^6.4.4",
