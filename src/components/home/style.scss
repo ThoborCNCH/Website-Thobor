@@ -536,12 +536,57 @@
 //   align-items: stretch;
 // }
 
-.poate{
+.poate {
   transition: undefined 0s ease 0s;
   pointer-events: auto;
-  transform: none;display: inline-flex;
+  transform: none;
+  display: inline-flex;
+}
+
+@media screen and (min-width: 500px) {
+  .space {
+    width: 350px;
+    height: 600px;
+  }
+  .loc_de_premii {
+  z-index: 5;
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 600px;
+    background-color: $dark_green;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    color: white;
+
+    h1 {
+      font-weight: 800;
+      font-size: 40px;
+      font-family: $font_mont;
+    }
+    .coca {
+      width: 100px;
+      height: 5px;
+      background: white;
+      margin: 20px 0;
+    }
+    h2 {
+      font-size: 30px;
+      font-weight: 500;
+      font-family: $font_mont;
+    }
+  }
+}
+
+.scrollcnt {
+  position: relative;
 }
 .cardd {
+  z-index: 1;
   align-items: center;
   flex-shrink: 0;
   height: 600px;
@@ -553,43 +598,47 @@
   align-items: flex-start;
   flex-direction: column;
 
-  &:nth-last-of-type(odd){
-  flex-direction: column-reverse;
-  .text{
-    align-items: flex-end;
-  }
+  &:nth-last-of-type(odd) {
+    flex-direction: column-reverse;
+    .text {
+      align-items: flex-end;
+    }
   }
 
   overflow: hidden;
   background-color: #fff;
   // border: 2px solid black;
 
-  img{
+  img {
     width: 100%;
     height: 270px;
     object-fit: cover;
   }
-  .linie{
+  .linie {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60px;
-    background: rgba($dark_green, .6);
+    background: $dark_green;
   }
-  .text{
+  .an {
+    font-size: 40px;
+    color: white;
+  }
+  .text {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     line-height: 1.2;
     width: 100%;
+    color: $black2;
     height: 270px;
-    padding: 20px;
+    padding: 30px;
     font-weight: 400;
     font-size: 17px;
     font-family: $font_mont;
   }
-
 }
 
 .al {
