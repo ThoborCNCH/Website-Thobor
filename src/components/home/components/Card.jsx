@@ -1,21 +1,17 @@
 import React from "react";
 
-function Card() {
+function Card({ image, text, an }) {
   return (
     <div className="cardd">
-      <div className="text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio velit
-        eligendi eos asperiores nemo. Iusto deleniti quia quas perspiciatis
-        officia veritatis labore itaque numquam, reprehenderit, iure placeat.
-        Porro, ratione iure?
+      {/* {(an % 2) ? */}
+      <img className="imagine" alt="" src={image} />
+
+      <div className="linie">
+        <h1 className="an">{an}</h1>
       </div>
-      <div className="linie"></div>
-      <div className="text2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad tempora
-        veniam non reprehenderit a? Culpa, similique deleniti. Accusamus quod
-        fugiat, reiciendis modi explicabo aliquid, eveniet provident error in
-        est nemo?
-      </div>
+         <p className="text">
+          {text}
+        </p>
     </div>
   );
 }
