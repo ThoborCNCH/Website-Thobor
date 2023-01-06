@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
+import { isMobile } from "react-device-detect";
 
 function Navbar() {
   const { pathname } = useLocation();
@@ -108,7 +109,7 @@ function Navbar() {
                 </li>
               </ul>
             </li> */}
-            {size.width > 1000 && (
+            {!isMobile && size.width < 700 && (
               <>
                 <li>
                   <Link to="/simulator">Simulator</Link>
