@@ -444,6 +444,30 @@ function Admin() {
       .catch((err) => alert(err));
   };
 
+  const delete_premiu = async (e) => {
+    await premiiRef
+      .where("id", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              alert("sters cu succes");
+              return;
+            })
+            .catch(function (error) {
+              alert(error);
+              return;
+            });
+        });
+      })
+      .catch(function (error) {
+        alert(error);
+        return;
+      });
+  };
+
   //--------------sponsori-------------
   const [logo, setlogo] = useState("");
   const upload_sponsor = async (e) => {
@@ -1175,6 +1199,8 @@ function Admin() {
                             {premii &&
                               premii.map((premiu) => (
                                 <Card
+                                  delete_premiu={() => delete_premiu(premiu.id)}
+                                  bafta={true}
                                   key={premiu.id}
                                   an={premiu.an}
                                   text={premiu.text}

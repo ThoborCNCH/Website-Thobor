@@ -41,7 +41,7 @@ function Navbar() {
       // ul.style.display = "block";
       // nav.current.classList.remove("active");
     } else {
-      if (ul.style.display != "block") {
+      if (ul.style.display !== "block") {
         console.log("lasndlkdnasldnln");
         // ul.style.display = "none";
       }
