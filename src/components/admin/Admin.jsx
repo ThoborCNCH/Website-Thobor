@@ -673,7 +673,7 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more}>
                       <i className={clasa}></i>
-                      <span id="STEM">Arată toti postarile</span>
+                      <span id="STEM">Arată toate postarile</span>
                     </div>
                     <div
                       className="hide"
@@ -779,7 +779,7 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more2}>
                       <i className={clasa2}></i>
-                      <span id="STEM">Arată toti apps</span>
+                      <span id="STEM">Arată apps</span>
                     </div>
                     <div
                       className="hide"
@@ -1003,6 +1003,7 @@ function Admin() {
                 <h1>FOR MEMBERS</h1>
                 <form onSubmit={upload_mem}>
                   <select onChange={(e) => setanimem(e.target.value)}>
+                    <option value={"null"}>Alege un an</option>
                     {ani &&
                       ani.map((an) => {
                         return <option value={an.ani}>{an.ani}</option>;
@@ -1049,7 +1050,7 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more5}>
                       <i className={clasa5}></i>
-                      <span id="STEM">Arată toti alumnii</span>
+                      <span id="STEM">Arată toti membrii</span>
                     </div>
                     <div
                       className="hide"
