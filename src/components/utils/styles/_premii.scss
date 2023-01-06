@@ -1,0 +1,114 @@
+.poate {
+  transition: undefined 0s ease 0s;
+  pointer-events: auto;
+  transform: none;
+  display: inline-flex;
+}
+.loc_de_premii {
+  display: none;
+}
+@media screen and (min-width: 700px) {
+  .space {
+    width: 350px;
+    height: 600px;
+  }
+  .loc_de_premii {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 600px;
+    background: url("../../../img/cevaidksimcer.png"), $dark_green;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    color: white;
+
+    h1 {
+      font-weight: 800;
+      font-size: 40px;
+      font-family: $font_mont;
+    }
+    .coca {
+      width: 100px;
+      height: 5px;
+      background: white;
+      margin: 20px 0;
+    }
+    h2 {
+      font-size: 30px;
+      font-weight: 500;
+      color: $light_green;
+      font-family: $font_mont;
+    }
+  }
+}
+
+.scrollcnt {
+  position: relative;
+  .cardd {
+    z-index: 1;
+    align-items: center;
+    flex-shrink: 0;
+    height: 600px;
+    justify-content: center;
+    width: 350px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+
+    &:nth-last-of-type(odd) {
+      flex-direction: column-reverse;
+      .text {
+        align-items: flex-end;
+      }
+      .img {
+        object-position: bottom;
+      }
+    }
+
+    overflow: hidden;
+    background-color: #fff;
+    // border: 2px solid black;
+
+    img {
+      width: 100%;
+      height: 270px;
+      object-position: top;
+      object-fit: cover;
+    }
+    .linie {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      background: $dark_green;
+    }
+    .an {
+      font-size: 40px;
+      color: $light_green;
+    }
+    .text {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      line-height: 1.2;
+      width: 100%;
+      color: $black2;
+      height: 270px;
+      padding: 30px;
+      font-weight: 400;
+      font-size: 17px;
+      font-family: $font_mont;
+    }
+  }
+}

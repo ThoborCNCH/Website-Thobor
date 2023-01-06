@@ -1,5 +1,4 @@
 @import "../utils/styles/base";
-
 // G41BaSVvR2P146qD7C1QJvg1XWR2
 // <h4 className="info">
 
@@ -22,6 +21,7 @@
     }
 
     .blogs_part,
+    .premii_part,
     .apps_part,
     .ani_part,
     .alumni_part,
@@ -190,6 +190,7 @@
   .hide {
     transition: height 0.5s ease-in-out;
     overflow: hidden;
+    width: 100vw;
 
     h6 {
       padding: 0 20px;
@@ -222,3 +223,4 @@
     width: 90vw;
   }
 }
+@import "../utils/styles/premii";

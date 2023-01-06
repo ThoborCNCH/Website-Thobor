@@ -15,10 +15,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useState } from "react";
 import Post from "../blog/components/Post";
-import App from "../apps/components/App";
-import { useEffect } from "react";
-import Persoana from "../alumni/components/AlumniPersoana";
 import Generatie from "../alumni/components/Generatie";
+
+import { ScrollContainer } from "react-indiana-drag-scroll";
+import "react-indiana-drag-scroll/dist/style.css";
+import Card from "../home/components/Card";
 
 firebase.initializeApp({
   apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
@@ -47,6 +48,7 @@ function Admin() {
   const aniRef = firestore.collection("ani");
   const memRef = firestore.collection("team_member");
   const sponRef = firestore.collection("sponsors");
+  const premiiRef = firestore.collection("premii");
 
   const query = blogRef.orderBy("createAt", "desc");
   const query_app = appsRef.orderBy("createAt", "desc");
@@ -54,6 +56,7 @@ function Admin() {
   const query_ani = aniRef.orderBy("createAt", "desc");
   const query_mem = memRef.orderBy("createAt", "desc");
   const query_spon = sponRef.orderBy("createAt", "desc");
+  const query_premii = premiiRef.orderBy("createAt", "asc");
 
   const [blog] = useCollectionData(query, { idField: "id" });
   const [apps] = useCollectionData(query_app, { idField: "id" });
@@ -61,6 +64,7 @@ function Admin() {
   const [ani] = useCollectionData(query_ani, { idField: "id" });
   const [mem] = useCollectionData(query_mem, { idField: "id" });
   const [spon] = useCollectionData(query_spon, { idField: "id" });
+  const [premii] = useCollectionData(query_premii, { idField: "id" });
 
   const [plaintext, setPlainText] = useState();
   const [titlu, setTitlu] = useState("");
@@ -416,6 +420,29 @@ function Admin() {
         return;
       });
   };
+  //-------------premii---------------
+  const [img_premii, setImgPremii] = useState("");
+  const [text_premii, setTextPremii] = useState("");
+  const [an_premii, setPremiian] = useState("");
+
+  const upload_premii = async (e) => {
+    e.preventDefault();
+    const { uid } = auth.currentUser;
+
+    let added = {
+      id,
+      an: an_premii,
+      img: img_premii,
+      text: text_premii,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    await premiiRef
+      .add(added)
+      .then((res) => {
+        alert("premiu adaugat");
+      })
+      .catch((err) => alert(err));
+  };
 
   //--------------sponsori-------------
   const [logo, setlogo] = useState("");
@@ -534,6 +561,18 @@ function Admin() {
     } else {
       setClasa6("fas fa-caret-up");
       setH6("auto");
+    }
+  }
+  const [clasa7, setClasa7] = useState("fas fa-caret-right");
+  const [h7, setH7] = useState("0");
+
+  function more7() {
+    if (clasa7 === "fas fa-caret-up") {
+      setClasa7("fas fa-caret-right");
+      setH7("0");
+    } else {
+      setClasa7("fas fa-caret-up");
+      setH7("auto");
     }
   }
 
@@ -1022,6 +1061,7 @@ function Admin() {
               </div>
               <hr />
               <div className="sponsor_part">
+                <h1>FOR SPONSORS</h1>
                 <form onSubmit={upload_sponsor}>
                   <input
                     type="file"
@@ -1070,6 +1110,79 @@ function Admin() {
                               </button>
                             </div>
                           ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="premii_part">
+                <h1>FOR PREMII</h1>
+                <form onSubmit={upload_premii}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      let file = e.target.files[0];
+                      new Compressor(file, {
+                        quality: 0.5,
+                        success: (compressedResult) => {
+                          getBase64(compressedResult)
+                            .then((result) => {
+                              setImgPremii(result);
+                            })
+                            .catch((err) => {
+                              alert(err);
+                              return;
+                            });
+                        },
+                      });
+                    }}
+                  />
+
+                  <input
+                    type="number"
+                    placeholder="an"
+                    onChange={(e) => setPremiian(e.target.value)}
+                  />
+                  <textarea
+                    placeholder="text"
+                    onChange={(e) => setTextPremii(e.target.value)}
+                  />
+                  <button type="submit" className="button">
+                    submit
+                  </button>
+                </form>
+
+                <div className="stemText">
+                  <div className="more">
+                    <div className="press" onClick={more7}>
+                      <i className={clasa7}></i>
+                      <span id="STEM">Arată toate premiile</span>
+                    </div>
+                    <div
+                      className="hide"
+                      style={{ height: h7, transition: "0.5s ease-in-out" }}
+                    >
+                      <div className="scrollcnt">
+                        <div className="loc_de_premii">
+                          <h1>Premii</h1>
+                          <div className="coca"></div>
+                          <h2>Since 2017</h2>
+                        </div>
+                        <ScrollContainer className="scc">
+                          <div className="poate">
+                            <div className="space"></div>
+                            {premii &&
+                              premii.map((premiu) => (
+                                <Card
+                                  key={premiu.id}
+                                  an={premiu.an}
+                                  text={premiu.text}
+                                  image={premiu.img}
+                                />
+                              ))}
+                          </div>
+                        </ScrollContainer>
                       </div>
                     </div>
                   </div>
