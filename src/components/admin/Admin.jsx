@@ -7,6 +7,8 @@ import "../alumni/alumni.scss";
 import "../sponsors/sponsors.scss";
 import Compressor from "compressorjs";
 
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
@@ -20,8 +22,9 @@ import Generatie from "../alumni/components/Generatie";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import Card from "../home/components/Card";
+import { useEffect } from "react";
 
-firebase.initializeApp({
+const app = firebase.initializeApp({
   apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
   authDomain: "thobor-9436b.firebaseapp.com",
   projectId: "thobor-9436b",
@@ -33,6 +36,9 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+const storage = getStorage(app);
+
+let links = "";
 function Admin() {
   const id = nextId();
 
@@ -72,6 +78,7 @@ function Admin() {
   const [insta, setInsta] = useState("");
   const [imgs, setImgs] = useState();
   const [length, setL] = useState();
+  const [bl_img, setblimg] = useState([]);
 
   const deleteblog = async (e) => {
     await blogRef
@@ -159,6 +166,9 @@ function Admin() {
 
     let texts = plaintext.split("<next line>");
 
+    upload_poza_pt_blog("blog/", bl_img);
+    console.log(imgs);
+
     for (
       let scapa_copiii_din_pivnita = 0;
       scapa_copiii_din_pivnita < length;
@@ -172,30 +182,11 @@ function Admin() {
         return;
       }
     }
-    // for (
-    //   let scapa_copiii_din_pivnita = 0;
-    //   scapa_copiii_din_pivnita < texts.length;
-    //   scapa_copiii_din_pivnita++
-    // ) {
-    //   try {
-    //     if (texts[scapa_copiii_din_pivnita] != "")
-    //       added[`text${scapa_copiii_din_pivnita}`] =
-    //         texts[scapa_copiii_din_pivnita];
-    //     else {
-    //       alert("Nu ai introdus nici un text!");
-    //       return;
-    //     }
-    //   } catch (error) {
-    //     alert(error);
-    //     return;
-    //   }
-    // }
-    // if (imgs != []) {
-    //   added.imgs = imgs;
-    // } else {
-    //   alert("Nu ai introdus nici un paragraf!");
-    //   return;
-    // }
+
+    if (!imgs) {
+      alert("ayaye");
+      return;
+    }
     if (texts != []) {
       added.texts = texts;
     } else {
@@ -220,6 +211,13 @@ function Admin() {
       .add(added)
       .then((res) => {
         alert("Postare adaugata");
+        setPlainText("")
+        setTitlu("");
+        setFb("");
+        setInsta("");
+        setImgs();
+        setL();
+        setblimg([])
       })
       .catch((err) => alert(err));
   };
@@ -243,25 +241,100 @@ function Admin() {
     });
   };
 
+  const poze_pt_blog = async (e) => {
+    let files = e.target.files;
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
+      setblimg((old) => [...old, file]);
+    }
+    console.log(bl_img);
+  };
+
+  const upload_poza_pt_blog = (path, e) => {
+    console.log(e);
+    let obj = {};
+    setL(e.length);
+    let files = e;
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
+
+      const storageRef = ref(storage, `${path}/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          // console.log(progress);
+        },
+        (error) => {
+          alert(error);
+        },
+         () => {
+         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            obj[`img${i}`] = downloadURL;
+          });
+        }
+      );
+    }
+    console.log(obj);
+    setImgs(obj);
+
+    console.log("imgs:  ", imgs);
+  };
+
   const uploadimg = async (e) => {
     let obj = {};
     setL(e.target.files.length);
     for (let i = 0; i < e.target.files.length; i++) {
       let file = e.target.files[i];
+
+      let q = 0.5;
+
       new Compressor(file, {
-        quality: 0.8,
+        quality: q,
         success: (compressedResult) => {
-          getBase64(compressedResult)
-            .then((result) => {
-              // setImgs({ ...imgs, i: result });
-              obj[`img${i}`] = result;
-              setImgs(obj);
-            })
-            .catch((err) => {
-              alert(err);
+          file = compressedResult;
+          while (file.size > 1048487 && q > 0) {
+            q -= 0.01;
+            new Compressor(file, {
+              quality: q,
+              success: (compressedResult) => {
+                file = compressedResult;
+              },
             });
+            console.log(q, file);
+          }
+          console.log("final:", file);
+          if (file.size <= 1048487)
+            getBase64(file)
+              .then((result) => {
+                // setImgs({ ...imgs, i: result });
+                obj[`img${i}`] = result;
+                setImgs(obj);
+              })
+              .catch((err) => {
+                alert(err);
+              });
         },
       });
+      // console.log(size);
+
+      // new Compressor(file, {
+      //   quality: q,
+      //   success: (compressedResult) => {
+      //     getBase64(compressedResult)
+      //       .then((result) => {
+      //         // setImgs({ ...imgs, i: result });
+      //         obj[`img${i}`] = result;
+      //         setImgs(obj);
+      //       })
+      //       .catch((err) => {
+      //         alert(err);
+      //       });
+      //   },
+      // });
     }
     // if (file.size * e.target.files.length > 1048487 / e.target.files.length) {
     //   alert("total img e prea mare si trb sa o schimbi")
@@ -625,7 +698,7 @@ function Admin() {
                     type="file"
                     multiple
                     accept="image/*"
-                    onChange={(e) => uploadimg(e)}
+                    onChange={(e) => poze_pt_blog(e)}
                   />
                   <h4 className="info">
                     Pentru a desparti textul in paragrafe adauga intre 2
@@ -673,7 +746,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more}>
                       <i className={clasa}></i>
-                      <span id="STEM">Arată toate postarile</span>
+                      <span id="STEM">
+                        Arată toate postarile {"("}
+                        {blog && blog.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
@@ -738,7 +815,7 @@ function Admin() {
                     onChange={(e) => {
                       let file = e.target.files[0];
                       new Compressor(file, {
-                        quality: 0.8,
+                        quality: 0.6,
                         success: (compressedResult) => {
                           getBase64(compressedResult)
                             .then((result) => {
@@ -779,7 +856,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more2}>
                       <i className={clasa2}></i>
-                      <span id="STEM">Arată apps</span>
+                      <span id="STEM">
+                        Arată apps {"("}
+                        {apps && apps.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
@@ -862,7 +943,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more3}>
                       <i className={clasa3}></i>
-                      <span id="STEM">Arată toti anii</span>
+                      <span id="STEM">
+                        Arată toti anii {"("}
+                        {ani && ani.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
@@ -963,7 +1048,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more4}>
                       <i className={clasa4}></i>
-                      <span id="STEM">Arată toti alumnii</span>
+                      <span id="STEM">
+                        Arată toti alumnii {"("}
+                        {alumni && alumni.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
@@ -1050,7 +1139,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more5}>
                       <i className={clasa5}></i>
-                      <span id="STEM">Arată toti membrii</span>
+                      <span id="STEM">
+                        Arată toti membrii{"("}
+                        {mem && mem.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
@@ -1116,7 +1209,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more6}>
                       <i className={clasa6}></i>
-                      <span id="STEM">Arată toti sponsorii</span>
+                      <span id="STEM">
+                        Arată toti sponsorii{"("}
+                        {spon && spon.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
@@ -1182,7 +1279,11 @@ function Admin() {
                   <div className="more">
                     <div className="press" onClick={more7}>
                       <i className={clasa7}></i>
-                      <span id="STEM">Arată toate premiile</span>
+                      <span id="STEM">
+                        Arată toate premiile {"("}
+                        {premii && premii.length}
+                        {")"}
+                      </span>
                     </div>
                     <div
                       className="hide"
