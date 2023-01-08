@@ -38,7 +38,6 @@ const firestore = firebase.firestore();
 
 const storage = getStorage(app);
 var ad = {};
-let links = "";
 function Admin() {
   const id = nextId();
 
@@ -169,64 +168,6 @@ function Admin() {
     };
 
     let texts = plaintext.split("<next line>");
-
-    //  await upload_poza_pt_blog("blog/", bl_img);
-    //   console.log("imgs:", imgs);
-    //   console.log("obj: ", obj);
-
-    // console.log("e:", bl_img);
-    // setL(bl_img.length);
-    // let files = bl_img;
-    // for (let i = 0; i < bl_img.length; i++) {
-    //   let file = bl_img[i];
-    //   console.log(file);
-    //   const storageRefs = storageRef(storage, `/${file.name}`);
-    //   const uploadTask = uploadBytesResumable(storageRefs, file);
-
-    //   await uploadTask.on(
-    //     "state_changed",
-    //     (snapshot) => {
-    //       const progress = Math.round(
-    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    //       );
-    //       // console.log(progress);
-    //     },
-    //     (error) => {
-    //       alert(error);
-    //     },
-    //     async () => {
-    //      await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //         // obj[`img${i}`] = downloadURL;
-    //         // console.log(obj[`img${i}`]);
-    //         obj.push(downloadURL);
-    //         // setAr(old => [...old, downloadURL])
-    //         // added[`img${i}`] = downloadURL;
-    //       });
-    //     }
-    //   );
-    //   console.log(obj);
-
-    // }
-
-    // console.log(ar);
-
-    // for (
-    //   let scapa_copiii_din_pivnita = 0;
-    //   scapa_copiii_din_pivnita < bl_img.length;
-    //   scapa_copiii_din_pivnita++
-    // ) {
-    //   try {
-    //     added[`img${scapa_copiii_din_pivnita}`] =
-    //       ar[`img${scapa_copiii_din_pivnita}`];
-    //   } catch (error) {
-    //     alert(error);
-    //     return;
-    //   }
-    // }
-    // if (!imgs) {
-    //   alert("ayaye");
-    //   return;
-    // }
     if (texts != []) {
     added.texts = texts;
     } else {
@@ -246,7 +187,6 @@ function Admin() {
       alert("Nu ai introdus nici un link de insta!");
       return;
     }
-    // console.log(added);
 
     const promises = [];
     bl_img.map((file) => {
@@ -302,30 +242,9 @@ function Admin() {
      
       })
       .then((err) => console.log(err));
-
-    // urls && console.log("afara", ad);
-    // await blogRef
-    //   .add(added)
-    //   .then((res) => {
-    //     alert("Postare adaugata");
-    //     setPlainText("");
-    //     setTitlu("");
-    //     setFb("");
-    //     setInsta("");
-    //     setImgs();
-    //     setL();
-    //     setblimg([]);
-    //   })
-    //   .catch((err) => alert(err));
   };
 
   useEffect(() => {
-    // urls &&
-    //   urls.map((url, index) => {
-    //     ad[`img${index}`] = url;
-    //   });
-
-
     if (urls)
       for (let i = 0; i < urls.length; i++){
         ad[`img${i}`] = urls[i];
@@ -359,97 +278,6 @@ function Admin() {
       setblimg((old) => [...old, file]);
     }
     console.log(bl_img);
-  };
-
-  // const upload_poza_pt_blog = async (path, e) => {
-  //   console.log("e:", e);
-  //   setL(e.length);
-  //   let files = e;
-  //   for (let i = 0; i < files.length; i++) {
-  //     let file = files[i];
-
-  //     const storageRef = ref(storage, `${path}/${file.name}`);
-  //     const uploadTask = uploadBytesResumable(storageRef, file);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress = Math.round(
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //         );
-  //         // console.log(progress);
-  //       },
-  //       (error) => {
-  //         alert(error);
-  //       },
-  //       async () => {
-  //         await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           // obj[`img${i}`] = downloadURL;
-  //           // console.log(obj[`img${i}`]);
-  //         });
-  //       }
-  //     );
-  //   }
-  //   // console.log(obj);
-  //   // setImgs(obj);
-  //   console.log("imgs:  ", imgs);
-  // };
-
-  const uploadimg = async (e) => {
-    let obj = {};
-    setL(e.target.files.length);
-    for (let i = 0; i < e.target.files.length; i++) {
-      let file = e.target.files[i];
-
-      let q = 0.5;
-
-      new Compressor(file, {
-        quality: q,
-        success: (compressedResult) => {
-          file = compressedResult;
-          while (file.size > 1048487 && q > 0) {
-            q -= 0.01;
-            new Compressor(file, {
-              quality: q,
-              success: (compressedResult) => {
-                file = compressedResult;
-              },
-            });
-            console.log(q, file);
-          }
-          console.log("final:", file);
-          if (file.size <= 1048487)
-            getBase64(file)
-              .then((result) => {
-                // setImgs({ ...imgs, i: result });
-                obj[`img${i}`] = result;
-                setImgs(obj);
-              })
-              .catch((err) => {
-                alert(err);
-              });
-        },
-      });
-      // console.log(size);
-
-      // new Compressor(file, {
-      //   quality: q,
-      //   success: (compressedResult) => {
-      //     getBase64(compressedResult)
-      //       .then((result) => {
-      //         // setImgs({ ...imgs, i: result });
-      //         obj[`img${i}`] = result;
-      //         setImgs(obj);
-      //       })
-      //       .catch((err) => {
-      //         alert(err);
-      //       });
-      //   },
-      // });
-    }
-    // if (file.size * e.target.files.length > 1048487 / e.target.files.length) {
-    //   alert("total img e prea mare si trb sa o schimbi")
-    //   return
-    // }
   };
 
   // -----------------APPS-------------------
@@ -511,6 +339,7 @@ function Admin() {
       })
       .catch((err) => alert(err));
   };
+
   //--------------ANI-------------
   const [ani_efectiv, setAniEfectiv] = useState("");
 
@@ -613,7 +442,7 @@ function Admin() {
     const { uid } = auth.currentUser;
 
     let added = {
-      id,
+      id,uid ,
       an: an_premii,
       img: img_premii,
       text: text_premii,

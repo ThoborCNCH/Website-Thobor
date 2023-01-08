@@ -58,41 +58,6 @@ function BlogPost() {
           setImg((old) => [...old, value]);
         }
       });
-    // if (ceva && ceva[0] && postare)
-    //   for (const [key, value] of Object.entries(postare)) {
-    //     if (key.includes("text")) {
-    //       console.log(key);
-    //       let new_key = +key.replace("text", "");
-    //       if (arr_p[new_key] == null) {
-    //         arr_p[new_key] = value;
-    //       }
-    //     }
-    //     if (key.includes("img")) arr_img.push(value);
-    //   }
-    // console.log(arr_p);
-    // for (let i = 0; i < arr_p.length; i++) {
-    //   setPara((old) => [...old, arr_p[i]]);
-    // }
-    // // arr_p = [];
-
-    //   messages && console.log(messages[0]);
-    // if (ceva[0]!=undefined) {
-    //   for (const [key, value] of Object.entries(ceva[0])) {
-    //     if (key.includes("text")) {
-    //       console.log(key);
-    //       let new_key = +key.replace("text", "");
-    //       if (arr_p[new_key] == null) {
-    //         arr_p[new_key] = value;
-    //       }
-    //     }
-    //     if (key.includes("img")) arr_img.push(value);
-    //   }
-    //   console.log(arr_p);
-    //   for (let i = 0; i < arr_p.length; i++) {
-    //     setPara((old) => [...old, arr_p[i]]);
-    //   }
-    //   // arr_p = [];
-    // }
   }, [ceva]);
 
   return (
@@ -138,32 +103,12 @@ function BlogPost() {
             </a>
           </h3>
         </div>
-        {/* {messages &&
-          Object.entries(messages[0]).map(([key, value]) => {
-            if (key.includes("text")) {
-              let new_key = +key.replace("text", "");
-              if (arr_p[new_key] == null) {
-                arr_p[new_key] = value;
-              }
-            } else if (key.includes("img")) {
-              let new_key = +key.replace("img", "");
-              if (arr_img[new_key] == null) {
-                arr_img[new_key] = value;
-              }
-            }
-          }) &&
-          arr_p.map((p) => <p>{p}</p>)} */}
         {postare && postare.texts && postare.texts.map((p) => <p>{p}</p>)}
-        {/* {arr_p ? arr_p.map((p) => <p>{p}</p>) : <h1>Loading...</h1>} */}
-        {/* {para && para.map((p) => <p>{p}</p>)} */}
       </div>
       <Svg />
       {postare && img && <Slider slides={img} />}
-      {/* {postare && <Slider slides={postare.imgs} />} */}
       <Contact />
       <Up />
-      {/* {postare && img && img.map(img => <img src={img} style={{width:300}} />)} */}
-
     </>
   );
 }

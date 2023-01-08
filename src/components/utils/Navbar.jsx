@@ -11,39 +11,19 @@ import { isMobile } from "react-device-detect";
 function Navbar() {
   const { pathname } = useLocation();
   const nav = useRef(null);
-  // const drop_ref = useRef(null);
-
-  const drop = (e) => {
-    console.log("e");
-    //    drop_ref.current.siblings(".nav-dropdown").slideToggle();
-    // $(".nav-dropdown").not(drop_ref.current.siblings()).hide();
-    // e.stopPropagation();
-  };
 
   const size = useWindowSize();
-
-  // $("html").on("click", function () {
-  //   $(".nav-dropdown").hide();
-  // });
   const nav_click = () => {
     $("nav ul").slideToggle();
     nav.current.classList.toggle("active");
   };
-  // Toggle open and close nav styles on click
-  // $("#nav-toggle").on("click", function () {
-  // });
-  // $("#nav-toggle").on("click", function () {
-  // });
 
   useEffect(() => {
     const ul = document.querySelector("nav ul");
     if (size.width >= 799) {
-      // ul.style.display = "block";
-      // nav.current.classList.remove("active");
     } else {
       if (ul.style.display !== "block") {
         console.log("lasndlkdnasldnln");
-        // ul.style.display = "none";
       }
     }
   }, [size]);
@@ -93,23 +73,7 @@ function Navbar() {
             <li>
               <Link to="/sponsors">Sponsors</Link>
             </li>
-            {/* <li>
-              <a href="#!" onClick={drop} ref={drop_ref}>
-                Services
-              </a>
-              <ul className="nav-dropdown">
-                <li>
-                  <a href="#!">Web Design</a>
-                </li>
-                <li>
-                  <a href="#!">Web Development</a>
-                </li>
-                <li>
-                  <a href="#!">Graphic Design</a>
-                </li>
-              </ul>
-            </li> */}
-            {!isMobile && size.width < 700 && (
+            {!isMobile && size.width > 700 && (
               <>
                 <li>
                   <Link to="/simulator">Simulator</Link>
