@@ -37,7 +37,7 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 const storage = getStorage(app);
-
+var ad = {};
 let links = "";
 function Admin() {
   const id = nextId();
@@ -73,9 +73,9 @@ function Admin() {
   const [premii] = useCollectionData(query_premii, { idField: "id" });
 
   const [plaintext, setPlainText] = useState();
-  const [titlu, setTitlu] = useState("");
-  const [fb, setFb] = useState("");
-  const [insta, setInsta] = useState("");
+  const [titlu, setTitlu] = useState("jkadbs");
+  const [fb, setFb] = useState("asdasdas");
+  const [insta, setInsta] = useState("asdasdasd");
   const [imgs, setImgs] = useState();
   const [length, setL] = useState();
   const [bl_img, setblimg] = useState([]);
@@ -151,10 +151,14 @@ function Admin() {
         return;
       });
   };
+  const [urls, setUrls] = useState([]);
+
+  const [loading, setLoading] = useState(false);
 
   const upload_blog = async (e) => {
     e.preventDefault();
     const { uid } = auth.currentUser;
+    var obj = [];
     let added = {
       id,
       titlu,
@@ -166,29 +170,65 @@ function Admin() {
 
     let texts = plaintext.split("<next line>");
 
-    upload_poza_pt_blog("blog/", bl_img);
-    console.log(imgs);
+    //  await upload_poza_pt_blog("blog/", bl_img);
+    //   console.log("imgs:", imgs);
+    //   console.log("obj: ", obj);
 
-    for (
-      let scapa_copiii_din_pivnita = 0;
-      scapa_copiii_din_pivnita < length;
-      scapa_copiii_din_pivnita++
-    ) {
-      try {
-        added[`img${scapa_copiii_din_pivnita}`] =
-          imgs[`img${scapa_copiii_din_pivnita}`];
-      } catch (error) {
-        alert(error);
-        return;
-      }
-    }
+    // console.log("e:", bl_img);
+    // setL(bl_img.length);
+    // let files = bl_img;
+    // for (let i = 0; i < bl_img.length; i++) {
+    //   let file = bl_img[i];
+    //   console.log(file);
+    //   const storageRefs = storageRef(storage, `/${file.name}`);
+    //   const uploadTask = uploadBytesResumable(storageRefs, file);
 
-    if (!imgs) {
-      alert("ayaye");
-      return;
-    }
+    //   await uploadTask.on(
+    //     "state_changed",
+    //     (snapshot) => {
+    //       const progress = Math.round(
+    //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+    //       );
+    //       // console.log(progress);
+    //     },
+    //     (error) => {
+    //       alert(error);
+    //     },
+    //     async () => {
+    //      await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //         // obj[`img${i}`] = downloadURL;
+    //         // console.log(obj[`img${i}`]);
+    //         obj.push(downloadURL);
+    //         // setAr(old => [...old, downloadURL])
+    //         // added[`img${i}`] = downloadURL;
+    //       });
+    //     }
+    //   );
+    //   console.log(obj);
+
+    // }
+
+    // console.log(ar);
+
+    // for (
+    //   let scapa_copiii_din_pivnita = 0;
+    //   scapa_copiii_din_pivnita < bl_img.length;
+    //   scapa_copiii_din_pivnita++
+    // ) {
+    //   try {
+    //     added[`img${scapa_copiii_din_pivnita}`] =
+    //       ar[`img${scapa_copiii_din_pivnita}`];
+    //   } catch (error) {
+    //     alert(error);
+    //     return;
+    //   }
+    // }
+    // if (!imgs) {
+    //   alert("ayaye");
+    //   return;
+    // }
     if (texts != []) {
-      added.texts = texts;
+    added.texts = texts;
     } else {
       alert("Nu ai introdus nici un paragraf!");
       return;
@@ -206,21 +246,91 @@ function Admin() {
       alert("Nu ai introdus nici un link de insta!");
       return;
     }
+    // console.log(added);
 
-    await blogRef
-      .add(added)
-      .then((res) => {
-        alert("Postare adaugata");
-        setPlainText("")
-        setTitlu("");
-        setFb("");
-        setInsta("");
-        setImgs();
-        setL();
-        setblimg([])
+    const promises = [];
+    bl_img.map((file) => {
+      setLoading(true);
+      const sotrageRef = ref(storage, `files/${file.name}`);
+
+      const uploadTask = uploadBytesResumable(sotrageRef, file);
+      promises.push(uploadTask);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const prog = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (error) => console.log(error),
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
+            setUrls((prevState) => [...prevState, downloadURLs]);
+            console.log(urls);
+          });
+        }
+      );
+    });
+
+    Promise.all(promises)
+      .then(async() => {
+        urls.map((url) => console.log(url));
+        setLoading(false);
+        urls && console.log("inauntru", ad);
+
+        urls && (
+          ad = {...ad, ...added}
+        )
+        
+
+        console.log(ad);
+        await blogRef
+          .add(ad)
+          .then((res) => {
+            alert("Postare adaugata");
+            setPlainText("");
+            setTitlu("");
+            setFb("");
+            setInsta("");
+            setImgs();
+            setL();
+            setblimg([]);
+    setUrls([]);
+            ad = {};
+          })
+          .catch((err) => alert(err));
+     
       })
-      .catch((err) => alert(err));
+      .then((err) => console.log(err));
+
+    // urls && console.log("afara", ad);
+    // await blogRef
+    //   .add(added)
+    //   .then((res) => {
+    //     alert("Postare adaugata");
+    //     setPlainText("");
+    //     setTitlu("");
+    //     setFb("");
+    //     setInsta("");
+    //     setImgs();
+    //     setL();
+    //     setblimg([]);
+    //   })
+    //   .catch((err) => alert(err));
   };
+
+  useEffect(() => {
+    // urls &&
+    //   urls.map((url, index) => {
+    //     ad[`img${index}`] = url;
+    //   });
+
+
+    if (urls)
+      for (let i = 0; i < urls.length; i++){
+        ad[`img${i}`] = urls[i];
+      }
+  }, [urls]);
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -242,6 +352,7 @@ function Admin() {
   };
 
   const poze_pt_blog = async (e) => {
+    setblimg([]);
     let files = e.target.files;
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
@@ -250,39 +361,38 @@ function Admin() {
     console.log(bl_img);
   };
 
-  const upload_poza_pt_blog = (path, e) => {
-    console.log(e);
-    let obj = {};
-    setL(e.length);
-    let files = e;
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
+  // const upload_poza_pt_blog = async (path, e) => {
+  //   console.log("e:", e);
+  //   setL(e.length);
+  //   let files = e;
+  //   for (let i = 0; i < files.length; i++) {
+  //     let file = files[i];
 
-      const storageRef = ref(storage, `${path}/${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          // console.log(progress);
-        },
-        (error) => {
-          alert(error);
-        },
-         () => {
-         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            obj[`img${i}`] = downloadURL;
-          });
-        }
-      );
-    }
-    console.log(obj);
-    setImgs(obj);
-
-    console.log("imgs:  ", imgs);
-  };
+  //     const storageRef = ref(storage, `${path}/${file.name}`);
+  //     const uploadTask = uploadBytesResumable(storageRef, file);
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress = Math.round(
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //         );
+  //         // console.log(progress);
+  //       },
+  //       (error) => {
+  //         alert(error);
+  //       },
+  //       async () => {
+  //         await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           // obj[`img${i}`] = downloadURL;
+  //           // console.log(obj[`img${i}`]);
+  //         });
+  //       }
+  //     );
+  //   }
+  //   // console.log(obj);
+  //   // setImgs(obj);
+  //   console.log("imgs:  ", imgs);
+  // };
 
   const uploadimg = async (e) => {
     let obj = {};
@@ -694,7 +804,7 @@ function Admin() {
                   <h1>FOR BLOG</h1>
                   <h4 className="info">Poti alege mai multe poze</h4>
                   <input
-                    required
+                    //required
                     type="file"
                     multiple
                     accept="image/*"
@@ -706,7 +816,7 @@ function Admin() {
                     intre ce este inainte si dupa{" "}
                   </h4>
                   <textarea
-                    required
+                    //required
                     placeholder="paragrafe"
                     type="text"
                     onChange={(e) => {
@@ -714,7 +824,7 @@ function Admin() {
                     }}
                   />
                   <textarea
-                    required
+                    //required
                     placeholder="titlu"
                     onChange={(e) => setTitlu(e.target.value)}
                   />
@@ -724,7 +834,7 @@ function Admin() {
                   </h4>
                   <input
                     type="url"
-                    required
+                    //required
                     placeholder="fb"
                     onChange={(e) => setFb(e.target.value)}
                   />
@@ -734,12 +844,16 @@ function Admin() {
                   </h4>
                   <input
                     type="url"
-                    required
+                    //required
                     placeholder="insta"
                     onChange={(e) => setInsta(e.target.value)}
                   />
-                  <button className="button" type="submit">
-                    send
+                  <button
+                    className="button"
+                    disabled={loading ? true : false}
+                    type="submit"
+                  >
+                    {loading ? "loading" : "send"}
                   </button>
                 </form>
                 <div className="stemText">

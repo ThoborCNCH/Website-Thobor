@@ -162,6 +162,8 @@ function BlogPost() {
       {/* {postare && <Slider slides={postare.imgs} />} */}
       <Contact />
       <Up />
+      {/* {postare && img && img.map(img => <img src={img} style={{width:300}} />)} */}
+
     </>
   );
 }
