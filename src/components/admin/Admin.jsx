@@ -169,7 +169,7 @@ function Admin() {
 
     let texts = plaintext.split("<next line>");
     if (texts != []) {
-    added.texts = texts;
+      added.texts = texts;
     } else {
       alert("Nu ai introdus nici un paragraf!");
       return;
@@ -213,15 +213,12 @@ function Admin() {
     });
 
     Promise.all(promises)
-      .then(async() => {
+      .then(async () => {
         urls.map((url) => console.log(url));
         setLoading(false);
         urls && console.log("inauntru", ad);
 
-        urls && (
-          ad = {...ad, ...added}
-        )
-        
+        urls && (ad = { ...ad, ...added });
 
         console.log(ad);
         await blogRef
@@ -235,18 +232,17 @@ function Admin() {
             setImgs();
             setL();
             setblimg([]);
-    setUrls([]);
+            setUrls([]);
             ad = {};
           })
           .catch((err) => alert(err));
-     
       })
       .then((err) => console.log(err));
   };
 
   useEffect(() => {
     if (urls)
-      for (let i = 0; i < urls.length; i++){
+      for (let i = 0; i < urls.length; i++) {
         ad[`img${i}`] = urls[i];
       }
   }, [urls]);
@@ -442,7 +438,8 @@ function Admin() {
     const { uid } = auth.currentUser;
 
     let added = {
-      id,uid ,
+      id,
+      uid,
       an: an_premii,
       img: img_premii,
       text: text_premii,
@@ -481,7 +478,9 @@ function Admin() {
   };
 
   //--------------sponsori-------------
-  const [logo, setlogo] = useState("");
+  const [logo, setlogo] = useState();
+  const [loadinglogo, setLoadinglogo] = useState(false);
+  const [spon_img, setspon_img] = useState("");
   const upload_sponsor = async (e) => {
     e.preventDefault();
     const { uid } = auth.currentUser;
@@ -489,15 +488,51 @@ function Admin() {
     let added = {
       id,
       uid,
-      logo,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    await sponRef
-      .add(added)
-      .then((res) => {
-        alert("sponsor adaugat");
+    const promises = [];
+
+    setLoadinglogo(true);
+    const sotrageRef = ref(storage, `sponsors/${logo.name}`);
+
+    const uploadTask = uploadBytesResumable(sotrageRef, logo);
+    promises.push(uploadTask);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+      },
+      (error) => console.log(error),
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
+          console.log(urls);
+          setspon_img(downloadURLs);
+        });
+      }
+    );
+
+    Promise.all(promises)
+      .then(async () => {
+        console.log(spon_img);
+        if (spon_img) added.logo = spon_img;
+        else added.logo = "Asd";
+        await sponRef
+          .add(added)
+          .then((res) => {
+            alert("sponsor adaugat");
+          })
+          .catch((err) => alert(err));
+        setLoadinglogo(false);
       })
-      .catch((err) => alert(err));
+      .then((err) => console.log(err));
+    // await sponRef
+    //   .add(added)
+    //   .then((res) => {
+    //     alert("sponsor adaugat");
+    //   })
+    //   .catch((err) => alert(err));
   };
 
   const delete_sponsor = async (e) => {
@@ -1128,24 +1163,29 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let file = e.target.files[0];
-                      new Compressor(file, {
-                        quality: 0.5,
-                        success: (compressedResult) => {
-                          getBase64(compressedResult)
-                            .then((result) => {
-                              setlogo(result);
-                            })
-                            .catch((err) => {
-                              alert(err);
-                              return;
-                            });
-                        },
-                      });
+                      setlogo(e.target.files[0]);
+                      // let file = e.target.files[0];
+                      // new Compressor(file, {
+                      //   quality: 0.5,
+                      //   success: (compressedResult) => {
+                      //     getBase64(compressedResult)
+                      //       .then((result) => {
+                      //         setlogo(result);
+                      //       })
+                      //       .catch((err) => {
+                      //         alert(err);
+                      //         return;
+                      //       });
+                      //   },
+                      // });
                     }}
                   />
-                  <button type="submit" className="button">
-                    add_sponsor
+                  <button
+                    type="submit"
+                    className="button"
+                    disabled={loadinglogo ? true : false}
+                  >
+                    {loadinglogo ? "loading" : "add sponsor"}
                   </button>
                 </form>
                 <div className="stemText">
