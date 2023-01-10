@@ -56,15 +56,15 @@ function Home() {
           </h2>
         </div>
         <div className="img" data-aos="fade-left">
-          <img src={require("../../img/first.svg").default} alt="" />
+          <img src={require("../../img/first.png")} alt="" />
           <img
             className="cerc"
-            src={require("../../img/cerc2.svg").default}
+            src={require("../../img/cerc1.png")}
             alt=""
           />
           <img
             className="cerc"
-            src={require("../../img/cercD.svg").default}
+            src={require("../../img/cerc2.png")}
             alt=""
           />
         </div>
