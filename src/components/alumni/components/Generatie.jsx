@@ -89,7 +89,7 @@ function Generatie({ years, team, persoane, no }) {
           },
         }}
         grabCursor={true}
-        autoHeight={true}
+        // autoHeight={true}
         loop={true}
         loopFillGroupWithBlank={true}
         pagination={{

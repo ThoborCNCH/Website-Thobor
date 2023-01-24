@@ -276,43 +276,90 @@ function Admin() {
     console.log(bl_img);
   };
 
-  // -----------------APPS-------------------
+  // -----------------APPS--asa face si ficatul-----------------
   const [descriere, setDescriere] = useState("");
-  const [cod_qr, setCodqr] = useState("");
-  const [img, setImg] = useState("");
+  const [cod_qr, setCodqr] = useState();
+  const [cod_qr_links, setCodqrlinks] = useState("");
+  const [img, setImg] = useState();
+  const [imglinks, setImgLinks] = useState("");
   const [titlu_app, setTitluApp] = useState("");
   const [link, setLink] = useState("");
   const [link_text, setLinkText] = useState("");
+  const [loading_apps, setLoadingApps] = useState(false);
 
   const submit_app = async (e) => {
     e.preventDefault();
     const { uid } = auth.currentUser;
-    let added = {
-      id,
-      titlu: titlu_app,
-      uid: uid,
-      descriere,
-      link,
-      link_text,
-      cod_qr,
-      img,
-      createAt: firebase.firestore.FieldValue.serverTimestamp(),
-    };
 
-    await appsRef
-      .add(added)
-      .then((res) => {
-        alert("app adaugat");
+    console.log(cod_qr, img);
+    let ar = [cod_qr, img];
+    const promises = [];
+
+    ar.map((file, index) => {
+      setLoadingApps(true);
+      let sotrageRef = ref(storage, `apps/${file.name}`);
+
+      let uploadTask = uploadBytesResumable(sotrageRef, file);
+      promises.push(uploadTask);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const prog = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (error) => console.log(error),
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
+            if (index == 0) {
+              console.log(index, downloadURLs);
+              setImgLinks(downloadURLs);
+            } else {
+              console.log(index, downloadURLs);
+              setCodqrlinks(downloadURLs);
+            }
+          });
+        }
+      );
+    });
+
+    Promise.all(promises)
+      .then(async () => {
+        console.log(cod_qr_links);
+        await appsRef
+          .add({
+            id,
+            titlu: titlu_app,
+            uid: uid,
+            descriere,
+            link,
+            link_text,
+            cod_qr: cod_qr_links,
+            img: imglinks,
+            createAt: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          .then((res) => {
+            alert("app adaugat");
+          })
+          .catch((err) => alert(err));
+        setLoadingApps(false);
+        setTitluApp("");
+        setDescriere("");
       })
-      .catch((err) => alert(err));
+      .then((err) => console.log(err));
   };
+
+  // cumpar opel
 
   //----------------ALUMNI------------------
   const [anistate, setAni] = useState("");
   const [nume_alumni, setAlumninume] = useState("");
   const [detalii_alumni, setdetaliialumni] = useState("");
-  const [poza_alumni, setPozealumni] = useState("");
+  const [poza_alumni, setPozealumni] = useState();
   const [text_alumni, setTextalumni] = useState("");
+  const [loading_alumni, SetLoadingAlumni] = useState(false);
+  const [al_img_link, setTpLINK] = useState("");
+  const promises_al = [];
 
   const upload_alumni = async (e) => {
     e.preventDefault();
@@ -323,17 +370,29 @@ function Admin() {
       uid: uid,
       ani: anistate,
       detalii: detalii_alumni,
-      poza: poza_alumni,
+      // poza: poza_alumni,
       text: text_alumni,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    await alumniRef
-      .add(added)
-      .then((res) => {
-        alert("alumni adaugat");
+    SetLoadingAlumni(true);
+
+    Promise.all(promises_al)
+      .then(async () => {
+        added.poza = al_img_link;
+        await alumniRef
+          .add(added)
+          .then((res) => {
+            alert("alumni adaugat");
+            SetLoadingAlumni(false);
+            setAni("Alege un an");
+            setAlumninume("");
+            setdetaliialumni("");
+            setTextalumni("");
+          })
+          .catch((err) => alert(err));
       })
-      .catch((err) => alert(err));
+      .then((err) => console.log(err));
   };
 
   //--------------ANI-------------
@@ -382,8 +441,10 @@ function Admin() {
   const [ani_mem, setanimem] = useState("");
   const [nume_mem, setnumemem] = useState("");
   const [detalii_mem, setdetaliimem] = useState("");
-  const [poza_mem, setpozamem] = useState("");
-
+  const [poza_mem, setpozamem] = useState();
+  const [p_m_link, setPML] = useState("");
+  const pr_mm = [];
+  const [load_mm, setLoadingMM] = useState(false);
   const upload_mem = async (e) => {
     e.preventDefault();
     const { uid } = auth.currentUser;
@@ -394,15 +455,26 @@ function Admin() {
       uid: uid,
       ani: ani_mem,
       detalii: detalii_mem,
-      poza: poza_mem,
+      // poza: poza_mem,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    await memRef
-      .add(added)
-      .then((res) => {
-        alert("Postare adaugata");
+    setLoadingMM(true);
+
+    Promise.all(pr_mm)
+      .then(async () => {
+        added.poza = p_m_link;
+        await memRef
+          .add(added)
+          .then((res) => {
+            alert("Postare adaugata");
+            setanimem("Alege un an");
+            setnumemem("");
+            setLoadingMM(false);
+            setdetaliimem("");
+          })
+          .catch((err) => alert(err));
       })
-      .catch((err) => alert(err));
+      .then((err) => console.log(err));
   };
 
   const delete_mem = async (e) => {
@@ -770,20 +842,21 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let file = e.target.files[0];
-                      new Compressor(file, {
-                        quality: 0.5,
-                        success: (compressedResult) => {
-                          getBase64(compressedResult)
-                            .then((result) => {
-                              setImg(result);
-                            })
-                            .catch((err) => {
-                              alert(err);
-                              return;
-                            });
-                        },
-                      });
+                      setImg(e.target.files[0]);
+                      // let file = e.target.files[0];
+                      // new Compressor(file, {
+                      //   quality: 0.5,
+                      //   success: (compressedResult) => {
+                      //     getBase64(compressedResult)
+                      //       .then((result) => {
+                      //         setImg(result);
+                      //       })
+                      //       .catch((err) => {
+                      //         alert(err);
+                      //         return;
+                      //       });
+                      //   },
+                      // });
                     }}
                   />
                   <h4 className="info">Set the Qr code</h4>
@@ -791,20 +864,21 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let file = e.target.files[0];
-                      new Compressor(file, {
-                        quality: 0.6,
-                        success: (compressedResult) => {
-                          getBase64(compressedResult)
-                            .then((result) => {
-                              setCodqr(result);
-                            })
-                            .catch((err) => {
-                              alert(err);
-                              return;
-                            });
-                        },
-                      });
+                      setCodqr(e.target.files[0]);
+                      // let file = e.target.files[0];
+                      // new Compressor(file, {
+                      //   quality: 0.6,
+                      //   success: (compressedResult) => {
+                      //     getBase64(compressedResult)
+                      //       .then((result) => {
+                      //         setCodqr(result);
+                      //       })
+                      //       .catch((err) => {
+                      //         alert(err);
+                      //         return;
+                      //       });
+                      //   },
+                      // });
                     }}
                   />
                   <input
@@ -825,8 +899,12 @@ function Admin() {
                     placeholder="titlu"
                     onChange={(e) => setTitluApp(e.target.value)}
                   />
-                  <button type="submit" className="button">
-                    Submit
+                  <button
+                    type="submit"
+                    disabled={loading_apps ? true : false}
+                    className="button"
+                  >
+                    {loading_apps ? "loading" : "submit"}
                   </button>
                 </form>
 
@@ -973,7 +1051,10 @@ function Admin() {
               <div className="alumni_part">
                 <h1>FOR ALUMNI</h1>
                 <form onSubmit={upload_alumni}>
-                  <select onChange={(e) => setAni(e.target.value)}>
+                  <select
+                    value={anistate}
+                    onChange={(e) => setAni(e.target.value)}
+                  >
                     <option value="null">Alege un an</option>
                     {ani &&
                       ani.map((an) => {
@@ -1001,24 +1082,42 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let file = e.target.files[0];
-                      new Compressor(file, {
-                        quality: 0.5,
-                        success: (compressedResult) => {
-                          getBase64(compressedResult)
-                            .then((result) => {
-                              setPozealumni(result);
-                            })
-                            .catch((err) => {
-                              alert(err);
-                              return;
-                            });
+                      let poza_alumni = e.target.files[0];
+                      // setPozealumni(e.target.files[0]);
+                      const sotrageRef = ref(
+                        storage,
+                        `alumni/${poza_alumni.name}`
+                      );
+                      const uploadTask = uploadBytesResumable(
+                        sotrageRef,
+                        poza_alumni
+                      );
+                      promises_al.push(uploadTask);
+                      uploadTask.on(
+                        "state_changed",
+                        (snapshot) => {
+                          const prog = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes) *
+                              100
+                          );
                         },
-                      });
+                        (error) => console.log(error),
+                        async () => {
+                          await getDownloadURL(uploadTask.snapshot.ref).then(
+                            (downloadURLs) => {
+                              setTpLINK(downloadURLs);
+                            }
+                          );
+                        }
+                      );
                     }}
                   />
-                  <button type="submit" className="button">
-                    add alumni
+                  <button
+                    type="submit"
+                    disabled={loading_alumni ? true : false}
+                    className="button"
+                  >
+                    {loading_alumni ? "loading" : "submit"}
                   </button>
                 </form>
 
@@ -1069,7 +1168,13 @@ function Admin() {
               <div className="members_part">
                 <h1>FOR MEMBERS</h1>
                 <form onSubmit={upload_mem}>
-                  <select onChange={(e) => setanimem(e.target.value)}>
+                  <select
+                    value={ani_mem}
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setanimem(e.target.value);
+                    }}
+                  >
                     <option value={"null"}>Alege un an</option>
                     {ani &&
                       ani.map((an) => {
@@ -1093,24 +1198,42 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let file = e.target.files[0];
-                      new Compressor(file, {
-                        quality: 0.5,
-                        success: (compressedResult) => {
-                          getBase64(compressedResult)
-                            .then((result) => {
-                              setpozamem(result);
-                            })
-                            .catch((err) => {
-                              alert(err);
-                              return;
-                            });
+                      let poza_mem = e.target.files[0];
+                      // setPozealumni(e.target.files[0]);
+                      const sotrageRef = ref(
+                        storage,
+                        `members/${poza_mem.name}`
+                      );
+                      const uploadTask = uploadBytesResumable(
+                        sotrageRef,
+                        poza_mem
+                      );
+                      pr_mm.push(uploadTask);
+                      uploadTask.on(
+                        "state_changed",
+                        (snapshot) => {
+                          const prog = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes) *
+                              100
+                          );
                         },
-                      });
+                        (error) => console.log(error),
+                        async () => {
+                          await getDownloadURL(uploadTask.snapshot.ref).then(
+                            (downloadURLs) => {
+                              setPML(downloadURLs);
+                            }
+                          );
+                        }
+                      );
                     }}
                   />
-                  <button type="submit" className="button">
-                    add member
+                  <button
+                    type="submit"
+                    disabled={load_mm ? true : false}
+                    className="button"
+                  >
+                    {load_mm ? "loading" : "submit"}
                   </button>
                 </form>
                 <div className="stemText">
