@@ -68,7 +68,6 @@ function Home() {
             alt=""
           />
         </div>
-        <Incercare id="tsparticles" />
       </div>
       <div className="cifre">
         {" "}

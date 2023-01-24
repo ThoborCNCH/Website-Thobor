@@ -13,11 +13,13 @@ import Team from "./components/team/Team";
 import Assembly from "./components/simulator/TeleOP/Assembly";
 import Admin from "./components/admin/Admin";
 import NotFound from "./components/notfound/NotFound";
+import Incercare from "./components/utils/Incercare";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <Incercare id="tsparticles" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />

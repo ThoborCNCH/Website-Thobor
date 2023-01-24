@@ -87,6 +87,15 @@ const Incercare = (props) => {
   //   }
   // }, [size]);
 
+  var path = "";
+
+  useEffect(() => {
+    path = window.location.pathname;
+    console.log(path);
+  });
+
+
+
   // setting an id can be useful for identifying the right particles component, this is useful for multiple instances or reusable components
   return (
     <Particles
@@ -94,6 +103,7 @@ const Incercare = (props) => {
       init={particlesInit}
       options={options}
       style={{
+        display: path === "/" ? "hidden" : "visible",
         width: "100vw",
         height: "100vh",
         position: "absolute",
