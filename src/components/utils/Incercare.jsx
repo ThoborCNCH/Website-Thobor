@@ -2,11 +2,22 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; // loads tsparticles-slim
 //import { loadFull } from "tsparticles"; // loads tsparticles
 import { useCallback, useMemo, useState } from "react";
-import { useEffect } from "react";
+import "./Incercare.css"
 
 // tsParticles Repository: https://github.com/matteobruni/tsparticles
 // tsParticles Website: https://particles.js.org/
 const Incercare = (props) => {
+
+  let style = useMemo(() => {
+    return {
+      width: "100vw",
+      height: "100vh",
+      position: "absolute",
+      top: "0",
+      left: "0",
+    }
+  });
+
   // using useMemo is not mandatory, but it's recommended since this value can be memoized if static
   let options = useMemo(() => {
     // using an empty options object will load the default options, which are static particles with no background and 3px radius, opacity 100%, white color
@@ -87,29 +98,14 @@ const Incercare = (props) => {
   //   }
   // }, [size]);
 
-  var path = "";
-
-  useEffect(() => {
-    path = window.location.pathname;
-    console.log(path);
-  });
-
-
-
   // setting an id can be useful for identifying the right particles component, this is useful for multiple instances or reusable components
   return (
     <Particles
       id={props.id}
+      className="tsparticles"
       init={particlesInit}
       options={options}
-      style={{
-        display: path === "/" ? "hidden" : "visible",
-        width: "100vw",
-        height: "100vh",
-        position: "absolute",
-        top: "0",
-        left: "0",
-      }}
+      style={style}
     />
   );
 };

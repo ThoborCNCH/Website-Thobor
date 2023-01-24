@@ -14,8 +14,10 @@ import Assembly from "./components/simulator/TeleOP/Assembly";
 import Admin from "./components/admin/Admin";
 import NotFound from "./components/notfound/NotFound";
 import Incercare from "./components/utils/Incercare";
+import { useEffect } from "react";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Navbar />

@@ -32,10 +32,20 @@ function Home() {
   const premiiRef = firestore.collection("premii");
   const query_premii = premiiRef.orderBy("createAt", "asc");
   const [premii] = useCollectionData(query_premii, { idField: "id" });
-
+  
   useEffect(() => {
     AOS.init();
   }, []);
+  
+  useEffect(()=>{
+    const particule = document.getElementById("tsparticles");
+    particule.style.visibility = "visible";
+
+    return(()=>{
+      particule.style.visibility = "hidden";
+    });
+
+  });
 
   window.addEventListener("scroll", () => {
     if (document.querySelector(".despre h1") != null)
@@ -68,6 +78,7 @@ function Home() {
             alt=""
           />
         </div>
+        {/* AICI?--------------- */}
       </div>
       <div className="cifre">
         {" "}

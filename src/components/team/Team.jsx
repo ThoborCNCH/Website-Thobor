@@ -34,6 +34,10 @@ function Team() {
   const [team] = useCollectionData(query_team, { idField: "id" });
   const [ani] = useCollectionData(query_ani, { idField: "id" });
 
+  console.log(team);
+  console.log("echipa apoi anii acum")
+  console.log(ani);
+
 
   useEffect(() => {
     AOS.init();
