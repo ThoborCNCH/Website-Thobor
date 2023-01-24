@@ -42,7 +42,7 @@ function Generatie({ years, team, persoane, no }) {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-      {persoane &&
+        {persoane &&
           persoane.map(
             (pers) =>
               pers &&
@@ -63,7 +63,8 @@ function Generatie({ years, team, persoane, no }) {
                   </SwiperSlide>
                 );
               })
-          )}</Swiper>
+          )}
+      </Swiper>
     </>
   ) : (
     <>
@@ -95,7 +96,11 @@ function Generatie({ years, team, persoane, no }) {
         pagination={{
           clickable: true,
         }}
+        centerInsufficientSlides={true}
+        autoplay={true}
         navigation={true}
+        // contentEditable={true}
+        centeredSlides={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >

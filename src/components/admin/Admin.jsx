@@ -1064,6 +1064,7 @@ function Admin() {
                   <input
                     type="text"
                     placeholder="nume"
+                    value={nume_alumni}
                     onChange={(e) => setAlumninume(e.target.value)}
                   />
                   <h4 className="info">
@@ -1071,11 +1072,13 @@ function Admin() {
                   </h4>
                   <input
                     type="text"
+                    value={detalii_alumni}
                     placeholder="detalii"
                     onChange={(e) => setdetaliialumni(e.target.value)}
                   />
                   <textarea
                     placeholder="text"
+                    value={text_alumni}
                     onChange={(e) => setTextalumni(e.target.value)}
                   />
                   <input
@@ -1183,6 +1186,7 @@ function Admin() {
                   </select>
                   <input
                     type="text"
+                    value={nume_mem}
                     placeholder="nume"
                     onChange={(e) => setnumemem(e.target.value)}
                   />
@@ -1191,6 +1195,7 @@ function Admin() {
                   </h4>
                   <input
                     type="text"
+                    value={detalii_mem}
                     placeholder="detalii"
                     onChange={(e) => setdetaliimem(e.target.value)}
                   />
