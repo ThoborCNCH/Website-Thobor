@@ -1155,7 +1155,11 @@ function Admin() {
                                       key: alumni.id,
                                       no: true,
                                       id: alumni.id,
-                                      delete_this_mama: delete_alumni,
+                                      // ----------------------------------------------------------------------
+                                      // AICEA MODIFICAREA AIA GENIALA AM ADAUGAT () SI CRED CA DACA BAGI SI
+                                      // (ALUMNI.ID) ITI STERGE TOTI ALUMNI
+                                      // ----------------------------------------------------------------------
+                                      delete_this_mama: delete_alumni(),
                                       img: alumni.poza,
                                       nume: alumni.nume,
                                       faculta: alumni.detalii,
