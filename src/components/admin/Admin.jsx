@@ -128,6 +128,7 @@ function Admin() {
       });
   };
   const delete_alumni = async (e) => {
+    console.log("asdasd")
     await alumniRef
       .where("id", "==", e)
       .get()
@@ -1147,13 +1148,14 @@ function Admin() {
                             key={ani.id}
                             persoane={[
                               alumni &&
-                                alumni.map((alumni) => {
-                                  if (alumni.ani == ani.ani)
+                              alumni.filter((alumni) => {
+                                if (alumni.ani == ani.ani)
+                                  console.log("asd", delete_alumni(3))
                                     return {
                                       key: alumni.id,
                                       no: true,
                                       id: alumni.id,
-                                      delete_this: delete_alumni,
+                                      delete_this_mama: delete_alumni,
                                       img: alumni.poza,
                                       nume: alumni.nume,
                                       faculta: alumni.detalii,
@@ -1264,8 +1266,8 @@ function Admin() {
                             key={ani.id}
                             persoane={[
                               mem &&
-                                mem.map((alumni) => {
-                                  if (alumni.ani == ani.ani)
+                              mem.filter((alumni) => {
+                                if (alumni.ani == ani.ani)
                                     return {
                                       key: alumni.id,
                                       no: true,

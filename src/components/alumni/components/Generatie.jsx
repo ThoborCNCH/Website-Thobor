@@ -6,8 +6,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 import Persoana from "./AlumniPersoana";
+import { useState } from "react";
+import { useEffect } from "react";
+// const a = ;
 
 function Generatie({ years, team, persoane, no }) {
+  useEffect(() => {
+    console.log(persoane);
+  }, [persoane]);
   return no ? (
     <>
       <div className="title_gen">
@@ -47,6 +53,7 @@ function Generatie({ years, team, persoane, no }) {
             (pers) =>
               pers &&
               pers.map((p) => {
+                console.log("dele:", p);
                 return (
                   <SwiperSlide>
                     {p && (
@@ -54,7 +61,7 @@ function Generatie({ years, team, persoane, no }) {
                         no={true}
                         img={p.img}
                         id={p.id}
-                        delete_this={p.delete_this}
+                        delete_this={p.delete_this_mama}
                         nume={p.nume}
                         faculta={p.faculta}
                         text={p.text}
@@ -92,7 +99,7 @@ function Generatie({ years, team, persoane, no }) {
         grabCursor={true}
         // autoHeight={true}
         loop={true}
-        loopFillGroupWithBlank={true}
+        loopFillGroupWithBlank={false}
         pagination={{
           clickable: true,
         }}

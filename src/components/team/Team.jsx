@@ -24,7 +24,6 @@ firebase.initializeApp({
 const firestore = firebase.firestore();
 
 function Team() {
-
   const teamRef = firestore.collection("team_member");
   const aniRef = firestore.collection("ani");
 
@@ -33,11 +32,6 @@ function Team() {
 
   const [team] = useCollectionData(query_team, { idField: "id" });
   const [ani] = useCollectionData(query_ani, { idField: "id" });
-
-  console.log(team);
-  console.log("echipa apoi anii acum")
-  console.log(ani);
-
 
   useEffect(() => {
     AOS.init();
@@ -49,7 +43,7 @@ function Team() {
         alt=""
         className="header"
       />
- {ani &&
+      {ani &&
         ani.map((ani) => (
           <Generatie
             no={false}
@@ -58,14 +52,14 @@ function Team() {
             key={ani.id}
             persoane={[
               team &&
-              team.map((team) => {
-                  if (team.ani == ani.ani)
+                team.filter((te) => {
+                  if (te.ani == ani.ani)
                     return {
-                      key: team.id,
+                      key: te.id,
                       no: false,
-                      img: team.poza,
-                      nume: team.nume,
-                      faculta: team.detalii,
+                      img: te.poza,
+                      nume: te.nume,
+                      faculta: te.detalii,
                     };
                 }),
             ]}

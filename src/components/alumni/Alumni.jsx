@@ -57,15 +57,14 @@ function Alumni() {
             key={ani.id}
             persoane={[
               alumni &&
-                alumni.map((alumni) => {
-                  if (alumni.ani == ani.ani)
+                alumni.filter((te) => {
+                  if (te.ani == ani.ani)
                     return {
-                      key: alumni.id,
+                      key: te.id,
                       no: false,
-                      img: alumni.poza,
-                      nume: alumni.nume,
-                      faculta: alumni.detalii,
-                      text: alumni.text,
+                      img: te.poza,
+                      nume: te.nume,
+                      faculta: te.detalii,
                     };
                 }),
             ]}
