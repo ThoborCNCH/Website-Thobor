@@ -17,6 +17,7 @@
   .stemText {
     padding: 0 0 0 50px;
     width: 600px;
+    position: relative;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -47,6 +48,7 @@
 
 .more {
   margin-top: 20px;
+  width: 100%;
   padding-bottom: 20px;
   border-bottom: 1px solid #d4d4d4;
 

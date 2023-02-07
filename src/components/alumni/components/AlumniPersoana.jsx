@@ -1,6 +1,9 @@
 import React from "react";
+import { useEffect } from "react";
 
 function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
+  useEffect(()=>{console.log(img)
+  },[])
   return no ? (
     <div className="alumn">
       <div className="top">
@@ -21,7 +24,9 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
       <div className="text">
         <p>{text}</p>
       </div>
-      <button className="button" onClick={()=>delete_this(id)}>delete this one</button>
+      <button className="button" onClick={() => delete_this(id)}>
+        delete this one
+      </button>
       <img
         src={require("../../../img/absolute_alumni.svg").default}
         alt=""

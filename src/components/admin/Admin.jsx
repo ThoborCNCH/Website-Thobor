@@ -128,7 +128,7 @@ function Admin() {
       });
   };
   const delete_alumni = async (e) => {
-    console.log("asdasd")
+    console.log("asdasd");
     await alumniRef
       .where("id", "==", e)
       .get()
@@ -1139,7 +1139,7 @@ function Admin() {
                       className="hide"
                       style={{ height: h4, transition: "0.5s ease-in-out" }}
                     >
-                      {ani &&
+                      {/* {ani &&
                         ani.map((ani) => (
                           <Generatie
                             no={true}
@@ -1164,7 +1164,41 @@ function Admin() {
                                 }),
                             ]}
                           />
-                        ))}
+                        ))} */}
+                      {ani &&
+                        ani.map((ani) => {
+                          alumni &&
+                            alumni.map((alumni) => {
+                              if (alumni.ani == ani.ani) {
+                                console.log("asd", alumni);
+                                return (
+                                  <div>
+                                    <h2>{alumni.nume}</h2>
+                                    <img src={alumni.poza} width="300" alt="" />
+                                    <h3>{alumni.detalii}</h3>
+                                    <p>{alumni.text}</p>
+                                    <button
+                                      onClick={() => {
+                                        delete_alumni(alumni.id);
+                                      }}
+                                    >
+                                      delete
+                                    </button>
+                                  </div>
+                                );
+                              }
+                              // {
+                              // key: alumni.id,
+                              // no: true,
+                              // id: alumni.id,
+                              // delete_this_mama: delete_alumni,
+                              // img: alumni.poza,
+                              // nume: alumni.nume,
+                              // faculta: alumni.detalii,
+                              // text: alumni.text,
+                              // };
+                            });
+                        })}
                     </div>
                   </div>
                 </div>
@@ -1257,7 +1291,7 @@ function Admin() {
                       className="hide"
                       style={{ height: h5, transition: "0.5s ease-in-out" }}
                     >
-                      {ani &&
+                      {/* {ani &&
                         ani.map((ani) => (
                           <Generatie
                             no={true}
@@ -1266,8 +1300,8 @@ function Admin() {
                             key={ani.id}
                             persoane={[
                               mem &&
-                              mem.filter((alumni) => {
-                                if (alumni.ani == ani.ani)
+                                mem.filter((alumni) => {
+                                  if (alumni.ani == ani.ani)
                                     return {
                                       key: alumni.id,
                                       no: true,
@@ -1280,7 +1314,41 @@ function Admin() {
                                 }),
                             ]}
                           />
-                        ))}
+                        ))} */}
+                      {ani &&
+                        ani.map((ani) => {
+                          mem &&
+                            mem.map((alumni) => {
+                              if (alumni.ani == ani.ani) {
+                                console.log("asdasd", alumni);
+                                return (
+                                  <div>
+                                    <h2>{alumni.nume}</h2>
+                                    <img src={alumni.poza} width="300" alt="" />
+                                    <h3>{alumni.detalii}</h3>
+                                    <p>{alumni.text}</p>
+                                    <button
+                                      onClick={() => {
+                                        delete_mem(alumni.id);
+                                      }}
+                                    >
+                                      delete
+                                    </button>
+                                  </div>
+                                );
+                              }
+                              // {
+                              // key: alumni.id,
+                              // no: true,
+                              // id: alumni.id,
+                              // delete_this_mama: delete_alumni,
+                              // img: alumni.poza,
+                              // nume: alumni.nume,
+                              // faculta: alumni.detalii,
+                              // text: alumni.text,
+                              // };
+                            });
+                        })}
                     </div>
                   </div>
                 </div>

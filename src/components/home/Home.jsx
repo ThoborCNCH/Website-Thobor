@@ -32,19 +32,18 @@ function Home() {
   const premiiRef = firestore.collection("premii");
   const query_premii = premiiRef.orderBy("createAt", "asc");
   const [premii] = useCollectionData(query_premii, { idField: "id" });
-  
+
   useEffect(() => {
     AOS.init();
   }, []);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const particule = document.getElementById("tsparticles");
     particule.style.visibility = "visible";
 
-    return(()=>{
+    return () => {
       particule.style.visibility = "hidden";
-    });
-
+    };
   });
 
   window.addEventListener("scroll", () => {
@@ -67,16 +66,8 @@ function Home() {
         </div>
         <div className="img" data-aos="fade-left">
           <img src={require("../../img/first.png")} alt="" />
-          <img
-            className="cerc"
-            src={require("../../img/cerc1.png")}
-            alt=""
-          />
-          <img
-            className="cerc"
-            src={require("../../img/cerc2.png")}
-            alt=""
-          />
+          <img className="cerc" src={require("../../img/cerc1.png")} alt="" />
+          <img className="cerc" src={require("../../img/cerc2.png")} alt="" />
         </div>
         {/* AICI?--------------- */}
       </div>
@@ -114,7 +105,7 @@ function Home() {
                 <span id="cifra_ani">
                   {" "}
                   <CountUp
-                    end={100}
+                    end={6}
                     enableScrollSpy
                     redraw={true}
                     scrollSpyDelay={600}
@@ -129,7 +120,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_nat">
                   <CountUp
-                    end={100}
+                    end={5}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
@@ -146,7 +137,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_mem">
                   <CountUp
-                    end={100}
+                    end={22}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
@@ -161,7 +152,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_al">
                   <CountUp
-                    end={100}
+                    end={34}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
@@ -201,15 +192,11 @@ function Home() {
         <h1 ref={h1}>Despre</h1>
         <h2 data-aos="zoom-in-up">Despre</h2>
         <p data-aos="zoom-in-up">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, iusto
-          odit. Culpa, nulla doloribus blanditiis sunt voluptatem, quisquam
-          ipsam voluptates fugit beatae neque similique laborum adipisci porro
-          vel eaque rem ad consequuntur id deserunt! Voluptates magnam vitae
-          incidunt. Repellendus eaqu Lorem ipsum dolor, sit amet consectetur
-          adipisicing elit. Animi, iusto odit. Culpa, nulla doloribus blanditiis
-          sunt voluptatem, quisquam ipsam voluptates fugit beatae neque
-          similique laborum adipisci porro vel eaque rem ad consequuntur id
-          deserunt! Voluptates magnam vitae incidunt. Repellendus eaqu
+          Echipa de robotică, formată din 15 liceeni ai Colegiului Național
+          “Calistrat Hogaș” Tecuci, alături de mentori, îndrăznim să visăm.
+          Plecată dintr-o zonă fără tradiții în domeniu, echipa și-a propus să
+          aducă în comunitate o idee nouă, care să-i inspire pe toți colegii,
+          care să deschidă noi direcții de evoluție pentru copii.
         </p>
         <Link to={"/despre"} className="button" data-aos="zoom-in-up">
           afla mai multe
@@ -217,36 +204,36 @@ function Home() {
       </div>
       <div className="cards">
         <div className="card" data-aos="fade-right">
-          <img src={require("../../img/icon.svg").default} />
+          <img src={require("../../img/work.svg").default} />
           <h1>work</h1>
-          <p>
+          {/* <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
             iusto odit.
-          </p>
+          </p> */}
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
-          <img src={require("../../img/icon.svg").default} />
-          <h1>work</h1>
-          <p>
+          <img src={require("../../img/programming.svg").default} />
+          <h1>programming</h1>
+          {/* <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
             iusto odit.
-          </p>
+          </p> */}
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="400">
-          <img src={require("../../img/icon.svg").default} />
-          <h1>work</h1>
-          <p>
+          <img src={require("../../img/marketing.svg").default} />
+          <h1>marketing</h1>
+          {/* <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
             iusto odit.
-          </p>
+          </p> */}
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="600">
-          <img src={require("../../img/icon.svg").default} />
-          <h1>work</h1>
-          <p>
+          <img src={require("../../img/control.svg").default} />
+          <h1>Mechanics</h1>
+          {/* <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
             iusto odit.
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="scrollcnt">

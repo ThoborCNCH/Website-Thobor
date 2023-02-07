@@ -52,7 +52,7 @@ function Team() {
             key={ani.id}
             persoane={[
               team &&
-                team.filter((te) => {
+              team.filter((te) => {
                   if (te.ani == ani.ani)
                     return {
                       key: te.id,

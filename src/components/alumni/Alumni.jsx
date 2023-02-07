@@ -58,7 +58,8 @@ function Alumni() {
             persoane={[
               alumni &&
                 alumni.filter((te) => {
-                  if (te.ani == ani.ani)
+                  if (te.ani == ani.ani) {
+                    console.log(te.poza);
                     return {
                       key: te.id,
                       no: false,
@@ -66,6 +67,7 @@ function Alumni() {
                       nume: te.nume,
                       faculta: te.detalii,
                     };
+                  }
                 }),
             ]}
           />

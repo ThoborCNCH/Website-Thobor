@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 function Generatie({ years, team, persoane, no }) {
   useEffect(() => {
-    console.log(persoane);
+    // console.log(persoane);
   }, [persoane]);
   return no ? (
     <>
@@ -53,7 +53,7 @@ function Generatie({ years, team, persoane, no }) {
             (pers) =>
               pers &&
               pers.map((p) => {
-                console.log("dele:", p);
+                console.log("dele:", p.img);
                 return (
                   <SwiperSlide>
                     {p && (
@@ -116,12 +116,14 @@ function Generatie({ years, team, persoane, no }) {
             (pers) =>
               pers &&
               pers.map((p) => {
+                console.
+                log("aodas", p.poza)
                 return (
                   <SwiperSlide>
                     {p && (
                       <Persoana
                         no={false}
-                        img={p.img}
+                        img={p.poza}
                         nume={p.nume}
                         faculta={p.faculta}
                         text={p.text}
