@@ -930,7 +930,7 @@ function Admin() {
                               <div className="app">
                                 <div className="top">
                                   <div className="img">
-                                    <img src={app.img} alt="" />
+                                    <img src={app.cod_qr} alt="" />
                                   </div>
                                   <div className="txt">
                                     <div className="title">
@@ -961,10 +961,10 @@ function Admin() {
                                 >
                                   {app.link_text}
                                 </a>
-                                {app.cod_qr && (
+                                {app.img && (
                                   <div className="qr_cont">
                                     <img
-                                      src={app.cod_qr}
+                                      src={app.img}
                                       className="qr"
                                       alt=""
                                     />
