@@ -26,6 +26,7 @@ function Field() {
 
     const textureMap = useLoader(TextureLoader, FieldTexture);
     textureMap.repeat.set(1, 1);
+    // textureMap.rotation;
 
     // const pereteTexture = useLoader(TextureLoader, pereteTexture);
 

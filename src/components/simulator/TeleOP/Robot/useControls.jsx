@@ -54,10 +54,13 @@ export const useControls = (vehicleAPI, chassisAPI) => {
     useEffect(() => {
 
         const bagaViteza = (speed) => {
-            vehicleAPI.applyEngineForce(speed, 0);
-            vehicleAPI.applyEngineForce(speed, 1);
-            vehicleAPI.applyEngineForce(speed, 2);
-            vehicleAPI.applyEngineForce(speed, 3);
+            // if (chassisAPI.)
+             {
+                vehicleAPI.applyEngineForce(speed, 0);
+                vehicleAPI.applyEngineForce(speed, 1);
+                vehicleAPI.applyEngineForce(speed, 2);
+                vehicleAPI.applyEngineForce(speed, 3);
+            }
         };
 
         if (!vehicleAPI || !chassisAPI) return;
@@ -103,8 +106,7 @@ export const useControls = (vehicleAPI, chassisAPI) => {
             vehicleAPI.setSteeringValue(Math.PI / 2, 0);
             vehicleAPI.setSteeringValue(Math.PI / 2, 1);
             bagaViteza(viteza)
-        } else if (controls.e) 
-        {
+        } else if (controls.e) {
             vehicleAPI.setSteeringValue(Math.PI / 2, 2);
             vehicleAPI.setSteeringValue(Math.PI / 2, 3);
             vehicleAPI.setSteeringValue(Math.PI / 2, 0);
@@ -113,14 +115,12 @@ export const useControls = (vehicleAPI, chassisAPI) => {
 
         }
 
-        if(controls.arrowleft)
-        {
+        if (controls.arrowleft) {
             vehicleAPI.applyEngineForce(-viteza * multiRotate, 0);
             vehicleAPI.applyEngineForce(viteza * multiRotate, 1);
             vehicleAPI.applyEngineForce(-viteza * multiRotate, 2);
             vehicleAPI.applyEngineForce(viteza * multiRotate, 3);
-        } else if(controls.arrowright)
-        {
+        } else if (controls.arrowright) {
             vehicleAPI.applyEngineForce(viteza * multiRotate, 0);
             vehicleAPI.applyEngineForce(-viteza * multiRotate, 1);
             vehicleAPI.applyEngineForce(viteza * multiRotate, 2);
