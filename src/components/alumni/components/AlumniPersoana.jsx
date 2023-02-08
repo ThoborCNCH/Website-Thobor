@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 
 function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
-  useEffect(()=>{console.log(img)
+  useEffect(()=>{console.log(text)
   },[])
   return no ? (
     <div className="alumn">

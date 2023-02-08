@@ -1172,19 +1172,7 @@ function Admin() {
                               if (alumni.ani == ani.ani) {
                                 console.log("asd", alumni);
                                 return (
-                                  <div>
-                                    <h2>{alumni.nume}</h2>
-                                    <img src={alumni.poza} width="300" alt="" />
-                                    <h3>{alumni.detalii}</h3>
-                                    <p>{alumni.text}</p>
-                                    <button
-                                      onClick={() => {
-                                        delete_alumni(alumni.id);
-                                      }}
-                                    >
-                                      delete
-                                    </button>
-                                  </div>
+                                  <h1>asdkjbasdk</h1>
                                 );
                               }
                               // {

@@ -117,7 +117,7 @@ function Generatie({ years, team, persoane, no }) {
               pers &&
               pers.map((p) => {
                 console.
-                log("aodas", p.poza)
+                log("aodas", p.detalii)
                 return (
                   <SwiperSlide>
                     {p && (
@@ -126,7 +126,7 @@ function Generatie({ years, team, persoane, no }) {
                         img={p.poza}
                         nume={p.nume}
                         faculta={p.faculta}
-                        text={p.text}
+                        text={p.detalii}
                       />
                     )}
                   </SwiperSlide>
