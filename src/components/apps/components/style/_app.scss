@@ -78,7 +78,8 @@
       img {
         position: relative;
         z-index: 5;
-
+        height: 500px;
+        object-fit: cover;
         width: 100%; // max-width: 600px;
         // margin: 20px;
       }

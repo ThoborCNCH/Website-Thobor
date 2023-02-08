@@ -7,7 +7,7 @@ function App({ titlu, p, img, link, codeQR, txt_link }) {
       <div className="app">
         <div className="top">
           <div className="img">
-            <img src={img} alt="" data-aos="fade-up" />
+            <img src={codeQR} alt="" data-aos="fade-up" />
           </div>
           <div className="txt">
             <div className="title">
@@ -32,9 +32,9 @@ function App({ titlu, p, img, link, codeQR, txt_link }) {
         <a href={link} target="_blank" className="button" data-aos="fade-down">
           {txt_link}
         </a>
-        {codeQR && (
+        {img && (
           <div className="qr_cont">
-            <img src={codeQR} className="qr" alt="" data-aos="fade-down" />
+            <img src={img} className="qr" alt="" data-aos="fade-down" />
           </div>
         )}
         <div className="linie_sep"></div>
