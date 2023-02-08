@@ -1,11 +1,11 @@
 import React from "react";
-import './Overlay.scss';
+import './Overlay.css';
 
 function Overlay() {
 
 
     return (
-        <div className="wrapper_PULA_MEA">
+        <div className="wrapper">
             <div class="controls">
                 <div>CONTROL: W A S D</div>
                 <div>STRAFES: Q și E</div>
