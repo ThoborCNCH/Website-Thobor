@@ -14,7 +14,7 @@ import { Vec3 } from 'cannon-es';
 export default function Lokione(props) {
   
   // const { nodes, materials } = useGLTF("/robotNou.gltf");
-  const {nodes, materials} = useGLTF("/robotNou.glb");
+  const {nodes, materials} = useGLTF("./robotNou.glb");
   
 
   const position = [22.5, 0, 38];
