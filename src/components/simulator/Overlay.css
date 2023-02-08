@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,200;1,400;1,500&display=swap');
+
 body,
 html,
 #root {
@@ -14,6 +16,8 @@ html,
 }
 
 .controls {
+  font-family: 'Monstserrat', sans-serif;
+  text-align: justify;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,12 +31,16 @@ html,
   color: white;
   padding: 12px;
   z-index: 10;
-  /* width: 220px; */
-  height: 70px;
-  animation: fade;
+  width: 220px;
+  height: 80px;
+  /* animation: fade;
   animation-duration: 1s;
   animation-fill-mode: forwards;
-  animation-delay: 10s;
+  animation-delay: 10s; */
+}
+
+.controls>div{
+  text-align: justify;
 }
 
 @keyframes fade {

@@ -3,8 +3,11 @@ import { Canvas } from "react-three-fiber";
 import { Physics } from "@react-three/cannon";
 import Scena from "./Scena";
 import "../canvas.scss"
+import Overlay from "../Overlay";
+
 function Assembly() {
     return (
+            <>
         <Canvas className="canvas">
             <Physics
                 broadphase={'SAP'}
@@ -13,6 +16,8 @@ function Assembly() {
                 <Scena />
             </Physics>
         </Canvas>
+        <Overlay />
+        </>
     );
 }
 

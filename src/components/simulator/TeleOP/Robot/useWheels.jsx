@@ -23,7 +23,7 @@ export const useWheels = (width, height, front, radius) => {
   const wheelInfos = [
     {
       ...wheelInfo,
-      chassisConnectionPointLocal: [-width * 0.5, -height * 0.4, front * .6],
+      chassisConnectionPointLocal: [-width * 0.5, -height * 0.4, front * .6 ],
       isFrontWheel: true,
     },
     {
@@ -33,12 +33,12 @@ export const useWheels = (width, height, front, radius) => {
     },
     {
       ...wheelInfo,
-      chassisConnectionPointLocal: [-width * 0.5, -height * 0.4, -front * .6],
+      chassisConnectionPointLocal: [-width * 0.5, -height * 0.4, -front * 1],
       isFrontWheel: false,
     },
     {
       ...wheelInfo,
-      chassisConnectionPointLocal: [width * 0.5, -height * 0.4, -front * .6],
+      chassisConnectionPointLocal: [width * 0.5, -height * 0.4, -front * 1],
       isFrontWheel: false,
     },
   ];
@@ -50,7 +50,8 @@ export const useWheels = (width, height, front, radius) => {
       {
         args: [wheelInfo.radius, wheelInfo.radius, 0.015, 16],
         rotation: [0, 0, -Math.PI / 2],
-        type: "Cylinder",
+        // type: "Cylinder",
+        type: "Sphere",
       },
     ],
     type: 'Kinematic',

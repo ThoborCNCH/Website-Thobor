@@ -1,16 +1,20 @@
-import { useBox, usePlane } from "@react-three/cannon";
-import React, { Suspense, useEffect, useRef } from "react";
+import { usePlane } from "@react-three/cannon";
+import React, { Suspense, useRef } from "react";
 import { useLoader } from "react-three-fiber";
-import { Texture, TextureLoader } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { TextureLoader } from "three";
 import { PereteBox } from "./PereteBox";
 import Cone from "./Cone";
 import { Junction } from './Junction';
 
-import FieldTexture from './light_field.jpg';
+// import FieldTexture from './light_field.jpg';
+import FieldTexture from './teren.png';
 import Ground from "./Ground";
 
 function Field() {
+
+    const low = 8; //32
+    const med = 13; //57
+    const high = 18; //82
 
     const [ref] = usePlane(
         () => ({
@@ -26,7 +30,8 @@ function Field() {
     // const pereteTexture = useLoader(TextureLoader, pereteTexture);
 
     return (
-        <Suspense fallback={null}>
+        // <Suspense fallback={null}>
+        <>
             {/* AICI STACK BLANA DE CONURI TOT CODUL ESTE DEJA PREA TARZIU VREAU SA MOR NU STIU DE CE FAC ASTA
             DAR STIU CA ESTE O ALEGERE PROASTA SALVAT-MA PANA NU
             FAC CEVA CE VOI REGRETA PENTRU TOT RESTUL
@@ -62,38 +67,41 @@ function Field() {
             <Ground position={[-30, 0, 30]} />
             <Ground position={[-30, 0, -30]} />
 
-            <Junction height={30} position={[15, 0, 0]} planeRef={ref} />
-            <Junction height={30} position={[-15, 0, 0]} planeRef={ref} />
-            <Junction height={30} position={[0, 0, 15]} planeRef={ref} />
-            <Junction height={30} position={[0, 0, -15]} planeRef={ref} />
+            <Junction height={high} position={[15, 0, 0]} planeRef={ref} />
+            <Junction height={high} position={[-15, 0, 0]} planeRef={ref} />
+            <Junction height={high} position={[0, 0, 15]} planeRef={ref} />
+            <Junction height={high} position={[0, 0, -15]} planeRef={ref} />
 
-            <Junction height={20} position={[15, 0, 15]} planeRef={ref} />
-            <Junction height={20} position={[15, 0, -15]} planeRef={ref} />
-            <Junction height={20} position={[-15, 0, 15]} planeRef={ref} />
-            <Junction height={20} position={[-15, 0, -15]} planeRef={ref} />
+            <Junction height={med} position={[15, 0, 15]} planeRef={ref} />
+            <Junction height={med} position={[15, 0, -15]} planeRef={ref} />
+            <Junction height={med} position={[-15, 0, 15]} planeRef={ref} />
+            <Junction height={med} position={[-15, 0, -15]} planeRef={ref} />
 
-            <Junction height={10} position={[-15 * 2, 0, 15]} planeRef={ref} />
-            <Junction height={10} position={[-15, 0, 15 * 2]} planeRef={ref} />
-            <Junction height={10} position={[15 * 2, 0, 15]} planeRef={ref} />
-            <Junction height={10} position={[15, 0, 15 * 2]} planeRef={ref} />
+            <Junction height={low} position={[-15 * 2, 0, 15]} planeRef={ref} />
+            <Junction height={low} position={[-15, 0, 15 * 2]} planeRef={ref} />
+            <Junction height={low} position={[15 * 2, 0, 15]} planeRef={ref} />
+            <Junction height={low} position={[15, 0, 15 * 2]} planeRef={ref} />
 
-            <Junction height={10} position={[15 * 2, 0, -15]} planeRef={ref} />
-            <Junction height={10} position={[15, 0, -15 * 2]} planeRef={ref} />
-            <Junction height={10} position={[-15 * 2, 0, -15]} planeRef={ref} />
-            <Junction height={10} position={[-15, 0, -15 * 2]} planeRef={ref} />
+            <Junction height={low} position={[15 * 2, 0, -15]} planeRef={ref} />
+            <Junction height={low} position={[15, 0, -15 * 2]} planeRef={ref} />
+            <Junction height={low} position={[-15 * 2, 0, -15]} planeRef={ref} />
+            <Junction height={low} position={[-15, 0, -15 * 2]} planeRef={ref} />
 
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0.2, 0, 0.2]}>
                 <planeGeometry attach="geometry" args={[90, 90]} />
                 {/* 0xf57af5 */}
                 {/* <meshPhongMaterial attach={"material"} color={0x000000} /> */}
-                <meshBasicMaterial attach={"material"} map={textureMap} />
+                <Suspense fallback={<meshBasicMaterial attach={"material"} />}>
+                    <meshBasicMaterial attach={"material"} map={textureMap} />
+                </Suspense>
             </mesh>
 
             <PereteBox position={[45, 3.8, 0]} scale={[1, 7.6, 91]} />
             <PereteBox position={[-45, 3.8, 0]} scale={[1, 7.6, 91]} />
-            <PereteBox position={[0, 3.8, 45]} scale={[91, 7.6, 1]} />
-            <PereteBox position={[0, 3.8, -45]} scale={[91, 7.6, 1]} />
-        </Suspense>
+            <PereteBox position={[0, 3.8, 45]} scale={[91, 7.6, 1]} ceva={"frontal"} />
+            <PereteBox position={[0, 3.8, -45]} scale={[91, 7.6, 1]} ceva={"frontal"} />
+            {/* </Suspense> */}
+        </>
     );
 }
 

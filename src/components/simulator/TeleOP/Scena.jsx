@@ -1,13 +1,12 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense } from "react";
 import Scene from "./Environment/Scene";
 import Field from "./Field/Field";
 import { Stats } from "@react-three/drei";
-import Loki from "./Robot/Loki";
 import Lokione from "./Robot/Lokione";
 
 function Scena() {
 
-    const [thirdPerson, setPerson] = useState(true);
+    const thirdPerson = true;
 
     // useEffect(() => {
     //     function keydownHandler(e) {

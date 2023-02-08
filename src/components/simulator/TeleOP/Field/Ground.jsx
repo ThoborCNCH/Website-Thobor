@@ -26,7 +26,7 @@ export default function Ground({ position, props }) {
         <Cylinder args={[1.4, 1.86, .38, 32, 1]} />
         <meshStandardMaterial color={0x000fff} attach="material" />
       </mesh> */}
-      <group {...props} dispose={null} rotation={[Math.PI / 2, 0, 0]} scale={[0.024, 0.025, 0.024]} position={[0, -.19, 0]} >
+      <group {...props} dispose={null} rotation={[Math.PI / 2, 0, 0]} scale={[0.025, 0.025, 0.025]} position={[0, -.19, 0]} >
         <mesh geometry={nodes.imagetostl_mesh.geometry} material={materials.mat1} >
           <meshStandardMaterial attach={"material"} color={0x331111} />
         </mesh>
