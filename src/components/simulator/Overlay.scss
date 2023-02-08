@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,200;1,400;1,500&display=swap");
+
+.wrapper_PULA_MEA {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+
+  .controls {
+    font-family: "Monstserrat", sans-serif;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 9999;
+    border-radius: 8px;
+    margin: 10px;
+    background: black;
+    opacity: 0.88;
+    color: white;
+    padding: 12px;
+    z-index: 10;
+    width: 220px;
+    height: 80px;
+    /* animation: fade;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 10s; */
+  }
+
+  .controls > div {
+    text-align: justify;
+  }
+
+  @keyframes fade {
+    to {
+      transform: translate(0, -20px);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
