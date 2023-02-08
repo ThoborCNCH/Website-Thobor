@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 
 function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
-  useEffect(()=>{console.log(text)
-  },[])
+  useEffect(() => {
+    console.log(text);
+  }, []);
   return no ? (
     <div className="alumn">
       <div className="top">
@@ -22,7 +23,10 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
         </div>
       </div>
       <div className="text">
-        <p>{text}</p>
+        <p
+          style={{ textAlign: "left" }}
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
       </div>
       <button className="button" onClick={() => delete_this(id)}>
         delete this one
@@ -56,7 +60,10 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
         </div>
       </div>
       <div className="text">
-        <p>{text}</p>
+        <p
+          style={{ textAlign: "left" }}
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
       </div>
       <img
         src={require("../../../img/absolute_alumni.svg").default}

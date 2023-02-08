@@ -963,11 +963,7 @@ function Admin() {
                                 </a>
                                 {app.img && (
                                   <div className="qr_cont">
-                                    <img
-                                      src={app.img}
-                                      className="qr"
-                                      alt=""
-                                    />
+                                    <img src={app.img} className="qr" alt="" />
                                   </div>
                                 )}
                                 <div className="linie_sep"></div>
@@ -1171,9 +1167,7 @@ function Admin() {
                             alumni.map((alumni) => {
                               if (alumni.ani == ani.ani) {
                                 console.log("asd", alumni);
-                                return (
-                                  <h1>asdkjbasdk</h1>
-                                );
+                                return <h1>asdkjbasdk</h1>;
                               }
                               // {
                               // key: alumni.id,
@@ -1216,6 +1210,8 @@ function Admin() {
                   />
                   <h4 className="info">
                     Sa se scrie departamentul main din care face parte
+                    <br />
+                    Daca vreti sa puneti ceva de la capatul randului adaugati {" <br/>"}
                   </h4>
                   <input
                     type="text"
