@@ -14,7 +14,6 @@ function NotFound() {
         <Link
           to="/"
           className="btn-go-home"
-          target="_blank"
         >
           GO BACK HOME
         </Link>
