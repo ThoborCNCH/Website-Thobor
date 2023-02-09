@@ -57,7 +57,7 @@ function Home() {
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are the
+            we are 
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
