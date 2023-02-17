@@ -7,9 +7,9 @@ import { useBox, useCylinder, useRaycastVehicle } from '@react-three/cannon';
 import { useWheels } from './useWheels';
 import { useControls } from './useControls';
 import { WheelDebug } from './WheelDebug';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Vec3 } from 'cannon-es';
+// import { useState } from 'react';
+// import { useEffect } from 'react';
+// import { Vec3 } from 'cannon-es';
 
 export default function Lokione(props) {
 
@@ -19,7 +19,7 @@ export default function Lokione(props) {
   const width = 6;
   const height = 4; //.84
   const front = 3;
-  const wheelRadius = 1.1;
+  const wheelRadius = 0.5;
 
   // const [bratPosition, setBratPosition] = useState(0);
   // const [bratApuca, setBratApuca] = useState(true);
@@ -161,7 +161,7 @@ export default function Lokione(props) {
           <WheelDebug wheelRef={wheels[1]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[2]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[3]} wheelRadius={wheelRadius} />
-          <group scale={[0.3, 0.3, 0.3]} ref={chassisBody} name="chassisBody">
+          <group scale={[0.25, 0.25, 0.25]} ref={chassisBody} name="chassisBody">
             <group rotation={[0, Math.PI, 0]} position={[-1.5, -8, 3]}>
 
               <mesh
