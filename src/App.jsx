@@ -28,6 +28,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
         <Route path="/apps" element={<Apps />} />
+        <Route path="/download" element={<Apps />} />
         <Route path="/alumni" element={<Alumni />} />
         <Route path="/team" element={<Team />} />
         <Route path="/sponsors" element={<Sponsors />} />
