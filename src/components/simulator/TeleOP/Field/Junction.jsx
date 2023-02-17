@@ -13,8 +13,8 @@ export const Junction = ({ position, height, planeRef }) => {
   }), useRef(null));
 
   const [junctionBody, junctionAPI] = useBox(() => ({
-    // Set the dimensions of the box
-    args: [0.05, height / 2, 0.05],
+    // Set the dimensions of the box 
+    args: [0.04, height / 2, 0.05],
     // Set the position and orientation of the body
     position: [position[0], position[1] + height / 2, position[2]],
     // position: realPose,
@@ -41,14 +41,14 @@ export const Junction = ({ position, height, planeRef }) => {
   return (
 
     <mesh ref={junctionBodyCylinder}>
-      <cylinderBufferGeometry attach="geometry" args={[0.5, 0.5, height, 32]} />
+      <cylinderBufferGeometry attach="geometry" args={[0.4, 0.4, height, 32]} />
       <meshBasicMaterial attach="material" color="#FFFF00" />
       <mesh position={[0, height / 2 + 0.12 / 2, 0]}>
-        <cylinderBufferGeometry attach="geometry" args={[0.5, 0.5, 0.12, 32]} />
+        <cylinderBufferGeometry attach="geometry" args={[0.4, 0.4, 0.12, 32]} />
         <meshBasicMaterial attach="material" color="#000000" />
       </mesh>
       <mesh position={[0, -height / 2 - 1.5 / 2, 0]}>
-        <cylinderBufferGeometry attach="geometry" args={[0.5 / 2, 0.5 / 2, 1.5, 32]} />
+        <cylinderBufferGeometry attach="geometry" args={[0.4 / 2, 0.4 / 2, 1.5, 32]} />
         <meshBasicMaterial attach="material" color="#808080" />
       </mesh>
       <mesh position={[0, -height / 2, 0]}>
