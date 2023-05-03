@@ -54,23 +54,6 @@ function Home() {
   });
   return (
     <>
-      <div className="home">
-        <div className="text">
-          <h2 data-aos="fade-right" data-aos-delay="300">
-            we are 
-          </h2>
-          <h1 data-aos="fade-right">thobor</h1>
-          <h2 data-aos="fade-right" data-aos-delay="300">
-            team
-          </h2>
-        </div>
-        <div className="img" data-aos="fade-left">
-          <img src={require("../../img/first.png")} alt="" />
-          <img className="cerc" src={require("../../img/cerc1.png")} alt="" />
-          <img className="cerc" src={require("../../img/cerc2.png")} alt="" />
-        </div>
-        {/* AICI?--------------- */}
-      </div>
       <div className="cifre">
         {" "}
         <div className="custom-shape-divider-bottom-1669758197">
