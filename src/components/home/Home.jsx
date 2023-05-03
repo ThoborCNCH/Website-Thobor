@@ -120,7 +120,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_nat">
                   <CountUp
-                    end={5}
+                    end={6}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
@@ -137,7 +137,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_mem">
                   <CountUp
-                    end={22}
+                    end={24}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
@@ -152,7 +152,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_al">
                   <CountUp
-                    end={34}
+                    end={38}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
