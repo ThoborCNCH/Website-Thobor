@@ -96,7 +96,7 @@ function Home() {
             ></path>
           </svg>
         </div>
-        <h3 data-aos="fade-down">thobor in cifre:</h3>
+        <h3 data-aos="fade-down"><b>THOBOR</b> in cifre:</h3>
         <div className="tab" data-aos="fade-down">
           <div className="linie">
             <div className="cifra">
