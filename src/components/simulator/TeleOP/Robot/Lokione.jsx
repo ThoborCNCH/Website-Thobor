@@ -7,9 +7,9 @@ import { useBox, useCylinder, useRaycastVehicle } from '@react-three/cannon';
 import { useWheels } from './useWheels';
 import { useControls } from './useControls';
 import { WheelDebug } from './WheelDebug';
-// import { useState } from 'react';
-// import { useEffect } from 'react';
-// import { Vec3 } from 'cannon-es';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Vec3 } from 'cannon-es';
 
 export default function Lokione(props) {
 
@@ -21,11 +21,11 @@ export default function Lokione(props) {
   const front = 3;
   const wheelRadius = 0.5;
 
-  // const [bratPosition, setBratPosition] = useState(0);
-  // const [bratApuca, setBratApuca] = useState(true);
-  // const bratIncrease = 0.2;
+  const [bratPosition, setBratPosition] = useState(0);
+  const [bratApuca, setBratApuca] = useState(true);
+  const bratIncrease = 0.2;
 
-  // const [controls, setControls] = useState({});
+  const [controls, setControls] = useState({});
 
   const chassisBodyArgs = [width, height, front * 2];
   const [chassisBody, chassisAPI] = useBox(
@@ -39,63 +39,63 @@ export default function Lokione(props) {
 
 
 
-  // const bratBodyArgs = [chassisBodyArgs[0], chassisBodyArgs[1], chassisBodyArgs[2] - 10];
-  // const [bratBody, bratAPI] = useCylinder(
-  //   () => ({
-  //     args: [0.5, 0.5, 30, 32],
-  //     position: [0, 0, 0],
-  //     type: 'Static'
-  //   }),
-  //   useRef(null)
-  // )
+  const bratBodyArgs = [chassisBodyArgs[0], chassisBodyArgs[1], chassisBodyArgs[2] - 10];
+  const [bratBody, bratAPI] = useCylinder(
+    () => ({
+      args: [0.5, 0.5, 12, 32],
+      position: [0, 0, 0],
+      type: 'Static'
+    }),
+    useRef(null)
+  )
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const keyDown = (e) => {
-  //     setControls((controls) => ({
-  //       ...controls,
-  //       [e.key.toLowerCase()]: true
-  //     }));
-  //   }
+    const keyDown = (e) => {
+      setControls((controls) => ({
+        ...controls,
+        [e.key.toLowerCase()]: true
+      }));
+    }
 
-  //   const keyUp = (e) => {
-  //     setControls((controls) => ({
-  //       ...controls,
-  //       [e.key.toLowerCase()]: false
-  //     }));
-  //   }
+    const keyUp = (e) => {
+      setControls((controls) => ({
+        ...controls,
+        [e.key.toLowerCase()]: false
+      }));
+    }
 
-  //   window.addEventListener("keydown", keyDown);
-  //   window.addEventListener("keyup", keyUp);
-  //   return () => {
-  //     window.removeEventListener("keydown", keyDown);
-  //     window.removeEventListener("keyup", keyUp);
-  //   };
+    window.addEventListener("keydown", keyDown);
+    window.addEventListener("keyup", keyUp);
+    return () => {
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
+    };
 
-  // }, []);
+  }, []);
 
-  // useEffect(() => {
-  //   if (controls.f)
-  //     setBratApuca(!bratApuca);
+  useEffect(() => {
+    if (controls.f)
+      setBratApuca(!bratApuca);
 
-  //   if (controls.shift)
-  //     if (bratPosition <= 10)
-  //       setBratPosition(bratPosition + bratIncrease);
+    if (controls.shift)
+      if (bratPosition <= 5)
+        setBratPosition(bratPosition + bratIncrease);
 
-  //   if (controls.control)
-  //     if (bratPosition >= -10)
-  //       setBratPosition(bratPosition - bratIncrease);
+    if (controls.control)
+      if (bratPosition >= -8)
+        setBratPosition(bratPosition - bratIncrease);
 
-  //   bratAPI.position.set(0, bratPosition, -10);
+    bratAPI.position.set(0, bratPosition, -10);
 
 
-  //   if (bratApuca) {
-  //     bratAPI.position.set(10000, bratPosition, 100000);
-  //   } else {
-  //     bratAPI.position.set(0, bratPosition, -10);
-  //   }
+    if (bratApuca) {
+      bratAPI.position.set(10000, bratPosition, 100000);
+    } else {
+      bratAPI.position.set(0, bratPosition, -10);
+    }
 
-  // }, [controls]);
+  }, [controls]);
 
   const [wheels, wheelInfos] = useWheels(width, height, front, wheelRadius);
 
@@ -142,12 +142,12 @@ export default function Lokione(props) {
           <WheelDebug wheelRef={wheels[3]} wheelRadius={wheelRadius} />
         </group> */}
         <group ref={chassisBody}>
-          {/* <group ref={bratBody}>
+          <group ref={bratBody}>
             <mesh position={[0, 0, 0]}>
-              <cylinderBufferGeometry args={[0.5, 0.5, 30, 32]} attach={"geometry"} />
+              <cylinderBufferGeometry args={[0.5, 0.5, 12, 32]} attach={"geometry"} />
               <meshPhongMaterial color={"#2f2f2f"} attach={"material"} />
             </mesh>
-          </group> */}
+          </group>
           {/* <mesh position={[0, 0, 0]}> */}
           {/* <mesh ref={chassisBody}>
             <boxGeometry args={[6, 1.5, 6]} />
