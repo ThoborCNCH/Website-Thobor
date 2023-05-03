@@ -152,7 +152,7 @@ function Home() {
                 <span> + </span>
                 <span id="cifra_al">
                   <CountUp
-                    end={38}
+                    end={37}
                     redraw={true}
                     enableScrollSpy
                     scrollSpyDelay={600}
