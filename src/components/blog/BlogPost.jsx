@@ -13,52 +13,41 @@ import "firebase/compat/firestore";
 
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useState } from "react";
+import Firestore from "../utils/Firestore";
+import { async } from "@firebase/util";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
-  authDomain: "thobor-9436b.firebaseapp.com",
-  projectId: "thobor-9436b",
-  storageBucket: "thobor-9436b.appspot.com",
-  messagingSenderId: "496274391107",
-  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
-});
+const firestore = new Firestore();
 
-const firestore = firebase.firestore();
 function BlogPost() {
   const [postare, setPosare] = useState({});
   const [img, setImg] = useState([]);
   const { id } = useParams();
   console.log(id);
 
-  const blogRef = firestore.collection("blog").where("id", "==", id);
-  const ceva = useCollectionData(blogRef, { idField: "id" });
-
-  // useEffect(() => {
-   
-  // }, []);
+  const getBlogPost = async () => {
+    await firestore.getDocById("blog", id).then((res) => {
+      setPosare({ ...res });
+      console.log(res);
+    });
+  };
 
   useEffect(() => {
     AOS.init();
+    getBlogPost();
     document.querySelectorAll(".blog_post p ").forEach((p, index) => {
-    if (index % 2 == 0) {
-      p.setAttribute("data-aos", "fade-right");
-    } else {
-      p.setAttribute("data-aos", "fade-left");
-    }
-  });
-    ceva && ceva[0] && console.log(ceva[0][0]);
-    ceva && ceva[0] && setPosare(ceva[0][0]);
-    ceva && ceva[0] && console.log(postare);
-    ceva &&
-      ceva[0] &&
+      if (index % 2 == 0) {
+        p.setAttribute("data-aos", "fade-right");
+      } else {
+        p.setAttribute("data-aos", "fade-left");
+      }
+    });
       postare &&
       Object.entries(postare).map(([key, value]) => {
         if (key.includes("img")) {
-          if(!img.includes(value))
-          setImg((old) => [...old, value]);
+          if (!img.includes(value)) setImg((old) => [...old, value]);
         }
       });
-  }, [ceva]);
+  }, []);
 
   return (
     <>
@@ -106,7 +95,7 @@ function BlogPost() {
         {postare && postare.texts && postare.texts.map((p) => <p>{p}</p>)}
       </div>
       <Svg />
-      {postare && img && <Slider slides={img} />}
+      {postare && postare.images && <Slider slides={postare.images} />}
       <Contact />
       <Up />
     </>

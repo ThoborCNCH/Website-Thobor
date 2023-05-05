@@ -23,7 +23,6 @@ function Navbar() {
     if (size.width >= 799) {
     } else {
       if (ul.style.display !== "block") {
-        console.log("lasndlkdnasldnln");
       }
     }
   }, [size]);
@@ -60,6 +59,9 @@ function Navbar() {
             </li>
             <li>
               <Link to="/despre">Despre</Link>
+            </li>
+            <li>
+              <Link to="/shop/all">Shop</Link>
             </li>
             <li>
               <Link to="/apps">Apps</Link>

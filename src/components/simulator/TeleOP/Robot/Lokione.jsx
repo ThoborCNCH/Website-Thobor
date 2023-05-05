@@ -9,7 +9,7 @@ import { useControls } from './useControls';
 import { WheelDebug } from './WheelDebug';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Vec3 } from 'cannon-es';
+import Brat from './Brat';
 
 export default function Lokione(props) {
 
@@ -17,13 +17,25 @@ export default function Lokione(props) {
 
   const position = [22.5, 0, 38];
   const width = 6;
-  const height = 4; //.84
-  const front = 3;
-  const wheelRadius = 0.5;
+  const height = 2; //.84
+  const front = 2.8;
+  const wheelRadius = 1.1;
+
+  const cameras = {
+    1: new Vector3(47, 40, 0),
+    2: new Vector3(47, 40, 47),
+    3: new Vector3(0, 40, 47),
+    4: new Vector3(-47, 40, 47),
+    5: new Vector3(-47, 40, 0),
+    6: new Vector3(-47, 40, -47),
+    7: new Vector3(0, 40, -47),
+    8: new Vector3(47, 40, -47),
+  }
 
   const [bratPosition, setBratPosition] = useState(0);
   const [bratApuca, setBratApuca] = useState(true);
   const bratIncrease = 0.2;
+  const [cameraController, setController] = useState(false);
 
   const [controls, setControls] = useState({});
 
@@ -37,8 +49,6 @@ export default function Lokione(props) {
     useRef(null)
   );
 
-
-
   const bratBodyArgs = [chassisBodyArgs[0], chassisBodyArgs[1], chassisBodyArgs[2] - 10];
   const [bratBody, bratAPI] = useCylinder(
     () => ({
@@ -48,6 +58,15 @@ export default function Lokione(props) {
     }),
     useRef(null)
   )
+
+  // const [bratCollision, bratCollisionAPI] = useBox(
+  //   () => ({
+  //     args: [5, 10, 5],
+  //     position: bratPosition,
+  //     type: 'Static',
+  //   }),
+  //   useRef(null)
+  // )
 
   useEffect(() => {
 
@@ -95,6 +114,15 @@ export default function Lokione(props) {
       bratAPI.position.set(0, bratPosition, -10);
     }
 
+    // bratAPI.position.set(0, bratPosition, -10);
+    // bratCollisionAPI.position.set(bratPosition.x, bratPosition.y, bratPosition.z);
+
+    if (controls[0])
+      setController(false);
+    for (let k = 1; k <= 8; k++)
+      if (controls[k])
+        setController(true);
+
   }, [controls]);
 
   const [wheels, wheelInfos] = useWheels(width, height, front, wheelRadius);
@@ -110,25 +138,42 @@ export default function Lokione(props) {
 
   useControls(vehicleAPI, chassisAPI);
 
-
+  // AICI AR FI CONTROLLER UL PENTRU CAMERA POATE MERGE
   useFrame((state) => {
-    let position = new Vector3(0, 0, 0);
-    position.setFromMatrixPosition(chassisBody.current.matrixWorld);
-    // chassisAPI.position.set(vehicle.current.matrixWorld);
+    return;
+    if (cameraController) {
+      let position = new Vector3(0, 0, 0);
+      let quaternion = new Quaternion(0, 0, 0, 0);
+      let wDir = new Vector3(0, 0, 10);
+      wDir.applyQuaternion(quaternion);
+      wDir.normalize();
 
-    let quaternion = new Quaternion(0, 0, 0, 0);
-    quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
+      for (let k = 1; k <= 8; k++)
+        if (controls[k]) {
+          var cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(cameras[k]));
+          state.camera.position.copy(cameraPosition);
+        }
 
-    let wDir = new Vector3(0, 0, 10);
-    // let wDir = new Quaternion(0, 0, 0, 0);
-    wDir.applyQuaternion(quaternion);
-    wDir.normalize();
 
-    let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(20).add(new Vector3(0, 32, 0)));
+    } else {
+      let position = new Vector3(0, 0, 0);
+      position.setFromMatrixPosition(chassisBody.current.matrixWorld);
+      // chassisAPI.position.set(vehicle.current.matrixWorld);
 
-    // wDir.add(new Vector3(0, 0.2, 0));
-    state.camera.position.copy(cameraPosition);
-    state.camera.lookAt(position);
+      let quaternion = new Quaternion(0, 0, 0, 0);
+      quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
+
+      let wDir = new Vector3(0, 0, 10);
+      // let wDir = new Quaternion(0, 0, 0, 0);
+      wDir.applyQuaternion(quaternion);
+      wDir.normalize();
+
+      let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(20).add(new Vector3(0, 32, 0)));
+
+      // wDir.add(new Vector3(0, 0.2, 0));
+      state.camera.position.copy(cameraPosition);
+      state.camera.lookAt(position);
+    }
 
   });
 
@@ -136,34 +181,54 @@ export default function Lokione(props) {
     <Suspense callback={null}>
       <group {...props} dispose={null} ref={vehicle} name="vehicle">
         {/* <group>
+          <Brat />
+        </group> */}
+        <group>
           <WheelDebug wheelRef={wheels[0]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[1]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[2]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[3]} wheelRadius={wheelRadius} />
-        </group> */}
+        </group>
         <group ref={chassisBody}>
           <group ref={bratBody}>
-            <mesh position={[0, 0, 0]}>
+            {/* <mesh position={[0, 0, 0]}>
               <cylinderBufferGeometry args={[0.5, 0.5, 12, 32]} attach={"geometry"} />
               <meshPhongMaterial color={"#2f2f2f"} attach={"material"} />
-            </mesh>
+            </mesh> */}
+            <group scale={[0.3, 0.3, 0.3]} rotation={[0, Math.PI, 0]} position={[0, 0, 11.2]}>
+              <Brat />
+            </group>
           </group>
           {/* <mesh position={[0, 0, 0]}> */}
-          {/* <mesh ref={chassisBody}>
+          <mesh ref={chassisBody}>
             <boxGeometry args={[6, 1.5, 6]} />
             <meshPhongMaterial attach={"material"} color="#FFFF00" transparent opacity={0} />
-          </mesh> */}
-          {/* <mesh>
-            <boxGeometry args={chassisBodyArgs} attach={"geometry"} />
-            <meshBasicMaterial attach={"material"} />
-          </mesh> */}
+          </mesh>
           <WheelDebug wheelRef={wheels[0]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[1]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[2]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[3]} wheelRadius={wheelRadius} />
-          <group scale={[0.25, 0.25, 0.25]} ref={chassisBody} name="chassisBody">
+          <group scale={[0.3, 0.3, 0.3]} ref={chassisBody} name="chassisBody">
             <group rotation={[0, Math.PI, 0]} position={[-1.5, -8, 3]}>
 
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.suport_baterie.geometry}
+                material={materials.verde}
+                position={[-8.31, 10, 8.55]}
+                rotation={[0, -1.57, 0]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.baterie.geometry}
+                material={materials["Material.003"]}
+                position={[-8.36, 10.78, 8.2]}
+                rotation={[0, 1.57, 0]}
+                scale={0.06}
+              />
               <mesh
                 castShadow
                 receiveShadow
@@ -194,18 +259,10 @@ export default function Lokione(props) {
               <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.Plane023.geometry}
-                material={materials["Material.003"]}
-                position={[-1.86, 7.87, -7.64]}
-                scale={0.06}
-              />
-              <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.channel_baterie.geometry}
-                material={materials["Material.001"]}
-                position={[-10.02, 14.61, -0.89]}
-                rotation={[Math.PI / 2, 0, Math.PI]}
+                geometry={nodes.FLcover.geometry}
+                material={materials["galben "]}
+                position={[8.02, 7.78, 11.36]}
+                rotation={[0, 0, -Math.PI / 2]}
                 scale={0.06}
               />
               <mesh
@@ -220,10 +277,158 @@ export default function Lokione(props) {
               <mesh
                 castShadow
                 receiveShadow
+                geometry={nodes.channel_baterie.geometry}
+                material={materials["Material.001"]}
+                position={[-10.02, 14.61, -0.89]}
+                rotation={[Math.PI / 2, 0, Math.PI]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.FRcover.geometry}
+                material={materials["galben "]}
+                position={[-11.78, 7.78, 11.36]}
+                rotation={[-Math.PI, 0, -Math.PI / 2]}
+                scale={-0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.RRcover.geometry}
+                material={materials["galben "]}
+                position={[-11.78, 7.78, -6.32]}
+                rotation={[Math.PI, 0, Math.PI / 2]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Plane023.geometry}
+                material={materials["Material.003"]}
+                position={[-1.86, 7.87, -7.64]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.RLcover.geometry}
+                material={materials["galben "]}
+                position={[8.05, 7.78, -6.32]}
+                rotation={[0, 0, Math.PI / 2]}
+                scale={-0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
                 geometry={nodes.RR.geometry}
                 material={materials["negru roti"]}
                 position={[-11.14, 7.83, -6.35]}
                 rotation={[Math.PI, 0, Math.PI / 2]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Circle002.geometry}
+                material={materials["Material.001"]}
+                position={[-1.49, 12.7, 9.87]}
+                scale={0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Circle003.geometry}
+                material={materials["Material.001"]}
+                position={[-3.58, 12.7, 9.81]}
+                rotation={[-Math.PI, 0, 0]}
+                scale={-0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Circle004.geometry}
+                material={materials["Material.001"]}
+                position={[-1.49, 12.11, 9.87]}
+                scale={0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Circle005.geometry}
+                material={materials["Material.001"]}
+                position={[-3.58, 12.11, 9.81]}
+                rotation={[-Math.PI, 0, 0]}
+                scale={-0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes["gheara-noua-1-1"].geometry}
+                material={materials["Material.005"]}
+                position={[-4.22, 12.41, 11.36]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes["gheara-noua-1-1001"].geometry}
+                material={materials["Material.005"]}
+                position={[-0.88, 12.41, 11.45]}
+                rotation={[Math.PI / 2, 0, Math.PI]}
+                scale={0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes["gheara-noua-1-1002"].geometry}
+                material={materials["Material.005"]}
+                position={[-4.22, 11.84, 11.36]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes["gheara-noua-1-1003"].geometry}
+                material={materials["Material.005"]}
+                position={[-0.88, 11.84, 11.45]}
+                rotation={[Math.PI / 2, 0, Math.PI]}
+                scale={0.04}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes["Gheara-sup"].geometry}
+                material={materials["Material.005"]}
+                position={[-2.52, 15.08, 4.43]}
+                rotation={[0, -Math.PI / 2, 0]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes["Prindere-gh-de-gls"].geometry}
+                material={materials["Material.005"]}
+                position={[-1.41, 16.24, -3.42]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.MotorMosor.geometry}
+                material={materials["Material.002"]}
+                position={[4.59, 13.58, 0.06]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Circle055.geometry}
+                material={materials.verde}
+                position={[4.5, 13.63, -4.66]}
                 scale={0.06}
               />
               <mesh
@@ -274,15 +479,6 @@ export default function Lokione(props) {
               <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.RL.geometry}
-                material={materials["negru roti"]}
-                position={[7.41, 7.83, -6.35]}
-                rotation={[0, 0, Math.PI / 2]}
-                scale={-0.06}
-              />
-              <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Plane047.geometry}
                 material={materials.negru}
                 position={[2.99, 35.3, -5.86]}
@@ -296,6 +492,23 @@ export default function Lokione(props) {
                 material={materials.negru}
                 position={[1.43, 35.3, -5.86]}
                 rotation={[0, -1.57, 0]}
+                scale={0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.RL.geometry}
+                material={materials["negru roti"]}
+                position={[7.41, 7.83, -6.35]}
+                rotation={[0, 0, Math.PI / 2]}
+                scale={-0.06}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.profil_6_gauri002.geometry}
+                material={materials["Material.001"]}
+                position={[4.55, 11.29, -0.22]}
                 scale={0.06}
               />
               <mesh
@@ -324,6 +537,7 @@ export default function Lokione(props) {
                 scale={0.06}
               />
 
+
             </group>
           </group>
         </group>
@@ -332,5 +546,6 @@ export default function Lokione(props) {
   )
 }
 
+// useGLTF.preload('/robotNou.gltf');
+// useGLTF.preload("/robotNou.glb");
 useGLTF.preload("/robotNou.glb");
-

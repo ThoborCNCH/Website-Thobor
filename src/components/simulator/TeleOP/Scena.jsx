@@ -26,7 +26,7 @@ function Scena() {
         // <div className="wrapper">
         // <Canvas className="canvas">
         <Suspense fallback={null}>
-            <Stats showPanel={2} />
+            {/* <Stats showPanel={2} /> */}
             {/* <Physics
                     gravity={[0, -9.8, 0]}
                     broadphase="SAP"

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 
 export const useControls = (vehicleAPI, chassisAPI) => {
-    const viteza = 500;
+    const viteza = 600;
     const turnViteza = 680;
     // const breke = 20;
 

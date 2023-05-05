@@ -7,14 +7,14 @@ import Cone from "./Cone";
 import { Junction } from './Junction';
 
 // import FieldTexture from './light_field.jpg';
-import FieldTexture from './teren.jpg';
+import FieldTexture from './teren.png';
 import Ground from "./Ground";
 
 function Field() {
 
-    const low = 5; //32
-    const med = 8; //57
-    const high = 13; //82
+    const low = 4; //32
+    const med = 9; //57
+    const high = 14; //82
 
     const [ref] = usePlane(
         () => ({
@@ -33,7 +33,10 @@ function Field() {
     return (
         // <Suspense fallback={null}>
         <>
-            
+            {/* AICI STACK BLANA DE CONURI TOT CODUL ESTE DEJA PREA TARZIU VREAU SA MOR NU STIU DE CE FAC ASTA
+            DAR STIU CA ESTE O ALEGERE PROASTA SALVAT-MA PANA NU
+            FAC CEVA CE VOI REGRETA PENTRU TOT RESTUL
+            DEJA REGRET DAR NU AM ALTE CUVINTE */}
 
             <group>
                 {/* STACK BLANA DE CONURI THO */}
@@ -87,7 +90,8 @@ function Field() {
 
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0.2, 0, 0.2]}>
                 <planeGeometry attach="geometry" args={[90, 90]} />
-                
+                {/* 0xf57af5 */}
+                {/* <meshPhongMaterial attach={"material"} color={0x000000} /> */}
                 <Suspense fallback={<meshBasicMaterial attach={"material"} />}>
                     <meshBasicMaterial attach={"material"} map={textureMap} />
                 </Suspense>

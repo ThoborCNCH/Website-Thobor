@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@coreui/coreui": "^4.2.6",
     "@react-google-maps/api": "^2.17.1",
     "@react-spring/three": "^9.6.1",
     "@react-three/cannon": "^6.5.0",
@@ -26,7 +27,9 @@
     "react-indiana-drag-scroll": "^3.0.3-alpha",
     "react-loading": "^2.0.3",
     "react-particles": "^2.5.3",
-    "react-router-dom": "^6.4.4",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.10.0",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "react-scroll-parallax": "^3.3.2",
     "react-three-fiber": "^6.0.13",

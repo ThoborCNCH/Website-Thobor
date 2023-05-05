@@ -16,7 +16,9 @@ h4,
 h5,
 h6,
 span,
-p {
+p,
+label,
+i {
   text-decoration: none;
 
   &::first-letter {
@@ -25,7 +27,8 @@ p {
 }
 div time,
 h1,
-h2 {
+h2,
+label {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
 }
@@ -35,7 +38,9 @@ p {
 a,
 h5,
 h6,
-span {
+i,
+span,
+strong {
   font-weight: 600;
   font-family: "Roboto", sans-serif;
 }

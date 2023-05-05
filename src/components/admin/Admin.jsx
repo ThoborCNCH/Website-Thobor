@@ -6,70 +6,35 @@ import "../apps/apps.scss";
 import "../alumni/alumni.scss";
 import "../sponsors/sponsors.scss";
 import Compressor from "compressorjs";
-
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { getStorage } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useState } from "react";
 import Post from "../blog/components/Post";
-import Generatie from "../alumni/components/Generatie";
 
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import Card from "../home/components/Card";
 import { useEffect } from "react";
+import { async } from "@firebase/util";
+import Firestore from "../utils/Firestore";
 
-const app = firebase.initializeApp({
-  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
-  authDomain: "thobor-9436b.firebaseapp.com",
-  projectId: "thobor-9436b",
-  storageBucket: "thobor-9436b.appspot.com",
-  messagingSenderId: "496274391107",
-  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
-});
-
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-
-const storage = getStorage(app);
+const firestore = new Firestore();
 var ad = {};
 function Admin() {
   const id = nextId();
+  const [blogindex, setBlogIndex] = useState(0);
+  const [user, loading, error] = useAuthState(firestore.getuser());
 
-  const [user] = useAuthState(auth);
-  const signingoagle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+  const signingoagle = async () => {
+    await firestore.signInWithGoogle();
   };
-
-  const blogRef = firestore.collection("blog");
-  const appsRef = firestore.collection("apps");
-  const alumniRef = firestore.collection("alumni");
-  const aniRef = firestore.collection("ani");
-  const memRef = firestore.collection("team_member");
-  const sponRef = firestore.collection("sponsors");
-  const premiiRef = firestore.collection("premii");
-
-  const query = blogRef.orderBy("createAt", "desc");
-  const query_app = appsRef.orderBy("createAt", "desc");
-  const query_alumni = alumniRef.orderBy("createAt", "desc");
-  const query_ani = aniRef.orderBy("createAt", "desc");
-  const query_mem = memRef.orderBy("createAt", "desc");
-  const query_spon = sponRef.orderBy("createAt", "desc");
-  const query_premii = premiiRef.orderBy("createAt", "asc");
-
-  const [blog] = useCollectionData(query, { idField: "id" });
-  const [apps] = useCollectionData(query_app, { idField: "id" });
-  const [alumni] = useCollectionData(query_alumni, { idField: "id" });
-  const [ani] = useCollectionData(query_ani, { idField: "id" });
-  const [mem] = useCollectionData(query_mem, { idField: "id" });
-  const [spon] = useCollectionData(query_spon, { idField: "id" });
-  const [premii] = useCollectionData(query_premii, { idField: "id" });
+  const logout = async () => {
+    await firestore.logout();
+  };
 
   const [plaintext, setPlainText] = useState();
   const [titlu, setTitlu] = useState("jkadbs");
@@ -79,88 +44,50 @@ function Admin() {
   const [length, setL] = useState();
   const [bl_img, setblimg] = useState([]);
 
+  const [blog, setBlog] = useState([]);
+
+  useEffect(() => {
+    getAlumni();
+    getApps();
+    getAni();
+    getMemebers();
+    getPremii();
+    getSponsori();
+  }, []);
+
+  useEffect(() => {
+    getBlog();
+  }, [blogindex]);
+
+  const getBlog = async () => {
+    await firestore.readDocuments("blog").then((res) => {
+      setBlog((old) => (old = res));
+    });
+  };
+
   const deleteblog = async (e) => {
-    await blogRef
-
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
-      })
-      .catch(function (error) {
-        alert(error);
-        return;
-      });
+    await firestore.deleteDocument("blog", e).then(async (res) => {
+      alert("sters cu succes");
+      setBlogIndex((old) => old + 1);
+      await getBlog();
+    });
   };
 
-  const deleteapp = async (e) => {
-    await appsRef
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
-      })
-      .catch(function (error) {
-        alert(error);
-        return;
-      });
-  };
-  const delete_alumni = async (e) => {
-    console.log("asdasd");
-    await alumniRef
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
-      })
-      .catch(function (error) {
-        alert(error);
-        return;
-      });
-  };
+  const delete_alumni = async (e) => {};
   const [urls, setUrls] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState([]);
 
-  const upload_blog = async (e) => {
-    e.preventDefault();
-    const { uid } = auth.currentUser;
-    var obj = [];
+  const [loadingg, setloadingg] = useState(false);
+
+  const handleFileInputChange = (event) => {
+    const files = Array.from(event.target.files);
+    setImages(files);
+  };
+
+  const upload_blog = async () => {
+    const uid = user.uid;
     let added = {
-      id,
       titlu,
       uid: uid,
       fb,
@@ -189,64 +116,44 @@ function Admin() {
       return;
     }
 
-    const promises = [];
-    bl_img.map((file) => {
-      setLoading(true);
-      const sotrageRef = ref(storage, `files/${file.name}`);
-
-      const uploadTask = uploadBytesResumable(sotrageRef, file);
-      promises.push(uploadTask);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const prog = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-        },
-        (error) => console.log(error),
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
-            setUrls((prevState) => [...prevState, downloadURLs]);
-            console.log(urls);
-          });
-        }
-      );
-    });
-
-    Promise.all(promises)
-      .then(async () => {
-        urls.map((url) => console.log(url));
-        setLoading(false);
-        urls && console.log("inauntru", ad);
-
-        urls && (ad = { ...ad, ...added });
-
-        console.log(ad);
-        await blogRef
-          .add(ad)
-          .then((res) => {
-            alert("Postare adaugata");
-            setPlainText("");
-            setTitlu("");
-            setFb("");
-            setInsta("");
-            setImgs();
-            setL();
-            setblimg([]);
-            setUrls([]);
-            ad = {};
-          })
-          .catch((err) => alert(err));
-      })
-      .then((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    if (urls)
-      for (let i = 0; i < urls.length; i++) {
-        ad[`img${i}`] = urls[i];
+    const storage = getStorage();
+    let downloadUrls = [];
+    console.log(images.length);
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      const storageRef = ref(storage, `blog/${image.name}`);
+      try {
+        await uploadBytes(storageRef, image);
+        const url = await getDownloadURL(storageRef);
+        downloadUrls.push(url);
+        console.log(downloadUrls, url);
+      } catch (error) {
+        console.error(error);
       }
-  }, [urls]);
+    }
+    console.log(downloadUrls);
+    let idk = {
+      ...added,
+      images: downloadUrls,
+    };
+    // urls && (ad = { ...ad, ...added });
+    console.log(idk);
+    await firestore
+      .addItem("blog", idk)
+      .then((res) => {
+        alert("Postare adaugata");
+        setBlogIndex((old) => old + 1);
+        setPlainText("");
+        setTitlu("");
+        setFb("");
+        setInsta("");
+        setImgs();
+        setL();
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  };
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
@@ -267,16 +174,6 @@ function Admin() {
     });
   };
 
-  const poze_pt_blog = async (e) => {
-    setblimg([]);
-    let files = e.target.files;
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      setblimg((old) => [...old, file]);
-    }
-    console.log(bl_img);
-  };
-
   // -----------------APPS--asa face si ficatul-----------------
   const [descriere, setDescriere] = useState("");
   const [cod_qr, setCodqr] = useState();
@@ -286,68 +183,61 @@ function Admin() {
   const [titlu_app, setTitluApp] = useState("");
   const [link, setLink] = useState("");
   const [link_text, setLinkText] = useState("");
-  const [loading_apps, setLoadingApps] = useState(false);
+  const [loadingg_apps, setloadinggApps] = useState(false);
 
-  const submit_app = async (e) => {
-    e.preventDefault();
-    const { uid } = auth.currentUser;
+  const [apps, setApps] = useState([]);
 
-    console.log(cod_qr, img);
-    let ar = [cod_qr, img];
-    const promises = [];
-
-    ar.map((file, index) => {
-      setLoadingApps(true);
-      let sotrageRef = ref(storage, `apps/${file.name}`);
-
-      let uploadTask = uploadBytesResumable(sotrageRef, file);
-      promises.push(uploadTask);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const prog = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-        },
-        (error) => console.log(error),
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
-            if (index == 0) {
-              console.log(index, downloadURLs);
-              setImgLinks(downloadURLs);
-            } else {
-              console.log(index, downloadURLs);
-              setCodqrlinks(downloadURLs);
-            }
-          });
-        }
-      );
+  const getApps = async () => {
+    firestore.readDocuments("apps").then((res) => {
+      setApps((old) => (old = res));
     });
+  };
 
-    Promise.all(promises)
-      .then(async () => {
-        console.log(cod_qr_links);
-        await appsRef
-          .add({
-            id,
-            titlu: titlu_app,
-            uid: uid,
-            descriere,
-            link,
-            link_text,
-            cod_qr: cod_qr_links,
-            img: imglinks,
-            createAt: firebase.firestore.FieldValue.serverTimestamp(),
-          })
-          .then((res) => {
-            alert("app adaugat");
-          })
-          .catch((err) => alert(err));
-        setLoadingApps(false);
-        setTitluApp("");
-        setDescriere("");
-      })
-      .then((err) => console.log(err));
+  const submit_app = async () => {
+    const { uid } = user;
+
+    let ar = [cod_qr, img];
+
+    let object = {
+      titlu: titlu_app,
+      uid: uid,
+      descriere,
+      link,
+      link_text,
+      cod_qr: cod_qr_links,
+      img: imglinks,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    const storage = getStorage();
+    setloadinggApps(true);
+    for (let i = 0; i < ar.length; i++) {
+      const image = ar[i];
+      const storageRef = ref(storage, `apps/${image.name}`);
+      try {
+        await uploadBytes(storageRef, image);
+        const url = await getDownloadURL(storageRef);
+        if (i == 0) {
+          object.img = url;
+        } else {
+          object.cod_qr = url;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    await firestore.addItem("apps", object).then(async (res) => {
+      alert("app adaugat");
+      getApps();
+      setloadinggApps(false);
+    });
+  };
+
+  const deleteapp = async (e) => {
+    await firestore.deleteDocument("apps", e).then(async (res) => {
+      alert("sters cu succes");
+      await getApps();
+    });
   };
 
   // cumpar opel
@@ -358,84 +248,80 @@ function Admin() {
   const [detalii_alumni, setdetaliialumni] = useState("");
   const [poza_alumni, setPozealumni] = useState();
   const [text_alumni, setTextalumni] = useState("");
-  const [loading_alumni, SetLoadingAlumni] = useState(false);
+  const [loadingg_alumni, SetloadinggAlumni] = useState(false);
   const [al_img_link, setTpLINK] = useState("");
   const promises_al = [];
 
-  const upload_alumni = async (e) => {
-    e.preventDefault();
-    const { uid } = auth.currentUser;
+  const [alumni, setAlumni] = useState([]);
+  const getAlumni = async () => {
+    await firestore.readDocuments("alumni").then((res) => {
+      setAlumni(res);
+    });
+  };
+
+  const upload_alumni = async () => {
+    const { uid } = user;
     let added = {
-      id,
       nume: nume_alumni,
       uid: uid,
       ani: anistate,
       detalii: detalii_alumni,
-      // poza: poza_alumni,
       text: text_alumni,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    SetLoadingAlumni(true);
+    SetloadinggAlumni(true);
+    const storage = getStorage();
 
-    Promise.all(promises_al)
-      .then(async () => {
-        added.poza = al_img_link;
-        await alumniRef
-          .add(added)
-          .then((res) => {
-            alert("alumni adaugat");
-            SetLoadingAlumni(false);
-            setAni("Alege un an");
-            setAlumninume("");
-            setdetaliialumni("");
-            setTextalumni("");
-          })
-          .catch((err) => alert(err));
+    const storageRef = ref(storage, `alumni/${poza_alumni.name}`);
+    try {
+      await uploadBytes(storageRef, poza_alumni);
+      const url = await getDownloadURL(storageRef);
+      added.poza = url;
+    } catch (error) {
+      console.error(error);
+    }
+
+    await firestore
+      .addItem("alumni", added)
+      .then(async (res) => {
+        alert("alumni adaugat");
+        SetloadinggAlumni(false);
+        setAni("Alege un an");
+        await getAlumni();
       })
-      .then((err) => console.log(err));
+      .catch((err) => alert(err));
   };
 
   //--------------ANI-------------
   const [ani_efectiv, setAniEfectiv] = useState("");
 
-  const add_ani = async (e) => {
-    e.preventDefault();
+  const [ani, setAnis] = useState([]);
+  const getAni = async () => {
+    await firestore.sortdata("ani", "createAt", "desc").then((res) => {
+      setAnis(res);
+    });
+  };
+  //2020-2021
+  const add_ani = async () => {
     let added = {
       ani: ani_efectiv,
-      id,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    await aniRef
-      .add(added)
-      .then((res) => {
+    await firestore
+      .addItem("ani", added)
+      .then(async (res) => {
         alert("ani adaugata");
+        await getAni();
       })
       .catch((err) => alert(err));
   };
 
   const delete_year = async (e) => {
-    await aniRef
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
-      })
-      .catch(function (error) {
-        alert(error);
-        return;
-      });
+    await firestore.deleteDocument("ani", e).then((res) => {
+      alert("sters cu succes");
+      getAni();
+    });
   };
 
   //--------------MEMBERS----------------
@@ -445,13 +331,19 @@ function Admin() {
   const [poza_mem, setpozamem] = useState();
   const [p_m_link, setPML] = useState("");
   const pr_mm = [];
-  const [load_mm, setLoadingMM] = useState(false);
-  const upload_mem = async (e) => {
-    e.preventDefault();
-    const { uid } = auth.currentUser;
+  const [load_mm, setloadinggMM] = useState(false);
+
+  const [mem, setMembers] = useState([]);
+  const getMemebers = async () => {
+    await firestore.readDocuments("team_members").then((res) => {
+      setMembers(res);
+    });
+  };
+
+  const upload_mem = async () => {
+    const { uid } = user;
 
     let added = {
-      id,
       nume: nume_mem,
       uid: uid,
       ani: ani_mem,
@@ -459,172 +351,139 @@ function Admin() {
       // poza: poza_mem,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    setLoadingMM(true);
+    setloadinggMM(true);
 
-    Promise.all(pr_mm)
-      .then(async () => {
-        added.poza = p_m_link;
-        await memRef
-          .add(added)
-          .then((res) => {
-            alert("Postare adaugata");
-            setanimem("Alege un an");
-            setnumemem("");
-            setLoadingMM(false);
-            setdetaliimem("");
-          })
-          .catch((err) => alert(err));
-      })
-      .then((err) => console.log(err));
-  };
+    const storage = getStorage();
 
-  const delete_mem = async (e) => {
-    await memRef
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
-      })
-      .catch(function (error) {
-        alert(error);
-        return;
-      });
-  };
-  //-------------premii---------------
-  const [img_premii, setImgPremii] = useState("");
-  const [text_premii, setTextPremii] = useState("");
-  const [an_premii, setPremiian] = useState("");
+    const storageRef = ref(storage, `members/${poza_mem.name}`);
+    try {
+      await uploadBytes(storageRef, poza_mem);
+      const url = await getDownloadURL(storageRef);
+      added.poza = url;
+    } catch (error) {
+      console.error(error);
+    }
 
-  const upload_premii = async (e) => {
-    e.preventDefault();
-    const { uid } = auth.currentUser;
-
-    let added = {
-      id,
-      uid,
-      an: an_premii,
-      img: img_premii,
-      text: text_premii,
-      createAt: firebase.firestore.FieldValue.serverTimestamp(),
-    };
-    await premiiRef
-      .add(added)
-      .then((res) => {
-        alert("premiu adaugat");
+    await firestore
+      .addItem("team_member", added)
+      .then(async (res) => {
+        alert("Postare adaugata");
+        setnumemem("");
+        SetloadinggAlumni(false);
+        setAni("Alege un an");
+        setdetaliimem("");
+        await getMemebers();
       })
       .catch((err) => alert(err));
   };
 
-  const delete_premiu = async (e) => {
-    await premiiRef
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
+  const delete_mem = async (e) => {
+    await firestore.deleteDocument("team_members", e).then((res) => {
+      alert("sters cu succes");
+    });
+  };
+  //-------------premii---------------
+  const [img_premii, setImgPremii] = useState();
+  const [text_premii, setTextPremii] = useState("");
+  const [an_premii, setPremiian] = useState("");
+  const [premii, setPremii] = useState([]);
+  const [loadingpremii, setloadingpremii] = useState(false);
+
+  const getPremii = async () => {
+    await firestore.sortdata("premii", "an", "asc").then((res) => {
+      setPremii(res);
+    });
+  };
+
+  const upload_premii = async (e) => {
+    e.preventDefault();
+    const { uid } = user;
+    setloadingpremii(true);
+    let added = {
+      uid,
+      an: Number(an_premii),
+      text: text_premii,
+      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+
+    const storage = getStorage();
+
+    const storageRef = ref(storage, `premii/${img_premii.name}`);
+    try {
+      await uploadBytes(storageRef, img_premii);
+      const url = await getDownloadURL(storageRef);
+      added.img = url;
+    } catch (error) {
+      console.error(error);
+    }
+
+    await firestore
+      .addItem("premii", added)
+      .then(async (res) => {
+        alert("premiu adaugat");
+        await getPremii();
       })
-      .catch(function (error) {
-        alert(error);
-        return;
-      });
+      .catch((err) => alert(err));
+    setloadingpremii(false);
+  };
+
+  const delete_premiu = async (e) => {
+    await firestore.deleteDocument("premii", e).then(async (res) => {
+      alert("sters cu succes");
+      await getPremii();
+    });
   };
 
   //--------------sponsori-------------
   const [logo, setlogo] = useState();
-  const [loadinglogo, setLoadinglogo] = useState(false);
+  const [loadingglogo, setloadingglogo] = useState(false);
   const [spon_img, setspon_img] = useState("");
-  const upload_sponsor = async (e) => {
-    e.preventDefault();
-    const { uid } = auth.currentUser;
+  const [spon, setSponsori] = useState([]);
+
+  const getSponsori = async () => {
+    await firestore.readDocuments("sponsors").then((res) => {
+      setSponsori(res);
+    });
+  };
+
+  const upload_sponsor = async () => {
+    const { uid } = user;
 
     let added = {
-      id,
       uid,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    const promises = [];
 
-    setLoadinglogo(true);
-    const sotrageRef = ref(storage, `sponsors/${logo.name}`);
+    setloadingglogo(true);
+    const storage = getStorage();
 
-    const uploadTask = uploadBytesResumable(sotrageRef, logo);
-    promises.push(uploadTask);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const prog = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-      },
-      (error) => console.log(error),
-      async () => {
-        await getDownloadURL(uploadTask.snapshot.ref).then((downloadURLs) => {
-          console.log(urls);
-          setspon_img(downloadURLs);
-        });
-      }
-    );
+    const storageRef = ref(storage, `sponsors/${logo.name}`);
+    try {
+      await uploadBytes(storageRef, logo);
+      const url = await getDownloadURL(storageRef);
+      added.logo = url;
+    } catch (error) {
+      console.error(error);
+    }
 
-    Promise.all(promises)
-      .then(async () => {
-        console.log(spon_img);
-        if (spon_img) added.logo = spon_img;
-        else added.logo = "Asd";
-        await sponRef
-          .add(added)
-          .then((res) => {
-            alert("sponsor adaugat");
-          })
-          .catch((err) => alert(err));
-        setLoadinglogo(false);
+    console.log(added);
+    await firestore
+      .addItem("sponsors", added)
+      .then(async (res) => {
+        alert("sponsor adaugat");
+        setloadingglogo(false);
+        await getSponsori();
       })
-      .then((err) => console.log(err));
-    // await sponRef
-    //   .add(added)
-    //   .then((res) => {
-    //     alert("sponsor adaugat");
-    //   })
-    //   .catch((err) => alert(err));
+
+      .catch((err) => alert(err));
   };
 
   const delete_sponsor = async (e) => {
-    await sponRef
-      .where("id", "==", e)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref
-            .delete()
-            .then(() => {
-              alert("sters cu succes");
-              return;
-            })
-            .catch(function (error) {
-              alert(error);
-              return;
-            });
-        });
+    await firestore
+      .deleteDocument("sponsors", e)
+      .then(async (res) => {
+        alert("sters cu succes");
+        await getSponsori();
       })
       .catch(function (error) {
         alert(error);
@@ -728,16 +587,11 @@ function Admin() {
             <div className="logged">
               <div className="blogs_part">
                 <div className="out">
-                  <button
-                    className="button"
-                    onClick={() => {
-                      auth.signOut();
-                    }}
-                  >
+                  <button className="button" onClick={logout}>
                     Sign Out
                   </button>
                 </div>
-                <form onSubmit={upload_blog}>
+                <div className="form">
                   <h1>FOR BLOG</h1>
                   <h4 className="info">Poti alege mai multe poze</h4>
                   <input
@@ -745,7 +599,7 @@ function Admin() {
                     type="file"
                     multiple
                     accept="image/*"
-                    onChange={(e) => poze_pt_blog(e)}
+                    onChange={handleFileInputChange}
                   />
                   <h4 className="info">
                     Pentru a desparti textul in paragrafe adauga intre 2
@@ -787,12 +641,13 @@ function Admin() {
                   />
                   <button
                     className="button"
-                    disabled={loading ? true : false}
+                    disabled={loadingg ? true : false}
                     type="submit"
+                    onClick={upload_blog}
                   >
-                    {loading ? "loading" : "send"}
+                    {loadingg ? "loadingg" : "send"}
                   </button>
-                </form>
+                </div>
                 <div className="stemText">
                   <div className="more">
                     <div className="press" onClick={more}>
@@ -819,7 +674,7 @@ function Admin() {
                                 key={Math.random() * 92342423}
                                 data="fade-right"
                                 link={`/blog/${bl.id}`}
-                                poza={bl.img0}
+                                poza={bl.images[0]}
                                 titlu={bl.titlu}
                                 text_scurt={
                                   bl.texts[0].length > 200
@@ -837,27 +692,13 @@ function Admin() {
               <hr />
               <div className="apps_part">
                 <h1>FOR APPS</h1>
-                <form onSubmit={submit_app}>
+                <div className="form">
                   <h4 className="info">Set the img.</h4>
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
                       setImg(e.target.files[0]);
-                      // let file = e.target.files[0];
-                      // new Compressor(file, {
-                      //   quality: 0.5,
-                      //   success: (compressedResult) => {
-                      //     getBase64(compressedResult)
-                      //       .then((result) => {
-                      //         setImg(result);
-                      //       })
-                      //       .catch((err) => {
-                      //         alert(err);
-                      //         return;
-                      //       });
-                      //   },
-                      // });
                     }}
                   />
                   <h4 className="info">Set the Qr code</h4>
@@ -866,20 +707,6 @@ function Admin() {
                     accept="image/*"
                     onChange={(e) => {
                       setCodqr(e.target.files[0]);
-                      // let file = e.target.files[0];
-                      // new Compressor(file, {
-                      //   quality: 0.6,
-                      //   success: (compressedResult) => {
-                      //     getBase64(compressedResult)
-                      //       .then((result) => {
-                      //         setCodqr(result);
-                      //       })
-                      //       .catch((err) => {
-                      //         alert(err);
-                      //         return;
-                      //       });
-                      //   },
-                      // });
                     }}
                   />
                   <input
@@ -902,12 +729,13 @@ function Admin() {
                   />
                   <button
                     type="submit"
-                    disabled={loading_apps ? true : false}
+                    disabled={loadingg_apps ? true : false}
                     className="button"
+                    onClick={submit_app}
                   >
-                    {loading_apps ? "loading" : "submit"}
+                    {loadingg_apps ? "loadingg" : "submit"}
                   </button>
-                </form>
+                </div>
 
                 <div className="stemText">
                   <div className="more">
@@ -978,7 +806,7 @@ function Admin() {
               <hr />
               <div className="ani_part">
                 <h1>FOR ANI</h1>
-                <form onSubmit={add_ani}>
+                <div className="form">
                   <h4 className="info">
                     Anul se va scrie in formatul an-an, ex: 2021-2022
                   </h4>{" "}
@@ -987,10 +815,10 @@ function Admin() {
                     type="text"
                     onChange={(e) => setAniEfectiv(e.target.value)}
                   />
-                  <button className="button" type="submit">
+                  <button className="button" type="submit" onClick={add_ani}>
                     submit
                   </button>
-                </form>
+                </div>
 
                 <div className="stemText">
                   <div className="more">
@@ -1047,7 +875,7 @@ function Admin() {
               <hr />
               <div className="alumni_part">
                 <h1>FOR ALUMNI</h1>
-                <form onSubmit={upload_alumni}>
+                <div className="form">
                   <select
                     value={anistate}
                     onChange={(e) => setAni(e.target.value)}
@@ -1082,44 +910,18 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let poza_alumni = e.target.files[0];
-                      // setPozealumni(e.target.files[0]);
-                      const sotrageRef = ref(
-                        storage,
-                        `alumni/${poza_alumni.name}`
-                      );
-                      const uploadTask = uploadBytesResumable(
-                        sotrageRef,
-                        poza_alumni
-                      );
-                      promises_al.push(uploadTask);
-                      uploadTask.on(
-                        "state_changed",
-                        (snapshot) => {
-                          const prog = Math.round(
-                            (snapshot.bytesTransferred / snapshot.totalBytes) *
-                              100
-                          );
-                        },
-                        (error) => console.log(error),
-                        async () => {
-                          await getDownloadURL(uploadTask.snapshot.ref).then(
-                            (downloadURLs) => {
-                              setTpLINK(downloadURLs);
-                            }
-                          );
-                        }
-                      );
+                      setPozealumni(e.target.files[0]);
                     }}
                   />
                   <button
                     type="submit"
-                    disabled={loading_alumni ? true : false}
+                    disabled={loadingg_alumni ? true : false}
                     className="button"
+                    onClick={upload_alumni}
                   >
-                    {loading_alumni ? "loading" : "submit"}
+                    {loadingg_alumni ? "loadingg" : "submit"}
                   </button>
-                </form>
+                </div>
 
                 <div className="stemText">
                   <div className="more">
@@ -1166,7 +968,6 @@ function Admin() {
                           alumni &&
                             alumni.map((alumni) => {
                               if (alumni.ani == ani.ani) {
-                                console.log("asd", alumni);
                                 return <h1>asdkjbasdk</h1>;
                               }
                               // {
@@ -1188,7 +989,7 @@ function Admin() {
               <hr />
               <div className="members_part">
                 <h1>FOR MEMBERS</h1>
-                <form onSubmit={upload_mem}>
+                <div className="form">
                   <select
                     value={ani_mem}
                     onChange={(e) => {
@@ -1211,7 +1012,8 @@ function Admin() {
                   <h4 className="info">
                     Sa se scrie departamentul main din care face parte
                     <br />
-                    Daca vreti sa puneti ceva de la capatul randului adaugati {" <br/>"}
+                    Daca vreti sa puneti ceva de la capatul randului adaugati{" "}
+                    {" <br/>"}
                   </h4>
                   <input
                     type="text"
@@ -1223,44 +1025,18 @@ function Admin() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let poza_mem = e.target.files[0];
-                      // setPozealumni(e.target.files[0]);
-                      const sotrageRef = ref(
-                        storage,
-                        `members/${poza_mem.name}`
-                      );
-                      const uploadTask = uploadBytesResumable(
-                        sotrageRef,
-                        poza_mem
-                      );
-                      pr_mm.push(uploadTask);
-                      uploadTask.on(
-                        "state_changed",
-                        (snapshot) => {
-                          const prog = Math.round(
-                            (snapshot.bytesTransferred / snapshot.totalBytes) *
-                              100
-                          );
-                        },
-                        (error) => console.log(error),
-                        async () => {
-                          await getDownloadURL(uploadTask.snapshot.ref).then(
-                            (downloadURLs) => {
-                              setPML(downloadURLs);
-                            }
-                          );
-                        }
-                      );
+                      setpozamem(e.target.files[0]);
                     }}
                   />
                   <button
                     type="submit"
                     disabled={load_mm ? true : false}
                     className="button"
+                    onClick={upload_mem}
                   >
-                    {load_mm ? "loading" : "submit"}
+                    {load_mm ? "loadingg" : "submit"}
                   </button>
-                </form>
+                </div>
                 <div className="stemText">
                   <div className="more">
                     <div className="press" onClick={more5}>
@@ -1304,7 +1080,6 @@ function Admin() {
                           mem &&
                             mem.map((alumni) => {
                               if (alumni.ani == ani.ani) {
-                                console.log("asdasd", alumni);
                                 return (
                                   <div>
                                     <h2>{alumni.nume}</h2>
@@ -1340,36 +1115,23 @@ function Admin() {
               <hr />
               <div className="sponsor_part">
                 <h1>FOR SPONSORS</h1>
-                <form onSubmit={upload_sponsor}>
+                <div className="form">
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
                       setlogo(e.target.files[0]);
-                      // let file = e.target.files[0];
-                      // new Compressor(file, {
-                      //   quality: 0.5,
-                      //   success: (compressedResult) => {
-                      //     getBase64(compressedResult)
-                      //       .then((result) => {
-                      //         setlogo(result);
-                      //       })
-                      //       .catch((err) => {
-                      //         alert(err);
-                      //         return;
-                      //       });
-                      //   },
-                      // });
                     }}
                   />
                   <button
                     type="submit"
+                    onClick={upload_sponsor}
                     className="button"
-                    disabled={loadinglogo ? true : false}
+                    disabled={loadingglogo ? true : false}
                   >
-                    {loadinglogo ? "loading" : "add sponsor"}
+                    {loadingglogo ? "loadingg" : "add sponsor"}
                   </button>
-                </form>
+                </div>
                 <div className="stemText">
                   <div className="more">
                     <div className="press" onClick={more6}>
@@ -1404,25 +1166,12 @@ function Admin() {
               </div>
               <div className="premii_part">
                 <h1>FOR PREMII</h1>
-                <form onSubmit={upload_premii}>
+                <div className="form">
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      let file = e.target.files[0];
-                      new Compressor(file, {
-                        quality: 0.5,
-                        success: (compressedResult) => {
-                          getBase64(compressedResult)
-                            .then((result) => {
-                              setImgPremii(result);
-                            })
-                            .catch((err) => {
-                              alert(err);
-                              return;
-                            });
-                        },
-                      });
+                      setImgPremii(e.target.files[0]);
                     }}
                   />
 
@@ -1435,10 +1184,14 @@ function Admin() {
                     placeholder="text"
                     onChange={(e) => setTextPremii(e.target.value)}
                   />
-                  <button type="submit" className="button">
+                  <button
+                    type="submit"
+                    className="button"
+                    onClick={upload_premii}
+                  >
                     submit
                   </button>
-                </form>
+                </div>
 
                 <div className="stemText">
                   <div className="more">

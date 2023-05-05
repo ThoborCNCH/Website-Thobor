@@ -1,78 +1,74 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 
-export default class Slider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.imageParts = 4;
-    this.changeTo = null;
-    this.autoTime = 5000;
-    this.state = { activeSlide: -1, prevSlide: -1, sliderReady: false };
-  }
+const Slider = (props) => {
+  const [activeSlide, setActiveSlide] = useState(-1);
+  const [prevSlide, setPrevSlide] = useState(-1);
+  const [sliderReady, setSliderReady] = useState(false);
 
-  componentWillUnmount() {
-    window.clearTimeout(this.changeTo);
-  }
+  const imageParts = 4;
+  let changeTo = null;
+  const autoTime = 5000;
 
-  componentDidMount() {
-    this.runAutoChange();
+  const runAutoChange = () => {
+    changeTo = setTimeout(() => {
+      changeSlides(1);
+      runAutoChange();
+    }, autoTime);
+  };
+
+  const changeSlides = (change) => {
+    window.clearTimeout(changeTo);
+    const { length } = props.slides;
+    let newPrevSlide = activeSlide;
+    let newActiveSlide = newPrevSlide + change;
+    if (newActiveSlide < 0) newActiveSlide = length - 1;
+    if (newActiveSlide >= length) newActiveSlide = 0;
+    setActiveSlide(newActiveSlide);
+    setPrevSlide(newPrevSlide);
+  };
+
+  useEffect(() => {
+    runAutoChange();
     setTimeout(() => {
-      this.setState({ activeSlide: 0, sliderReady: true });
+      setActiveSlide(0);
+      setSliderReady(true);
     }, 0);
-  }
 
-  runAutoChange() {
-    this.changeTo = setTimeout(() => {
-      this.changeSlides(1);
-      this.runAutoChange();
-    }, this.autoTime);
-  }
+    return () => window.clearTimeout(changeTo);
+  }, []); // empty array passed as the second argument to execute useEffect only once during component mount
 
-  changeSlides(change) {
-    window.clearTimeout(this.changeTo);
-    const { length } = this.props.slides;
-    const prevSlide = this.state.activeSlide;
-    let activeSlide = prevSlide + change;
-    if (activeSlide < 0) activeSlide = length - 1;
-    if (activeSlide >= length) activeSlide = 0;
-    this.setState({ activeSlide, prevSlide });
-  }
-
-  render() {
-    const { activeSlide, prevSlide, sliderReady } = this.state;
-    return (
-      <div className={classNames("slider", { "s--ready": sliderReady })}>
-        <div className="slider__slides">
-          {this.props.slides.map((slide, index) => (
-            <div
-              className={classNames("slider__slide", {
-                "s--active": activeSlide === index,
-                "s--prev": prevSlide === index,
-              })}
-              key={slide}
-            >
-              <div className="slider__slide-parts">
-                {[...Array(this.imageParts).fill()].map((x, i) => (
-                  <div className="slider__slide-part" key={i}>
-                    <div
-                      className="slider__slide-part-inner"
-                      style={{ backgroundImage: `url(${slide})` }}
-                    />
-                  </div>
-                ))}
-              </div>
+  return (
+    <div className={classNames("slider", { "s--ready": sliderReady })}>
+      <div className="slider__slides">
+        {props.slides.map((slide, index) => (
+          <div
+            className={classNames("slider__slide", {
+              "s--active": activeSlide === index,
+              "s--prev": prevSlide === index,
+            })}
+            key={slide}
+          >
+            <div className="slider__slide-parts">
+              {[...Array(imageParts).fill()].map((x, i) => (
+                <div className="slider__slide-part" key={i}>
+                  <div
+                    className="slider__slide-part-inner"
+                    style={{ backgroundImage: `url(${slide})` }}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div
-          className="slider__control"
-          onClick={() => this.changeSlides(-1)}
-        />
-        <div
-          className="slider__control slider__control--right"
-          onClick={() => this.changeSlides(1)}
-        />
+          </div>
+        ))}
       </div>
-    );
-  }
-}
+      <div className="slider__control" onClick={() => changeSlides(-1)} />
+      <div
+        className="slider__control slider__control--right"
+        onClick={() => changeSlides(1)}
+      />
+    </div>
+  );
+};
+
+export default Slider;

@@ -63,7 +63,7 @@ function Home() {
           <h2 data-aos="fade-right" data-aos-delay="300">
             team
           </h2>
-        </div>
+        </div>  
         <div className="img" data-aos="fade-left">
           <img src={require("../../img/first.png")} alt="" />
           <img className="cerc" src={require("../../img/cerc1.png")} alt="" />

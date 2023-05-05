@@ -1,7 +1,5 @@
 @import "../utils/styles/base";
-// G41BaSVvR2P146qD7C1QJvg1XWR2
-// <h4 className="info">
-
+ 
 .admin {
   margin-top: 100px;
   hr{
@@ -35,7 +33,7 @@
         font-family: $font_anek;
         color: $dark_green;
       }
-      form {
+      .form {
         width: 100vw;
         display: flex;
         flex-direction: column;
