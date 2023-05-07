@@ -32,16 +32,15 @@ function App() {
 
   const getCos = async () => {
     setCos(await firestore.getCos(user));
-    // console.log(await firestore.getCos(user));
   };
 
   useEffect(() => {
     getCos();
-    // await setCos(await firestore.getCos());
   }, [cos_ev, user]);
 
   const addit = async (id, cant) => {
-    firestore.addit(id, user, cant);
+    await firestore.addit(id, user, cant);
+    await getCos();
     setCosEv((old) => old + cant);
   };
 
