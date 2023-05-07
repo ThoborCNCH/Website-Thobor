@@ -27,7 +27,6 @@ function BlogPost() {
   const getBlogPost = async () => {
     await firestore.getDocById("blog", id).then((res) => {
       setPosare({ ...res });
-      console.log(res);
     });
   };
 

@@ -4,14 +4,21 @@ import Placeholder from "../../utils/Placeholder";
 import "../style/product.scss";
 import { useEffect } from "react";
 import AOS from "aos";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useState } from "react";
+import Firestore from "../../utils/Firestore";
+const firestore = new Firestore();
 
 function Product({
   poza,
   titlu,
   link,
   data,
+  addit,
+  cantitate,
   data2,
   dalay,
+  id,
   text_scurt,
   price,
   oldPrice,
@@ -20,13 +27,40 @@ function Product({
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const [user, loading, error] = useAuthState(firestore.getuser());
+  const [din_cos, setDinCos] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    getcos();
+  }, [count, user]);
+
+  const getcos = async () => {
+    let prods = await firestore.getProductByUser(user);
+    if (prods.cant) {
+      prods.cant = prods.cant.filter((prod) => id === prod.id);
+      if (prods.cant[0] !== undefined) {
+        setDinCos(prods.cant[0].cant);
+      } else return;
+    }
+  };
+
+  const addit_prod = async (cant) => {
+    setCount((old) => old + 1);
+    if (cant + din_cos <= cantitate) addit(id, cant);
+    else {
+      alert(`Numarul maxim de produse disponibile este ${cantitate}!`);
+    }
+  };
+
   return (
     <>
       <div className="post" data-aos={data}>
         {oldPrice > 0 && (
           <div className="offer">
             <span>
-              -{" "}
+              -
               {Placeholder.makenumber(
                 Placeholder.roundit(((oldPrice - price) / oldPrice) * 100, 1)
               )}
@@ -43,31 +77,36 @@ function Product({
         </div>
         <div className="text">
           <div className="title">
-            <h2 data-aos={data2} data-aos-delay={dalay}>
+            <h2 data-aos={data2} //data-aos-delay={dalay}
+            >
               {titlu}
             </h2>
             <div
               data-aos={data}
-              data-aos-delay={dalay + 300}
+              //data-aos-delay={dalay + 300}
               className="linie"
             ></div>
           </div>
-          <div className="para" data-aos={data2} data-aos-delay={dalay}>
+          <div className="para" data-aos={data2} //data-aos-delay={dalay}
+          >
             <div
               className="linie_vert"
               data-aos={data2}
-              data-aos-delay={dalay + 400}
+              //data-aos-delay={dalay + 400}
             ></div>
-            <p data-aos={data} data-aos-delay={dalay}>
+            <p data-aos={data} //data-aos-delay={dalay}
+            >
               {text_scurt}
             </p>
           </div>
           <div className="price">
-            <h5 data-aos={data2} data-aos-delay={dalay}>
+            <h5 data-aos={data2} //data-aos-delay={dalay}
+            >
               {Placeholder.makenumber(price)} RON
             </h5>
             {oldPrice > 0 && (
-              <h6 data-aos={data} data-aos-delay={dalay + 100}>
+            <h6 data-aos={data} //data-aos-delay={dalay + 100}
+            >
                 <del>{Placeholder.makenumber(oldPrice)} RON</del>
               </h6>
             )}
@@ -80,7 +119,7 @@ function Product({
                   {index >= rating ? (
                     //gol
                     <i
-                      data-aos={data2}
+                      data-aos={data2} data-aos-offset={"-20"}
                       data-aos-delay={dalay + (5 - index) * multiply}
                       style={{ color: "#FFFF00" }}
                       className="far fa-star text-primary mr-1"
@@ -90,7 +129,7 @@ function Product({
                     //plin
                     <i
                       style={{ color: "#FFFF00" }}
-                      data-aos={data2}
+                      data-aos={data2} data-aos-offset={"-20"}
                       data-aos-delay={dalay + (5 - index) * multiply}
                       className="fas fa-star text-primary mr-1"
                       key={index}
@@ -99,7 +138,7 @@ function Product({
                     //jumate
                     <i
                       style={{ color: "#FFFF00" }}
-                      data-aos={data2}
+                      data-aos={data2} data-aos-offset={"-20"}
                       data-aos-delay={dalay + (5 - index) * multiply}
                       className="fas fa-star-half-alt text-primary mr-1"
                       key={index}
@@ -109,16 +148,12 @@ function Product({
               );
             })}
           </div>
-          <Link
-            to={link}
-            preventScrollReset={true}
-            className="link"
-          >
+          <a href={link} className="link">
             <div className="coca"></div>
             <span>
               Citeste mai multe <i className="fas fa-caret-right"></i>
             </span>
-          </Link>
+          </a>
         </div>
       </div>
     </>

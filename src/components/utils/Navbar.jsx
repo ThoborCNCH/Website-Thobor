@@ -7,10 +7,15 @@ import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
 import { isMobile } from "react-device-detect";
+import Firestore from "./Firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+const firestore = new Firestore();
 
 function Navbar() {
   const { pathname } = useLocation();
   const nav = useRef(null);
+  const [user, loading, error] = useAuthState(firestore.getuser());
 
   const size = useWindowSize();
   const nav_click = () => {
@@ -35,6 +40,14 @@ function Navbar() {
     }
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  const signInWithGoogle = async () => {
+    await firestore.signInWithGoogle();
+  };
+
+  const logout = async () => {
+    await firestore.logout();
+  };
 
   return (
     <section className="navigation">
@@ -80,6 +93,24 @@ function Navbar() {
                 <li>
                   <Link to="/simulator">Simulator</Link>
                 </li>
+              </>
+            )}
+
+            {!loading && !user ? (
+              <>
+                <li>
+                  <a href="#" onClick={signInWithGoogle}>
+                    Login
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <a href="#" onClick={logout}>
+                    Logout
+                  </a>
+                </li>{" "}
               </>
             )}
           </ul>

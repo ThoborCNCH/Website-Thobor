@@ -15,16 +15,17 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 30px;
+    padding: 30px 0;
     position: relative;
 
     .middle {
-      width: calc(100vw - 60px);
+      width: 100vw;
       margin: 10px 0;
     }
 
     .title {
       margin: 20px;
+      padding: 0px 30px;
       position: relative;
       .nume {
         position: relative;
@@ -58,6 +59,7 @@
     }
     .pret {
       margin: 10px 20px;
+      padding: 0px 30px;
       position: relative;
 
       h3 {
@@ -67,12 +69,14 @@
     }
     .scurt {
       margin: 5px 20px;
+      padding: 0px 30px;
       font-size: 17px;
       color: white;
       margin-bottom: 30px;
     }
 
     .cant {
+      padding: 0px 30px;
       margin: 5px 20px;
       width: auto;
       height: auto;
@@ -124,6 +128,7 @@
       }
     }
     .update {
+      padding: 0px 30px;
       p {
         font-size: 17px;
         color: white;
@@ -133,6 +138,7 @@
       }
     }
     .share {
+      padding: 0px 30px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -154,6 +160,7 @@
       }
     }
     .tabs {
+      padding: 0px 30px;
       width: 90vw;
       margin: auto;
       position: relative;
@@ -231,6 +238,7 @@
             }
             .leave {
               padding: 20px;
+
               h4 {
                 margin: 5px;
                 text-align: left;
@@ -297,6 +305,7 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
+                margin-bottom: 20px;
 
                 .ups {
                   display: flex;
@@ -322,14 +331,35 @@
                     }
                   }
                 }
-                p{
-                    margin: 5px 0;
+                p {
+                  margin: 5px 0;
                 }
               }
             }
           }
         }
       }
+    }
+  }
+  .also {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px 60px;
+
+    .tit {
+      font-size: 40px;
+      margin: 40px 0;
+      color: $light_green;
+    }
+    .maps {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
   }
 }

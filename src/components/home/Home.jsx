@@ -12,29 +12,26 @@ import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import Card from "./components/Card";
 
-import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import Firestore from "../utils/Firestore";
+import { useState } from "react";
+import { async } from "@firebase/util";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
-  authDomain: "thobor-9436b.firebaseapp.com",
-  projectId: "thobor-9436b",
-  storageBucket: "thobor-9436b.appspot.com",
-  messagingSenderId: "496274391107",
-  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
-});
-
-const firestore = firebase.firestore();
+const firestore = new Firestore();
 
 function Home() {
   const h1 = useRef(null);
-  const premiiRef = firestore.collection("premii");
-  const query_premii = premiiRef.orderBy("createAt", "asc");
-  const [premii] = useCollectionData(query_premii, { idField: "id" });
 
+  const [premii, setPremii] = useState([]);
+  const getPremii = async () => {
+    await firestore.sortdata("premii", "an", "desc").then(res => {
+      setPremii(res);
+    })
+  }
   useEffect(() => {
     AOS.init();
+    getPremii();
   }, []);
 
   useEffect(() => {

@@ -58,7 +58,7 @@ let filter_arr = {
   motorola: [["brand", "==", "motorola"]],
 };
 
-function Shop({ addit }) {
+function Shop({ addit, cos  }) {
   const { categorie, sort_param } = useParams();
   let [products, setProducts] = useState([]);
   const [filter_map, setf] = useState([]);
@@ -379,7 +379,7 @@ function Shop({ addit }) {
             <Link to="/cart">
               <i className="fas fa-shopping-cart text-primary"></i>
               <div className="nr">
-                <h6>0</h6>
+                <h6>{cos ? cos : 0}</h6>
               </div>
               <span>Cart </span>
             </Link>
@@ -503,6 +503,9 @@ function Shop({ addit }) {
                     price={prod.pret}
                     oldPrice={prod.old_pret}
                     rating={prod.rating}
+                    addit={addit}
+                    cantitate={prod.cantitate}
+                    id={prod.id}
                   />
                 );
               })}
@@ -515,4 +518,3 @@ function Shop({ addit }) {
 }
 
 export default Shop;
- 

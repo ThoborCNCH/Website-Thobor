@@ -21,6 +21,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
 import AdminPage from "./components/admin/AdminPage";
 import ProductPage from "./components/shop/ProductPage";
+import Cart from "./components/shop/Cart";
+
 const firestore = new Firestore();
 
 function App() {
@@ -42,6 +44,49 @@ function App() {
     firestore.addit(id, user, cant);
     setCosEv((old) => old + cant);
   };
+
+  const delete_prod_app = async (id, cant) => {
+    await firestore.deleteDocument("cos", id).then((res) => {
+      setCosEv((old) => old - cant);
+      alert("Produs scos din cosul tau!");
+    });
+  };
+
+  const update = async (cant, uid) => {
+    await firestore
+      .updateDocument("cos", uid, { cantitate: cant })
+      .then((res) => {
+        setCosEv((old) => old + 32);
+        alert("cantitatea s-a updatat!");
+      });
+  };
+
+  const finish = async () => {
+    return await firestore
+      .delete_all_from_cart_by_user_id(user.uid)
+      .then((res) => {
+        setCosEv((old) => old - 13);
+        console.log(res);
+      });
+  };
+
+  const fixCant = async (hidden) => {
+    console.log(hidden);
+    hidden.forEach(async (element) => {
+      await firestore.getProductById(element.id).then(async (res) => {
+        console.log(res.id, ": ", res.cantitate - element.cant);
+        await firestore
+          .updateDocument("products", res.id, {
+            cantitate: res.cantitate - element.cant,
+          })
+          .then((ress) => {
+            console.log(ress);
+          });
+      });
+    });
+
+    return true;
+  };
   return (
     <BrowserRouter>
       <Navbar />
@@ -61,9 +106,20 @@ function App() {
         <Route path="/ce_cauti_ma_aici" element={<Admin />} />
         <Route
           path="/shop/:categorie/:sort_param?/:price?"
-          element={<Shop />}
+          element={<Shop cos={cos} addit={addit} />}
         />
-        <Route path="/prod/:id" element={<ProductPage />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              delete_prod_app={delete_prod_app}
+              update={update}
+              finish={finish}
+              fixCant={fixCant}
+            />
+          }
+        />
+        <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -36,10 +36,12 @@ const Slider = (props) => {
     }, 0);
 
     return () => window.clearTimeout(changeTo);
-  }, []); // empty array passed as the second argument to execute useEffect only once during component mount
+  }, []);
 
   return (
-    <div className={classNames("slider", { "s--ready": sliderReady })}>
+    <div
+      className={classNames("slider", { "s--ready": sliderReady })}
+    >
       <div className="slider__slides">
         {props.slides.map((slide, index) => (
           <div

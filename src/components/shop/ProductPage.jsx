@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./style/product_page.scss";
 import Firestore from "../utils/Firestore";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,11 +14,13 @@ import Slider from "../blog/components/Slider";
 import AOS from "aos";
 import Contact from "../utils/Contact";
 import Svg from "../utils/Svg";
+import Product from "./components/Product";
 
 const firestore = new Firestore();
 
 function ProductPage({ addit }) {
   const navigate = useNavigate();
+  const txt = useRef();
   const { id } = useParams("id");
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [produs, setProdus] = useState();
@@ -181,6 +183,7 @@ function ProductPage({ addit }) {
     }
   };
   const leaverev = async () => {
+    review.review = txt.current.value;
     if (review.review === "" || review.rating === 0) alert("Lasa un review!");
     else
       await firestore.leaveRev(id, review).then((res) => {
@@ -213,7 +216,6 @@ function ProductPage({ addit }) {
     setAlso(
       await firestore.readDocuments("products", ["categories", "==", cat])
     );
-    // console.log(also);
   };
 
   const tabs = (index) => {
@@ -301,13 +303,18 @@ function ProductPage({ addit }) {
                 </span>
               </div>
             </div>
-            <div className="pret" data-aos="zoom-in"data-aos-delay={450} data-aos-duration="2000">
+            <div
+              className="pret"
+              data-aos="zoom-in"
+              data-aos-delay={450}
+              data-aos-duration="2000"
+            >
               <h3>{produs && produs.pret} RON </h3>
             </div>
-            <div className="scurt" data-aos="fade-right"data-aos-delay={450}>
+            <div className="scurt" data-aos="fade-right" data-aos-delay={450}>
               <p>{produs && produs.descriere_scurta}</p>
             </div>
-            <div className="cant" data-aos="zoom-in-down"data-aos-delay={500}>
+            <div className="cant" data-aos="zoom-in-down" data-aos-delay={500}>
               <div className="u">
                 <button onClick={() => modi(-1)}>
                   <i className="fa fa-minus"></i>
@@ -339,7 +346,7 @@ function ProductPage({ addit }) {
                     style={{
                       cursor: "pointer",
                       margin: "5px 20px",
-                      color: "#FFD333",
+                      color: "#6ef188",
                     }}
                     onClick={signInWithGoogle}
                   >
@@ -522,13 +529,14 @@ function ProductPage({ addit }) {
                           <div className="revv">
                             <label htmlFor="message">Your Review *</label>
                             <textarea
+                              ref={txt}
                               id="message"
                               required
                               placeholder="Scrie un review"
                               className="revinput"
-                              onChange={(e) =>
-                                handlerev("review", e.target.value)
-                              }
+                              // onChange={(e) =>
+                              // handlerev("review", e.target.value)
+                              // }
                             ></textarea>
                           </div>
 
@@ -545,6 +553,29 @@ function ProductPage({ addit }) {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="also">
+            <h1 className="tit">Alte produse:</h1>
+            <div className="maps">
+              {also &&
+                also.map((prod) => {
+                  return (
+                    <Product
+                      dalay={0}
+                      data2={"fade-down"}
+                      key={Math.random() * 92342423}
+                      data="fade-right"
+                      link={`/prod/${prod.id}`}
+                      poza={prod.images[0]}
+                      titlu={prod.nume}
+                      text_scurt={Text.returnSizedText(prod.descriere_scurta)}
+                      price={prod.pret}
+                      oldPrice={prod.old_pret}
+                      rating={prod.rating}
+                    />
+                  );
+                })}
             </div>
           </div>
         </>
