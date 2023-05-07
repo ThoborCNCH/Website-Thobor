@@ -2,13 +2,13 @@ import { usePlane } from "@react-three/cannon";
 import React, { Suspense, useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { TextureLoader } from "three";
-import { PereteBox } from "./PereteBox";
 import Cone from "./Cone";
 import { Junction } from './Junction';
+import { PereteBox } from "./PereteBox";
 
 // import FieldTexture from './light_field.jpg';
-import FieldTexture from './teren.png';
 import Ground from "./Ground";
+import FieldTexture from './teren.png';
 
 function Field() {
 

@@ -1,7 +1,7 @@
 import { useBox } from "@react-three/cannon";
+import { useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { TextureLoader } from "three";
-import { useRef } from "react";
 
 import PereteTextura from "./perete.jpg";
 

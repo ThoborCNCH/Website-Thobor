@@ -1,6 +1,5 @@
-import { useRef } from "react";
 import { useBox, useCylinder, useSpring } from "@react-three/cannon";
-import { CylinderGeometry } from "three";
+import { useRef } from "react";
 
 export const Junction = ({ position, height, planeRef }) => {
 

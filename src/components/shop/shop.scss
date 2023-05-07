@@ -76,6 +76,7 @@
     }
     .right {
       padding: 25px;
+
       a {
         color: white;
         font-size: 20px;
@@ -135,6 +136,7 @@
         align-items: flex-start;
         border-radius: 10px;
         position: relative;
+        user-select: none;
 
         h2 {
           text-align: center;
@@ -177,6 +179,25 @@
       flex-wrap: wrap;
       flex-direction: row;
       padding: 0 30px;
+      background: url("../../img/cevaidksimcer.png");
+      background-repeat: repeat;
+      background-size: contain;
+      background-position: top;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .shop .down {
+    flex-direction: column;
+    padding: 0 15px;
+    margin: auto;
+
+    .left,
+    .right {
+      justify-content: space-around;
+      width: 100%;
+      padding: 0;
     }
   }
 }

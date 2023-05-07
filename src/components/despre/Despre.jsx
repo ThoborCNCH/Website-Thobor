@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import "./despre.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Stem from "./components/Stem";
-import Slider from "./components/Slider";
+import React, { useEffect } from "react";
 import Contact from "../utils/Contact";
 import Up from "../utils/Up";
 import DateContact from "./components/DateContact";
+import Stem from "./components/Stem";
+import "./despre.scss";
 
 function Despre() {
   useEffect(() => {

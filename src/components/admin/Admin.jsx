@@ -1,31 +1,29 @@
-import React from "react";
-import nextId from "react-id-generator";
-import "../blog/blog.scss";
-import "./admin.scss";
-import "../apps/apps.scss";
-import "../alumni/alumni.scss";
-import "../sponsors/sponsors.scss";
-import Compressor from "compressorjs";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
 import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React from "react";
+import "../alumni/alumni.scss";
+import "../apps/apps.scss";
+import "../blog/blog.scss";
+import "../sponsors/sponsors.scss";
+import "./admin.scss";
 
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Post from "../blog/components/Post";
 
+import { useEffect } from "react";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import Card from "../home/components/Card";
-import { useEffect } from "react";
-import { async } from "@firebase/util";
 import Firestore from "../utils/Firestore";
+import Placeholder from "../utils/Placeholder";
 
 const firestore = new Firestore();
 var ad = {};
+
 function Admin() {
-  const id = nextId();
   const [blogindex, setBlogIndex] = useState(0);
   const [user, loading, error] = useAuthState(firestore.getuser());
 
@@ -295,8 +293,10 @@ function Admin() {
 
   //--------------ANI-------------
   const [ani_efectiv, setAniEfectiv] = useState("");
+  const [dd, setdd] = useState("");
 
   const [ani, setAnis] = useState([]);
+  
   const getAni = async () => {
     await firestore.sortdata("ani", "createAt", "desc").then((res) => {
       setAnis(res);
@@ -306,12 +306,13 @@ function Admin() {
   const add_ani = async () => {
     let added = {
       ani: ani_efectiv,
-      createAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createAt: dd === "" ? Placeholder.getdateadmin() :dd,
     };
     await firestore
       .addItem("ani", added)
       .then(async (res) => {
         alert("ani adaugata");
+        setdd("");
         await getAni();
       })
       .catch((err) => alert(err));
@@ -815,6 +816,7 @@ function Admin() {
                     type="text"
                     onChange={(e) => setAniEfectiv(e.target.value)}
                   />
+                  <input type="date" defaultValue={dd} onChange={(e) => setdd(e.target.value)} />
                   <button className="button" type="submit" onClick={add_ani}>
                     submit
                   </button>

@@ -2,18 +2,13 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper";
 import Persoana from "./AlumniPersoana";
-import { useState } from "react";
-import { useEffect } from "react";
 // const a = ;
 
 function Generatie({ years, team, persoane, no }) {
-  useEffect(() => {
-    // console.log(persoane);
-  }, [persoane]);
   return no ? (
     <>
       <div className="title_gen">
@@ -53,7 +48,6 @@ function Generatie({ years, team, persoane, no }) {
             (pers) =>
               pers &&
               pers.map((p) => {
-                console.log("dele:", p.img);
                 return (
                   <SwiperSlide>
                     {p && (
@@ -116,8 +110,6 @@ function Generatie({ years, team, persoane, no }) {
             (pers) =>
               pers &&
               pers.map((p) => {
-                console.
-                log("aodas", p.detalii)
                 return (
                   <SwiperSlide>
                     {p && (

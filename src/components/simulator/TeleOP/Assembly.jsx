@@ -1,9 +1,9 @@
+import { Physics } from "@react-three/cannon";
 import React from "react";
 import { Canvas } from "react-three-fiber";
-import { Physics } from "@react-three/cannon";
-import Scena from "./Scena";
-import "../canvas.scss"
 import Overlay from "../Overlay";
+import "../canvas.scss";
+import Scena from "./Scena";
 
 function Assembly() {
     return (

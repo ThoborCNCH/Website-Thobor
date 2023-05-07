@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Firestore from "../utils/Firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth } from "@firebase/auth";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Firestore from "../utils/Firestore";
 import Placeholder from "../utils/Placeholder";
 import "./admin.scss";
 
 const firestore = new Firestore();
-const storage = getStorage();
 const auth = getAuth();
 
 const ids = ["G41BaSVvR2P146qD7C1QJvg1XWR2", "16FCY5StAZUzmLfSZqWniuGs7lo1"];

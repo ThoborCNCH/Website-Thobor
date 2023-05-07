@@ -94,9 +94,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
        ${JSON.stringify(h.pret)} </li>`;
     });
 
-    const {
-      tel, adress, oras, zip
-    } = form.current.elements;
+    const { tel, adress, oras, zip } = form.current.elements;
 
     a += `</ul>
           <h2>Pret final: ${(total + ship).toLocaleString("en-US")}</h2>
@@ -144,8 +142,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
       );
   };
   return (
-    <>
-      {" "}
+    <div className="all">
       <div style={{ background: "#2f2f2f" }}>
         <img
           src={require("../../img/cart_banner.svg").default}
@@ -168,7 +165,9 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
             {!user ? (
               <tr>
                 <td>
-                  <h3>Logheaza te ca sa adaugi in cos produse</h3>
+                  <h3 className="no">
+                    Logheaza te ca sa adaugi in cos produse
+                  </h3>
                 </td>
               </tr>
             ) : products && products.length !== 0 ? (
@@ -225,7 +224,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
                 );
               })
             ) : (
-              <h3>Cosul este gol</h3>
+              <h3 className="no">Cosul este gol</h3>
             )}
           </tbody>
         </table>
@@ -239,7 +238,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
             </div>
             <div className="input_group">
               <h4>Adresa livrarii</h4>
-              <input type="text" name="adress"  />
+              <input type="text" name="adress" />
             </div>
           </div>
           <div className="row">
@@ -286,10 +285,10 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
           </div>
         </div>
       </form>
-      <Svg/>
-      <Contact/>
-      <Up/>
-    </>
+      <Svg />
+      <Contact />
+      <Up />
+    </div>
   );
 }
 

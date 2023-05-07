@@ -1,15 +1,14 @@
-import React, { Suspense, useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { Vector3, Quaternion } from 'three'
-import { useFrame } from 'react-three-fiber';
 import { useBox, useCylinder, useRaycastVehicle } from '@react-three/cannon';
+import { useGLTF } from '@react-three/drei';
+import React, { Suspense, useRef } from 'react';
+import { useFrame } from 'react-three-fiber';
+import { Quaternion, Vector3 } from 'three';
 
-import { useWheels } from './useWheels';
-import { useControls } from './useControls';
-import { WheelDebug } from './WheelDebug';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Brat from './Brat';
+import { WheelDebug } from './WheelDebug';
+import { useControls } from './useControls';
+import { useWheels } from './useWheels';
 
 export default function Lokione(props) {
 

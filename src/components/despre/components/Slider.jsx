@@ -1,5 +1,5 @@
 // bad animation handling. timing is 2x too long
-import React, { useEffect } from "react";
+import React from "react";
 
 class Slider extends React.Component {
   constructor() {

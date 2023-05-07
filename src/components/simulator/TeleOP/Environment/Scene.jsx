@@ -1,6 +1,5 @@
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import React, { Suspense } from "react";
-import { PerspectiveCamera } from "@react-three/drei";
 
 function Scene() {
 

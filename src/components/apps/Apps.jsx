@@ -1,42 +1,30 @@
-import React from "react";
-import App from "./components/App";
-import "./apps.scss";
-import Up from "../utils/Up";
-import Contact from "../utils/Contact";
-import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React, { useEffect, useState } from "react";
+import Contact from "../utils/Contact";
+import Up from "../utils/Up";
+import "./apps.scss";
+import App from "./components/App";
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
 import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import Firestore from "../utils/Firestore";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
-  authDomain: "thobor-9436b.firebaseapp.com",
-  projectId: "thobor-9436b",
-  storageBucket: "thobor-9436b.appspot.com",
-  messagingSenderId: "496274391107",
-  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
-});
-
-const firestore = firebase.firestore();
+const firestore = new Firestore();
 
 function Apps() {
+  const [apps, setApps] = useState([]);
+  const getApps = async () => {
+    await firestore.sortdata("apps", "createAt", "desc").then((res) => {
+      setApps(res);
+    });
+  };
+
   useEffect(() => {
     AOS.init();
+    getApps();
   }, []);
-  const appsRef = firestore.collection("apps");
-
-  const query_app = appsRef.orderBy("createAt", "desc");
-
-  const [apps] = useCollectionData(query_app, { idField: "id" });
-
-  useEffect(() => {
-    apps && console.log(apps[0]);
-  }, [apps]);
 
   return (
     <>

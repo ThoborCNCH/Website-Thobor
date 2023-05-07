@@ -1,23 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, limit, orderBy } from "firebase/firestore";
-import {
-  updateDoc,
-  collection,
-  getDocs,
-  doc,
-  addDoc,
-  deleteDoc,
-  getDoc,
-  query,
-  where,
-} from "firebase/firestore";
-import "firebase/firestore";
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, updateDoc, where } from "firebase/firestore";
 /**
  * REACT_APP_APIKEY= AIzaSyAA7EhvqsU84_G03JK4Z_98M_z0cxsua8c,
 REACT_APP_AUTHDOMAIN= ecommerce-ed019.firebaseapp.com,

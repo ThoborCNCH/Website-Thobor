@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Contact from "../utils/Contact";
+import Svg from "../utils/Svg";
+import Up from "../utils/Up";
 import "./blog_post.scss";
 import Slider from "./components/Slider";
-import Svg from "../utils/Svg";
-import Contact from "../utils/Contact";
-import Up from "../utils/Up";
-import { useParams } from "react-router-dom";
 
-import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
-import { async } from "@firebase/util";
 
 const firestore = new Firestore();
 

@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
-import "./blog.scss";
-import Post from "./components/Post";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React, { useEffect } from "react";
 import Contact from "../utils/Contact";
 import Up from "../utils/Up";
-
-import firebase from "firebase/compat/app";
+import "./blog.scss";
+import Post from "./components/Post";
 import "firebase/compat/firestore";
-
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import Firestore from "../utils/Firestore";
 import { useState } from "react";
-import { async } from "@firebase/util";
+import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 

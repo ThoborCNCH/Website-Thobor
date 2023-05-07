@@ -11,31 +11,28 @@ import "firebase/compat/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useState } from "react";
+import Firestore from "../utils/Firestore";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
-  authDomain: "thobor-9436b.firebaseapp.com",
-  projectId: "thobor-9436b",
-  storageBucket: "thobor-9436b.appspot.com",
-  messagingSenderId: "496274391107",
-  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
-});
-
-const firestore = firebase.firestore();
+const firestore = new Firestore();
 
 function Team() {
-  const teamRef = firestore.collection("team_member");
-  const aniRef = firestore.collection("ani");
-
-  const query_team = teamRef.orderBy("createAt", "desc");
-  const query_ani = aniRef.orderBy("createAt", "desc");
-
-  const [team] = useCollectionData(query_team, { idField: "id" });
-  const [ani] = useCollectionData(query_ani, { idField: "id" });
+  const [ani, setAni] = useState([]);
+  const [team, setTeam] = useState([]);
+  const getAni = async () => {
+    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
+      setAni(res);
+      await firestore.readDocuments("team_member").then((res) => {
+        setTeam(res);
+      });
+    });
+  };
 
   useEffect(() => {
+    getAni();
     AOS.init();
   }, []);
+
   return (
     <div style={{ background: "#2f2f2f" }}>
       <img
@@ -52,7 +49,7 @@ function Team() {
             key={ani.id}
             persoane={[
               team &&
-              team.filter((te) => {
+                team.filter((te) => {
                   if (te.ani == ani.ani)
                     return {
                       key: te.id,

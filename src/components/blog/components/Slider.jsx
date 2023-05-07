@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import classNames from "classnames";
+import React, { useEffect, useState } from "react";
 
 const Slider = (props) => {
   const [activeSlide, setActiveSlide] = useState(-1);

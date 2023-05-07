@@ -12,6 +12,10 @@
   min-height: 100vh;
   position: relative;
   padding-top: 50px;
+  background: url("../../img/cevaidksimcer.png");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top;
 
   @import "./style/post";
 

@@ -1,12 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import AOS from "aos";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Firestore from "../../utils/Firestore";
 import Placeholder from "../../utils/Placeholder";
 import "../style/product.scss";
-import { useEffect } from "react";
-import AOS from "aos";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useState } from "react";
-import Firestore from "../../utils/Firestore";
 const firestore = new Firestore();
 
 function Product({

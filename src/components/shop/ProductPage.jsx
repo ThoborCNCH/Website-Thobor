@@ -1,19 +1,16 @@
-import React, { useRef } from "react";
-import "./style/product_page.scss";
-import Firestore from "../utils/Firestore";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Firestore from "../utils/Firestore";
 import Placeholder from "../utils/Placeholder";
 import Text from "../utils/Text";
-import { Link } from "react-router-dom";
+import "./style/product_page.scss";
 // import "../blog/blog_post.scss";
-import Up from "../utils/Up";
-import Slider from "../blog/components/Slider";
 import AOS from "aos";
+import Slider from "../blog/components/Slider";
 import Contact from "../utils/Contact";
 import Svg from "../utils/Svg";
+import Up from "../utils/Up";
 import Product from "./components/Product";
 
 const firestore = new Firestore();

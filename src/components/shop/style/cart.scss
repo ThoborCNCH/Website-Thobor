@@ -1,5 +1,10 @@
 @import "../../utils/styles/base";
-
+.all {
+  background: url("../../../img/cevaidksimcer.png");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top;
+}
 .cart {
   display: flex;
   flex-direction: row;
@@ -32,7 +37,7 @@
       tr {
         position: relative;
         display: table-row;
-        background: #8080803b;
+        background: #4b4b4bcc;
         border-bottom: 15px solid transparent;
       }
       td {
@@ -131,7 +136,7 @@
   .form {
     width: 60%;
     padding: 20px;
-    background: #8080803b;
+    background: #4b4b4bcc;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -209,7 +214,7 @@
     }
     .subsect {
       padding: 14px 17px;
-      background: #8080803b;
+      background: #4b4b4bcc;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -241,6 +246,46 @@
           font-size: 17px;
           color: white;
         }
+      }
+    }
+  }
+}
+.no {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+@media screen and (max-width: 800px) {
+  .cart {
+    margin: 50px 20px;
+  }
+  .final {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    .form {
+      width: calc(100% - 40px);
+      margin: 20px;
+      margin-bottom: 30px;
+    }
+    .rez {
+      width: 100%;
+      .subsect {
+        align-items: center;
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .final .form {
+    .row {
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+
+      .input_group {
+        width: 100%;
+        margin-bottom: 10px;
       }
     }
   }

@@ -22,6 +22,8 @@ import { useState } from "react";
 import AdminPage from "./components/admin/AdminPage";
 import ProductPage from "./components/shop/ProductPage";
 import Cart from "./components/shop/Cart";
+import AdminPages from "./components/admin/AdminPages";
+import BlogPage from "./components/admin/components/BlogPage";
 
 const firestore = new Firestore();
 
@@ -101,8 +103,8 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/simulator" element={<Assembly />} />
-        <Route path="/admin" element={<AdminPage />} />
         <Route path="/ce_cauti_ma_aici" element={<Admin />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route
           path="/shop/:categorie/:sort_param?/:price?"
           element={<Shop cos={cos} addit={addit} />}
@@ -119,6 +121,12 @@ function App() {
           }
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
+        {/* <Route path="/admin">
+          <AdminPage>
+            <Route path="/blog" element={<BlogPage />} />
+          </AdminPage>
+        </Route> */}
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

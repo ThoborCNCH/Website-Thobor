@@ -1,44 +1,37 @@
-import React, { useEffect } from "react";
-import Generatie from "./components/Generatie";
-import "./alumni.scss";
-import Contact from "../utils/Contact";
-import Up from "../utils/Up";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Persoana from "./components/AlumniPersoana";
+import React, { useEffect } from "react";
+import Contact from "../utils/Contact";
+import Up from "../utils/Up";
+import "./alumni.scss";
+import Generatie from "./components/Generatie";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
 import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useState } from "react";
+import Firestore from "../utils/Firestore";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyC9bA5NKsStcYRPDDTJFQbFUI1oCX2tq4I",
-  authDomain: "thobor-9436b.firebaseapp.com",
-  projectId: "thobor-9436b",
-  storageBucket: "thobor-9436b.appspot.com",
-  messagingSenderId: "496274391107",
-  appId: "1:496274391107:web:f1711686e690bab69fd4f6",
-});
-
-const firestore = firebase.firestore();
+const firestore = new Firestore();
 
 function Alumni() {
-  const alumniRef = firestore.collection("alumni");
-  const aniRef = firestore.collection("ani");
+  const [ani, setAni] = useState([]);
+  const [alumni, setAlumni] = useState([]);
 
-  const query_alumni = alumniRef.orderBy("createAt", "desc");
-  const query_ani = aniRef.orderBy("createAt", "desc");
-
-  const [alumni] = useCollectionData(query_alumni, { idField: "id" });
-  const [ani] = useCollectionData(query_ani, { idField: "id" });
+  const getAni = async () => {
+    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
+      setAni(res);
+      await firestore.readDocuments("alumni").then((res) => {
+        setAlumni(res);
+      });
+    });
+  };
 
   useEffect(() => {
+    getAni();
     AOS.init();
   }, []);
   return (
