@@ -2,13 +2,13 @@ import { usePlane } from "@react-three/cannon";
 import React, { Suspense, useRef } from "react";
 import { useLoader } from "react-three-fiber";
 import { TextureLoader } from "three";
+import { PereteBox } from "./PereteBox";
 import Cone from "./Cone";
 import { Junction } from './Junction';
-import { PereteBox } from "./PereteBox";
 
 // import FieldTexture from './light_field.jpg';
-import Ground from "./Ground";
 import FieldTexture from './teren.png';
+import Ground from "./Ground";
 
 function Field() {
 
@@ -33,10 +33,6 @@ function Field() {
     return (
         // <Suspense fallback={null}>
         <>
-            {/* AICI STACK BLANA DE CONURI TOT CODUL ESTE DEJA PREA TARZIU VREAU SA MOR NU STIU DE CE FAC ASTA
-            DAR STIU CA ESTE O ALEGERE PROASTA SALVAT-MA PANA NU
-            FAC CEVA CE VOI REGRETA PENTRU TOT RESTUL
-            DEJA REGRET DAR NU AM ALTE CUVINTE */}
 
             <group>
                 {/* STACK BLANA DE CONURI THO */}

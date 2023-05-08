@@ -40,8 +40,14 @@ function App() {
     setCos(await firestore.getCos(user));
   };
 
+  const [link, setLink] = useState(window.location.pathname);
+
+  useEffect(() => {
+    setLink(window.location.pathname);
+  }, [window.location.pathname]);
   useEffect(() => {
     getCos();
+    console.log(window);
   }, [cos_ev, user]);
 
   const addit = async (id, cant) => {
@@ -136,7 +142,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {link !== "/simulator" && <Footer />}
     </BrowserRouter>
   );
 }

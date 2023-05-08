@@ -1,5 +1,6 @@
-import { useBox, useCylinder, useSpring } from "@react-three/cannon";
 import { useRef } from "react";
+import { useBox, useCylinder, useSpring } from "@react-three/cannon";
+import { CylinderGeometry } from "three";
 
 export const Junction = ({ position, height, planeRef }) => {
 
@@ -23,7 +24,7 @@ export const Junction = ({ position, height, planeRef }) => {
   }), useRef(null));
 
   const [junctionBodyCylinder, junctionAPICylinder] = useCylinder(() => ({
-    args: [0.5, 0.5, height, 32],
+    args: [0.05, 0.05, height, 32],
     position: [position[0], position[1] + height / 2, position[2]],
     mass: 0,
     type: 'Static'
@@ -40,18 +41,18 @@ export const Junction = ({ position, height, planeRef }) => {
   return (
 
     <mesh ref={junctionBodyCylinder}>
-      <cylinderBufferGeometry attach="geometry" args={[0.5, 0.5, height, 32]} />
+      <cylinderGeometry attach="geometry" args={[0.5, 0.5, height, 32]} />
       <meshBasicMaterial attach="material" color="#FFFF00" />
       <mesh position={[0, height / 2 + 0.12 / 2, 0]}>
-        <cylinderBufferGeometry attach="geometry" args={[0.5, 0.5, 0.12, 32]} />
+        <cylinderGeometry attach="geometry" args={[0.5, 0.5, 0.12, 32]} />
         <meshBasicMaterial attach="material" color="#000000" />
       </mesh>
       <mesh position={[0, -height / 2 - 1.5 / 2, 0]}>
-        <cylinderBufferGeometry attach="geometry" args={[0.5 / 2, 0.5 / 2, 1.5, 32]} />
+        <cylinderGeometry attach="geometry" args={[0.5 / 2, 0.5 / 2, 1.5, 32]} />
         <meshBasicMaterial attach="material" color="#808080" />
       </mesh>
       <mesh position={[0, -height / 2, 0]}>
-        <cylinderBufferGeometry attach="geometry" args={[1.5, 1.5, .01, 32]} />
+        <cylinderGeometry attach="geometry" args={[1.5, 1.5, .01, 32]} />
         <meshBasicMaterial attach={"material"} color="#5B5C5C" />
       </mesh>
     </mesh>

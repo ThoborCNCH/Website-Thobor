@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Scene from "./Environment/Scene";
 import Field from "./Field/Field";
+import { Stats } from "@react-three/drei";
 import Lokione from "./Robot/Lokione";
 
 function Scena() {
