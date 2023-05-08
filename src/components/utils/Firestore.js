@@ -20,7 +20,6 @@ export default class Firestore {
       messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
       appId: process.env.REACT_APP_APPID,
     };
-    console.log(firebaseConfig);
 
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore();
