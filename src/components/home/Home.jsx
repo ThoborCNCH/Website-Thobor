@@ -25,7 +25,7 @@ function Home() {
 
   const [premii, setPremii] = useState([]);
   const getPremii = async () => {
-    await firestore.sortdata("premii", "an", "desc").then(res => {
+    await firestore.sortdata("premii", "an", "asc").then(res => {
       setPremii(res);
     })
   }

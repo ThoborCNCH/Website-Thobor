@@ -9,6 +9,10 @@
   align-items: center;
   position: relative;
   margin-top: 80px;
+  background: url("../../img/cevaidksimcer.png");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top;
   .top {
     width: 90%;
     height: 70px;
@@ -179,10 +183,6 @@
       flex-wrap: wrap;
       flex-direction: row;
       padding: 0 30px;
-      background: url("../../img/cevaidksimcer.png");
-      background-repeat: repeat;
-      background-size: contain;
-      background-position: top;
     }
   }
 }
