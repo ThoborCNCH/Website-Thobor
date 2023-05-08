@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+![Logo](https://thobor.ro/static/media/logo_thobor_celalalt.80e00709314501a3abba.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Thobor
 
-In the project directory, you can run:
+    Echipa de robotică, formată din 15 liceeni ai Colegiului 
+    Național “Calistrat Hogaș” Tecuci, alături de mentori, 
+    îndrăznim să visăm. Plecată dintr-o zonă fără tradiții în 
+    domeniu, echipa și-a propus să aducă în comunitate o idee 
+    nouă, care să-i inspire pe toți colegii, care să deschidă noi 
+    direcții de evoluție pentru copii.
+        
 
-### `yarn start`
+## Demo
+[link catre site](https://thobor.ro/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `yarn test`
+**Client:** React.js, HTML, SCSS, THREE.js, Cannon.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Server:** Firebase 
 
-### `yarn build`
+## Color Reference
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Black | ![#2f2f2f](https://via.placeholder.com/10/0a192f?text=+) #2f2f2f |
+| Main green | ![#26b33e](https://via.placeholder.com/10/f8f8f8?text=+) #26b33e |
+| Light green | ![#6ef188](https://via.placeholder.com/10/00b48a?text=+) #6ef188 |
+| Dark green | ![#146622](https://via.placeholder.com/10/00b48a?text=+) #146622 |
+| Yellow | ![#FFFF00](https://via.placeholder.com/10/00b48a?text=+) #FFFF00 |
+  
+## Run Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Clone the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  git clone https://github.com/DragutuMatei/lucru.git
+```
 
-### `yarn eject`
+Go to the project directory
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  cd my-project
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Install dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+  yarn install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start the server
 
-## Learn More
+```bash
+  yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Screenshots
 
-### Code Splitting
+![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569705/thobor/jbuehwdj7h5yxec6ccpt.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569705/thobor/warbxkwpjwhttamsw8nl.png)
 
-### Analyzing the Bundle Size
+![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569706/thobor/zhmf2iyf2qmzswtsapd8.png)
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [@Drăguțu Matei](https://github.com/DragutuMatei)
+- [@Nașu Teodor Cristian](https://github.com/NasuTeodor)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Support
 
-### Advanced Configuration
+For support, email mateidr7@gmail.com.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
