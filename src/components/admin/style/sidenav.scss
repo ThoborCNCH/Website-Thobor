@@ -1,0 +1,44 @@
+@import "../../utils/styles/base";
+
+.sidenav {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #4b4b4bcc;
+  padding-top: 70px;
+  position: relative;
+  top: 0px;
+  border-right: 2px solid $light_green;
+
+  .item {
+    width: 100%;
+
+    a {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      color: white;
+      position: relative;
+      padding: 15px 45px;
+      font-size: 20px;
+      svg {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+      }
+
+      span::first-letter {
+        text-transform: uppercase;
+      }
+
+      &:hover {
+        background: #2d2d2dcc;
+      }
+    }
+  }
+}
+.active{
+  background: #2d2d2dcc;
+}

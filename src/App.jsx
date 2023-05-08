@@ -24,6 +24,12 @@ import ProductPage from "./components/shop/ProductPage";
 import Cart from "./components/shop/Cart";
 import AdminPages from "./components/admin/AdminPages";
 import BlogPage from "./components/admin/components/BlogPage";
+import ShopPage from "./components/admin/components/ShopPage";
+import AppsPage from "./components/admin/components/AppsPage";
+import AlumniPage from "./components/admin/components/AlumniPage";
+import MembersPage from "./components/admin/components/MembersPage";
+import PremiiPage from "./components/admin/components/PremiiPage";
+import SponsorsPage from "./components/admin/components/SponsorsPage";
 
 const firestore = new Firestore();
 
@@ -103,8 +109,6 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/simulator" element={<Assembly />} />
-        <Route path="/ce_cauti_ma_aici" element={<Admin />} />
-        <Route path="/admin" element={<AdminPage />} />
         <Route
           path="/shop/:categorie/:sort_param?/:price?"
           element={<Shop cos={cos} addit={addit} />}
@@ -121,11 +125,16 @@ function App() {
           }
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
-        {/* <Route path="/admin">
-          <AdminPage>
-            <Route path="/blog" element={<BlogPage />} />
-          </AdminPage>
-        </Route> */}
+
+        <Route path="/admin" element={<AdminPages />}>
+          <Route path="/admin/blog" element={<BlogPage />} />
+          <Route path="/admin/shop" element={<ShopPage />} />
+          <Route path="/admin/apps" element={<AppsPage />} />
+          <Route path="/admin/alumni" element={<AlumniPage />} />
+          <Route path="/admin/members" element={<MembersPage />} />
+          <Route path="/admin/premii" element={<PremiiPage />} />
+          <Route path="/admin/sponsors" element={<SponsorsPage />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

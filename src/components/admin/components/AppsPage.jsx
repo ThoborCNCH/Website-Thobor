@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Apps() {
+function AppsPage() {
   return (
     <div>Apps</div>
   )
 }
 
-export default Apps
+export default AppsPage
