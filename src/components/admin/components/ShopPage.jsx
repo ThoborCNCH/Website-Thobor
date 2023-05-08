@@ -263,16 +263,6 @@ function ShopPage() {
       });
   };
 
-  const checkAdmin = () => {
-    if (user) {
-      if (ids.includes(user.uid)) {
-      } else {
-        alert("Nu ai acces aici");
-      }
-    } else {
-      alert("Logheaza te ca sa ai acces aici");
-    }
-  };
   const signingoagle = async () => {
     await firestore.signInWithGoogle();
   };

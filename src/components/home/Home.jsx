@@ -66,10 +66,8 @@ function Home() {
           <img className="cerc" src={require("../../img/cerc1.png")} alt="" />
           <img className="cerc" src={require("../../img/cerc2.png")} alt="" />
         </div>
-        {/* AICI?--------------- */}
       </div>
       <div className="cifre">
-        {" "}
         <div className="custom-shape-divider-bottom-1669758197">
           <svg
             data-name="Layer 1"
