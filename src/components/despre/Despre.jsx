@@ -58,7 +58,6 @@ function Despre() {
       </div>
 
       <Stem />
-      {/* <Slider /> */}
       <DateContact />
       <Contact />
       <Up />
