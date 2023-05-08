@@ -1,7 +1,8 @@
 import React from "react";
 
 function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
-
+ 
+  //console.log(delete_this)
   return no ? (
     <div className="alumn">
       <div className="top">
@@ -25,7 +26,14 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
           dangerouslySetInnerHTML={{ __html: text }}
         />
       </div>
-      <button className="button" onClick={() => delete_this(id)}>
+      <button
+        className="button"
+        onClick={() => {
+          // //console.log(id)
+          // //console.log(delete_this)
+          delete_this(id);
+        }}
+      >
         delete this one
       </button>
       <img

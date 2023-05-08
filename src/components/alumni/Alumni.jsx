@@ -37,7 +37,7 @@ function Alumni() {
   return (
     <div style={{ background: "#2f2f2f" }}>
       <img
-        src={require("../../img/alumni_banner.svg").default}
+        src={require("../../img/team_banner.svg").default}
         alt=""
         className="header"
       />
@@ -52,7 +52,6 @@ function Alumni() {
               alumni &&
                 alumni.filter((te) => {
                   if (te.ani == ani.ani) {
-                    console.log(te.poza);
                     return {
                       key: te.id,
                       no: false,

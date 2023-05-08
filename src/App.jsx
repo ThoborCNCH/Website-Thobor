@@ -9,9 +9,7 @@ import Despre from "./components/despre/Despre";
 import Apps from "./components/apps/Apps";
 import Sponsors from "./components/sponsors/Sponsors";
 import Alumni from "./components/alumni/Alumni";
-import Team from "./components/team/Team";
 import Assembly from "./components/simulator/TeleOP/Assembly";
-import Admin from "./components/admin/Admin";
 import NotFound from "./components/notfound/NotFound";
 import Incercare from "./components/utils/Incercare";
 import { useEffect } from "react";
@@ -19,7 +17,6 @@ import Shop from "./components/shop/Shop";
 import Firestore from "./components/utils/Firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
-import AdminPage from "./components/admin/AdminPage";
 import ProductPage from "./components/shop/ProductPage";
 import Cart from "./components/shop/Cart";
 import AdminPages from "./components/admin/AdminPages";
@@ -27,10 +24,10 @@ import BlogPage from "./components/admin/components/BlogPage";
 import ShopPage from "./components/admin/components/ShopPage";
 import AppsPage from "./components/admin/components/AppsPage";
 import AlumniPage from "./components/admin/components/AlumniPage";
-import MembersPage from "./components/admin/components/MembersPage";
 import PremiiPage from "./components/admin/components/PremiiPage";
 import SponsorsPage from "./components/admin/components/SponsorsPage";
 import Index from "./components/admin/components/Index";
+import AniPage from "./components/admin/components/AniPage";
 
 const firestore = new Firestore();
 
@@ -106,8 +103,7 @@ function App() {
         <Route path="/despre" element={<Despre />} />
         <Route path="/apps" element={<Apps />} />
         <Route path="/download" element={<Apps />} />
-        <Route path="/alumni" element={<Alumni />} />
-        <Route path="/team" element={<Team />} />
+        <Route path="/team" element={<Alumni />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/simulator" element={<Assembly />} />
         <Route
@@ -132,10 +128,10 @@ function App() {
           <Route path="/admin/blog" element={<BlogPage />} />
           <Route path="/admin/shop" element={<ShopPage />} />
           <Route path="/admin/apps" element={<AppsPage />} />
-          <Route path="/admin/alumni" element={<AlumniPage />} />
-          <Route path="/admin/members" element={<MembersPage />} />
+          <Route path="/admin/team" element={<AlumniPage />} />
           <Route path="/admin/premii" element={<PremiiPage />} />
           <Route path="/admin/sponsors" element={<SponsorsPage />} />
+          <Route path="/admin/ani" element={<AniPage />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

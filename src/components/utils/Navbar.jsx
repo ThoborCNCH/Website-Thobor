@@ -80,9 +80,6 @@ function Navbar() {
               <Link to="/apps">Apps</Link>
             </li>
             <li>
-              <Link to="/alumni">Alumni</Link>
-            </li>
-            <li>
               <Link to="/team">Team</Link>
             </li>
             <li>

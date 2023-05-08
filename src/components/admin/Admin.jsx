@@ -24,8 +24,8 @@ const firestore = new Firestore();
 var ad = {};
 
 function Admin() {
-  const [blogindex, setBlogIndex] = useState(0);
   const [user, loading, error] = useAuthState(firestore.getuser());
+  const [blogindex, setBlogIndex] = useState(0);
 
   const signingoagle = async () => {
     await firestore.signInWithGoogle();
@@ -71,7 +71,6 @@ function Admin() {
     });
   };
 
-  const delete_alumni = async (e) => {};
   const [urls, setUrls] = useState([]);
 
   const [images, setImages] = useState([]);
@@ -806,8 +805,8 @@ function Admin() {
               </div>
               <hr />
               <div className="ani_part">
-                <h1>FOR ANI</h1>
                 <div className="form">
+                <h1>FOR ANI</h1>
                   <h4 className="info">
                     Anul se va scrie in formatul an-an, ex: 2021-2022
                   </h4>{" "}
@@ -876,8 +875,8 @@ function Admin() {
               </div>
               <hr />
               <div className="alumni_part">
-                <h1>FOR ALUMNI</h1>
                 <div className="form">
+                <h1>FOR ALUMNI</h1>
                   <select
                     value={anistate}
                     onChange={(e) => setAni(e.target.value)}

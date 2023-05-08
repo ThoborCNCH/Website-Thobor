@@ -1,12 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import Persoana from "./AlumniPersoana";
-// const a = ;
+import { useEffect } from "react";
 
 function Generatie({ years, team, persoane, no }) {
   return no ? (
@@ -44,27 +43,24 @@ function Generatie({ years, team, persoane, no }) {
         className="mySwiper"
       >
         {persoane &&
-          persoane.map(
-            (pers) =>
-              pers &&
-              pers.map((p) => {
-                return (
-                  <SwiperSlide>
-                    {p && (
-                      <Persoana
-                        no={true}
-                        img={p.img}
-                        id={p.id}
-                        delete_this={p.delete_this_mama}
-                        nume={p.nume}
-                        faculta={p.faculta}
-                        text={p.text}
-                      />
-                    )}
-                  </SwiperSlide>
-                );
-              })
-          )}
+          persoane.map((p) => {
+            //console.log(p.delete_this_mama)
+            return (
+              <SwiperSlide>
+                {p && (
+                  <Persoana
+                    no={true}
+                    img={p.img}
+                    id={p.id}
+                    delete_this={p.delete_this_mama}
+                    nume={p.nume}
+                    faculta={p.faculta}
+                    text={p.text}
+                  />
+                )}
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </>
   ) : (
