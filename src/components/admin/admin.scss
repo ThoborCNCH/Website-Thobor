@@ -224,10 +224,10 @@
 // @import "../utils/styles/premii";
 
 .adminpages {
-  display: flex;
+  display: grid;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: flex-end;
+  align-items: flex-end;
 
   .adminpage {
     margin-top: 70px;
@@ -249,12 +249,79 @@
       align-items: flex-start;
       flex-direction: column;
 
+      .filters {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+
+        button {
+          cursor: pointer;
+          border: none;
+          outline: none;
+          padding: 10px 20px;
+          margin: 10px 15px;
+          background: $dark_green;
+          color: white;
+          font-size: 20px;
+        }
+      }
+      .prods {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 20px;
+
+        h2 {
+          color: white;
+          margin-bottom: 10px;
+        }
+        p {
+          color: white;
+          margin-bottom: 10px;
+        }
+        .prod {
+          padding: 20px;
+          border-bottom: 5px solid $light_green;
+          margin-bottom: 20px;
+          .buttons {
+            margin: 15px 0;
+            a, button{
+              cursor: pointer;
+            }
+            a button {
+              border: none;
+              cursor: pointer;
+              background: $main_green;
+              color: white;
+              padding: 0.25rem 0.5rem;
+              font-size: 0.875rem;
+              line-height: 1.5;
+              border-radius: 0;
+              margin-right: 20px;
+              border: 2px solid white;
+            }
+          }
+        }
+      }
       h1 {
         text-align: center;
         font-size: 30px;
         font-weight: 800;
         font-family: $font_anek;
         color: $dark_green;
+      }
+      .cats{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        h2{
+          margin: 10px;
+          color: white;
+        }
       }
       .form {
         width: 100%;
@@ -263,18 +330,7 @@
         justify-content: flex-start;
         align-items: center;
         position: relative;
-        
-        .delete {
-          border: none;
-          cursor: pointer;
-          background: #dc3545;
-          color: white;
-          padding: 0.25rem 0.5rem;
-          font-size: 0.875rem;
-          line-height: 1.5;
-          border-radius: 0;
-          border: 2px solid white;
-        }
+
         input,
         select,
         textarea {
@@ -298,7 +354,7 @@
           color: white;
           text-align: left;
           width: calc(100% - 100px);
-          margin: 5px 10px;          
+          margin: 5px 10px;
         }
 
         .info {
@@ -312,7 +368,7 @@
             content: "*";
           }
         }
-        .imgg{
+        .imgg {
           display: flex;
           justify-content: space-around;
           align-items: center;
@@ -321,4 +377,15 @@
       }
     }
   }
+}
+.delete {
+  border: none;
+  cursor: pointer;
+  background: #dc3545;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0;
+  border: 2px solid white;
 }

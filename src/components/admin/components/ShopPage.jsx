@@ -276,7 +276,18 @@ function ShopPage() {
   const signingoagle = async () => {
     await firestore.signInWithGoogle();
   };
+  const [clasa, setClasa] = useState("fas fa-caret-right");
+  const [h, setH] = useState("0");
 
+  function more() {
+    if (clasa === "fas fa-caret-up") {
+      setClasa("fas fa-caret-right");
+      setH("0");
+    } else {
+      setClasa("fas fa-caret-up");
+      setH("auto");
+    }
+  }
   return (
     <div className="adminpage">
       <div className="shop_part">
@@ -473,7 +484,6 @@ function ShopPage() {
             <div>
               {updateItem.images &&
                 updateItem.images.map((img, index) => {
-                  // if (typeof img === "string")
                   const remake = (e) => {
                     return URL.createObjectURL(
                       new Blob([e], { type: "application/zip" })
@@ -528,337 +538,188 @@ function ShopPage() {
             </button>
           </section>
         )}
-        <>
-          <div style={{ margin: "0 30px" }}>
-            <section className="prods">
-              {updateState && (
-                <section id="update">
-                  <h1>Update form:</h1>
-                  <textarea
-                    placeholder="nume"
-                    onChange={(e) => updateF("nume", e.target.value)}
-                    cols="30"
-                    required
-                    rows="10"
-                    value={updateItem.nume}
-                  ></textarea>
-                  <textarea
-                    required
-                    name=""
-                    id=""
-                    onChange={(e) =>
-                      updateF("descriere_scurta", e.target.value)
-                    }
-                    cols="30"
-                    value={updateItem.descriere_scurta}
-                    rows="10"
-                    placeholder="descriere_scurta"
-                  ></textarea>
-                  <textarea
-                    name=""
-                    id=""
-                    onChange={(e) => updateF("descriere_lunga", e.target.value)}
-                    value={updateItem.descriere_lunga}
-                    required
-                    cols="30"
-                    rows="10"
-                    placeholder="descriere_lunga"
-                  ></textarea>
-                  <textarea
-                    onChange={(e) => updateF("info", e.target.value)}
-                    name=""
-                    value={updateItem.info}
-                    id=""
-                    required
-                    cols="30"
-                    rows="10"
-                    placeholder="info"
-                  ></textarea>
-                  <select
-                    required
-                    onChange={(e) => updateF("categories", e.target.value)}
-                  >
-                    <option value={updateItem.categories}>
-                      Alege o caterogie
-                    </option>
-                    {categories &&
-                      categories.map((cat) => (
-                        <option key={cat.categorie} value={cat.categorie}>
-                          {cat.categorie}
-                        </option>
-                      ))}
-                  </select>
-                  <input
-                    value={updateItem.pret}
-                    required
-                    type="number"
-                    onChange={(e) =>
-                      updateF("pret", parseFloat(e.target.value))
-                    }
-                    placeholder="pret"
-                  />
-                  <input
-                    value={updateItem.old_pret}
-                    type="number"
-                    onChange={(e) =>
-                      updateF("old_pret", parseFloat(e.target.value))
-                    }
-                    placeholder="old_pret"
-                  />
-                  <input
-                    value={updateItem.date}
-                    required
-                    type="date"
-                    onChange={(e) => updateF("date", e.target.value)}
-                    placeholder="date"
-                  />
-                  <input
-                    type="number"
-                    value={updateItem.cantitate}
-                    required
-                    onChange={(e) =>
-                      updateF("cantitate", parseFloat(e.target.value))
-                    }
-                    placeholder="cantitate"
-                  />
+        <div className="filters">
+          <button onClick={setLasts}>
+            Arata produsele cu cantitatea {"<"} 30{" "}
+          </button>
+          <button onClick={getProducts}>Arata toate produsele</button>
+          <button
+            onClick={async () => {
+              await firestore.readDocuments("products").then((res) => {
+                res.sort((a, b) => b.rating - a.rating);
+                setProducts(res);
+              });
+            }}
+          >
+            Arata cele mai apreciate produse produsele
+          </button>
+        </div>
 
-                  <div>
-                    {updateItem.images &&
-                      updateItem.images.map((img, index) => {
-                        // if (typeof img === "string")
-                        const remake = (e) => {
-                          return URL.createObjectURL(
-                            new Blob([e], { type: "application/zip" })
-                          );
-                        };
-
-                        if (img.slice(0, 5) === "https")
-                          return (
-                            <>
-                              <div>
-                                <img src={img} style={{ width: 100 }} />
-                                <button onClick={() => handleDelete(index)}>
-                                  delete img
-                                </button>
-                              </div>
-                              <hr />
-                            </>
-                          );
-                        else {
-                          return (
-                            <>
-                              <div>
-                                <img src={remake(img)} style={{ width: 100 }} />
-                                <button onClick={() => handleDelete(index)}>
-                                  delete img
-                                </button>
-                              </div>
-                              <hr />
-                            </>
-                          );
-                        }
-                      })}
-                    <input type="file" multiple onChange={addimgs} />
-                  </div>
-                  <button onClick={updateFCT}>update</button>
-                  <button
-                    onClick={() => {
-                      // // console.log(updateItem);
-                      setUpdateState(false);
-                    }}
-                  >
-                    inchide form
-                  </button>
-                </section>
-              )}
-              <hr />
-              <br />
-              <button onClick={setLasts}>
-                Arata produsele cu cantitatea {"<"} 30{" "}
-              </button>
-              <button onClick={getProducts}>Arata toate produsele</button>
-              <button
-                onClick={async () => {
-                  await firestore.readDocuments("products").then((res) => {
-                    res.sort((a, b) => b.rating - a.rating);
-                    setProducts(res);
-                  });
-                }}
-              >
-                Arata cele mai apreciate produse produsele
-              </button>
-              <br />
-              <h1>Produse: </h1>
-              {products &&
-                products.map((prod) => {
-                  return (
-                    <React.Fragment key={prod.id}>
-                      <br />
-                      <div style={{ margin: "0 20px" }}>
-                        <div className="buttons">
-                          <a href="#update">
-                            <button onClick={() => update(prod)}>
-                              update produs
+        <div className="stemText">
+          <div className="more">
+            <div className="press" onClick={more}>
+              <i className={clasa}></i>
+              <span id="STEM">
+                Arată toate produsele {"("}
+                {products && products.length}
+                {")"}
+              </span>
+            </div>
+            <div
+              className="hide"
+              style={{ height: h, transition: "0.5s ease-in-out" }}
+            >
+              <section className="prods" style={{ width: "100%" }}>
+                <h1>Produse: </h1>
+                {products &&
+                  products.map((prod) => {
+                    return (
+                      <React.Fragment key={prod.id}>
+                        <div className="prod">
+                          <div className="buttons">
+                            <a href="#update">
+                              <button onClick={() => update(prod)}>
+                                update produs
+                              </button>
+                            </a>
+                            <button
+                              className="delete"
+                              onClick={() => deletef(prod.id)}
+                            >
+                              delete produs
                             </button>
-                          </a>
-                          <button onClick={() => deletef(prod.id)}>
-                            delete produs
-                          </button>
-                        </div>
-                        <h3>nume produs: {prod.nume}</h3>
-                        <h4>
-                          Vezi produs:{" "}
-                          <a href={`/prod/${prod.id}`} target="blank">
-                            Link catre vizualizare produs
-                          </a>
-                        </h4>
-                        <h5>data: {prod.date}</h5>
-                        <h5>categorie: {prod.categories}</h5>
-                        <h5>cantitate ramasa: {prod.cantitate}</h5>
-                        <h5>pret: {Placeholder.makenumber(prod.pret)}</h5>
-                        {prod.old_pret && prod.old_pret !== 0 && (
-                          <h5>
-                            pret vechi: {Placeholder.makenumber(prod.old_pret)}
-                          </h5>
-                        )}
-                        <div>
-                          {prod.images &&
-                            prod.images.map((img) => (
-                              <img
-                                src={img}
-                                key={img}
-                                style={{ width: 100, margin: 10 }}
-                              />
-                            ))}
-                        </div>
-                        <h5>rating: {prod.rating}</h5>
-                        <p>Descriere scurta: {prod.descriere_scurta}</p>
-                        <p>Descriere lunga: {prod.descriere_lunga}</p>
-                        <p>Informatii: {prod.info}</p>
-                        <h5>Reviews: </h5>
-                        <div>
-                          {prod && prod.reviews ? (
-                            prod.reviews.map((rev, index) => {
-                              return (
-                                <>
-                                  <div className="media mb-4" key={index}>
-                                    {rev.user.img && (
-                                      <img
-                                        src={rev.user.img}
-                                        alt="Image"
-                                        className="img-fluid mr-3 mt-1"
-                                        style={{
-                                          width: 45,
-                                          borderRadius: "90%",
-                                        }}
-                                      />
-                                    )}
-                                    <div className="media-body">
-                                      <h6>
-                                        {rev.user.nume}
-                                        <small>
-                                          {" "}
-                                          - <i>{rev.date}</i>
-                                        </small>
-                                      </h6>
-                                      <div className="text-primary mb-2">
-                                        {[...Array(5)].map((e, index) => {
-                                          return (
-                                            <>
-                                              {index >= rev.rating ? (
-                                                <i
-                                                  className="far fa-star"
-                                                  key={index}
-                                                ></i>
-                                              ) : (
-                                                <i
-                                                  className="fas fa-star"
-                                                  key={index}
-                                                ></i>
-                                              )}
-                                            </>
-                                          );
-                                        })}
+                          </div>
+                          <h2>nume produs: {prod.nume}</h2>
+                          <h2>
+                            Vezi produs:{" "}
+                            <a href={`/prod/${prod.id}`} target="blank">
+                              Link catre vizualizare produs
+                            </a>
+                          </h2>
+                          <h2>data: {prod.date}</h2>
+                          <h2>categorie: {prod.categories}</h2>
+                          <h2>cantitate ramasa: {prod.cantitate}</h2>
+                          <h2>pret: {Placeholder.makenumber(prod.pret)}</h2>
+                          {prod.old_pret && prod.old_pret !== 0 && (
+                            <h2>
+                              pret vechi:{" "}
+                              {Placeholder.makenumber(prod.old_pret)}
+                            </h2>
+                          )}
+                          <div>
+                            {prod.images &&
+                              prod.images.map((img) => (
+                                <img
+                                  src={img}
+                                  key={img}
+                                  style={{ width: 100, margin: 10 }}
+                                />
+                              ))}
+                          </div>
+                          <h2>rating: {prod.rating}</h2>
+                          <p>Descriere scurta: {prod.descriere_scurta}</p>
+                          <p>Descriere lunga: {prod.descriere_lunga}</p>
+                          <p>Informatii: {prod.info}</p>
+                          <h1>Reviews: </h1>
+                          <div>
+                            {prod && prod.reviews ? (
+                              prod.reviews.map((rev, index) => {
+                                return (
+                                  <>
+                                    <div className="review" key={index}>
+                                      <div className="ups">
+                                        {rev.user.img && (
+                                          <img
+                                            src={rev.user.img}
+                                            alt="Image"
+                                            style={{
+                                              width: 45,
+                                              borderRadius: "90%",
+                                            }}
+                                          />
+                                        )}
+                                        <div className="body">
+                                          <h2>
+                                            {rev.user.nume}
+                                            <small>
+                                              {" "}
+                                              - <i>{rev.date}</i>
+                                            </small>
+                                          </h2>
+                                          <div className="stars">
+                                            {[...Array(5)].map((e, index) => {
+                                              return (
+                                                <>
+                                                  {index >= rev.rating ? (
+                                                    <i
+                                                      style={{
+                                                        color: "#FFFF00",
+                                                      }}
+                                                      className="far fa-star"
+                                                      key={index}
+                                                    ></i>
+                                                  ) : (
+                                                    <i
+                                                      className="fas fa-star"
+                                                      style={{
+                                                        color: "#FFFF00",
+                                                      }}
+                                                      key={index}
+                                                    ></i>
+                                                  )}
+                                                </>
+                                              );
+                                            })}
+                                          </div>
+                                        </div>
                                       </div>
                                       <p>{rev.review} </p>
-                                      <>
-                                        <button
-                                          className="btn btn-primary px-3"
-                                          onClick={() => {
-                                            delete_rev(rev);
-                                          }}
-                                        >
-                                          Delete review
-                                        </button>
-                                      </>
+                                      <button
+                                        className="button"
+                                        onClick={() => {
+                                          delete_rev(rev);
+                                        }}
+                                      >
+                                        Delete review
+                                      </button>
                                     </div>
-                                  </div>
-                                </>
-                              );
-                            })
-                          ) : (
-                            <h5>Nu sunt reviews pentru acest produs</h5>
-                          )}
+                                  </>
+                                );
+                              })
+                            ) : (
+                              <h5>Nu sunt reviews pentru acest produs</h5>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                      <hr />
-                    </React.Fragment>
-                  );
-                })}
-            </section>
+                        <hr />
+                      </React.Fragment>
+                    );
+                  })}
+              </section>
+            </div>
           </div>
-          <br />
-          <hr />
-          <br />
-          <div style={{ margin: "0 30px" }}>
-            <h1>Mesaje: </h1>
-            {mesajeContact &&
-              mesajeContact.map((mes) => {
-                return (
-                  <>
-                    <div key={mes.id}>
-                      <h4>
-                        {" "}
-                        <b> {mes.nume}</b> -{" "}
-                        <a href={`mailto: ${mes.email}`}>{mes.email}</a>{" "}
-                      </h4>
-                      <h5>
-                        {" "}
-                        <b>-</b>
-                        {mes.subject} <b>-</b>
-                      </h5>
-                      <p>{mes.message}</p>
-                      <button onClick={() => delete_mes(mes.id)}>
-                        Delete mesaj
-                      </button>
-                    </div>
-                    <hr />
-                    <br />
-                  </>
-                );
-              })}
-          </div>
-          <div style={{ margin: "0 30px" }}>
-            <h1>Categorii: </h1>
-            <input type="text" onChange={(e) => setcate(e.target.value)} />
-            <button onClick={addc}>add categorie</button>
-            <br />
-            {categories &&
-              categories.map((cat) => (
-                <>
-                  <div key={cat.categorie}>
-                    <h3> {cat.categorie}</h3>
-                    <button onClick={() => deletecat(cat.id)}>
-                      delete categorie
-                    </button>
-                  </div>
-                  <hr />
-                  <br />
-                  <br />
-                </>
-              ))}
-          </div>
-        </>
+        </div>
+
+        <div className="form">
+          <h4>Categorii</h4>
+          <input type="text" onChange={(e) => setcate(e.target.value)} />
+          <button className="button" onClick={addc}>
+            add categorie
+          </button>
+        </div>
+        <div className="cats">
+          {categories &&
+            categories.map((cat) => (
+              <>
+                <div key={cat.categorie}>
+                  <h2> {cat.categorie}</h2>
+                  <button className="delete" onClick={() => deletecat(cat.id)}>
+                    delete categorie
+                  </button>
+                </div>
+              </>
+            ))}
+        </div>
       </div>
     </div>
   );

@@ -197,7 +197,7 @@ function BlogPage() {
               className="hide"
               style={{ height: h, transition: "0.5s ease-in-out" }}
             >
-              <div className="blog" style={{width:"100%"}}>
+              <div className="blog" style={{ width: "100%" }}>
                 {blog &&
                   blog.map((bl) => {
                     return (

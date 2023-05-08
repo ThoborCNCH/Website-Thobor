@@ -5,9 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: #4b4b4bcc;
+  justify-content: space-around;
+  background: rgb(60, 60, 60);
   padding-top: 70px;
-  position: relative;
+  position: fixed;
+  height: 100vh;
   top: 0px;
   border-right: 2px solid $light_green;
 
@@ -39,6 +41,6 @@
     }
   }
 }
-.active{
+.active {
   background: #2d2d2dcc;
 }

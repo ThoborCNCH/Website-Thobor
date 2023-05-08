@@ -30,6 +30,7 @@ import AlumniPage from "./components/admin/components/AlumniPage";
 import MembersPage from "./components/admin/components/MembersPage";
 import PremiiPage from "./components/admin/components/PremiiPage";
 import SponsorsPage from "./components/admin/components/SponsorsPage";
+import Index from "./components/admin/components/Index";
 
 const firestore = new Firestore();
 
@@ -127,6 +128,7 @@ function App() {
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
 
         <Route path="/admin" element={<AdminPages />}>
+          <Route path="/admin/" element={<Index />} />
           <Route path="/admin/blog" element={<BlogPage />} />
           <Route path="/admin/shop" element={<ShopPage />} />
           <Route path="/admin/apps" element={<AppsPage />} />
