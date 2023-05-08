@@ -1116,8 +1116,8 @@ function Admin() {
               </div>
               <hr />
               <div className="sponsor_part">
-                <h1>FOR SPONSORS</h1>
                 <div className="form">
+                <h1>FOR SPONSORS</h1>
                   <input
                     type="file"
                     accept="image/*"
@@ -1167,8 +1167,8 @@ function Admin() {
                 </div>
               </div>
               <div className="premii_part">
-                <h1>FOR PREMII</h1>
                 <div className="form">
+                <h1>FOR PREMII</h1>
                   <input
                     type="file"
                     accept="image/*"
