@@ -116,10 +116,10 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
 
     await emailjs
       .send(
-        "service_vbtdick",
-        "template_72rwiug",
+        process.env.REACT_APP_SERVICEID_EMAIL,
+        process.env.REACT_APP_TEMPLATEID_EMAIL,
         templateParams,
-        "tA4vg3tHAqs4Dw-eP"
+        process.env.REACT_APP_PUBLICKEY_EMAIL
       )
       .then(
         async (result) => {

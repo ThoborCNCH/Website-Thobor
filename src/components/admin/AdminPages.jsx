@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const firestore = new Firestore();
 
-const ids = ["G41BaSVvR2P146qD7C1QJvg1XWR2", "Rs2G5rJzg2NDEfRnESg3qCF4gYr2"];
+const ids = process.env.REACT_APP_IDS.split(" ");
 
 function AdminPages() {
   const [user, loading, error] = useAuthState(firestore.getuser());
