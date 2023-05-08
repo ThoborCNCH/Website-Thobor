@@ -12,7 +12,6 @@ const auth = getAuth();
 const ids = ["G41BaSVvR2P146qD7C1QJvg1XWR2", "16FCY5StAZUzmLfSZqWniuGs7lo1"];
 
 function AdminPage() {
-  //get categories
   const [mesajeContact, setMesajeContact] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   const [loading_prod, setLoadingPrd] = useState(false);
