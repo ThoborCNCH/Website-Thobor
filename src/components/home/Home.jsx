@@ -63,11 +63,14 @@ function Home() {
             team
           </h2>
         </div>
-        <div className="img" data-aos="fade-left">
-          <img src={main} alt="" />
-          <img className="cerc" src={cerc1} alt="" />
-          <img className="cerc" src={cerc2} alt="" />
-        </div>
+        {
+          main && cerc1 && cerc2 && (
+            <div className="img" data-aos="fade-left">
+              <img src={main} alt="" />
+              <img className="cerc" src={cerc1} alt="" />
+              <img className="cerc" src={cerc2} alt="" />
+            </div>)
+        }
       </div>
       <div className="cifre">
         <div className="custom-shape-divider-bottom-1669758197">

@@ -52,7 +52,9 @@
 
 .scrollcnt {
   position: relative;
+  
   .cardd {
+    user-select: none;
     z-index: 1;
     align-items: center;
     flex-shrink: 0;
