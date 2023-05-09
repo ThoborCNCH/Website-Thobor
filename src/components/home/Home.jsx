@@ -22,7 +22,7 @@ import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
 import control from "../../img/control.svg";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadComponent, LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -230,6 +230,7 @@ function Home() {
           <div className="coca"></div>
           <h2>Since 2017</h2>
         </div>
+        
         <ScrollContainer className="scc">
           <div className="poate">
             <div className="space"></div>

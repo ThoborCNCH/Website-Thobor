@@ -1,4 +1,6 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import admin from "../../../img/admin.svg";
 
 function Index() {
   return (
@@ -7,8 +9,8 @@ function Index() {
       style={{ width: "calc(100vw - 226px)", padding: 0, margin: 0 }}
     >
       <div style={{ background: "#2f2f2f" }}>
-        <img
-          src={require("../../../img/admin.svg").default}
+        <LazyLoadImage
+          src={admin}
           alt=""
           className="header"
         />

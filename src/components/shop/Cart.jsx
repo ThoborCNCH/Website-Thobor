@@ -9,6 +9,9 @@ import Svg from "../utils/Svg";
 import Text from "../utils/Text";
 import Up from "../utils/Up";
 import "./style/cart.scss";
+import banner from "../../img/cart_banner.svg"
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 const firestore = new Firestore();
 
 function Cart({ delete_prod_app, update, finish, fixCant }) {
@@ -141,8 +144,8 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
   return (
     <div className="all">
       <div style={{ background: "#2f2f2f" }}>
-        <img
-          src={require("../../img/cart_banner.svg").default}
+        <LazyLoadImage
+          src={banner}
           alt=""
           className="header"
         />
@@ -174,7 +177,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
                 return (
                   <tr>
                     <td key={prod.id}>
-                      <img src={Placeholder.makeimg(prod.images[0])} alt="" />
+                      <LazyLoadImage src={Placeholder.makeimg(prod.images[0])} alt="" />
                       <Link to={`/prod/${prod.id}`}>
                         {Text.returnSizedText(prod.nume)}
                       </Link>

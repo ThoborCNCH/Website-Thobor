@@ -1,9 +1,10 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Card({ image, text, an, bafta, delete_premiu }) {
   return (
     <div className="cardd">
-      <img className="imagine" alt="" src={image} />
+      <LazyLoadImage className="imagine" alt="" src={image} />
       <div className="linie">
         {bafta ? (
           <button className="button" onClick={delete_premiu}>

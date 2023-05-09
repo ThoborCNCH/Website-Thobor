@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Firestore from "../../utils/Firestore";
 import Placeholder from "../../utils/Placeholder";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -448,7 +449,7 @@ function ShopPage() {
                     return (
                       <>
                         <div className="imgg">
-                          <img src={img} style={{ width: 100 }} />
+                          <LazyLoadImage src={img} style={{ width: 100 }} />
                           <button
                             className="delete"
                             onClick={() => handleDelete(index)}
@@ -463,7 +464,7 @@ function ShopPage() {
                     return (
                       <>
                         <div className="imgg">
-                          <img src={remake(img)} style={{ width: 100 }} />
+                          <LazyLoadImage src={remake(img)} style={{ width: 100 }} />
                           <button
                             className="delete"
                             onClick={() => handleDelete(index)}
@@ -563,7 +564,7 @@ function ShopPage() {
                           <div>
                             {prod.images &&
                               prod.images.map((img) => (
-                                <img
+                                <LazyLoadImage
                                   src={img}
                                   key={img}
                                   style={{ width: 100, margin: 10 }}
@@ -583,7 +584,7 @@ function ShopPage() {
                                     <div className="review" key={index}>
                                       <div className="ups">
                                         {rev.user.img && (
-                                          <img
+                                          <LazyLoadImage
                                             src={rev.user.img}
                                             alt="Image"
                                             style={{

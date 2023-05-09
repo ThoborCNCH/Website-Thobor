@@ -5,6 +5,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Firestore from "../../utils/Firestore";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -118,7 +119,7 @@ function SponsorsPage() {
                 {spon &&
                   spon.map((sp) => (
                     <div>
-                      <img src={sp.logo} />
+                      <LazyLoadImage src={sp.logo} />
                       <button
                         className="button"
                         onClick={() => delete_sponsor(sp.id)}

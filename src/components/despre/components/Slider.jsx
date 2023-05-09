@@ -1,4 +1,5 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 class Slider extends React.Component {
   constructor() {
@@ -183,7 +184,7 @@ class Slide extends React.Component {
     return (
       <div className="slide">
         <div className="slide__decorative-sidebar">
-          <img   src={this.props.image} />
+          <LazyLoadImage   src={this.props.image} />
         </div>
 
         <div className="slide__info">
@@ -191,7 +192,7 @@ class Slide extends React.Component {
             <h1 className="slide__info__title">{this.props.title}</h1>
             <p className="slide__info__description">{this.props.description}</p>
           </div>
-          <img
+          <LazyLoadImage
              
             src={this.props.image}
             alt={this.props.title}

@@ -5,6 +5,7 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Firestore from "../../utils/Firestore";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -164,7 +165,7 @@ alert(error)      }
                       <div className="app" style={{ width: "100%" }}>
                         <div className="top" style={{ width: "100%" }}>
                           <div className="img">
-                            <img src={app.cod_qr} alt="" />
+                            <LazyLoadImage src={app.cod_qr} alt="" />
                           </div>
                           <div className="txt">
                             <div className="title">
@@ -193,7 +194,7 @@ alert(error)      }
                         </a>
                         {app.img && (
                           <div className="qr_cont">
-                            <img src={app.img} className="qr" alt="" />
+                            <LazyLoadImage src={app.img} className="qr" alt="" />
                           </div>
                         )}
                         <div className="linie_sep"></div>

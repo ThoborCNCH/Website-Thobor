@@ -1,4 +1,6 @@
 import React from "react";
+import up from "../../img/up.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Up() {
   const scrool= () => {
@@ -10,7 +12,7 @@ function Up() {
   }
   return (
     <div onClick={scrool} className="up" data-aos="fade-up">
-      <img src={require("../../img/up.svg").default} alt="" />
+      <LazyLoadImage src={up} alt="" />
     </div>
   );
 }
