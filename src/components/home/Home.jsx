@@ -10,6 +10,9 @@ import Svg from "../utils/Svg";
 import Up from "../utils/Up";
 import Card from "./components/Card";
 import "./style.scss";
+import main from "../../img/first.png";
+import cerc1 from "../../img/cerc1.png";
+import cerc2 from "../../img/cerc2.png";
 
 import "firebase/compat/firestore";
 import { useState } from "react";
@@ -23,10 +26,10 @@ function Home() {
 
   const [premii, setPremii] = useState([]);
   const getPremii = async () => {
-    await firestore.sortdata("premii", "an", "asc").then(res => {
+    await firestore.sortdata("premii", "an", "asc").then((res) => {
       setPremii(res);
-    })
-  }
+    });
+  };
   useEffect(() => {
     AOS.init();
     getPremii();
@@ -53,17 +56,17 @@ function Home() {
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are 
+            we are
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
             team
           </h2>
-        </div>  
+        </div>
         <div className="img" data-aos="fade-left">
-          <img src={require("../../img/first.png")} alt="" />
-          <img className="cerc" src={require("../../img/cerc1.png")} alt="" />
-          <img className="cerc" src={require("../../img/cerc2.png")} alt="" />
+          <img src={main} alt="" />
+          <img className="cerc" src={cerc1} alt="" />
+          <img className="cerc" src={cerc2} alt="" />
         </div>
       </div>
       <div className="cifre">
@@ -90,7 +93,9 @@ function Home() {
             ></path>
           </svg>
         </div>
-        <h3 data-aos="fade-down"><b>THOBOR</b> in cifre:</h3>
+        <h3 data-aos="fade-down">
+          <b>THOBOR</b> in cifre:
+        </h3>
         <div className="tab" data-aos="fade-down">
           <div className="linie">
             <div className="cifra">
