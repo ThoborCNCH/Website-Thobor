@@ -19,7 +19,6 @@ function BlogPost() {
   const [postare, setPosare] = useState({});
   const [img, setImg] = useState([]);
   const { id } = useParams();
-  //console.log(id);
 
   const getBlogPost = async () => {
     await firestore.getDocById("blog", id).then((res) => {

@@ -198,34 +198,18 @@ function Home() {
         <div className="card" data-aos="fade-right">
           <img src={require("../../img/work.svg").default} />
           <h1>work</h1>
-          {/* <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
-            iusto odit.
-          </p> */}
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
           <img src={require("../../img/programming.svg").default} />
           <h1>programming</h1>
-          {/* <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
-            iusto odit.
-          </p> */}
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="400">
           <img src={require("../../img/marketing.svg").default} />
           <h1>marketing</h1>
-          {/* <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
-            iusto odit.
-          </p> */}
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="600">
           <img src={require("../../img/control.svg").default} />
           <h1>Mechanics</h1>
-          {/* <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi,
-            iusto odit.
-          </p> */}
         </div>
       </div>
       <div className="scrollcnt">

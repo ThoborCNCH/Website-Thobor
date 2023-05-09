@@ -64,7 +64,6 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
     setP(resp.cant);
     setHidden([]);
     resp.cant.map((res) => {
-      ////console.log({ cant: res.cant, pret: res.pret, name: res.nume });
       setHidden((old) => [
         ...old,
         { id: res.id, cant: res.cant, pret: res.pret, name: res.nume },
@@ -73,7 +72,6 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
   };
   useEffect(() => {
     ok();
-    //console.log(user);
   }, [user]);
   const form = useRef();
 
@@ -123,7 +121,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
       )
       .then(
         async (result) => {
-          //console.log(result);
+          //
           if (result.status == 200) {
             alert("comanda plasata");
             await finish().then(async (res) => {
@@ -136,7 +134,6 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
           }
         },
         (error) => {
-          //console.log(error.text);
           alert(error.text);
         }
       );

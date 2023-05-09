@@ -17,8 +17,6 @@ function AlumniPage() {
   const [poza_alumni, setPozealumni] = useState();
   const [text_alumni, setTextalumni] = useState("");
   const [loadingg_alumni, SetloadinggAlumni] = useState(false);
-  const [al_img_link, setTpLINK] = useState("");
-  const promises_al = [];
 
   const [alumni, setAlumni] = useState([]);
   const getAlumni = async () => {
@@ -47,7 +45,7 @@ function AlumniPage() {
       const url = await getDownloadURL(storageRef);
       added.poza = url;
     } catch (error) {
-      ////console.error(error);
+      alert(error);
     }
 
     await firestore

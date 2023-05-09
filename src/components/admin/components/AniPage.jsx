@@ -31,7 +31,6 @@ function AniPage() {
       setAnis(res);
     });
   };
-  //2020-2021
   const add_ani = async () => {
     let added = {
       ani: ani_efectiv,

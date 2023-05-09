@@ -5,7 +5,6 @@ import Firestore from "../utils/Firestore";
 import Placeholder from "../utils/Placeholder";
 import Text from "../utils/Text";
 import "./style/product_page.scss";
-// import "../blog/blog_post.scss";
 import AOS from "aos";
 import Slider from "../blog/components/Slider";
 import Contact from "../utils/Contact";
@@ -58,7 +57,6 @@ function ProductPage({ addit }) {
   };
 
   const modi = async (by) => {
-    // await getcos();
     if ((value >= 0 && by > 0) || value >= 1)
       if (din_cos != 0) {
         if (produs.cantitate - din_cos - (value + by) >= 0)
@@ -164,7 +162,7 @@ function ProductPage({ addit }) {
         document.querySelectorAll(".STEA_REV")[i].classList.add("fa-star");
       }
     else {
-      ////console.log("rated: ", rated);
+      ////
       for (let i = 0; i < rated; i++) {
         document.querySelectorAll(".STEA_REV")[i].classList.remove("fa-star");
         document.querySelectorAll(".STEA_REV")[i].classList.remove("far");
@@ -184,7 +182,7 @@ function ProductPage({ addit }) {
     if (review.review === "" || review.rating === 0) alert("Lasa un review!");
     else
       await firestore.leaveRev(id, review).then((res) => {
-        //console.log(res);
+        //
         document.querySelector(".revinput").value = "";
         setRated(-1);
         for (let i = 0; i < 5; i++) {
@@ -200,7 +198,6 @@ function ProductPage({ addit }) {
   };
 
   const delete_rev = async (rev) => {
-    ////console.log(rev);
     await firestore.deleteRev({ rev, id }).then((res) => {
       firestore.getProductById(id).then((res) => {
         setProdus(res);
@@ -233,7 +230,6 @@ function ProductPage({ addit }) {
         }
       } else {
         pag.classList.remove("active");
-        // pag.classList.value = "pag";
       }
     });
   };
@@ -531,9 +527,6 @@ function ProductPage({ addit }) {
                               required
                               placeholder="Scrie un review"
                               className="revinput"
-                              // onChange={(e) =>
-                              // handlerev("review", e.target.value)
-                              // }
                             ></textarea>
                           </div>
 

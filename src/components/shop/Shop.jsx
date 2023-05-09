@@ -149,27 +149,21 @@ function Shop({ addit, cos }) {
   const updateFilters = async (arr, filters) => {
     await firestore.filter(arr, filters).then((res) => {
       arr = res;
-      //console.log(res);
     });
     return arr;
   };
   const addFilter = async (e, id) => {
     const check = e.target.checked;
-    //console.log(check);
     if (check) {
-      //console.log("==================ADAUGARE====================");
       filters = [...filters, { [id]: filter_arr[id] }];
       local_filters = [...local_filters, id];
     } else {
-      //console.log("==================MARS====================");
       filters = filters.filter((f) => !compareArrays(f[id], filter_arr[id]));
       local_filters = local_filters.filter((f) => f !== id);
       localStorage.setItem("filters", JSON.stringify(filters));
       if (categorie == "reducere") catt = ["old_pret", ">", 0];
       else catt = ["categories", "==", categorie];
-      //console.log(catt);
       if (categorie.includes("search")) {
-        //search ========== includes
         await firestore
           .readDocuments("products", ["nume", [], categorie])
           .then(async (res) => {
@@ -186,17 +180,12 @@ function Shop({ addit, cos }) {
           }
           res = await updateFilters(res, filters);
           setProducts((old) => (old = res));
-          //console.log(res, products);
           products = res;
-          //console.log(res, products);
         });
     }
     localStorage.setItem("filters", JSON.stringify(filters));
     localStorage.setItem("local_filters", JSON.stringify(local_filters));
-    //console.log("products: ", products);
     const rasp = await updateFilters(products, filters);
-    //console.log("rasp", rasp);
-    //console.log(filters);
     if (rasp !== false) {
       if (sort_param) {
         sort(rasp, sort_param, "ok");
@@ -325,7 +314,6 @@ function Shop({ addit, cos }) {
               <span>Cart </span>
             </Link>
           </div>
-          {}
         </div>
         <div className="down">
           <div className="left">

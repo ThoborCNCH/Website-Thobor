@@ -26,40 +26,32 @@ import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
 import Incercare from "./components/utils/Incercare";
 import Navbar from "./components/utils/Navbar";
-
 const firestore = new Firestore();
-
 function App() {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [cos, setCos] = useState(0);
   const [cos_ev, setCosEv] = useState(0);
-
   const getCos = async () => {
     setCos(await firestore.getCos(user));
   };
-
   const [link, setLink] = useState(window.location.pathname);
-
   useEffect(() => {
     setLink(window.location.pathname);
   }, [window.location.pathname]);
   useEffect(() => {
     getCos();
   }, [cos_ev, user]);
-
   const addit = async (id, cant) => {
     await firestore.addit(id, user, cant);
     await getCos();
     setCosEv((old) => old + cant);
   };
-
   const delete_prod_app = async (id, cant) => {
     await firestore.deleteDocument("cos", id).then((res) => {
       setCosEv((old) => old - cant);
       alert("Produs scos din cosul tau!");
     });
   };
-
   const update = async (cant, uid) => {
     await firestore
       .updateDocument("cos", uid, { cantitate: cant })
@@ -68,31 +60,28 @@ function App() {
         alert("cantitatea s-a updatat!");
       });
   };
-
   const finish = async () => {
     return await firestore
       .delete_all_from_cart_by_user_id(user.uid)
       .then((res) => {
         setCosEv((old) => old - 13);
-        //console.log(res);
+        //
       });
   };
-
   const fixCant = async (hidden) => {
-    //console.log(hidden);
+    //
     hidden.forEach(async (element) => {
       await firestore.getProductById(element.id).then(async (res) => {
-        //console.log(res.id, ": ", res.cantitate - element.cant);
+        //
         await firestore
           .updateDocument("products", res.id, {
             cantitate: res.cantitate - element.cant,
           })
           .then((ress) => {
-            //console.log(ress);
+            //
           });
       });
     });
-
     return true;
   };
   return (
@@ -125,7 +114,6 @@ function App() {
           }
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
-
         <Route path="/admin" element={<AdminPages />}>
           <Route path="/admin/" element={<Index />} />
           <Route path="/admin/blog" element={<BlogPage />} />
@@ -136,12 +124,10 @@ function App() {
           <Route path="/admin/sponsors" element={<SponsorsPage />} />
           <Route path="/admin/ani" element={<AniPage />} />
         </Route>
-
         <Route path="*" element={<NotFound />} />
       </Routes>
       {link !== "/simulator" && <Footer />}
     </BrowserRouter>
   );
 }
-
 export default App;

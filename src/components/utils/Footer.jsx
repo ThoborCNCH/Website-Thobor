@@ -5,7 +5,6 @@ function Footer() {
     <footer className="footer">
       <div className="footer__addr">
       <img src={require("../../img/logo_thobor_celalalt.png")} alt="" className="footer__logo" />
-        {/* <h1 className="footer__logo">Thobor</h1> */}
 
       <h2>Contact</h2>
 
@@ -68,12 +67,6 @@ function Footer() {
 
     <div className="legal">
       <p> Copyright &copy; 2022 Thobor #RO068 All rights reserved.</p>
-
-      {/* <div className="legal__links">
-        <span>
-          Editors Matei <span className="heart">&</span> Mihail
-        </span>
-      </div> */}
     </div>
   </footer>
   )

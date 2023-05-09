@@ -2,7 +2,6 @@ import React from "react";
 
 function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
  
-  //console.log(delete_this)
   return no ? (
     <div className="alumn">
       <div className="top">
@@ -29,8 +28,6 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
       <button
         className="button"
         onClick={() => {
-          // //console.log(id)
-          // //console.log(delete_this)
           delete_this(id);
         }}
       >

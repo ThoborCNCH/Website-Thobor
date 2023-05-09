@@ -66,7 +66,6 @@ function BlogPage() {
 
     const storage = getStorage();
     let downloadUrls = [];
-    //console.log(images.length);
     for (let i = 0; i < images.length; i++) {
       const image = images[i];
       const storageRef = ref(storage, `blog/${image.name}`);
@@ -75,14 +74,13 @@ function BlogPage() {
         const url = await getDownloadURL(storageRef);
         downloadUrls.push(url);
       } catch (error) {
-        //console.error(error);
-      }
+alert(error)      }
     }
     let idk = {
       ...added,
       images: downloadUrls,
     };
-    // urls && (ad = { ...ad, ...added });
+
     await firestore
       .addItem("blog", idk)
       .then((res) => {
@@ -96,8 +94,7 @@ function BlogPage() {
         setL();
       })
       .catch((er) => {
-        //console.log(er);
-      });
+alert(er)      });
   };
   useEffect(() => {
     getBlog();

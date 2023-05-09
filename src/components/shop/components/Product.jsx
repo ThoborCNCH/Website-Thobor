@@ -11,8 +11,6 @@ function Product({
   titlu,
   link,
   data,
-  addit,
-  cantitate,
   data2,
   dalay,
   id,
@@ -43,14 +41,6 @@ function Product({
     }
   };
 
-  const addit_prod = async (cant) => {
-    setCount((old) => old + 1);
-    if (cant + din_cos <= cantitate) addit(id, cant);
-    else {
-      alert(`Numarul maxim de produse disponibile este ${cantitate}!`);
-    }
-  };
-
   return (
     <>
       <div className="post" data-aos={data}>
@@ -74,35 +64,33 @@ function Product({
         </div>
         <div className="text">
           <div className="title">
-            <h2 data-aos={data2} //data-aos-delay={dalay}
+            <h2 data-aos={data2} 
             >
               {titlu}
             </h2>
             <div
               data-aos={data}
-              //data-aos-delay={dalay + 300}
               className="linie"
             ></div>
           </div>
-          <div className="para" data-aos={data2} //data-aos-delay={dalay}
+          <div className="para" data-aos={data2} 
           >
             <div
               className="linie_vert"
               data-aos={data2}
-              //data-aos-delay={dalay + 400}
             ></div>
-            <p data-aos={data} //data-aos-delay={dalay}
+            <p data-aos={data} 
             >
               {text_scurt}
             </p>
           </div>
           <div className="price">
-            <h5 data-aos={data2} //data-aos-delay={dalay}
+            <h5 data-aos={data2} 
             >
               {Placeholder.makenumber(price)} RON
             </h5>
             {oldPrice > 0 && (
-            <h6 data-aos={data} //data-aos-delay={dalay + 100}
+            <h6 data-aos={data} 
             >
                 <del>{Placeholder.makenumber(oldPrice)} RON</del>
               </h6>

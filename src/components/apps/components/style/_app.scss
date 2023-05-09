@@ -43,45 +43,14 @@
       background-repeat: no-repeat;
       background-size: 50%;
       background-position: top left, bottom right;
-      // width: calc(100% - 30px);
       padding: 30px;
-      // .before {
-      //   content: "";
-      //   z-index: 0;
-      //   width: 100%;
-      //   max-width: 250px;
-      //   height: 50%;
-      //   background: url(../../../../img/before.svg);
-      //   background-repeat: no-repeat;
-      //   background-size: contain;
-      //   background-position: top left;
-      //   position: absolute;
-      //   top: -15px;
-      //   left: -15px;
-      // }
-
-      // .after {
-      //   z-index: 0;
-      //   content: "";
-      //   width: 100%;
-      //   max-width: 250px;
-      //   height: 50%;
-      //   background: url(../../../../img/after.svg);
-      //   background-repeat: no-repeat;
-      //   background-position: bottom right;
-      //   background-size: contain;
-      //   position: absolute;
-      //   bottom: -15px;
-      //   right: -15px;
-      // }
 
       img {
         position: relative;
         z-index: 5;
         height: 500px;
         object-fit: cover;
-        width: 100%; // max-width: 600px;
-        // margin: 20px;
+        width: 100%; 
       }
     }
 

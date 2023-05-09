@@ -1,8 +1,6 @@
 @import "../utils/styles/base";
 @import "../utils/styles/premii";
-//navbar
 
-//home
 .home {
   width: 100vw;
   min-height: 100vh;
@@ -454,7 +452,6 @@
 
   h3 {
     background: $black2;
-    // background: linear-gradient(182deg, #fff0 60%, $black2 0 100%);
     display: inline;
     transform: rotate(-2deg);
     position: absolute;
@@ -529,13 +526,6 @@
   background: #fff;
   margin-right: 2px;
 }
-
-// .scc {
-//   width: 100vw;
-//   display: flex;
-//   align-items: stretch;
-// }
-
 
 .al {
   width: 100vw;

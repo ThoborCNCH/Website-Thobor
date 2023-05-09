@@ -46,7 +46,7 @@ function PremiiPage() {
       const url = await getDownloadURL(storageRef);
       added.img = url;
     } catch (error) {
-      //console.error(error);
+      alert(error)
     }
 
     await firestore

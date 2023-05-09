@@ -146,7 +146,6 @@
 }
 
 .central-body {
-  /*    width: 100%;*/
   padding: 17% 5% 10% 5%;
   text-align: center;
 }
@@ -170,21 +169,14 @@
   top: 20%;
   left: 15%;
   z-index: 90;
-  /*    animation: spin-earth 100s infinite linear both;*/
 }
 
 .object_moon {
   position: absolute;
   top: 12%;
   left: 25%;
-  /*
-    transform: rotate(0deg);
-    transition: transform ease-in 99999999999s;
-*/
 }
 
-.earth-moon {
-}
 
 .object_astronaut {
   animation: rotate-astronaut 200s infinite linear both alternate;

@@ -41,10 +41,8 @@ function SponsorsPage() {
       const url = await getDownloadURL(storageRef);
       added.logo = url;
     } catch (error) {
-      //console.error(error);
     }
 
-    //console.log(added);
     await firestore
       .addItem("sponsors", added)
       .then(async (res) => {

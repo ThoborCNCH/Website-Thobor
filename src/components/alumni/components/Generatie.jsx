@@ -43,7 +43,6 @@ function Generatie({ years, team, persoane, no }) {
       >
         {persoane &&
           persoane.map((p) => {
-            //console.log(p.delete_this_mama)
             return (
               <SwiperSlide>
                 {p && (
@@ -86,7 +85,6 @@ function Generatie({ years, team, persoane, no }) {
           },
         }}
         grabCursor={true}
-        // autoHeight={true}
         loop={true}
         loopFillGroupWithBlank={false}
         pagination={{
@@ -95,7 +93,6 @@ function Generatie({ years, team, persoane, no }) {
         centerInsufficientSlides={true}
         autoplay={true}
         navigation={true}
-        // contentEditable={true}
         centeredSlides={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"

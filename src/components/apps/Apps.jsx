@@ -45,35 +45,6 @@ function Apps() {
               txt_link={app.link_text}
             />
           ))}
-        {/*         
-        <App
-          titlu={"Aplicatia noastră - Realitate Augmentata -"}
-          txt_link="Download"
-          p={
-            "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."
-          }
-          img={require("../../img/echipa.jpeg")}
-          link="https://play.google.com/store/apps/details?id=ro.thobor.ar"
-        />
-        <App
-          titlu={"Aplicatia noastră - Realitate Augmentata -"}
-          txt_link="Download"
-          p={
-            "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."
-          }
-          img={require("../../img/echipa.jpeg")}
-          link="https://play.google.com/store/apps/details?id=ro.thobor.ar"
-          codeQR={require("../../img/qr.jpg")}
-        />
-        <App
-          titlu={"Aplicatia noastră - Realitate Augmentata -"}
-          txt_link="Download"
-          p={
-            "Poti avea robotul Thor la tine acasa! Descarca aplicatia, printeaza codul QR si ai micul tau robot in buzunar. Robotica uneste lumea, iar noi, va prezentam robotul nostru din cel mai recent sezon FIRST Tech Challenge."
-          }
-          img={require("../../img/echipa.jpeg")}
-          link="https://play.google.com/store/apps/details?id=ro.thobor.ar"
-        /> */}
       </div>
 
       <Up />

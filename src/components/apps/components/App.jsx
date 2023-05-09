@@ -3,7 +3,6 @@ import React from "react";
 function App({ titlu, p, img, link, codeQR, txt_link }) {
   return (
     <>
-      {" "}
       <div className="app">
         <div className="top">
           <div className="img">

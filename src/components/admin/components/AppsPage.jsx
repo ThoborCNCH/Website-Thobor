@@ -61,8 +61,7 @@ function AppsPage() {
           object.cod_qr = url;
         }
       } catch (error) {
-        //console.error(error);
-      }
+alert(error)      }
     }
 
     await firestore.addItem("apps", object).then(async (res) => {
