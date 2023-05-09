@@ -17,8 +17,21 @@ import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 
-function Alumni({ alumni, ani }) {
+function Alumni() {
+  const [ani, setAni] = useState([]);
+  const [alumni, setAlumni] = useState([]);
+
+  const getAni = async () => {
+    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
+      setAni(res);
+      await firestore.readDocuments("alumni").then((res) => {
+        setAlumni(res);
+      });
+    });
+  };
+
   useEffect(() => {
+    getAni();
     AOS.init();
   }, []);
   return (

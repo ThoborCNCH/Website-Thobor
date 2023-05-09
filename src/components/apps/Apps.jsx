@@ -13,11 +13,17 @@ import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 
-function Apps({apps}) {
-
+function Apps() {
+  const [apps, setApps] = useState([]);
+  const getApps = async () => {
+    await firestore.sortdata("apps", "createAt", "desc").then((res) => {
+      setApps(res);
+    });
+  };
 
   useEffect(() => {
     AOS.init();
+    getApps();
   }, []);
 
   return (

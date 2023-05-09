@@ -6,6 +6,7 @@ import Text from "../utils/Text";
 import Up from "../utils/Up";
 import Product from "./components/Product";
 import "./shop.scss";
+import { useAuthState } from "react-firebase-hooks/auth";
 let arr = [];
 const firestore = new Firestore();
 let filters = [];
@@ -55,13 +56,12 @@ let filter_arr = {
   xiaomi: [["brand", "==", "xiaomi"]],
   motorola: [["brand", "==", "motorola"]],
 };
-
-function Shop({ addit, cos }) {
+function Shop({ addit }) {
+  const [user, loading, error] = useAuthState(firestore.getuser());
   const { categorie, sort_param } = useParams();
   let [products, setProducts] = useState([]);
   const [filter_map, setf] = useState([]);
   let [catt, setCatt] = useState(["categories", "==", categorie]);
-  
   useEffect(() => {
     getCategorii();
     setf(Object.entries(filter_arr));
@@ -79,12 +79,10 @@ function Shop({ addit, cos }) {
     }
     window.scrollTo(0, 0);
   }, []);
-  
   useEffect(() => {
     if (categorie == "reducere") catt = ["old_pret", ">", 0];
     else catt = ["categories", "==", categorie];
   }, [catt, categorie]);
-  
   useEffect(() => {
     if (categorie == "reducere") {
       catt = ["old_pret", ">", 0];
@@ -123,7 +121,6 @@ function Shop({ addit, cos }) {
       });
     }
   }, [categorie, sort_param]);
- 
   const sort = async (arr, cat, nope) => {
     switch (cat) {
       case "pc":
@@ -151,14 +148,12 @@ function Shop({ addit, cos }) {
     }
     if (nope !== "ok") setProducts((old) => [...arr]);
   };
-
   const updateFilters = async (arr, filters) => {
     await firestore.filter(arr, filters).then((res) => {
       arr = res;
     });
     return arr;
   };
-
   const addFilter = async (e, id) => {
     const check = e.target.checked;
     if (check) {
@@ -210,11 +205,9 @@ function Shop({ addit, cos }) {
       });
     }
   };
-
   const compareArrays = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
-
   const reset = async () => {
     document.querySelectorAll("input[type='checkbox']").forEach((input) => {
       input.checked = false;
@@ -237,19 +230,15 @@ function Shop({ addit, cos }) {
       setProducts((old) => (old = res));
     });
   };
-
   const calculatedisc = (oldPrice, price) => {
     return ((oldPrice - price) / oldPrice) * 100;
   };
-
   const [categorii, setCategorii] = useState([]);
- 
   const getCategorii = async () => {
     await firestore.readDocuments("categories").then((res) => {
       setCategorii(res);
     });
   };
-
   const show = (id) => {
     const drop = document.querySelector(`#${id} + div`);
     if (drop.classList.contains("show")) {
@@ -258,7 +247,17 @@ function Shop({ addit, cos }) {
       drop.classList.add("show");
     }
   };
-  
+
+  const [cos, setCos] = useState(0);
+
+  const getCos = async () => {
+    setCos(await firestore.getCos(user));
+  };
+
+  useEffect(() => {
+    getCos();
+  }, [user]);
+
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>

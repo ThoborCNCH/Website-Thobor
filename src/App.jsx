@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPages from "./components/admin/AdminPages";
 import AlumniPage from "./components/admin/components/AlumniPage";
 import AniPage from "./components/admin/components/AniPage";
@@ -20,7 +20,6 @@ import NotFound from "./components/notfound/NotFound";
 import Cart from "./components/shop/Cart";
 import ProductPage from "./components/shop/ProductPage";
 import Shop from "./components/shop/Shop";
-import Assembly from "./components/simulator/TeleOP/Assembly";
 import Sponsors from "./components/sponsors/Sponsors";
 import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
@@ -29,26 +28,17 @@ import Navbar from "./components/utils/Navbar";
 const firestore = new Firestore();
 function App() {
   const [user, loading, error] = useAuthState(firestore.getuser());
-  const [cos, setCos] = useState(0);
-  const [cos_ev, setCosEv] = useState(0);
-  const getCos = async () => {
-    setCos(await firestore.getCos(user));
-  };
+
   const [link, setLink] = useState(window.location.pathname);
   useEffect(() => {
     setLink(window.location.pathname);
   }, [window.location.pathname]);
-  useEffect(() => {
-    getCos();
-  }, [cos_ev, user]);
+
   const addit = async (id, cant) => {
     await firestore.addit(id, user, cant);
-    await getCos();
-    setCosEv((old) => old + cant);
   };
   const delete_prod_app = async (id, cant) => {
     await firestore.deleteDocument("cos", id).then((res) => {
-      setCosEv((old) => old - cant);
       alert("Produs scos din cosul tau!");
     });
   };
@@ -56,7 +46,6 @@ function App() {
     await firestore
       .updateDocument("cos", uid, { cantitate: cant })
       .then((res) => {
-        setCosEv((old) => old + 32);
         alert("cantitatea s-a updatat!");
       });
   };
@@ -64,7 +53,6 @@ function App() {
     return await firestore
       .delete_all_from_cart_by_user_id(user.uid)
       .then((res) => {
-        setCosEv((old) => old - 13);
         //
       });
   };
@@ -84,70 +72,22 @@ function App() {
     });
     return true;
   };
-
-  const [premii, setPremii] = useState([]);
-  const getPremii = async () => {
-    await firestore.sortdata("premii", "an", "asc").then((res) => {
-      setPremii(res);
-    });
-  };
-
-  const [blog, setBlog] = useState([]);
-  const getBlog = async () => {
-    await firestore.sortdata("blog", "createAt", "desc").then((res) => {
-      setBlog(res);
-    });
-  };
-
-  const [apps, setApps] = useState([]);
-  const getApps = async () => {
-    await firestore.sortdata("apps", "createAt", "desc").then((res) => {
-      setApps(res);
-    });
-  };
-
-  const [ani, setAni] = useState([]);
-  const [alumni, setAlumni] = useState([]);
-
-  const getAni = async () => {
-    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
-      setAni(res);
-      await firestore.readDocuments("alumni").then((res) => {
-        setAlumni(res);
-      });
-    });
-  };
-
-  const [spon, setSpon] = useState([]);
-  const getSpon = async () => {
-    await firestore.readDocuments("sponsors").then((res) => {
-      setSpon(res);
-    });
-  };
-
-  useEffect(() => {
-    getPremii();
-    getBlog();
-    getApps();
-    getSpon();
-    getAni();
-  }, []);
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home premii={premii} />} />
-        <Route path="/blog" element={<Blog blog={blog} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
-        <Route path="/apps" element={<Apps apps={apps} />} />
-        <Route path="/download" element={<Apps apps={apps} />} />
-        <Route path="/team" element={<Alumni alumni={alumni} ani={ani} />} />
-        <Route path="/sponsors" element={<Sponsors spon={spon} />} />
-        <Route path="/simulator" element={<Assembly />} />
+        <Route path="/apps" element={<Apps />} />
+        <Route path="/download" element={<Apps />} />
+        <Route path="/team" element={<Alumni />} />
+        <Route path="/sponsors" element={<Sponsors />} />
+        {/* <Route path="/simulator" element={<Assembly />} /> */}
         <Route
           path="/shop/:categorie/:sort_param?/:price?"
-          element={<Shop cos={cos} addit={addit} />}
+          element={<Shop addit={addit} />}
         />
         <Route
           path="/cart"

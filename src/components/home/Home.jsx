@@ -21,12 +21,18 @@ import Incercare from "../utils/Incercare";
 
 const firestore = new Firestore();
 
-function Home({premii}) {
+function Home() {
   const h1 = useRef(null);
 
-  
+  const [premii, setPremii] = useState([]);
+  const getPremii = async () => {
+    await firestore.sortdata("premii", "an", "asc").then(res => {
+      setPremii(res);
+    })
+  }
   useEffect(() => {
     AOS.init();
+    getPremii();
   }, []);
 
   useEffect(() => {
@@ -50,21 +56,18 @@ function Home({premii}) {
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are
+            we are 
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
             team
           </h2>
+        </div>  
+        <div className="img" data-aos="fade-left">
+          <img src={main} alt="" />
+          <img className="cerc" src={cerc1} alt="" />
+          <img className="cerc" src={cerc2} alt="" />
         </div>
-        {
-          main && cerc1 && cerc2 && (
-            <div className="img" data-aos="fade-left">
-              <img src={main} alt="" />
-              <img className="cerc" src={cerc1} alt="" />
-              <img className="cerc" src={cerc2} alt="" />
-            </div>)
-        }
       </div>
       <div className="cifre">
         <div className="custom-shape-divider-bottom-1669758197">
@@ -90,9 +93,7 @@ function Home({premii}) {
             ></path>
           </svg>
         </div>
-        <h3 data-aos="fade-down">
-          <b>THOBOR</b> in cifre:
-        </h3>
+        <h3 data-aos="fade-down"><b>THOBOR</b> in cifre:</h3>
         <div className="tab" data-aos="fade-down">
           <div className="linie">
             <div className="cifra">
