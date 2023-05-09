@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import AdminPages from "./components/admin/AdminPages";
 import AlumniPage from "./components/admin/components/AlumniPage";
 import AniPage from "./components/admin/components/AniPage";
@@ -84,18 +84,66 @@ function App() {
     });
     return true;
   };
+
+  const [premii, setPremii] = useState([]);
+  const getPremii = async () => {
+    await firestore.sortdata("premii", "an", "asc").then((res) => {
+      setPremii(res);
+    });
+  };
+
+  const [blog, setBlog] = useState([]);
+  const getBlog = async () => {
+    await firestore.sortdata("blog", "createAt", "desc").then((res) => {
+      setBlog(res);
+    });
+  };
+
+  const [apps, setApps] = useState([]);
+  const getApps = async () => {
+    await firestore.sortdata("apps", "createAt", "desc").then((res) => {
+      setApps(res);
+    });
+  };
+
+  const [ani, setAni] = useState([]);
+  const [alumni, setAlumni] = useState([]);
+
+  const getAni = async () => {
+    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
+      setAni(res);
+      await firestore.readDocuments("alumni").then((res) => {
+        setAlumni(res);
+      });
+    });
+  };
+
+  const [spon, setSpon] = useState([]);
+  const getSpon = async () => {
+    await firestore.readDocuments("sponsors").then((res) => {
+      setSpon(res);
+    });
+  };
+
+  useEffect(() => {
+    getPremii();
+    getBlog();
+    getApps();
+    getSpon();
+    getAni();
+  }, []);
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/" element={<Home premii={premii} />} />
+        <Route path="/blog" element={<Blog blog={blog} />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
-        <Route path="/apps" element={<Apps />} />
-        <Route path="/download" element={<Apps />} />
-        <Route path="/team" element={<Alumni />} />
-        <Route path="/sponsors" element={<Sponsors />} />
+        <Route path="/apps" element={<Apps apps={apps} />} />
+        <Route path="/download" element={<Apps apps={apps} />} />
+        <Route path="/team" element={<Alumni alumni={alumni} ani={ani} />} />
+        <Route path="/sponsors" element={<Sponsors spon={spon} />} />
         <Route path="/simulator" element={<Assembly />} />
         <Route
           path="/shop/:categorie/:sort_param?/:price?"

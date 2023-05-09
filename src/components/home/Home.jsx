@@ -21,18 +21,12 @@ import Incercare from "../utils/Incercare";
 
 const firestore = new Firestore();
 
-function Home() {
+function Home({premii}) {
   const h1 = useRef(null);
 
-  const [premii, setPremii] = useState([]);
-  const getPremii = async () => {
-    await firestore.sortdata("premii", "an", "asc").then((res) => {
-      setPremii(res);
-    });
-  };
+  
   useEffect(() => {
     AOS.init();
-    getPremii();
   }, []);
 
   useEffect(() => {

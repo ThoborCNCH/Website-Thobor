@@ -15,16 +15,10 @@ import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 
-function Sponsors() {
+function Sponsors({spon}) {
 
-  const [spon, setSpon] = useState([]);
-  const getSpon = async () => {
-    await firestore.readDocuments("sponsors").then((res) => {
-      setSpon(res);
-    });
-  };
+  
   useEffect(() => {
-    getSpon();
     AOS.init();
   }, []);
   return (

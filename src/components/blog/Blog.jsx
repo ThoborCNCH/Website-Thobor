@@ -10,17 +10,10 @@ import Post from "./components/Post";
 
 const firestore = new Firestore();
 
-function Blog() {
-  const [blog, setBlog] = useState([]);
-  const getBlog = async () => {
-    await firestore.sortdata("blog", "createAt", "desc").then((res) => {
-      setBlog(res);
-    });
-  };
-
-  useEffect(() => {
-    AOS.init();
-    getBlog();
+function Blog({blog}) {
+  
+useEffect(() => {
+    AOS.init(); 
   }, []);
 
   return (
