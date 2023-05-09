@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import post_card_img from "../../../img/post_card_img.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 function Post({
   ajutor,
   poza,
@@ -14,15 +17,10 @@ function Post({
 }) {
   return ajutor ? (
     <>
-      {" "}
-      <div className="post" style={{height:"auto"}}>
+      <div className="post" style={{ height: "auto" }}>
         <div className="img">
-          <img src={poza} alt="" className="poza_main" />
-          <img
-            src={require("../../../img/post_card_img.svg").default}
-            className="svg"
-            alt=""
-          />
+          <LazyLoadImage src={poza} className="poza_main" />
+          <LazyLoadImage src={post_card_img} className="svg" />
         </div>
         <div className="text">
           <div className="title">
@@ -33,7 +31,9 @@ function Post({
             <div className="linie_vert"></div>
             <p>{text_scurt}</p>
           </div>
-          <button onClick={deleted} className="button" style={{margin:20}}>delete</button>
+          <button onClick={deleted} className="button" style={{ margin: 20 }}>
+            delete
+          </button>
           <Link to={link} preventScrollReset={true} className="link">
             <div className="coca"></div>
             <span>
@@ -47,12 +47,8 @@ function Post({
     <>
       <div className="post" data-aos={data}>
         <div className="img">
-          <img src={poza} alt="" className="poza_main" />
-          <img
-            src={require("../../../img/post_card_img.svg").default}
-            className="svg"
-            alt=""
-          />
+          <LazyLoadImage src={poza} className="poza_main" />
+          <LazyLoadImage src={post_card_img} className="svg" />
         </div>
         <div className="text">
           <div className="title">

@@ -11,6 +11,8 @@ import Contact from "../utils/Contact";
 import Svg from "../utils/Svg";
 import Up from "../utils/Up";
 import Product from "./components/Product";
+import banner from "../../img/shop_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -236,11 +238,8 @@ function ProductPage({ addit }) {
   return (
     <div className="page">
       <div style={{ background: "#2f2f2f" }}>
-        <img
-          src={require("../../img/shop_banner.svg").default}
-          alt=""
-          className="header"
-        />
+        <LazyLoadImage src={banner} className="header"/>
+        
       </div>
       {produs && (
         <>
@@ -407,9 +406,9 @@ function ProductPage({ addit }) {
                             <div className="review" key={index}>
                               <div className="ups">
                                 {rev.user.img && (
-                                  <img
+                                  <LazyLoadImage
                                     src={rev.user.img}
-                                    alt="Image"
+                                    alt=""
                                     style={{ width: 45, borderRadius: "90%" }}
                                   />
                                 )}

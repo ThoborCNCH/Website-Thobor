@@ -9,6 +9,7 @@ import useWindowSize from "./WindowSize";
 import { isMobile } from "react-device-detect";
 import Firestore from "./Firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -54,7 +55,7 @@ function Navbar() {
       <div className="nav-container">
         <div className="brand">
           <Link to="/">
-            <img src={logo} alt="" />
+            <LazyLoadImage src={logo} alt="" />
           </Link>
         </div>
         <nav>

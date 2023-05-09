@@ -13,6 +13,9 @@ import "firebase/compat/firestore";
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
 
+import banner from "../../img/blog_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 const firestore = new Firestore();
 
 function BlogPost() {
@@ -46,11 +49,7 @@ function BlogPost() {
 
   return (
     <>
-      <img
-        className="header"
-        src={require("../../img/blog_banner.svg").default}
-        alt=""
-      />
+          <LazyLoadImage src={banner} className="header" />
       <div className="blog_post">
         <div className="title">
           <div className="title2">

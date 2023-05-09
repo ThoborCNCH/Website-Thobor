@@ -8,10 +8,10 @@ import App from "./components/App";
 
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import Firestore from "../utils/Firestore";
 
 import banner from "../../img/apps_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 

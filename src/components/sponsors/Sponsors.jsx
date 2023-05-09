@@ -33,7 +33,7 @@ function Sponsors() {
     <div style={{ background: "#2f2f2f" }}>
       <LazyLoadImage src={banner} className="header" />
       <div className="sponsors">
-        {spon && spon.map((sp) => <img src={sp.logo} />)}
+        {spon && spon.map((sp) => <LazyLoadImage key={sp.logo} src={sp.logo} />)}
       </div>
       <Contact />
       <Up />

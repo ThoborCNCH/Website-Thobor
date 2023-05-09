@@ -7,6 +7,8 @@ import Firestore from "../utils/Firestore";
 import Up from "../utils/Up";
 import "./blog.scss";
 import Post from "./components/Post";
+import banner from "../../img/blog_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -25,11 +27,7 @@ function Blog() {
 
   return (
     <>
-      <img
-        className="header"
-        src={require("../../img/blog_banner.svg").default}
-        alt=""
-      />
+      <LazyLoadImage src={banner} className="header" />
 
       <div className="blog">
         {blog &&

@@ -1,17 +1,14 @@
 import React from "react";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import over from "../../../img/over_alumni_img.svg";
+import abs from "../../../img/absolute_alumni.svg";
 function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
- 
   return no ? (
     <div className="alumn">
       <div className="top">
         <div className="imgs">
-          <img src={img} alt="" />
-          <img
-            className="svg"
-            src={require("../../../img/over_alumni_img.svg").default}
-            alt=""
-          />
+          <LazyLoadImage src={img} alt="" />
+          <LazyLoadImage src={over} alt="svg" />
         </div>
 
         <div className="ttext">
@@ -33,27 +30,15 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
       >
         delete this one
       </button>
-      <img
-        src={require("../../../img/absolute_alumni.svg").default}
-        alt=""
-        className="abs first"
-      />
-      <img
-        src={require("../../../img/absolute_alumni.svg").default}
-        alt=""
-        className="abs second"
-      />
+      <LazyLoadImage src={abs} className="abs first" />
+      <LazyLoadImage src={abs} className="abs second" />
     </div>
   ) : (
     <div className="alumn" data-aos="fade-left">
       <div className="top">
         <div className="imgs">
-          <img src={img} alt="" />
-          <img
-            className="svg"
-            src={require("../../../img/over_alumni_img.svg").default}
-            alt=""
-          />
+          <LazyLoadImage src={img} alt="" />
+          <LazyLoadImage src={over} alt="svg" />
         </div>
 
         <div className="ttext">
@@ -67,16 +52,8 @@ function Persoana({ no, nume, faculta, text, img, id, delete_this }) {
           dangerouslySetInnerHTML={{ __html: text }}
         />
       </div>
-      <img
-        src={require("../../../img/absolute_alumni.svg").default}
-        alt=""
-        className="abs first"
-      />
-      <img
-        src={require("../../../img/absolute_alumni.svg").default}
-        alt=""
-        className="abs second"
-      />
+      <LazyLoadImage src={abs} className="abs first" />
+      <LazyLoadImage src={abs} className="abs second" />
     </div>
   );
 }
