@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import stem from "../../../img/stem.png";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 function Stem() {
   const [clasa, setClasa] = useState("fas fa-caret-right");
   const [color, setColor] = useState("white");
@@ -20,11 +23,7 @@ function Stem() {
   return (
     <>
       <div className="stem" data-aos="fade-down">
-        <img
-          src={require("../../../img/stem.png")}
-          alt=""
-          data-aos="fade-right"
-        />
+        <LazyLoadImage src={stem} data-aos="fade-right" />
         <div className="stemText" data-aos="fade-left">
           <h3>Despre modelul STEM</h3>
           <h6>

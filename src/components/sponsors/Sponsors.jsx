@@ -12,6 +12,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
+import banner from "../../img/sponsors_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -29,11 +31,7 @@ function Sponsors() {
   }, []);
   return (
     <div style={{ background: "#2f2f2f" }}>
-      <img
-        src={require("../../img/sponsors_banner.svg").default}
-        alt=""
-        className="header"
-      />{" "}
+      <LazyLoadImage src={banner} className="header" />
       <div className="sponsors">
         {spon && spon.map((sp) => <img src={sp.logo} />)}
       </div>

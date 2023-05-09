@@ -10,14 +10,19 @@ import Svg from "../utils/Svg";
 import Up from "../utils/Up";
 import Card from "./components/Card";
 import "./style.scss";
-import main from "../../img/first.png";
-import cerc1 from "../../img/cerc1.png";
-import cerc2 from "../../img/cerc2.png";
-
 import "firebase/compat/firestore";
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
 import Incercare from "../utils/Incercare";
+
+import main from "../../img/first.png";
+import cerc1 from "../../img/cerc1.png";
+import cerc2 from "../../img/cerc2.png";
+import work from "../../img/work.svg";
+import programming from "../../img/programming.svg";
+import marketing from "../../img/marketing.svg";
+import control from "../../img/control.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -26,10 +31,10 @@ function Home() {
 
   const [premii, setPremii] = useState([]);
   const getPremii = async () => {
-    await firestore.sortdata("premii", "an", "asc").then(res => {
+    await firestore.sortdata("premii", "an", "asc").then((res) => {
       setPremii(res);
-    })
-  }
+    });
+  };
   useEffect(() => {
     AOS.init();
     getPremii();
@@ -56,17 +61,17 @@ function Home() {
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are 
+            we are
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
             team
           </h2>
-        </div>  
+        </div>
         <div className="img" data-aos="fade-left">
-          <img src={main} alt="" />
-          <img className="cerc" src={cerc1} alt="" />
-          <img className="cerc" src={cerc2} alt="" />
+          <LazyLoadImage src={main} alt="main" />
+          <LazyLoadImage src={cerc1} className="cerc" alt="main" />
+          <LazyLoadImage src={cerc2} className="cerc" alt="main" />
         </div>
       </div>
       <div className="cifre">
@@ -93,7 +98,9 @@ function Home() {
             ></path>
           </svg>
         </div>
-        <h3 data-aos="fade-down"><b>THOBOR</b> in cifre:</h3>
+        <h3 data-aos="fade-down">
+          <b>THOBOR</b> in cifre:
+        </h3>
         <div className="tab" data-aos="fade-down">
           <div className="linie">
             <div className="cifra">
@@ -201,19 +208,19 @@ function Home() {
       </div>
       <div className="cards">
         <div className="card" data-aos="fade-right">
-          <img src={require("../../img/work.svg").default} />
+          <LazyLoadImage src={work} alt="main" />
           <h1>work</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
-          <img src={require("../../img/programming.svg").default} />
+          <LazyLoadImage src={programming} alt="main" />
           <h1>programming</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="400">
-          <img src={require("../../img/marketing.svg").default} />
+          <LazyLoadImage src={marketing} alt="main" />
           <h1>marketing</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="600">
-          <img src={require("../../img/control.svg").default} />
+          <LazyLoadImage src={control} alt="main" />
           <h1>Mechanics</h1>
         </div>
       </div>

@@ -14,6 +14,8 @@ import "firebase/compat/firestore";
 
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
+import banner from "../../img/team_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -36,11 +38,7 @@ function Alumni() {
   }, []);
   return (
     <div style={{ background: "#2f2f2f" }}>
-      <img
-        src={require("../../img/team_banner.svg").default}
-        alt=""
-        className="header"
-      />
+      <LazyLoadImage src={banner} className="header" />
       {ani &&
         ani.map((ani) => (
           <Generatie

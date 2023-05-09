@@ -7,6 +7,8 @@ import Up from "../utils/Up";
 import Product from "./components/Product";
 import "./shop.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
+import banner from "../../img/shop_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 let arr = [];
 const firestore = new Firestore();
 let filters = [];
@@ -261,11 +263,7 @@ function Shop({ addit }) {
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>
-        <img
-          src={require("../../img/shop_banner.svg").default}
-          alt=""
-          className="header"
-        />
+        <LazyLoadImage src={banner} className="header" />
       </div>
       <div id="tops"></div>
       <div className="shop">

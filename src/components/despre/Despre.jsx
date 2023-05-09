@@ -7,6 +7,9 @@ import DateContact from "./components/DateContact";
 import Stem from "./components/Stem";
 import "./despre.scss";
 
+import banner from "../../img/despre_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 function Despre() {
   useEffect(() => {
     AOS.init();
@@ -15,11 +18,7 @@ function Despre() {
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>
-        <img
-          src={require("../../img/despre_banner.svg").default}
-          alt=""
-          className="header"
-        />
+        <LazyLoadImage src={banner} className="header" />
       </div>
 
       <div className="part">

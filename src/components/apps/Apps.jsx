@@ -9,6 +9,8 @@ import App from "./components/App";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
+import banner from "../../img/apps_banner.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
@@ -28,11 +30,7 @@ function Apps() {
 
   return (
     <>
-      <img
-        src={require("../../img/apps_banner.svg").default}
-        className="header"
-        alt=""
-      />
+      <LazyLoadImage src={banner} className="header" />
       <div className="apps">
         {apps &&
           apps.map((app) => (
