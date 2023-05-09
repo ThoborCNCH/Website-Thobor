@@ -86,13 +86,13 @@ function Navbar() {
             <li>
               <Link to="/sponsors">Sponsors</Link>
             </li>
-            {!isMobile && size.width > 700 && (
+            {/* {!isMobile && size.width > 700 && ( */}
               <>
                 <li>
                   <Link to="/simulator">Simulator</Link>
                 </li>
               </>
-            )}
+            {/* )} */}
 
             {!loading && !user ? (
               <>
