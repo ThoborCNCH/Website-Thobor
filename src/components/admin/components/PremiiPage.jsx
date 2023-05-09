@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Firestore from "../../utils/Firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import Card from "../../home/components/Card";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import ScrollContainer from "react-indiana-drag-scroll";
+import Card from "../../home/components/Card";
+import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
@@ -46,7 +46,7 @@ function PremiiPage() {
       const url = await getDownloadURL(storageRef);
       added.img = url;
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
 
     await firestore
@@ -122,7 +122,10 @@ function PremiiPage() {
                 className="hide"
                 style={{ height: h7, transition: "0.5s ease-in-out" }}
               >
-                <div className="scrollcnt" style={{width:"calc( 100vw - 300px )"}}>
+                <div
+                  className="scrollcnt"
+                  style={{ width: "calc( 100vw - 300px )" }}
+                >
                   <div className="loc_de_premii">
                     <h1>Premii</h1>
                     <div className="coca"></div>

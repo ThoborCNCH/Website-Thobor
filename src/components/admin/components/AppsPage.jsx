@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import Firestore from "../../utils/Firestore";
-import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import Placeholder from "../../utils/Placeholder";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
@@ -63,7 +61,7 @@ function AppsPage() {
           object.cod_qr = url;
         }
       } catch (error) {
-        console.error(error);
+        //console.error(error);
       }
     }
 

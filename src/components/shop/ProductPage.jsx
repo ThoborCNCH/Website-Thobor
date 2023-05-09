@@ -164,7 +164,7 @@ function ProductPage({ addit }) {
         document.querySelectorAll(".STEA_REV")[i].classList.add("fa-star");
       }
     else {
-      // console.log("rated: ", rated);
+      ////console.log("rated: ", rated);
       for (let i = 0; i < rated; i++) {
         document.querySelectorAll(".STEA_REV")[i].classList.remove("fa-star");
         document.querySelectorAll(".STEA_REV")[i].classList.remove("far");
@@ -184,7 +184,7 @@ function ProductPage({ addit }) {
     if (review.review === "" || review.rating === 0) alert("Lasa un review!");
     else
       await firestore.leaveRev(id, review).then((res) => {
-        console.log(res);
+        //console.log(res);
         document.querySelector(".revinput").value = "";
         setRated(-1);
         for (let i = 0; i < 5; i++) {
@@ -200,7 +200,7 @@ function ProductPage({ addit }) {
   };
 
   const delete_rev = async (rev) => {
-    // console.log(rev);
+    ////console.log(rev);
     await firestore.deleteRev({ rev, id }).then((res) => {
       firestore.getProductById(id).then((res) => {
         setProdus(res);

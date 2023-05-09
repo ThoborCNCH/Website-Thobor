@@ -1,12 +1,10 @@
-import React from "react";
-import Firestore from "../../utils/Firestore";
-import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
@@ -43,10 +41,10 @@ function SponsorsPage() {
       const url = await getDownloadURL(storageRef);
       added.logo = url;
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
 
-    console.log(added);
+    //console.log(added);
     await firestore
       .addItem("sponsors", added)
       .then(async (res) => {

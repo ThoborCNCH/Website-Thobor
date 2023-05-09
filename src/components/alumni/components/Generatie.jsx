@@ -5,7 +5,6 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import Persoana from "./AlumniPersoana";
-import { useEffect } from "react";
 
 function Generatie({ years, team, persoane, no }) {
   return no ? (

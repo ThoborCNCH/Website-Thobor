@@ -2,12 +2,11 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; // loads tsparticles-slim
 //import { loadFull } from "tsparticles"; // loads tsparticles
 import { useCallback, useMemo, useState } from "react";
-import "./Incercare.css"
+import "./Incercare.css";
 
 // tsParticles Repository: https://github.com/matteobruni/tsparticles
 // tsParticles Website: https://particles.js.org/
 const Incercare = (props) => {
-
   let style = useMemo(() => {
     return {
       width: "100vw",
@@ -15,7 +14,7 @@ const Incercare = (props) => {
       position: "absolute",
       top: "0",
       left: "0",
-    }
+    };
   });
 
   // using useMemo is not mandatory, but it's recommended since this value can be memoized if static
@@ -86,13 +85,13 @@ const Incercare = (props) => {
   // const size = useWindowSize();
 
   // useEffect(() => {
-  //   console.log(size.width);
+  //  //console.log(size.width);
   //   if (size.width <= 700) {
-  //   console.log("s-a facut resize");
+  //  //console.log("s-a facut resize");
   //   options.particles.number.density = 5;
   //     options.particles.number.value = 40;
   //   } else {
-  //   console.log("NUUUUUUUUUUUU s-a facut resize");
+  //  //console.log("NUUUUUUUUUUUU s-a facut resize");
   //     options.particles.number.density = 30;
   //     options.particles.number.value = 250;
   //   }

@@ -19,7 +19,7 @@ function BlogPost() {
   const [postare, setPosare] = useState({});
   const [img, setImg] = useState([]);
   const { id } = useParams();
-  console.log(id);
+  //console.log(id);
 
   const getBlogPost = async () => {
     await firestore.getDocById("blog", id).then((res) => {
@@ -37,7 +37,7 @@ function BlogPost() {
         p.setAttribute("data-aos", "fade-left");
       }
     });
-      postare &&
+    postare &&
       Object.entries(postare).map(([key, value]) => {
         if (key.includes("img")) {
           if (!img.includes(value)) setImg((old) => [...old, value]);

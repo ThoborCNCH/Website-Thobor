@@ -9,7 +9,7 @@
 // //     googleMapsApiKey: "AIzaSyBjirh1ClVmRSUX7Mvg_sZL6AZYZlOhj1I",
 // //   });
 // //   useEffect(() => {
-// //     console.log("AIzaSyBjirh1ClVmRSUX7Mvg_sZL6AZYZlOhj1I");
+// //    //console.log("AIzaSyBjirh1ClVmRSUX7Mvg_sZL6AZYZlOhj1I");
 // //   }, []);
 // //   return <GoogleMap zoom={10} center={{lat:44, lng:-80}} mapContainerClassName="map_react" >
 

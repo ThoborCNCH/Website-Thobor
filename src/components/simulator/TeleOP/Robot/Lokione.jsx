@@ -1,20 +1,19 @@
-import React, { Suspense, useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { Vector3, Quaternion, Raycaster } from 'three'
-import { useFrame } from 'react-three-fiber';
-import { useBox, useCylinder, useRaycastVehicle } from '@react-three/cannon';
+import React, { Suspense, useRef } from "react";
+import { useGLTF } from "@react-three/drei";
+import { Vector3, Quaternion, Raycaster } from "three";
+import { useFrame } from "react-three-fiber";
+import { useBox, useCylinder, useRaycastVehicle } from "@react-three/cannon";
 
-import { useWheels } from './useWheels';
-import { useControls } from './useControls';
-import { WheelDebug } from './WheelDebug';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import Brat from './Brat';
+import { useWheels } from "./useWheels";
+import { useControls } from "./useControls";
+import { WheelDebug } from "./WheelDebug";
+import { useState } from "react";
+import { useEffect } from "react";
+import Brat from "./Brat";
 
-import DoamneIartaCeUrmeaza from './DoamneIartaCeUrmeaza';
+import DoamneIartaCeUrmeaza from "./DoamneIartaCeUrmeaza";
 
 export default function Lokione(props) {
-
   const { nodes, materials } = useGLTF("/robotNou.glb");
 
   const position = [22.5, 0, 38];
@@ -33,7 +32,7 @@ export default function Lokione(props) {
     7: new Vector3(0, 40, -47),
     8: new Vector3(47, 40, -47),
     9: new Vector3(0, 69, 0),
-  }
+  };
 
   const [bratPosition, setBratPosition] = useState(-4.5);
   const [bratApuca, setBratApuca] = useState(true);
@@ -45,32 +44,30 @@ export default function Lokione(props) {
   var robotRotation;
 
   const [controls, setControls] = useState({});
-  
+
   const chassisBodyArgs = [width, height, front * 2];
   const [chassisBody, chassisAPI] = useBox(
     () => ({
       args: chassisBodyArgs,
       mass: 150,
-      position
+      position,
     }),
     useRef(null)
-    );
-    DoamneIartaCeUrmeaza.robotBody = chassisBody;
-    DoamneIartaCeUrmeaza.robotApi = chassisAPI;
-    
+  );
+  DoamneIartaCeUrmeaza.robotBody = chassisBody;
+  DoamneIartaCeUrmeaza.robotApi = chassisAPI;
 
   const [bratBody, bratAPI] = useBox(
     () => ({
       // args: [0.3, 0.3, 2, 32],
       args: [2, 1, 2],
       position: [0, 0, 0],
-      type: 'Static'
+      type: "Static",
     }),
     useRef(null)
-  )
+  );
   DoamneIartaCeUrmeaza.bratBody = bratBody;
   DoamneIartaCeUrmeaza.bratApi = bratAPI;
-
 
   // useEffect(() => {
 
@@ -79,30 +76,29 @@ export default function Lokione(props) {
   //   var raycast = new Raycaster();
   //   raycast.far = 100
   //   raycast.set(new Vector3(0, 1, 0), new Vector3(0, 0, 0))
-  //   // console.log(raycast.ray.distanceToPoint(viata))
-  //   // console.log(raycast.intersectObjects(chassisBody))
+  //   ////console.log(raycast.ray.distanceToPoint(viata))
+  //   ////console.log(raycast.intersectObjects(chassisBody))
 
   //   // let mama = new Vector3(0, 0, 0)
   //   // mama.setFromMatrixPosition(DoamneIartaCeUrmeaza.robotBody.current.matrixWorld)
-  //   // console.log(mama)
+  //   ////console.log(mama)
 
   // })
 
   useEffect(() => {
-
     const keyDown = (e) => {
       setControls((controls) => ({
         ...controls,
-        [e.key.toLowerCase()]: true
+        [e.key.toLowerCase()]: true,
       }));
-    }
+    };
 
     const keyUp = (e) => {
       setControls((controls) => ({
         ...controls,
-        [e.key.toLowerCase()]: false
+        [e.key.toLowerCase()]: false,
       }));
-    }
+    };
 
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
@@ -110,15 +106,12 @@ export default function Lokione(props) {
       window.removeEventListener("keydown", keyDown);
       window.removeEventListener("keyup", keyUp);
     };
-
   }, []);
 
   useEffect(() => {
+    DoamneIartaCeUrmeaza.controls = controls;
 
-    DoamneIartaCeUrmeaza.controls = controls
-
-    if (controls.f)
-      setBratApuca(!bratApuca);
+    if (controls.f) setBratApuca(!bratApuca);
 
     if (controls.shift)
       if (bratPosition <= 12) {
@@ -141,12 +134,8 @@ export default function Lokione(props) {
 
     // bratCollisionAPI.position.set(bratPosition.x, bratPosition.y, bratPosition.z);
 
-    if (controls[0])
-      setCamController(false);
-    for (let k = 1; k <= 9; k++)
-      if (controls[k])
-        setCamController(true);
-
+    if (controls[0]) setCamController(false);
+    for (let k = 1; k <= 9; k++) if (controls[k]) setCamController(true);
   }, [controls]);
 
   const [wheels, wheelInfos] = useWheels(width, height, front, wheelRadius);
@@ -155,9 +144,9 @@ export default function Lokione(props) {
     () => ({
       chassisBody,
       wheelInfos,
-      wheels
+      wheels,
     }),
-    useRef(null),
+    useRef(null)
   );
 
   useControls(vehicleAPI, chassisAPI);
@@ -169,15 +158,15 @@ export default function Lokione(props) {
     robotRotation = new Quaternion(0, 0, 0, 0);
     robotRotation.setFromRotationMatrix(chassisBody.current.matrixWorld);
 
-    let holiad = bratPosition + 2.7
+    let holiad = bratPosition + 2.7;
     let vec = new Vector3(0, holiad, -4.6);
 
-    vec.applyQuaternion(robotRotation)
+    vec.applyQuaternion(robotRotation);
 
     let bratPose = vec.clone().add(robotPosition);
 
     bratAPI.position.copy(bratPose);
-  })
+  });
 
   // AICI AR FI CONTROLLER UL PENTRU CAMERA POATE MERGE
   useFrame((state) => {
@@ -190,13 +179,12 @@ export default function Lokione(props) {
 
       for (let k = 1; k <= 9; k++)
         if (controls[k]) {
-          var cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(cameras[k]));
+          var cameraPosition = position
+            .clone()
+            .add(wDir.clone().multiplyScalar(1).add(cameras[k]));
           state.camera.position.copy(cameraPosition);
         }
-
-
     } else {
-
       let position = new Vector3(0, 0, 0);
       position.setFromMatrixPosition(chassisBody.current.matrixWorld);
       // chassisAPI.position.set(vehicle.current.matrixWorld);
@@ -209,13 +197,14 @@ export default function Lokione(props) {
       wDir.applyQuaternion(quaternion);
       wDir.normalize();
 
-      let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(20).add(new Vector3(0, 32, 0)));
+      let cameraPosition = position
+        .clone()
+        .add(wDir.clone().multiplyScalar(20).add(new Vector3(0, 32, 0)));
 
       // wDir.add(new Vector3(0, 0.2, 0));
       state.camera.position.copy(cameraPosition);
       state.camera.lookAt(position);
     }
-
   });
 
   return (
@@ -246,13 +235,22 @@ export default function Lokione(props) {
         <group ref={chassisBody}>
           <group>
             {/* position={[0, 0, 11.2]} */}
-            <group scale={[0.3, 0.3, 0.3]} rotation={[0, Math.PI, 0]} position={[-0.67, bratPosition, 1.2]}>
+            <group
+              scale={[0.3, 0.3, 0.3]}
+              rotation={[0, Math.PI, 0]}
+              position={[-0.67, bratPosition, 1.2]}
+            >
               <Brat />
             </group>
           </group>
           <mesh ref={chassisBody}>
             <boxGeometry args={[6, 1.5, 6]} />
-            <meshPhongMaterial attach={"material"} color="#FFFF00" transparent opacity={0} />
+            <meshPhongMaterial
+              attach={"material"}
+              color="#FFFF00"
+              transparent
+              opacity={0}
+            />
           </mesh>
           <WheelDebug wheelRef={wheels[0]} wheelRadius={wheelRadius} />
           <WheelDebug wheelRef={wheels[1]} wheelRadius={wheelRadius} />
@@ -260,7 +258,6 @@ export default function Lokione(props) {
           <WheelDebug wheelRef={wheels[3]} wheelRadius={wheelRadius} />
           <group scale={[0.3, 0.3, 0.3]} ref={chassisBody} name="chassisBody">
             <group rotation={[0, Math.PI, 0]} position={[-1.5, -12, 3]}>
-
               <mesh
                 castShadow
                 receiveShadow
@@ -586,14 +583,12 @@ export default function Lokione(props) {
                 position={[-8.29, 8.29, 2.62]}
                 scale={0.06}
               />
-
-
             </group>
           </group>
         </group>
       </group>
     </Suspense>
-  )
+  );
 }
 
 // useGLTF.preload('/robotNou.gltf');

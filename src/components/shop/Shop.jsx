@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Firestore from "../utils/Firestore";
 import Text from "../utils/Text";
-import "./shop.scss";
 import Up from "../utils/Up";
 import Product from "./components/Product";
-import Placeholder from "../utils/Placeholder";
-import { HashLink } from "react-router-hash-link";
-
+import "./shop.scss";
 let arr = [];
 const firestore = new Firestore();
 let filters = [];
@@ -57,18 +55,14 @@ let filter_arr = {
   xiaomi: [["brand", "==", "xiaomi"]],
   motorola: [["brand", "==", "motorola"]],
 };
-
-function Shop({ addit, cos  }) {
+function Shop({ addit, cos }) {
   const { categorie, sort_param } = useParams();
   let [products, setProducts] = useState([]);
   const [filter_map, setf] = useState([]);
-
   let [catt, setCatt] = useState(["categories", "==", categorie]);
-
   useEffect(() => {
     getCategorii();
     setf(Object.entries(filter_arr));
-
     if (
       localStorage.getItem("local_filters") &&
       localStorage.getItem("local_filters") !== "[]"
@@ -83,18 +77,15 @@ function Shop({ addit, cos  }) {
     }
     window.scrollTo(0, 0);
   }, []);
-
   useEffect(() => {
     if (categorie == "reducere") catt = ["old_pret", ">", 0];
     else catt = ["categories", "==", categorie];
   }, [catt, categorie]);
-
   useEffect(() => {
     if (categorie == "reducere") {
       catt = ["old_pret", ">", 0];
     } else catt = ["categories", "==", categorie];
     if (categorie.includes("search")) {
-      //search ========== includes
       firestore
         .readDocuments("products", ["nume", [], categorie])
         .then(async (res) => {
@@ -103,7 +94,6 @@ function Shop({ addit, cos  }) {
             localStorage.getItem("filters") !== "[]"
           ) {
             filters = JSON.parse(localStorage.getItem("filters"));
-
             res = await updateFilters(res, filters);
           }
           if (sort_param) {
@@ -113,14 +103,12 @@ function Shop({ addit, cos  }) {
           setProducts((old) => (old = res));
         });
     } else {
-      //console.log("catt: ", catt);
       firestore.readDocuments("products", catt).then(async (res) => {
         if (
           localStorage.getItem("filters") &&
           localStorage.getItem("filters") !== "[]"
         ) {
           filters = JSON.parse(localStorage.getItem("filters"));
-
           res = await updateFilters(res, filters);
         }
         if (sort_param) {
@@ -131,17 +119,13 @@ function Shop({ addit, cos  }) {
       });
     }
   }, [categorie, sort_param]);
-
   const sort = async (arr, cat, nope) => {
     switch (cat) {
       case "pc":
-        // //console.log("pc acum");
         arr.sort((a, b) => a.pret - b.pret);
-        // setProducts((prod) => [...prod.sort((a, b) => a.pret - b.pret)]);
         break;
       case "pd":
         arr.sort((a, b) => b.pret - a.pret);
-        // setProducts((prod) => [...prod.sort((a, b) => b.pret - a.pret)]);
         break;
       case "dd":
         arr.sort(
@@ -153,7 +137,6 @@ function Shop({ addit, cos  }) {
       case "rc":
         arr.sort((a, b) => b.rating - a.rating);
         break;
-
       case "rd":
         arr.sort((a, b) => b.reviews.length - a.reviews.length);
         break;
@@ -162,44 +145,26 @@ function Shop({ addit, cos  }) {
         break;
     }
     if (nope !== "ok") setProducts((old) => [...arr]);
-
-    // //console.log("products", products);
-    // //console.log("arr", arr);
   };
-
   const updateFilters = async (arr, filters) => {
     await firestore.filter(arr, filters).then((res) => {
       arr = res;
       //console.log(res);
     });
-
     return arr;
   };
-
   const addFilter = async (e, id) => {
     const check = e.target.checked;
     //console.log(check);
-
     if (check) {
       //console.log("==================ADAUGARE====================");
       filters = [...filters, { [id]: filter_arr[id] }];
       local_filters = [...local_filters, id];
     } else {
       //console.log("==================MARS====================");
-
       filters = filters.filter((f) => !compareArrays(f[id], filter_arr[id]));
       local_filters = local_filters.filter((f) => f !== id);
-
       localStorage.setItem("filters", JSON.stringify(filters));
-
-      // await firestore.readDocuments("products", catt).then(async (res) => {
-      //   if (sort_param) {
-      //     sort(res, sort_param);
-      //   }
-      //   arr = res;
-      //   products = res;
-      // });
-
       if (categorie == "reducere") catt = ["old_pret", ">", 0];
       else catt = ["categories", "==", categorie];
       //console.log(catt);
@@ -212,7 +177,6 @@ function Shop({ addit, cos  }) {
               sort(res, sort_param);
             }
             res = await updateFilters(res, filters);
-
             setProducts((old) => (old = res));
           });
       } else
@@ -220,25 +184,19 @@ function Shop({ addit, cos  }) {
           if (sort_param) {
             sort(res, sort_param);
           }
-
           res = await updateFilters(res, filters);
-
           setProducts((old) => (old = res));
           //console.log(res, products);
           products = res;
           //console.log(res, products);
-
-          // //console.log(arr);
         });
     }
-
     localStorage.setItem("filters", JSON.stringify(filters));
     localStorage.setItem("local_filters", JSON.stringify(local_filters));
     //console.log("products: ", products);
     const rasp = await updateFilters(products, filters);
     //console.log("rasp", rasp);
     //console.log(filters);
-
     if (rasp !== false) {
       if (sort_param) {
         sort(rasp, sort_param, "ok");
@@ -259,7 +217,6 @@ function Shop({ addit, cos  }) {
   const compareArrays = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
-
   const reset = async () => {
     document.querySelectorAll("input[type='checkbox']").forEach((input) => {
       input.checked = false;
@@ -269,11 +226,9 @@ function Shop({ addit, cos  }) {
     if (localStorage.getItem("local_filters")) {
       localStorage.setItem("local_filters", "[]");
     }
-
     if (localStorage.getItem("filters")) {
       localStorage.setItem("filters", "[]");
     }
-
     if (categorie == "reducere") catt = ["old_pret", ">", 0];
     else catt = ["categories", "==", categorie];
     await firestore.readDocuments("products", catt).then(async (res) => {
@@ -284,18 +239,15 @@ function Shop({ addit, cos  }) {
       setProducts((old) => (old = res));
     });
   };
-
   const calculatedisc = (oldPrice, price) => {
     return ((oldPrice - price) / oldPrice) * 100;
   };
-
   const [categorii, setCategorii] = useState([]);
   const getCategorii = async () => {
     await firestore.readDocuments("categories").then((res) => {
       setCategorii(res);
     });
   };
-
   const show = (id) => {
     const drop = document.querySelector(`#${id} + div`);
     if (drop.classList.contains("show")) {
@@ -304,7 +256,6 @@ function Shop({ addit, cos  }) {
       drop.classList.add("show");
     }
   };
-
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>
@@ -344,25 +295,15 @@ function Shop({ addit, cos  }) {
                 <HashLink to={`/shop/${categorie}/#tops`}>
                   Fara sortare
                 </HashLink>
-                <HashLink
-                  to={`/shop/${categorie}/pc/#tops`}
-
-                  // onClick={() => sort("pc")}
-                >
+                <HashLink to={`/shop/${categorie}/pc/#tops`}>
                   Pret - crescator
                 </HashLink>
-                <HashLink
-                  to={`/shop/${categorie}/pd/#tops`}
-
-                  // onClick={() => sort("pd")}
-                >
+                <HashLink to={`/shop/${categorie}/pd/#tops`}>
                   Pret - descrescator
                 </HashLink>
-
                 <HashLink to={`/shop/${categorie}/rc/#tops`}>
                   Cele mai populare
                 </HashLink>
-
                 <HashLink to={`/shop/${categorie}/dd/#tops`}>
                   Discount %
                 </HashLink>
@@ -384,7 +325,7 @@ function Shop({ addit, cos  }) {
               <span>Cart </span>
             </Link>
           </div>
-          {/* cart + categorii + sort */}
+          {}
         </div>
         <div className="down">
           <div className="left">
@@ -396,7 +337,6 @@ function Shop({ addit, cos  }) {
               <div className="filters_group">
                 {filter_map.map((filter, index) => {
                   let ar = filter[0].split("-");
-
                   return (
                     index <= 6 && (
                       <div className="input_group">
@@ -428,7 +368,6 @@ function Shop({ addit, cos  }) {
               <div className="filters_group">
                 {filter_map.map((filter, index) => {
                   let ar = filter[0].split("-");
-
                   return (
                     index > 6 &&
                     index <= 11 && (
@@ -465,7 +404,6 @@ function Shop({ addit, cos  }) {
               <div className="filters_group">
                 {filter_map.map((filter, index) => {
                   let ar = filter[0].split("-");
-
                   return (
                     index > 11 && (
                       <div className="input_group">
@@ -516,5 +454,4 @@ function Shop({ addit, cos  }) {
     </>
   );
 }
-
 export default Shop;

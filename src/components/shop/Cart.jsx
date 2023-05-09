@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Firestore from "../utils/Firestore";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import Text from "../utils/Text";
-import Placeholder from "../utils/Placeholder";
-import "./style/cart.scss";
-import Up from "../utils/Up";
 import Contact from "../utils/Contact";
+import Firestore from "../utils/Firestore";
+import Placeholder from "../utils/Placeholder";
 import Svg from "../utils/Svg";
+import Text from "../utils/Text";
+import Up from "../utils/Up";
+import "./style/cart.scss";
 const firestore = new Firestore();
 
 function Cart({ delete_prod_app, update, finish, fixCant }) {
@@ -64,7 +64,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
     setP(resp.cant);
     setHidden([]);
     resp.cant.map((res) => {
-      // console.log({ cant: res.cant, pret: res.pret, name: res.nume });
+      ////console.log({ cant: res.cant, pret: res.pret, name: res.nume });
       setHidden((old) => [
         ...old,
         { id: res.id, cant: res.cant, pret: res.pret, name: res.nume },
@@ -73,7 +73,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
   };
   useEffect(() => {
     ok();
-    console.log(user);
+    //console.log(user);
   }, [user]);
   const form = useRef();
 
@@ -123,7 +123,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
       )
       .then(
         async (result) => {
-          console.log(result);
+          //console.log(result);
           if (result.status == 200) {
             alert("comanda plasata");
             await finish().then(async (res) => {
@@ -136,7 +136,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
           }
         },
         (error) => {
-          console.log(error.text);
+          //console.log(error.text);
           alert(error.text);
         }
       );

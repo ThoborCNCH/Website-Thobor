@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/sidenav.scss";
-import { useState } from "react";
 
 function SideNav() {
   const [color, setColor] = useState("#26b33e");

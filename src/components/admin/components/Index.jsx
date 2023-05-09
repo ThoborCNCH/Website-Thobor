@@ -2,15 +2,25 @@ import React from "react";
 
 function Index() {
   return (
-    <div className="adminpage">
+    <div
+      className="adminpage"
+      style={{ width: "calc(100vw - 226px)", padding: 0, margin: 0 }}
+    >
+      <div style={{ background: "#2f2f2f" }}>
+        <img
+          src={require("../../../img/admin.svg").default}
+          alt=""
+          className="header"
+        />
+      </div>
+
       <div
         className="shop_part"
         style={{
-          minHeight: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          margin: "-70px 0",
+          margin: "40px 0",
         }}
       >
         <h1

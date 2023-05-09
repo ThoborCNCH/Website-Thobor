@@ -1,8 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import Placeholder from "../../utils/Placeholder";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Firestore from "../../utils/Firestore";
+import Placeholder from "../../utils/Placeholder";
 
 const firestore = new Firestore();
 

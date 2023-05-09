@@ -6,8 +6,20 @@ import {
   signOut,
 } from "firebase/auth";
 import "firebase/firestore";
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, updateDoc, where } from "firebase/firestore";
- 
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 
 export default class Firestore {
   constructor() {
@@ -15,7 +27,7 @@ export default class Firestore {
     const firebaseConfig = {
       apiKey: process.env.REACT_APP_APIKEY,
       authDomain: process.env.REACT_APP_AUTHDOMAIN,
-      projectId:process.env.REACT_APP_PROJECTID,
+      projectId: process.env.REACT_APP_PROJECTID,
       storageBucket: process.env.REACT_APP_STORAGEBUCKET,
       messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
       appId: process.env.REACT_APP_APPID,
@@ -25,18 +37,6 @@ export default class Firestore {
     this.db = getFirestore();
     this.auth = getAuth(app);
     this.googleProvider = new GoogleAuthProvider();
-  }
-
-  async uploadmessage(data) {
-    const contactRef = collection(this.db, "contact");
-
-    return await addDoc(contactRef, data)
-      .then((res) => {
-        return true;
-      })
-      .catch((e) => {
-        return false;
-      });
   }
 
   getDb() {
@@ -94,7 +94,7 @@ export default class Firestore {
       }
       // cant.forEach(async prod => {
       // })
-      // // console.log("2) ", cant);
+      // ////console.log("2) ", cant);
     }
     return { cant, total };
   }
@@ -106,7 +106,7 @@ export default class Firestore {
         cantitate: cant,
         user_id: user.uid,
       }).then((res) => {
-        // // console.log(res);
+        // ////console.log(res);
         if (res === "adaug") alert("Adaugat cu succes in cos!");
         else if (res === "update ok") alert("Update cantitate");
         else alert("eroare");
@@ -148,24 +148,24 @@ export default class Firestore {
         });
       }
     } catch (err) {
-      // console.error(err);
+      ////console.error(err);
       alert(err.message);
     }
   }
 
   async addItem(collectionName, product) {
-    console.log(product);
+    //console.log(product);
     const db = getFirestore();
     const productsRef = collection(db, collectionName);
 
     // Use the addDoc() method to add a new document to the products collection
     return await addDoc(productsRef, product)
       .then((docRef) => {
-        // // console.log("Document written with ID: ", docRef.id);
+        // ////console.log("Document written with ID: ", docRef.id);
         return docRef.id;
       })
       .catch((error) => {
-        // console.error("Error adding document: ", error);
+        ////console.error("Error adding document: ", error);
       });
   }
 
@@ -183,11 +183,11 @@ export default class Firestore {
     if (querySnapshot.size !== 1) {
       await addDoc(productsRef, product)
         .then((docRef) => {
-          // // console.log("Document written with ID: ", docRef.id);
+          // ////console.log("Document written with ID: ", docRef.id);
           return "adaug";
         })
         .catch((error) => {
-          // console.error("Error adding document: ", error);
+          ////console.error("Error adding document: ", error);
         });
 
       return "adaug";
@@ -200,10 +200,10 @@ export default class Firestore {
       await updateDoc(productRef, {
         cantitate: productDoc.get("cantitate") + product.cantitate,
       });
-      // // console.log("Document successfully updated!");
+      // ////console.log("Document successfully updated!");
       return "update ok";
     } catch (error) {
-      // // console.log("Error updating document:", error);
+      // ////console.log("Error updating document:", error);
       return false;
     }
   }
@@ -217,7 +217,7 @@ export default class Firestore {
     querySnapshot.forEach((doc) => {
       documents.push({ id: doc.id, ...doc.data() });
     });
-    
+
     return documents;
   }
 
@@ -235,7 +235,7 @@ export default class Firestore {
     for (let i = 0; i < filters.length; i++) {
       let filter = filters[i];
       for (let j = 0; j < filter.length; j++) {
-        // console.log(filter[j][1])
+        ////console.log(filter[j][1])
 
         switch (filter[j][1]) {
           case ">=":
@@ -260,7 +260,7 @@ export default class Firestore {
         }
       }
     }
-    // console.log(arr);
+    ////console.log(arr);
 
     if (filters.length == 0) return false;
     return arr;
@@ -324,7 +324,7 @@ export default class Firestore {
   }
   // Update a document in a collection
   async updateDocument(collectionName, documentId, data) {
-    // // console.log(collectionName, documentId, data);
+    // ////console.log(collectionName, documentId, data);
     const ref = doc(this.db, collectionName, documentId);
 
     // Set the "capital" field of the city 'DC'
@@ -378,7 +378,7 @@ export default class Firestore {
         for (let i = 0; i < reviews.length; i++) {
           if (i != index) {
             newRating += reviews[i].rating;
-            // // console.log(reviews[i].rating);
+            // ////console.log(reviews[i].rating);
           }
         }
         newRating /= reviews.length - 1;
@@ -405,7 +405,7 @@ export default class Firestore {
   async delete_all_from_cart_by_user_id(id) {
     const carts = await this.readDocuments("cos", ["user_id", "==", id]);
     for (const cart of carts) {
-      // console.log(cart);
+      ////console.log(cart);
       await this.deleteDocument("cos", cart.id);
     }
   }

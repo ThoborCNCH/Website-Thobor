@@ -1,13 +1,12 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import React, { useEffect } from "react";
+import "firebase/compat/firestore";
+import React, { useEffect, useState } from "react";
 import Contact from "../utils/Contact";
+import Firestore from "../utils/Firestore";
 import Up from "../utils/Up";
 import "./blog.scss";
 import Post from "./components/Post";
-import "firebase/compat/firestore";
-import { useState } from "react";
-import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 

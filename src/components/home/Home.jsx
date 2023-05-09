@@ -1,22 +1,19 @@
-import "./style.scss";
-import CountUp from "react-countup";
-import Up from "../utils/Up";
-import { useEffect, useRef } from "react";
-import Incercare from "../utils/Incercare";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Svg from "../utils/Svg";
-import Contact from "../utils/Contact";
-import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import CountUp from "react-countup";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
+import { Link } from "react-router-dom";
+import Contact from "../utils/Contact";
+import Svg from "../utils/Svg";
+import Up from "../utils/Up";
 import Card from "./components/Card";
+import "./style.scss";
 
 import "firebase/compat/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import Firestore from "../utils/Firestore";
 import { useState } from "react";
-import { async } from "@firebase/util";
+import Firestore from "../utils/Firestore";
 
 const firestore = new Firestore();
 

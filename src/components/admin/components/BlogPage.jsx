@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Firestore from "../../utils/Firestore";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Post from "../../blog/components/Post";
+import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
@@ -66,7 +66,7 @@ function BlogPage() {
 
     const storage = getStorage();
     let downloadUrls = [];
-    console.log(images.length);
+    //console.log(images.length);
     for (let i = 0; i < images.length; i++) {
       const image = images[i];
       const storageRef = ref(storage, `blog/${image.name}`);
@@ -75,7 +75,7 @@ function BlogPage() {
         const url = await getDownloadURL(storageRef);
         downloadUrls.push(url);
       } catch (error) {
-        console.error(error);
+        //console.error(error);
       }
     }
     let idk = {
@@ -96,7 +96,7 @@ function BlogPage() {
         setL();
       })
       .catch((er) => {
-        console.log(er);
+        //console.log(er);
       });
   };
   useEffect(() => {

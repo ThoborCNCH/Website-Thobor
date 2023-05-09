@@ -1,9 +1,9 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import SideNav from "./components/SideNav";
-import Firestore from "../utils/Firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Outlet } from "react-router-dom";
+import Firestore from "../utils/Firestore";
 import "./admin.scss";
+import SideNav from "./components/SideNav";
 
 const firestore = new Firestore();
 

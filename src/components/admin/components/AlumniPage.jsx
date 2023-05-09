@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Firestore from "../../utils/Firestore";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Generatie from "../../alumni/components/Generatie";
+import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 function AlumniPage() {

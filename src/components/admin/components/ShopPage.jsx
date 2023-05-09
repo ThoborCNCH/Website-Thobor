@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Firestore from "../../utils/Firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Firestore from "../../utils/Firestore";
 import Placeholder from "../../utils/Placeholder";
 
 const firestore = new Firestore();
@@ -97,7 +97,7 @@ function ShopPage() {
           const url = await getDownloadURL(storageRef);
           downloadUrls.push(url);
         } catch (error) {
-          console.error(error);
+          //console.error(error);
         }
       }
 
@@ -109,8 +109,8 @@ function ShopPage() {
       // setNewItem((old) => ({
       // }));
 
-      // console.log(downloadUrls, idk);
-      // // console.log(newItem);
+      ////console.log(downloadUrls, idk);
+      // ////console.log(newItem);
 
       await firestore
         .addItem("products", idk)
@@ -123,7 +123,7 @@ function ShopPage() {
           alert("Produs adaugat");
         })
         .catch((er) => {
-          console.log(er);
+          //console.log(er);
           setLoadingPrd(false);
         });
     }
@@ -158,7 +158,7 @@ function ShopPage() {
   };
   const updateFCT = async () => {
     let arr = updateItem.images.filter((ok) => typeof ok !== "string");
-    // console.log(arr);
+    ////console.log(arr);
     updateItem.images.length -= arr.length;
 
     const storage = getStorage();
@@ -172,16 +172,16 @@ function ShopPage() {
         const url = await getDownloadURL(storageRef);
         downloadUrls.push(url);
       } catch (error) {
-        console.error(error);
+        //console.error(error);
       }
     }
-    // console.log(downloadUrls);
+    ////console.log(downloadUrls);
     let idk = {
       ...updateItem,
       images: updateItem.images.concat(downloadUrls),
     };
 
-    // console.log(idk);
+    ////console.log(idk);
 
     await firestore.updateDocument("products", idk.id, idk).then((res) => {
       getProducts();
@@ -198,7 +198,7 @@ function ShopPage() {
   };
 
   const handleDelete = (indexToDelete) => {
-    // console.log(indexToDelete);
+    ////console.log(indexToDelete);
     const updatedArray = updateItem.images.filter(
       (_, index) => index !== indexToDelete
     );
@@ -208,12 +208,12 @@ function ShopPage() {
     const updatedArray = [...updateItem.images, ...newElement];
     // const updatedArray = [...updateItem.images, newElement];
     setUpdateItem({ ...updateItem, images: updatedArray });
-    // console.log(updateItem.images);
+    ////console.log(updateItem.images);
   };
 
   const [file, setFile] = useState([]);
   function handleChange(e) {
-    // console.log(e);
+    ////console.log(e);
     e.map((file) => {
       setFile((old) => [...old, URL.createObjectURL(file)]);
     });
@@ -258,7 +258,7 @@ function ShopPage() {
     await firestore
       .readDocuments("products", ["cantitate", "<=", 40])
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         setProducts(res);
       });
   };
