@@ -87,7 +87,6 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Incercare id="tsparticles" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />

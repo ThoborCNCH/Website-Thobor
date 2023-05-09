@@ -14,6 +14,7 @@ import "./style.scss";
 import "firebase/compat/firestore";
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
+import Incercare from "../utils/Incercare";
 
 const firestore = new Firestore();
 
@@ -48,6 +49,7 @@ function Home() {
   });
   return (
     <>
+      <Incercare id="tsparticles" />
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
