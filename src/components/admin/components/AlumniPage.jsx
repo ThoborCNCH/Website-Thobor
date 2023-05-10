@@ -20,7 +20,7 @@ function AlumniPage() {
 
   const [alumni, setAlumni] = useState([]);
   const getAlumni = async () => {
-    await firestore.readDocuments("alumni").then((res) => {
+    await firestore.readDocuments("team_member").then((res) => {
       setAlumni(res);
     });
   };
@@ -49,7 +49,7 @@ function AlumniPage() {
     }
 
     await firestore
-      .addItem("alumni", added)
+      .addItem("team_member", added)
       .then(async (res) => {
         alert("alumni adaugat");
         SetloadinggAlumni(false);
@@ -60,7 +60,7 @@ function AlumniPage() {
   };
 
   const delete_alumni = async (e) => {
-    await firestore.deleteDocument("alumni", e).then(async (res) => {
+    await firestore.deleteDocument("team_member", e).then(async (res) => {
       alert("Alumni sters");
       await getAlumni();
     });

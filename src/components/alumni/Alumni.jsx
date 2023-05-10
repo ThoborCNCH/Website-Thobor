@@ -26,7 +26,7 @@ function Alumni() {
   const getAni = async () => {
     await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
       setAni(res);
-      await firestore.readDocuments("alumni").then((res) => {
+      await firestore.readDocuments("team_member").then((res) => {
         setAlumni(res);
       });
     });
