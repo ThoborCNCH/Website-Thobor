@@ -57,7 +57,7 @@ function Home() {
       document.querySelector(".despre h1").style.transform = `translateX(${
         window.innerWidth > 700 ? window.scrollY / 1.6 : window.scrollY / 4.5
       }px)`;
-  });
+  },{passive: true});
   return (
     <>
       <Incercare id="tsparticles" />
