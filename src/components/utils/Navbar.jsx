@@ -55,7 +55,10 @@ function Navbar() {
       <div className="nav-container">
         <div className="brand">
           <Link to="/">
-            <LazyLoadImage src={logo} width="auto" height="50px" alt="logo" />
+            <LazyLoadImage src={logo} width="180px" height="50px"
+            style={{width:180, height:50}}
+              
+              alt="logo" />
           </Link>
         </div>
         <nav>
