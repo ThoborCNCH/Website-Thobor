@@ -16,9 +16,6 @@ function Footer() {
         <h2>Contact</h2>
 
         <address>
-          thoborcnch@gmail.com
-          <br />
-          <br />
           <a className="footer__btn" href="mailto:thoborcnch@gmail.com">
             Email Us
           </a>
