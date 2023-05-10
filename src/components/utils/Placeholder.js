@@ -1,7 +1,7 @@
 export default class Placeholder {
   static makeimg(img) {
     if (img) return img;
-    return require("../../img/echipa.jpeg");
+    return require("../../img/echipa.jpg");
   }
   static makenumber(num) {
     return num.toLocaleString("en-US");
