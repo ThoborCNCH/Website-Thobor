@@ -74,7 +74,8 @@ function BlogPage() {
         const url = await getDownloadURL(storageRef);
         downloadUrls.push(url);
       } catch (error) {
-alert(error)      }
+        alert(error);
+      }
     }
     let idk = {
       ...added,
@@ -94,7 +95,8 @@ alert(error)      }
         setL();
       })
       .catch((er) => {
-alert(er)      });
+        alert(er);
+      });
   };
   useEffect(() => {
     getBlog();

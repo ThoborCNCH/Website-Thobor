@@ -18,7 +18,12 @@ function Despre() {
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>
-        <LazyLoadImage src={banner} className="header" />
+        <LazyLoadImage
+          src={banner}
+          width={"100vw"}
+          height={"auto"}
+          className="header"
+        />
       </div>
 
       <div className="part">

@@ -55,7 +55,7 @@ function Navbar() {
       <div className="nav-container">
         <div className="brand">
           <Link to="/">
-            <LazyLoadImage src={logo} alt="" />
+            <LazyLoadImage src={logo} width="auto" height="50px" alt="logo" />
           </Link>
         </div>
         <nav>
@@ -87,11 +87,11 @@ function Navbar() {
               <Link to="/sponsors">Sponsors</Link>
             </li>
             {/* {!isMobile && size.width > 700 && ( */}
-              <>
-                <li>
-                  <Link to="/simulator">Simulator</Link>
-                </li>
-              </>
+            <>
+              <li>
+                <Link to="/simulator">Simulator</Link>
+              </li>
+            </>
             {/* )} */}
 
             {!loading && !user ? (

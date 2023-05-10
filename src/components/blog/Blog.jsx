@@ -27,7 +27,12 @@ function Blog() {
 
   return (
     <>
-      <LazyLoadImage src={banner} className="header" />
+      <LazyLoadImage
+        src={banner}
+        width={"100vw"}
+        height={"auto"}
+        className="header"
+      />
 
       <div className="blog">
         {blog &&

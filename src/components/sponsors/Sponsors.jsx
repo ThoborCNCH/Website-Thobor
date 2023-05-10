@@ -18,7 +18,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const firestore = new Firestore();
 
 function Sponsors() {
-
   const [spon, setSpon] = useState([]);
   const getSpon = async () => {
     await firestore.readDocuments("sponsors").then((res) => {
@@ -31,9 +30,15 @@ function Sponsors() {
   }, []);
   return (
     <div style={{ background: "#2f2f2f" }}>
-      <LazyLoadImage src={banner} className="header" />
+      <LazyLoadImage
+        src={banner}
+        width={"100vw"}
+        height={"auto"}
+        className="header"
+      />
       <div className="sponsors">
-        {spon && spon.map((sp) => <LazyLoadImage key={sp.logo} src={sp.logo} />)}
+        {spon &&
+          spon.map((sp) => <LazyLoadImage key={sp.logo} src={sp.logo} width={300} height={"auto"} />)}
       </div>
       <Contact />
       <Up />

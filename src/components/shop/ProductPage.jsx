@@ -238,8 +238,12 @@ function ProductPage({ addit }) {
   return (
     <div className="page">
       <div style={{ background: "#2f2f2f" }}>
-        <LazyLoadImage src={banner} className="header"/>
-        
+        <LazyLoadImage
+          src={banner}
+          width={"100vw"}
+          height={"auto"}
+          className="header"
+        />
       </div>
       {produs && (
         <>
@@ -409,6 +413,8 @@ function ProductPage({ addit }) {
                                   <LazyLoadImage
                                     src={rev.user.img}
                                     alt=""
+                                    width={45}
+                                    height={45}
                                     style={{ width: 45, borderRadius: "90%" }}
                                   />
                                 )}

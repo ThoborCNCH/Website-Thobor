@@ -119,7 +119,7 @@ function SponsorsPage() {
                 {spon &&
                   spon.map((sp) => (
                     <div>
-                      <LazyLoadImage src={sp.logo} />
+                      <LazyLoadImage src={sp.logo} width={300} height={"auto"} />
                       <button
                         className="button"
                         onClick={() => delete_sponsor(sp.id)}

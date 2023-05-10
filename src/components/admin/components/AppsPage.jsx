@@ -62,7 +62,8 @@ function AppsPage() {
           object.cod_qr = url;
         }
       } catch (error) {
-alert(error)      }
+        alert(error);
+      }
     }
 
     await firestore.addItem("apps", object).then(async (res) => {
@@ -165,7 +166,12 @@ alert(error)      }
                       <div className="app" style={{ width: "100%" }}>
                         <div className="top" style={{ width: "100%" }}>
                           <div className="img">
-                            <LazyLoadImage src={app.cod_qr} alt="" />
+                            <LazyLoadImage
+                              src={app.cod_qr}
+                              alt=""
+                              width={"calc(100% + 30px)"}
+                              height={"auto"}
+                            />
                           </div>
                           <div className="txt">
                             <div className="title">
@@ -194,7 +200,13 @@ alert(error)      }
                         </a>
                         {app.img && (
                           <div className="qr_cont">
-                            <LazyLoadImage src={app.img} className="qr" alt="" />
+                            <LazyLoadImage
+                              src={app.img}
+                              width={300}
+                              height={300}
+                              className="qr"
+                              alt=""
+                            />
                           </div>
                         )}
                         <div className="linie_sep"></div>

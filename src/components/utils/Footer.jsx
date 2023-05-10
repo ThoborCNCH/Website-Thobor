@@ -5,7 +5,13 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__addr">
-        <LazyLoadImage src={logo} alt="" className="footer__logo" />
+        <LazyLoadImage
+          src={logo}
+          alt=""
+          width={80}
+          height="auto"
+          className="footer__logo"
+        />
 
         <h2>Contact</h2>
 

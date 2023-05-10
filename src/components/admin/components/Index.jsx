@@ -11,6 +11,8 @@ function Index() {
       <div style={{ background: "#2f2f2f" }}>
         <LazyLoadImage
           src={admin}
+          width={"100vw"}
+          height={"auto"}
           alt=""
           className="header"
         />

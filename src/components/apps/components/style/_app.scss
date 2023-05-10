@@ -37,7 +37,7 @@
       position: relative;
       margin: 0 55px;
       width: calc(100% + 30px);
-      max-width: 500px;
+      max-width: 500px !important;
       background: url(../../../../img/before.svg),
         url(../../../../img/after.svg);
       background-repeat: no-repeat;
@@ -109,5 +109,11 @@
     position: relative;
     background: $light_green;
     margin: 20px 0 50px 50px;
+  }
+}
+
+@media screen and (max-width:630px) {
+  .apps .app .img{
+    margin: 0;
   }
 }

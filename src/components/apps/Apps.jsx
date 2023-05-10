@@ -30,7 +30,12 @@ function Apps() {
 
   return (
     <>
-      <LazyLoadImage src={banner} className="header" />
+      <LazyLoadImage
+        src={banner}
+        width={"100vw"}
+        height={"auto"}
+        className="header"
+      />
       <div className="apps">
         {apps &&
           apps.map((app) => (

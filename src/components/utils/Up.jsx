@@ -12,7 +12,7 @@ function Up() {
   }
   return (
     <div onClick={scrool} className="up" data-aos="fade-up">
-      <LazyLoadImage src={up} alt="" />
+      <LazyLoadImage src={up} alt="" width={50} height={50} />
     </div>
   );
 }

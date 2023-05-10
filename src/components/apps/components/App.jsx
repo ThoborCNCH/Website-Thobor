@@ -1,5 +1,8 @@
 import React from "react";
-import { LazyLoadComponent, LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadComponent,
+  LazyLoadImage,
+} from "react-lazy-load-image-component";
 
 function App({ titlu, p, img, link, codeQR, txt_link }) {
   return (
@@ -7,7 +10,13 @@ function App({ titlu, p, img, link, codeQR, txt_link }) {
       <div className="app">
         <div className="top">
           <div className="img">
-            <LazyLoadImage src={codeQR} alt="" data-aos="fade-up" />
+            <LazyLoadImage
+              src={codeQR}
+              width={"calc(100% + 30px)"}
+              height={"auto"}
+              alt=""
+              data-aos="fade-up"
+            />
           </div>
           <div className="txt">
             <div className="title">
@@ -34,7 +43,14 @@ function App({ titlu, p, img, link, codeQR, txt_link }) {
         </a>
         {img && (
           <div className="qr_cont">
-            <LazyLoadImage src={img} className="qr" alt="" data-aos="fade-down" />
+            <LazyLoadImage
+              src={img}
+              width={300}
+              height={300}
+              className="qr"
+              alt=""
+              data-aos="fade-down"
+            />
           </div>
         )}
         <div className="linie_sep"></div>

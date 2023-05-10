@@ -22,7 +22,10 @@ import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
 import control from "../../img/control.svg";
-import { LazyLoadComponent, LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadComponent,
+  LazyLoadImage,
+} from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
@@ -69,9 +72,21 @@ function Home() {
           </h2>
         </div>
         <div className="img" data-aos="fade-left">
-          <LazyLoadImage src={main} alt="main" />
-          <LazyLoadImage src={cerc1} className="cerc" alt="main" />
-          <LazyLoadImage src={cerc2} className="cerc" alt="main" />
+          <LazyLoadImage src={main} alt="main" width="100%" height="100%" />
+          <LazyLoadImage
+            src={cerc1}
+            width="100%"
+            height="100%"
+            className="cerc"
+            alt="main"
+          />
+          <LazyLoadImage
+            src={cerc2}
+            width="100%"
+            height="100%"
+            className="cerc"
+            alt="main"
+          />
         </div>
       </div>
       <div className="cifre">
@@ -208,19 +223,24 @@ function Home() {
       </div>
       <div className="cards">
         <div className="card" data-aos="fade-right">
-          <LazyLoadImage src={work} alt="main" />
+          <LazyLoadImage src={work} width={100} height="auto" alt="main" />
           <h1>work</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
-          <LazyLoadImage src={programming} alt="main" />
+          <LazyLoadImage
+            src={programming}
+            alt="main"
+            width={100}
+            height="auto"
+          />
           <h1>programming</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="400">
-          <LazyLoadImage src={marketing} alt="main" />
+          <LazyLoadImage src={marketing} alt="main" width={100} height="auto" />
           <h1>marketing</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="600">
-          <LazyLoadImage src={control} alt="main" />
+          <LazyLoadImage src={control} alt="main" width={100} height="auto" />
           <h1>Mechanics</h1>
         </div>
       </div>
@@ -230,7 +250,7 @@ function Home() {
           <div className="coca"></div>
           <h2>Since 2017</h2>
         </div>
-        
+
         <ScrollContainer className="scc">
           <div className="poate">
             <div className="space"></div>

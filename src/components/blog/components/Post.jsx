@@ -19,8 +19,8 @@ function Post({
     <>
       <div className="post" style={{ height: "auto" }}>
         <div className="img">
-          <LazyLoadImage src={poza} className="poza_main" />
-          <LazyLoadImage src={post_card_img} className="svg" />
+          <LazyLoadImage src={poza} className="poza_main" width={"100%"}  height={"100%"} />
+          <LazyLoadImage src={post_card_img} className="svg" width={"100%"}  height={"auto"}/>
         </div>
         <div className="text">
           <div className="title">
