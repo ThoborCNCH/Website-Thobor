@@ -15,9 +15,9 @@ import { useState } from "react";
 import Firestore from "../utils/Firestore";
 import Incercare from "../utils/Incercare";
 
-import main from "../../img/first.png";
-import cerc1 from "../../img/cerc1.png";
-import cerc2 from "../../img/cerc2.png";
+import main from "../../img/first.svg";
+import cerc1 from "../../img/cerc2.svg";
+import cerc2 from "../../img/cercD.svg";
 import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
