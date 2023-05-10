@@ -46,15 +46,11 @@ function Footer() {
 
           <ul className="nav__ul">
             <li>
-              <a href="#">Privacy Policy</a>
+              <a href="https://www.privacypolicygenerator.info/live.php?token=cESMOyaUosqLvcU5YXQB3NrhQxQsKOB7">Privacy Policy</a>
             </li>
 
             <li>
-              <a href="#">Terms of Use</a>
-            </li>
-
-            <li>
-              <a href="#">Sitemap</a>
+              <a href="https://www.termsofusegenerator.net/live.php?token=YG1POUZlIVZO7kZW3sRiuAblHWnY2uSS">Terms of Use</a>
             </li>
           </ul>
         </li>
