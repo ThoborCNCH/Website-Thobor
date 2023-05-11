@@ -216,7 +216,7 @@
           padding: 20px;
           h2 {
             font-size: 25px;
-            margin: 8px;
+            margin: 20px 10px;
             color: white;
             span {
               color: $main_green;
@@ -352,6 +352,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 30px 60px;
+    position: relative;
 
     .tit {
       font-size: 40px;
@@ -360,9 +361,10 @@
     }
     .maps {
       display: flex;
+      width: 100%;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: flex-start;
     }
   }

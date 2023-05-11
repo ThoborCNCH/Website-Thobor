@@ -2,8 +2,10 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import { useCallback, useMemo } from "react";
 import "./Incercare.css";
+import useWindowSize from "./WindowSize";
 
 const Incercare = (props) => {
+  const windowSize = useWindowSize();
   let style = useMemo(() => {
     return {
       width: "100vw",
@@ -14,54 +16,52 @@ const Incercare = (props) => {
     };
   });
 
-  let options = useMemo(() => {
-    return {
-      background: {
-        color: "#2f2f2f",
-      },
-      fullScreen: {
-        enable: false,
-        zIndex: -5,
-      },
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: "repulse",
-          },
-        },
-        modes: {
-          repulse: {
-            distance: 200,
-          },
+  let options = {
+    background: {
+      color: "#2f2f2f",
+    },
+    fullScreen: {
+      enable: false,
+      zIndex: -5,
+    },
+    interactivity: {
+      events: {
+        onHover: {
+          enable: windowSize.width > 900 ? true : false,
+          mode: "repulse",
         },
       },
-      particles: {
-        number: {
-          density: window.innerWidth > 700 ? 20 : 5,
-          value: window.innerWidth > 700 ? 150 : 40,
-        },
-        color: {
-          value: "#146622",
-        },
-        links: {
-          color: "#26b33e",
-          enable: true,
-          distance: 150,
-        },
-        move: {
-          enable: true,
-          speed: { min: 1, max: 4 },
-        },
-        opacity: {
-          value: { min: 0.3, max: 0.7 },
-        },
-        size: {
-          value: { min: 1, max: 5 },
+      modes: {
+        repulse: {
+          distance: 200,
         },
       },
-    };
-  }, []);
+    },
+    particles: {
+      number: {
+        density: windowSize.width > 900 ? 20 : 5,
+        value: windowSize.width > 900 ? 150 : 40,
+      },
+      color: {
+        value: "#146622",
+      },
+      links: {
+        color: "#26b33e",
+        enable: true,
+        distance: 150,
+      },
+      move: {
+        enable: true,
+        speed: { min: 1, max: 4 },
+      },
+      opacity: {
+        value: { min: 0.3, max: 0.7 },
+      },
+      size: {
+        value: { min: 1, max: 5 },
+      },
+    },
+  };
 
   const particlesInit = useCallback((engine) => {
     loadSlim(engine);

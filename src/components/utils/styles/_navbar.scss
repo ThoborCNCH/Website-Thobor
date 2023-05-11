@@ -138,7 +138,7 @@ nav {
 
 #nav-toggle {
   position: absolute;
-  left: 18px;
+  left: 0px;
   top: 22px;
   cursor: pointer;
   padding: 10px 35px 16px 0px;
@@ -148,7 +148,7 @@ nav {
     cursor: pointer;
     border-radius: 1px;
     height: 5px;
-    width: 35px;
+    width: 24px;
     background: $main_green;
     position: absolute;
     display: block;
@@ -157,11 +157,14 @@ nav {
   }
   span:before {
     top: -10px;
+    width: 37px;
   }
   span:after {
+    width: 15px;
     bottom: -10px;
   }
   &.active span {
+    width: 35px;
     background-color: transparent;
     &:before,
     &:after {
