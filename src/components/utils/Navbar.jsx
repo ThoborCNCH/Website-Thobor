@@ -92,13 +92,13 @@ function Navbar() {
             <li>
               <Link to="/sponsors">Sponsors</Link>
             </li>
-            {/* {!isMobile && size.width > 700 && ( */}
-            <>
-              <li>
-                <Link to="/simulator">Simulator</Link>
-              </li>
-            </>
-            {/* )} */}
+            {!isMobile && size.width > 700 && (
+              <>
+                <li>
+                  <a target="_blank" href="https://sumulator.netlify.app">Simulator</a>
+                </li>
+              </>
+            )}
 
             {!loading && !user ? (
               <>
