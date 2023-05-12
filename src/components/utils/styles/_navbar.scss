@@ -71,8 +71,7 @@ nav {
         &:hover::before {
           width: 70%;
         }
-       
-      }  
+      }
       ul li {
         min-width: 190px;
         a {
@@ -166,8 +165,10 @@ nav {
   &.active span {
     width: 35px;
     background-color: transparent;
+
     &:before,
     &:after {
+      width: 35px;
       top: 0;
     }
     &:before {
