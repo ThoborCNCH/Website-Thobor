@@ -10,19 +10,10 @@ import Post from "./components/Post";
 import banner from "../../img/blog_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const firestore = new Firestore();
-
-function Blog() {
-  const [blog, setBlog] = useState([]);
-  const getBlog = async () => {
-    await firestore.sortdata("blog", "createAt", "desc").then((res) => {
-      setBlog(res);
-    });
-  };
+function Blog({blog}) {
 
   useEffect(() => {
     AOS.init();
-    getBlog();
   }, []);
 
   return (

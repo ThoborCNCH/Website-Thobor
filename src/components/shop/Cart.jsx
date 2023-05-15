@@ -30,6 +30,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
 
     return updatedArray;
   };
+  
   const handleUpdateObject = (id, by) => {
     const objectToUpdate = products.find((obj) => obj.uid === id);
 
@@ -58,10 +59,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
     else setShip(50);
   }, [products]);
   const [hidden, setHidden] = useState([]);
-
-  const signInWithGoogle = async () => {
-    await firestore.signInWithGoogle();
-  };
+ 
   const ok = async () => {
     let resp = await firestore.getProductByUser(user);
     setP(resp.cant);
@@ -141,6 +139,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
         }
       );
   };
+
   return (
     <div className="all">
       <div style={{ background: "#2f2f2f" }}>

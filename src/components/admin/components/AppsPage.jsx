@@ -9,7 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
-function AppsPage() {
+function AppsPage({ appss }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [descriere, setDescriere] = useState("");
   const [cod_qr, setCodqr] = useState();
@@ -21,17 +21,11 @@ function AppsPage() {
   const [link_text, setLinkText] = useState("");
   const [loadingg_apps, setloadinggApps] = useState(false);
 
-  const [apps, setApps] = useState([]);
-
-  const getApps = async () => {
-    firestore.readDocuments("apps").then((res) => {
-      setApps((old) => (old = res));
-    });
-  };
+  const [apps, setApps] = useState(appss);
 
   useEffect(() => {
-    getApps();
-  }, []);
+    setApps((old) => (old = appss))
+  }, [appss]);
 
   const submit_app = async () => {
     const { uid } = user;
@@ -68,7 +62,10 @@ function AppsPage() {
 
     await firestore.addItem("apps", object).then(async (res) => {
       alert("app adaugat");
-      getApps();
+      document.querySelectorAll("input, select, textarea").forEach((input) => {
+        input.value = "";
+      });
+      setApps((old) => [res, ...old]);
       setloadinggApps(false);
     });
   };
@@ -76,7 +73,7 @@ function AppsPage() {
   const deleteapp = async (e) => {
     await firestore.deleteDocument("apps", e).then(async (res) => {
       alert("sters cu succes");
-      await getApps();
+      setApps((old) => (old = old.filter((o) => o.id != e)));
     });
   };
 
@@ -163,7 +160,7 @@ function AppsPage() {
                 {apps &&
                   apps.map((app) => (
                     <>
-                      <div className="app" style={{ width: "100%" }}>
+                      <div key={app.id} className="app" style={{ width: "100%" }}>
                         <div className="top" style={{ width: "100%" }}>
                           <div className="img">
                             <LazyLoadImage

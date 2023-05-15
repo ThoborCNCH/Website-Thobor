@@ -23,13 +23,24 @@ import Shop from "./components/shop/Shop";
 import Sponsors from "./components/sponsors/Sponsors";
 import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
-import Incercare from "./components/utils/Incercare";
 import Navbar from "./components/utils/Navbar";
+
 const firestore = new Firestore();
+
 function App() {
   const [user, loading, error] = useAuthState(firestore.getuser());
 
   const [link, setLink] = useState(window.location.pathname);
+
+  const [blog, setBlog] = useState([]);
+  const getBlog = async () => {
+    await firestore.sortdata("blog", "createAt", "desc").then((res) => {
+      setBlog(res);
+      console.log("app:", res);
+    });
+  };
+  //ma omor bag pula
+
   useEffect(() => {
     setLink(window.location.pathname);
   }, [window.location.pathname]);
@@ -72,19 +83,51 @@ function App() {
     });
     return true;
   };
+  const [apps, setApps] = useState([]);
+  const getApps = async () => {
+    await firestore.sortdata("apps", "createAt", "desc").then((res) => {
+      setApps(res);
+    });
+  };
+  const [ani, setAni] = useState([]);
+  const [alumni, setAlumni] = useState([]);
+
+  const getAni = async () => {
+    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
+      setAni(res);
+      await firestore.readDocuments("team_member").then((res) => {
+        setAlumni(res);
+      });
+    });
+  };
+  const [spon, setSpon] = useState([]);
+  const getSpon = async () => {
+    await firestore.readDocuments("sponsors").then((res) => {
+      setSpon(res);
+    });
+  };
+  useEffect(() => {
+    const asteapta = async () => {
+      await getAni();
+      await getBlog();
+      await getApps();
+      await getSpon();
+    };
+    asteapta();
+  }, []);
+
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<Blog blog={blog} />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
-        <Route path="/apps" element={<Apps />} />
+        <Route path="/apps" element={<Apps apps={apps} />} />
         <Route path="/download" element={<Apps />} />
-        <Route path="/team" element={<Alumni />} />
-        <Route path="/sponsors" element={<Sponsors />} />
-        {/* <Route path="/simulator" element={<Assembly />} /> */}
+        <Route path="/team" element={<Alumni ani={ani} alumni={alumni} />} />
+        <Route path="/sponsors" element={<Sponsors spon={spon} />} />
         <Route
           path="/shop/:categorie/:sort_param?/:price?"
           element={<Shop addit={addit} />}
@@ -103,9 +146,9 @@ function App() {
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
         <Route path="/admin" element={<AdminPages />}>
           <Route path="/admin/" element={<Index />} />
-          <Route path="/admin/blog" element={<BlogPage />} />
+          <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
           <Route path="/admin/shop" element={<ShopPage />} />
-          <Route path="/admin/apps" element={<AppsPage />} />
+          <Route path="/admin/apps" element={<AppsPage appss={apps} />} />
           <Route path="/admin/team" element={<AlumniPage />} />
           <Route path="/admin/premii" element={<PremiiPage />} />
           <Route path="/admin/sponsors" element={<SponsorsPage />} />

@@ -151,10 +151,9 @@ export default class Firestore {
     const db = getFirestore();
     const productsRef = collection(db, collectionName);
 
-    return await addDoc(productsRef, product)
-      .then((docRef) => {
-        return docRef.id;
-      })
+    return await addDoc(productsRef, product).then((docRef) => {
+      return { id: docRef.id, ...product };
+    });
   }
 
   async updateProductCos(product) {
@@ -169,10 +168,9 @@ export default class Firestore {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.size !== 1) {
-      await addDoc(productsRef, product)
-        .then((docRef) => {
-          return "adaug";
-        })
+      await addDoc(productsRef, product).then((docRef) => {
+        return "adaug";
+      });
       return "adaug";
     }
 

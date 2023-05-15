@@ -9,7 +9,7 @@ import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
-function BlogPage() {
+function BlogPage({ blogs }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [clasa, setClasa] = useState("fas fa-caret-right");
   const [h, setH] = useState("0");
@@ -19,10 +19,7 @@ function BlogPage() {
   const [insta, setInsta] = useState("asdasdasd");
   const [imgs, setImgs] = useState();
   const [length, setL] = useState();
-  const [bl_img, setblimg] = useState([]);
-
-  const [blog, setBlog] = useState([]);
-  const [blogindex, setBlogIndex] = useState(0);
+  let [blog, setBlog] = useState([]);
 
   function more() {
     if (clasa === "fas fa-caret-up") {
@@ -33,6 +30,7 @@ function BlogPage() {
       setH("auto");
     }
   }
+
   const upload_blog = async () => {
     const uid = user.uid;
     let added = {
@@ -86,33 +84,39 @@ function BlogPage() {
       .addItem("blog", idk)
       .then((res) => {
         alert("Postare adaugata");
-        setBlogIndex((old) => old + 1);
         setPlainText("");
         setTitlu("");
         setFb("");
         setInsta("");
         setImgs();
         setL();
+        document
+          .querySelectorAll("input, select, textarea")
+          .forEach((input) => {
+            input.value = "";
+          });
+        setBlog((old) => [res, ...old ]);
       })
       .catch((er) => {
         alert(er);
       });
   };
-  useEffect(() => {
-    getBlog();
-  }, [blogindex]);
-
+   
   const getBlog = async () => {
     await firestore.readDocuments("blog").then((res) => {
       setBlog((old) => (old = res));
     });
   };
 
+  useEffect(() => {
+    setBlog((old) => (old = blogs));
+  }, [blogs]);
+
   const deleteblog = async (e) => {
+    console.log(e);
     await firestore.deleteDocument("blog", e).then(async (res) => {
       alert("sters cu succes");
-      setBlogIndex((old) => old + 1);
-      await getBlog();
+      setBlog((old) => (old = old.filter((o) => o.id != e)));
     });
   };
   const [images, setImages] = useState([]);
@@ -122,6 +126,7 @@ function BlogPage() {
     const files = Array.from(event.target.files);
     setImages(files);
   };
+
   return (
     <div className="adminpage">
       <div className="blogs_part">
@@ -129,7 +134,6 @@ function BlogPage() {
           <h1>FOR BLOG</h1>
           <h4 className="info">Poti alege mai multe poze</h4>
           <input
-            //required
             type="file"
             multiple
             accept="image/*"

@@ -17,15 +17,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
-function Sponsors() {
-  const [spon, setSpon] = useState([]);
-  const getSpon = async () => {
-    await firestore.readDocuments("sponsors").then((res) => {
-      setSpon(res);
-    });
-  };
+function Sponsors({spon}) {
+  
   useEffect(() => {
-    getSpon();
     AOS.init();
   }, []);
   return (

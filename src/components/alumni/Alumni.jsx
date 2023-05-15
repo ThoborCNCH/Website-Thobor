@@ -17,23 +17,10 @@ import Firestore from "../utils/Firestore";
 import banner from "../../img/team_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const firestore = new Firestore();
-
-function Alumni() {
-  const [ani, setAni] = useState([]);
-  const [alumni, setAlumni] = useState([]);
-
-  const getAni = async () => {
-    await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
-      setAni(res);
-      await firestore.readDocuments("team_member").then((res) => {
-        setAlumni(res);
-      });
-    });
-  };
+function Alumni({ani, alumni}) {
+ 
 
   useEffect(() => {
-    getAni();
     AOS.init();
   }, []);
   return (
