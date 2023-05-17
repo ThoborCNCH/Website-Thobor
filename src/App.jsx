@@ -30,8 +30,6 @@ const firestore = new Firestore();
 function App() {
   const [user, loading, error] = useAuthState(firestore.getuser());
 
-  const [link, setLink] = useState(window.location.pathname);
-
   const [blog, setBlog] = useState([]);
   const getBlog = async () => {
     await firestore.sortdata("blog", "createAt", "desc").then((res) => {
@@ -39,10 +37,6 @@ function App() {
     });
   };
   //ma omor bag pula
-
-  useEffect(() => {
-    setLink(window.location.pathname);
-  }, [window.location.pathname]);
 
   const addit = async (id, cant) => {
     await firestore.addit(id, user, cant);
