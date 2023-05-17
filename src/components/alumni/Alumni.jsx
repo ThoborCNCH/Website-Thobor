@@ -12,8 +12,6 @@ import "swiper/css/pagination";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
-import { useState } from "react";
-import Firestore from "../utils/Firestore";
 import banner from "../../img/team_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 

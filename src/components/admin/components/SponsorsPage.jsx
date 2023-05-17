@@ -9,7 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const firestore = new Firestore();
 
-function SponsorsPage() {
+function SponsorsPage({ sponsorss }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [logo, setlogo] = useState();
   const [loadingglogo, setloadingglogo] = useState(false);
@@ -23,8 +23,8 @@ function SponsorsPage() {
   };
 
   useEffect(() => {
-    getSponsori();
-  }, []);
+    setSponsori((old) => (old = sponsorss));
+  }, [sponsorss]);
   const upload_sponsor = async () => {
     const { uid } = user;
 
@@ -41,17 +41,15 @@ function SponsorsPage() {
       await uploadBytes(storageRef, logo);
       const url = await getDownloadURL(storageRef);
       added.logo = url;
-    } catch (error) {
-    }
+    } catch (error) {}
 
     await firestore
       .addItem("sponsors", added)
       .then(async (res) => {
         alert("sponsor adaugat");
         setloadingglogo(false);
-        await getSponsori();
+        setSponsori((old) => [res, ...old]);
       })
-
       .catch((err) => alert(err));
   };
 
@@ -60,7 +58,7 @@ function SponsorsPage() {
       .deleteDocument("sponsors", e)
       .then(async (res) => {
         alert("sters cu succes");
-        await getSponsori();
+        setSponsori((old) => (old = old.filter((o) => o.id != e)));
       })
       .catch(function (error) {
         alert(error);
@@ -119,7 +117,11 @@ function SponsorsPage() {
                 {spon &&
                   spon.map((sp) => (
                     <div>
-                      <LazyLoadImage src={sp.logo} width={300} height={"auto"} />
+                      <LazyLoadImage
+                        src={sp.logo}
+                        width={300}
+                        height={"auto"}
+                      />
                       <button
                         className="button"
                         onClick={() => delete_sponsor(sp.id)}

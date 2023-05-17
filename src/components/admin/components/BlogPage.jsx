@@ -113,7 +113,6 @@ function BlogPage({ blogs }) {
   }, [blogs]);
 
   const deleteblog = async (e) => {
-    console.log(e);
     await firestore.deleteDocument("blog", e).then(async (res) => {
       alert("sters cu succes");
       setBlog((old) => (old = old.filter((o) => o.id != e)));

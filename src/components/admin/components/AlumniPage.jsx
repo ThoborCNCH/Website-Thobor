@@ -72,7 +72,7 @@ function AlumniPage({ anii, alumnii }) {
     await firestore.sortdata("ani", "createAt", "desc").then((res) => {
       setAnis(res);
     });
-  };
+};
 
   useEffect(() => {
     setAni((old) => (old = anii));

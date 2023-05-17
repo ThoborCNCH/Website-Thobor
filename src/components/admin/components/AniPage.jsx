@@ -4,7 +4,7 @@ import Placeholder from "../../utils/Placeholder";
 
 const firestore = new Firestore();
 
-function AniPage() {
+function AniPage({ anii }) {
   const [clasa3, setClasa3] = useState("fas fa-caret-right");
   const [h3, setH3] = useState("0");
 
@@ -20,17 +20,12 @@ function AniPage() {
   const [ani_efectiv, setAniEfectiv] = useState("");
   const [dd, setdd] = useState("");
 
-  useEffect(() => {
-    getAni();
-  }, []);
-
   const [ani, setAnis] = useState([]);
 
-  const getAni = async () => {
-    await firestore.sortdata("ani", "createAt", "desc").then((res) => {
-      setAnis(res);
-    });
-  };
+  useEffect(() => {
+    setAnis((old) => (old = anii));
+  }, [anii]);
+
   const add_ani = async () => {
     let added = {
       ani: ani_efectiv,
@@ -41,14 +36,14 @@ function AniPage() {
       .then(async (res) => {
         alert("ani adaugata");
         setdd("");
-        await getAni();
+        setAnis(old=>[res, ...old,])
       })
       .catch((err) => alert(err));
   };
   const delete_year = async (e) => {
     await firestore.deleteDocument("ani", e).then((res) => {
       alert("sters cu succes");
-      getAni();
+      setAnis((old) => (old = old.filter((o) => o.id != e)));
     });
   };
   return (

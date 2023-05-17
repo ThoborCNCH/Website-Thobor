@@ -10,7 +10,7 @@ import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
-function PremiiPage() {
+function PremiiPage({premiis}) {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [img_premii, setImgPremii] = useState();
   const [text_premii, setTextPremii] = useState("");
@@ -25,8 +25,9 @@ function PremiiPage() {
   };
 
   useEffect(() => {
-    getPremii();
-  }, []);
+    setPremii(old=>old=premiis)
+  }, [premiis]);
+
   const upload_premii = async (e) => {
     e.preventDefault();
     const { uid } = user;
@@ -53,7 +54,7 @@ function PremiiPage() {
       .addItem("premii", added)
       .then(async (res) => {
         alert("premiu adaugat");
-        await getPremii();
+        setPremii(old=>[res, ...old])
       })
       .catch((err) => alert(err));
     setloadingpremii(false);
@@ -62,7 +63,7 @@ function PremiiPage() {
   const delete_premiu = async (e) => {
     await firestore.deleteDocument("premii", e).then(async (res) => {
       alert("sters cu succes");
-      await getPremii();
+      setPremii((old) => (old = old.filter((o) => o.id != e)));
     });
   };
   const [clasa7, setClasa7] = useState("fas fa-caret-right");

@@ -36,7 +36,6 @@ function App() {
   const getBlog = async () => {
     await firestore.sortdata("blog", "createAt", "desc").then((res) => {
       setBlog(res);
-      console.log("app:", res);
     });
   };
   //ma omor bag pula
@@ -106,12 +105,19 @@ function App() {
       setSpon(res);
     });
   };
+  const [premii, setPremii] = useState([]);
+  const getPremii = async () => {
+    await firestore.sortdata("premii", "an", "asc").then((res) => {
+      setPremii(res);
+    });
+  };
   useEffect(() => {
     const asteapta = async () => {
       await getAni();
       await getBlog();
       await getApps();
       await getSpon();
+      await getPremii();
     };
     asteapta();
   }, []);
@@ -120,7 +126,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home premii={premii} />} />
         <Route path="/blog" element={<Blog blog={blog} />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
@@ -149,14 +155,23 @@ function App() {
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
           <Route path="/admin/shop" element={<ShopPage />} />
           <Route path="/admin/apps" element={<AppsPage appss={apps} />} />
-          <Route path="/admin/team" element={<AlumniPage anii={ani} alumnii={alumni} />} />
-          <Route path="/admin/premii" element={<PremiiPage />} />
-          <Route path="/admin/sponsors" element={<SponsorsPage />} />
-          <Route path="/admin/ani" element={<AniPage />} />
+          <Route
+            path="/admin/team"
+            element={<AlumniPage anii={ani} alumnii={alumni} />}
+          />
+          <Route
+            path="/admin/premii"
+            element={<PremiiPage premiis={premii} />}
+          />
+          <Route
+            path="/admin/sponsors"
+            element={<SponsorsPage sponsorss={spon} />}
+          />
+          <Route path="/admin/ani" element={<AniPage anii={ani} />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {link !== "/simulator" && <Footer />}
+      <Footer />
     </BrowserRouter>
   );
 }
