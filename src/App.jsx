@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPages from "./components/admin/AdminPages";
@@ -31,36 +31,36 @@ function App() {
   const [user, loading, error] = useAuthState(firestore.getuser());
 
   const [blog, setBlog] = useState([]);
-  const getBlog = async () => {
+  const getBlog = useMemo(() => async () => {
     await firestore.sortdata("blog", "createAt", "desc").then((res) => {
       setBlog(res);
     });
-  };
+  });
   //ma omor bag pula
 
-  const addit = async (id, cant) => {
+  const addit = useMemo(() => async (id, cant) => {
     await firestore.addit(id, user, cant);
-  };
-  const delete_prod_app = async (id, cant) => {
+  });
+  const delete_prod_app = useMemo(() => async (id, cant) => {
     await firestore.deleteDocument("cos", id).then((res) => {
       alert("Produs scos din cosul tau!");
     });
-  };
-  const update = async (cant, uid) => {
+  });
+  const update = useMemo(() => async (cant, uid) => {
     await firestore
       .updateDocument("cos", uid, { cantitate: cant })
       .then((res) => {
         alert("cantitatea s-a updatat!");
       });
-  };
-  const finish = async () => {
+  });
+  const finish = useMemo(() => async () => {
     return await firestore
       .delete_all_from_cart_by_user_id(user.uid)
       .then((res) => {
         //
       });
-  };
-  const fixCant = async (hidden) => {
+  });
+  const fixCant = useMemo(() => async (hidden) => {
     //
     hidden.forEach(async (element) => {
       await firestore.getProductById(element.id).then(async (res) => {
@@ -75,36 +75,36 @@ function App() {
       });
     });
     return true;
-  };
+  });
   const [apps, setApps] = useState([]);
-  const getApps = async () => {
+  const getApps = useMemo(() => async () => {
     await firestore.sortdata("apps", "createAt", "desc").then((res) => {
       setApps(res);
     });
-  };
+  });
   const [ani, setAni] = useState([]);
   const [alumni, setAlumni] = useState([]);
 
-  const getAni = async () => {
+  const getAni = useMemo(() => async () => {
     await firestore.sortdata("ani", "createAt", "desc").then(async (res) => {
       setAni(res);
       await firestore.readDocuments("team_member").then((res) => {
         setAlumni(res);
       });
     });
-  };
+  });
   const [spon, setSpon] = useState([]);
-  const getSpon = async () => {
+  const getSpon = useMemo(() => async () => {
     await firestore.readDocuments("sponsors").then((res) => {
       setSpon(res);
     });
-  };
+  });
   const [premii, setPremii] = useState([]);
-  const getPremii = async () => {
+  const getPremii = useMemo(() => async () => {
     await firestore.sortdata("premii", "an", "asc").then((res) => {
       setPremii(res);
     });
-  };
+  });
   useEffect(() => {
     const asteapta = async () => {
       await getAni();
