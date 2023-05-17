@@ -8,7 +8,7 @@ import Generatie from "../../alumni/components/Generatie";
 import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
-function AlumniPage() {
+function AlumniPage({ anii, alumnii }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
 
   const [anistate, setAni] = useState("");
@@ -75,9 +75,9 @@ function AlumniPage() {
   };
 
   useEffect(() => {
-    getAni();
-    getAlumni();
-  }, []);
+    setAni((old) => (old = anii));
+    setAlumni((old) => (old = alumnii));
+  }, [anii, alumnii]);
 
   const alumniByYear = ani.map((an) => {
     const filteredAlumni = alumni.filter((al) => al.ani === an.ani);

@@ -17,9 +17,7 @@ import Firestore from "../utils/Firestore";
 import banner from "../../img/team_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function Alumni({ani, alumni}) {
- 
-
+function Alumni({ ani, alumni }) {
   useEffect(() => {
     AOS.init();
   }, []);

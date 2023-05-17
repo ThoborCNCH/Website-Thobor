@@ -149,7 +149,7 @@ function App() {
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
           <Route path="/admin/shop" element={<ShopPage />} />
           <Route path="/admin/apps" element={<AppsPage appss={apps} />} />
-          <Route path="/admin/team" element={<AlumniPage />} />
+          <Route path="/admin/team" element={<AlumniPage anii={ani} alumnii={alumni} />} />
           <Route path="/admin/premii" element={<PremiiPage />} />
           <Route path="/admin/sponsors" element={<SponsorsPage />} />
           <Route path="/admin/ani" element={<AniPage />} />
