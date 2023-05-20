@@ -54,7 +54,7 @@ function AlumniPage({ anii, alumnii }) {
         alert("alumni adaugat");
         SetloadinggAlumni(false);
         setAni("Alege un an");
-        await getAlumni();
+        setAlumni((old) => [res, ...old ]);
       })
       .catch((err) => alert(err));
   };
@@ -62,20 +62,15 @@ function AlumniPage({ anii, alumnii }) {
   const delete_alumni = async (e) => {
     await firestore.deleteDocument("team_member", e).then(async (res) => {
       alert("Alumni sters");
-      await getAlumni();
+      setAlumni((old) => (old = old.filter((o) => o.id != e)));
     });
   };
 
   const [ani, setAnis] = useState([]);
 
-  const getAni = async () => {
-    await firestore.sortdata("ani", "createAt", "desc").then((res) => {
-      setAnis(res);
-    });
-};
 
   useEffect(() => {
-    setAni((old) => (old = anii));
+    setAnis((old) => (old = anii));
     setAlumni((old) => (old = alumnii));
   }, [anii, alumnii]);
 
