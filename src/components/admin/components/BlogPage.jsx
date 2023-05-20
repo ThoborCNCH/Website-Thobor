@@ -10,6 +10,7 @@ import Firestore from "../../utils/Firestore";
 const firestore = new Firestore();
 
 function BlogPage({ blogs }) {
+  const [info, setInfo] = useState("");
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [clasa, setClasa] = useState("fas fa-caret-right");
   const [h, setH] = useState("0");
@@ -35,7 +36,7 @@ function BlogPage({ blogs }) {
     const uid = user.uid;
     let added = {
       titlu,
-      uid: uid,
+      //uid: uid,
       fb,
       insta,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -61,7 +62,7 @@ function BlogPage({ blogs }) {
       alert("Nu ai introdus nici un link de insta!");
       return;
     }
-
+    setloadingg(true);
     const storage = getStorage();
     let downloadUrls = [];
     for (let i = 0; i < images.length; i++) {
@@ -71,6 +72,7 @@ function BlogPage({ blogs }) {
         await uploadBytes(storageRef, image);
         const url = await getDownloadURL(storageRef);
         downloadUrls.push(url);
+        setInfo(`poze cu nr ${i + 1} a fost uploadata`);
       } catch (error) {
         alert(error);
       }
@@ -84,7 +86,9 @@ function BlogPage({ blogs }) {
       .addItem("blog", idk)
       .then((res) => {
         alert("Postare adaugata");
+        setloadingg(false);
         setPlainText("");
+        setInfo("");
         setTitlu("");
         setFb("");
         setInsta("");
@@ -95,13 +99,13 @@ function BlogPage({ blogs }) {
           .forEach((input) => {
             input.value = "";
           });
-        setBlog((old) => [res, ...old ]);
+        setBlog((old) => [res, ...old]);
       })
       .catch((er) => {
         alert(er);
       });
   };
-   
+
   const getBlog = async () => {
     await firestore.readDocuments("blog").then((res) => {
       setBlog((old) => (old = res));
@@ -176,13 +180,14 @@ function BlogPage({ blogs }) {
             placeholder="insta"
             onChange={(e) => setInsta(e.target.value)}
           />
+          <h5 style={{ color: "white", marginTop: 20 }}>{info}</h5>
           <button
             className="button"
             disabled={loadingg ? true : false}
             type="submit"
             onClick={upload_blog}
           >
-            {loadingg ? "loadingg" : "send"}
+            {loadingg ? "Loading" : "send"}
           </button>
         </div>
         <div className="stemText">

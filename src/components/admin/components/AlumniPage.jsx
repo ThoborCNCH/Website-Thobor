@@ -29,7 +29,7 @@ function AlumniPage({ anii, alumnii }) {
     const { uid } = user;
     let added = {
       nume: nume_alumni,
-      uid: uid,
+      //uid: uid,
       ani: anistate,
       detalii: detalii_alumni,
       text: text_alumni,
@@ -54,7 +54,7 @@ function AlumniPage({ anii, alumnii }) {
         alert("alumni adaugat");
         SetloadinggAlumni(false);
         setAni("Alege un an");
-        setAlumni((old) => [res, ...old ]);
+        setAlumni((old) => [res, ...old]);
       })
       .catch((err) => alert(err));
   };
@@ -67,7 +67,6 @@ function AlumniPage({ anii, alumnii }) {
   };
 
   const [ani, setAnis] = useState([]);
-
 
   useEffect(() => {
     setAnis((old) => (old = anii));

@@ -24,7 +24,7 @@ function AppsPage({ appss }) {
   const [apps, setApps] = useState(appss);
 
   useEffect(() => {
-    setApps((old) => (old = appss))
+    setApps((old) => (old = appss));
   }, [appss]);
 
   const submit_app = async () => {
@@ -34,7 +34,7 @@ function AppsPage({ appss }) {
 
     let object = {
       titlu: titlu_app,
-      uid: uid,
+      //uid: uid,
       descriere,
       link,
       link_text,
@@ -160,7 +160,11 @@ function AppsPage({ appss }) {
                 {apps &&
                   apps.map((app) => (
                     <>
-                      <div key={app.id} className="app" style={{ width: "100%" }}>
+                      <div
+                        key={app.id}
+                        className="app"
+                        style={{ width: "100%" }}
+                      >
                         <div className="top" style={{ width: "100%" }}>
                           <div className="img">
                             <LazyLoadImage

@@ -11,7 +11,6 @@ import banner from "../../img/blog_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Blog({blog}) {
-
   useEffect(() => {
     AOS.init();
   }, []);
