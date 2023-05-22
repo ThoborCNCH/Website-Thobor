@@ -97,6 +97,9 @@ function Navbar() {
                 <li>
                   <a target="_blank" href="https://sumulator.netlify.app">Simulator</a>
                 </li>
+                <li>
+                  <a target="_blank" href="https://robotsez6.netlify.app">Robotul din sezonul 6</a>
+                </li>
               </>
             )}
 
