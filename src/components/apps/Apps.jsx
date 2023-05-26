@@ -12,10 +12,9 @@ import Firestore from "../utils/Firestore";
 
 import banner from "../../img/apps_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Svg from "../utils/Svg";
 
-function Apps({apps}) {
-  
-
+function Apps({ apps }) {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -41,9 +40,9 @@ function Apps({apps}) {
             />
           ))}
       </div>
-
-      <Up />
+      <Svg />
       <Contact />
+      <Up />
     </>
   );
 }

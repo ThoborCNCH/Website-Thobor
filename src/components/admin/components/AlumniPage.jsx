@@ -174,16 +174,6 @@ function AlumniPage({ anii, alumnii }) {
                       />
                     );
                 })}
-
-              {ani &&
-                ani.map((ani) => {
-                  alumni &&
-                    alumni.map((alumni) => {
-                      if (alumni.ani == ani.ani) {
-                        return <h1>asdkjbasdk</h1>;
-                      }
-                    });
-                })}
             </div>
           </div>
         </div>

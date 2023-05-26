@@ -14,6 +14,7 @@ import "firebase/compat/firestore";
 
 import banner from "../../img/team_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Svg from "../utils/Svg";
 
 function Alumni({ ani, alumni }) {
   useEffect(() => {
@@ -44,12 +45,14 @@ function Alumni({ ani, alumni }) {
                       img: te.poza,
                       nume: te.nume,
                       faculta: te.detalii,
+                      text: alumni.text,
                     };
                   }
                 }),
             ]}
           />
         ))}
+      <Svg />
       <Contact />
       <Up />
     </div>

@@ -14,11 +14,11 @@ import { useState } from "react";
 import Firestore from "../utils/Firestore";
 import banner from "../../img/sponsors_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Svg from "../utils/Svg";
 
 const firestore = new Firestore();
 
-function Sponsors({spon}) {
-  
+function Sponsors({ spon }) {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -32,8 +32,16 @@ function Sponsors({spon}) {
       />
       <div className="sponsors">
         {spon &&
-          spon.map((sp) => <LazyLoadImage key={sp.logo} src={sp.logo} width={300} height={"auto"} />)}
+          spon.map((sp) => (
+            <LazyLoadImage
+              key={sp.logo}
+              src={sp.logo}
+              width={300}
+              height={"auto"}
+            />
+          ))}
       </div>
+      <Svg />
       <Contact />
       <Up />
     </div>

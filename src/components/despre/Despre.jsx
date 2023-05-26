@@ -9,6 +9,7 @@ import "./despre.scss";
 
 import banner from "../../img/despre_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Svg from "../utils/Svg";
 
 function Despre() {
   useEffect(() => {
@@ -63,6 +64,7 @@ function Despre() {
 
       <Stem />
       <DateContact />
+      <Svg/>
       <Contact />
       <Up />
     </>

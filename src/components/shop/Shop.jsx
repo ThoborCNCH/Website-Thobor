@@ -9,6 +9,8 @@ import "./shop.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import banner from "../../img/shop_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Svg from "../utils/Svg";
+import Contact from "../utils/Contact";
 let arr = [];
 const firestore = new Firestore();
 let filters = [];
@@ -454,6 +456,8 @@ function Shop({ addit }) {
           </div>
         </div>
       </div>
+      <Svg />
+      <Contact />
       <Up />
     </>
   );

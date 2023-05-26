@@ -110,7 +110,7 @@ function Generatie({ years, team, persoane, no }) {
                         img={p.poza}
                         nume={p.nume}
                         faculta={p.faculta}
-                        text={p.detalii}
+                        text={p.text ? p.text : p.detalii}
                       />
                     )}
                   </SwiperSlide>

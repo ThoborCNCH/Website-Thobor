@@ -9,6 +9,7 @@ import "./blog.scss";
 import Post from "./components/Post";
 import banner from "../../img/blog_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Svg from "../utils/Svg";
 
 function Blog({blog}) {
   useEffect(() => {
@@ -44,6 +45,7 @@ function Blog({blog}) {
             />
           ))}
       </div>
+      <Svg/>
       <Contact />
       <Up />
     </>
