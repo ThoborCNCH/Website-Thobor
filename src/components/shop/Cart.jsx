@@ -276,7 +276,7 @@ function Cart({ delete_prod_app, update, finish, fixCant }) {
             </div>
             {user && total ? (
               <button className="button" type="submit">
-                <span>Proceed To Checkout</span>
+                <span>Plaseaza comanda</span>
               </button>
             ) : (
               <></>
