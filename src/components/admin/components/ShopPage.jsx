@@ -256,10 +256,10 @@ function ShopPage() {
           />
           <h4>Brand: </h4>
           <select required onChange={(e) => modifield("brand", e.target.value)}>
-            <option value="samsung">samsung</option>
-            <option value="apple">apple</option>
-            <option value="motorola">motorola</option>
-            <option value="xiaomi">xiaomi</option>
+            <option value="samsung">Bratari de cauciuc</option>
+            <option value="apple">Bratari textile</option>
+            <option value="motorola">Brelocuri</option>
+            <option value="xiaomi">Insigne</option>
           </select>
 
           <h4>Categorie:</h4>
@@ -285,7 +285,7 @@ function ShopPage() {
           <h4>Pret vechi</h4>
           <input
             type="number"
-            onChange={(e) => modifield("old_pret", parseFloat(e.target.value))}
+            onChange={(e) => modifield("old_pret", Number(e.target.value))}
             placeholder="Pret anterior"
           />
           <h4>O descriere scurta a produsului: </h4>
@@ -415,7 +415,7 @@ function ShopPage() {
             <input
               value={updateItem.old_pret}
               type="number"
-              onChange={(e) => updateF("old_pret", parseFloat(e.target.value))}
+              onChange={(e) => updateF("old_pret", Number(e.target.value))}
               placeholder="old_pret"
             />
             <h4>Data:</h4>

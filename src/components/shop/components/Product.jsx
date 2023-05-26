@@ -53,7 +53,7 @@ function Product({
               -
               {Placeholder.makenumber(
                 Placeholder.roundit(((oldPrice - price) / oldPrice) * 100, 1)
-              )}
+              )}%
             </span>
           </div>
         )}

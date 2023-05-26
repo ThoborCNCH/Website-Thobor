@@ -55,10 +55,10 @@ let filter_arr = {
     ["rating", ">=", 1],
     ["rating", "<", 2],
   ],
-  samsung: [["brand", "==", "samsung"]],
-  apple: [["brand", "==", "apple"]],
-  xiaomi: [["brand", "==", "xiaomi"]],
-  motorola: [["brand", "==", "motorola"]],
+  "Bratari de cauciuc": [["brand", "==", "samsung"]],
+  "Bratari textile": [["brand", "==", "apple"]],
+  "Brelocuri": [["brand", "==", "xiaomi"]],
+  "Insigne": [["brand", "==", "motorola"]],
 };
 function Shop({ addit }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
@@ -261,7 +261,7 @@ function Shop({ addit }) {
   useEffect(() => {
     getCos();
   }, [user]);
-
+  
   return (
     <>
       <div style={{ background: "#2f2f2f" }}>
@@ -432,7 +432,7 @@ function Shop({ addit }) {
             </div>
           </div>
           <div className="right">
-            {products &&
+            {products ?
               products.map((prod) => {
                 return (
                   <Product
@@ -452,7 +452,7 @@ function Shop({ addit }) {
                     id={prod.id}
                   />
                 );
-              })}
+              }):<></>}
           </div>
         </div>
       </div>
