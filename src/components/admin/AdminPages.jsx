@@ -17,36 +17,28 @@ function AdminPages() {
   };
   return (
     <>
-      {
-        loading ? (
-          <h1>Se incarca </h1>
-        ) : (
+      {loading ? (
+        <h1>Se incarca </h1>
+      ) : user ? (
+        ids.includes(user.uid) ? (
           <div className="adminpages">
             <SideNav />
             <Outlet />
           </div>
+        ) : (
+          <div className="err">
+            <h1>Nu ai acces aici! </h1>
+          </div>
         )
-        //   : user ? (
-        //   ids.includes(user.uid) ? (
-        //     <div className="adminpages">
-        //       <SideNav />
-        //       <Outlet />
-        //     </div>
-        //   ) : (
-        //     <div className="err">
-        //       <h1>Nu ai acces aici! </h1>
-        //     </div>
-        //   )
-        // ) : (
-        //   <div className="err">
-        //     <h1>
-        //       Logheaza-te cu contul echipei de robotica <span> Thobor</span>{" "}
-        //       pentru a avea acces la pagina de admin!
-        //     </h1>
-        //     <h2 onClick={signInWithGoogle}>Login</h2>
-        //   </div>
-        //   )
-      }
+      ) : (
+        <div className="err">
+          <h1>
+            Logheaza-te cu contul echipei de robotica <span> Thobor</span>{" "}
+            pentru a avea acces la pagina de admin!
+          </h1>
+          <h2 onClick={signInWithGoogle}>Login</h2>
+        </div>
+      )}
     </>
   );
 }
