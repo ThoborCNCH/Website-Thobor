@@ -16,27 +16,27 @@ const firestore = new Firestore();
 let filters = [];
 let local_filters = [];
 let filter_arr = {
-  "0-100": [
+  "0-10": [
     ["pret", ">=", 0],
-    ["pret", "<=", 100],
+    ["pret", "<=", 10],
   ],
-  "100-200": [
-    ["pret", ">=", 100],
-    ["pret", "<=", 200],
+  "10-20": [
+    ["pret", ">=", 10],
+    ["pret", "<=", 20],
   ],
-  "200-300": [
-    ["pret", ">=", 200],
-    ["pret", "<=", 300],
+  "20-30": [
+    ["pret", ">=", 20],
+    ["pret", "<=", 30],
   ],
-  "300-400": [
-    ["pret", ">=", 300],
-    ["pret", "<=", 400],
+  "30-40": [
+    ["pret", ">=", 30],
+    ["pret", "<=", 40],
   ],
-  "400-500": [
-    ["pret", ">=", 400],
-    ["pret", "<=", 500],
+  "40-50": [
+    ["pret", ">=", 40],
+    ["pret", "<=", 50],
   ],
-  "over-500": [["pret", ">=", 500]],
+  "over-50": [["pret", ">=", 50]],
   "is-Discount": [["old_pret", ">", 0]],
   "5-rating": [["rating", "==", 5]],
   "4-rating": [
@@ -286,7 +286,7 @@ function Shop({ addit }) {
                 {categorii &&
                   categorii.map((cat) => {
                     return (
-                      <HashLink to={`/shop/${cat.categorie}/#tops`}>
+                      <HashLink to={`/shop/${cat.categorie}/#tops`} key={cat.categorie}>
                         {cat.categorie}
                       </HashLink>
                     );
@@ -345,7 +345,7 @@ function Shop({ addit }) {
                   let ar = filter[0].split("-");
                   return (
                     index <= 6 && (
-                      <div className="input_group">
+                      <div className="input_group" key={index}>
                         <input
                           checked={
                             local_filters.find((id) => id == filter[0])
@@ -377,7 +377,7 @@ function Shop({ addit }) {
                   return (
                     index > 6 &&
                     index <= 11 && (
-                      <div className="input_group">
+                      <div className="input_group" key={index}>
                         <input
                           checked={
                             local_filters.find((id) => id == filter[0])
@@ -412,7 +412,7 @@ function Shop({ addit }) {
                   let ar = filter[0].split("-");
                   return (
                     index > 11 && (
-                      <div className="input_group">
+                      <div className="input_group" key={index}>
                         <input
                           checked={
                             local_filters.find((id) => id == filter[0])
@@ -435,10 +435,10 @@ function Shop({ addit }) {
             {products ?
               products.map((prod) => {
                 return (
+                  <React.Fragment key={prod.id}>
                   <Product
                     dalay={0}
                     data2={"fade-down"}
-                    key={Math.random() * 92342423}
                     data="fade-right"
                     link={`/prod/${prod.id}`}
                     poza={prod.images[0]}
@@ -451,6 +451,7 @@ function Shop({ addit }) {
                     cantitate={prod.cantitate}
                     id={prod.id}
                   />
+                  </React.Fragment>
                 );
               }):<></>}
           </div>

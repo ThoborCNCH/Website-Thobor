@@ -46,7 +46,7 @@ function Product({
 
   return (
     <>
-      <div className="post" data-aos={data}>
+      <div className="post" data-aos={data} key={id}>
         {oldPrice > 0 && (
           <div className="offer">
             <span>
@@ -91,7 +91,7 @@ function Product({
                       data-aos-delay={dalay + (5 - index) * multiply}
                       style={{ color: "#FFFF00" }}
                       className="far fa-star text-primary mr-1"
-                      key={index}
+                      key={Math.random()*3242}
                     ></i>
                   ) : index + 1 <= Math.floor(rating) ? (
                     //plin
@@ -101,7 +101,8 @@ function Product({
                       data-aos-offset={"-20"}
                       data-aos-delay={dalay + (5 - index) * multiply}
                       className="fas fa-star text-primary mr-1"
-                      key={index}
+                      key={Math.random()*3242}
+
                     ></i>
                   ) : (
                     //jumate
@@ -111,7 +112,8 @@ function Product({
                       data-aos-offset={"-20"}
                       data-aos-delay={dalay + (5 - index) * multiply}
                       className="fas fa-star-half-alt text-primary mr-1"
-                      key={index}
+                      key={Math.random()*3242}
+
                     ></i>
                   )}
                 </>

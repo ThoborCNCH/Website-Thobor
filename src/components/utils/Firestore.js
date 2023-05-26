@@ -204,7 +204,7 @@ export default class Firestore {
     return await this.readDocuments("products", ["old_pret", ">", 0]);
   }
 
-  async finblter(products, filterss) {
+  async filter(products, filterss) {
     let arr = products;
 
     const filters = filterss.reduce((acc, curr) => {
