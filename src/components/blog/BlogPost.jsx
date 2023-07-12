@@ -7,12 +7,10 @@ import Svg from "../utils/Svg";
 import Up from "../utils/Up";
 import "./blog_post.scss";
 import Slider from "./components/Slider";
-
 import "firebase/compat/firestore";
-
 import { useState } from "react";
 import Firestore from "../utils/Firestore";
-
+import axios from "axios";
 import banner from "../../img/blog_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -27,6 +25,11 @@ function BlogPost() {
     await firestore.getDocById("blog", id).then((res) => {
       setPosare({ ...res });
     });
+  };
+
+  const getData = async () => {
+    const res = await axios.get("https://api.ipify.org/?format=json");
+    await firestore.updateViews(id, res.data.ip);
   };
 
   useEffect(() => {
@@ -46,6 +49,9 @@ function BlogPost() {
         }
       });
   }, []);
+  useEffect(()=>{
+    getData();
+  },[])
 
   return (
     <>

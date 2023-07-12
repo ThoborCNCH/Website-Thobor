@@ -24,6 +24,9 @@ import Sponsors from "./components/sponsors/Sponsors";
 import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
 import Navbar from "./components/utils/Navbar";
+import Users from "./components/admin/components/Users";
+import Graphs from "./components/admin/components/Graphs";
+import BlogPagePost from "./components/admin/components/BlogPagePost";
 
 const firestore = new Firestore();
 
@@ -105,15 +108,22 @@ function App() {
       setPremii(res);
     });
   });
+
+  const [users, setUsers] = useState([]);
+
+  const getUsers = useMemo(() => async () => {
+    await firestore.readDocuments("thobor_users").then((res) => {
+      setUsers(res);
+    });
+  });
+
   useEffect(() => {
-    const asteapta = async () => {
-      await getAni();
-      await getBlog();
-      await getApps();
-      await getSpon();
-      await getPremii();
-    };
-    asteapta();
+    getAni();
+    getBlog();
+    getApps();
+    getSpon();
+    getPremii();
+    getUsers();
   }, []);
 
   return (
@@ -144,9 +154,12 @@ function App() {
           }
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
-        <Route path="/admin" element={<AdminPages />}>
+        <Route path="/admin" element={<AdminPages emails={users} />}>
+          <Route path="/admin/graphs" element={<Graphs />} />
           <Route path="/admin/" element={<Index />} />
+          <Route path="/admin/users" element={<Users userss={users} />} />
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
+          <Route path="/admin/blog/:id" element={<BlogPagePost />} />
           <Route path="/admin/shop" element={<ShopPage />} />
           <Route path="/admin/apps" element={<AppsPage appss={apps} />} />
           <Route

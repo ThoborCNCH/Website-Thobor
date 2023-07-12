@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Outlet } from "react-router-dom";
 import Firestore from "../utils/Firestore";
@@ -7,10 +7,19 @@ import SideNav from "./components/SideNav";
 
 const firestore = new Firestore();
 
-const ids = process.env.REACT_APP_IDS.split(" ");
-
-function AdminPages() {
+function AdminPages({ emails }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
+  const [k, setk] = useState(false);
+
+  useEffect(() => {
+    if (emails.length > 0 && user && !loading)
+      for (let i = 0; i < emails.length && emails; i++) {
+        if (emails[i].email === user.email) {
+          setk(true);
+          break;
+        }
+      }
+  }, [emails]);
 
   const signInWithGoogle = async () => {
     await firestore.signInWithGoogle();
@@ -20,7 +29,7 @@ function AdminPages() {
       {loading ? (
         <h1>Se incarca </h1>
       ) : user ? (
-        ids.includes(user.uid) ? (
+        k ? (
           <div className="adminpages">
             <SideNav />
             <Outlet />

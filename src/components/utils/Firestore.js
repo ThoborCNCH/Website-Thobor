@@ -10,6 +10,7 @@ import {
   addDoc,
   collection,
   deleteDoc,
+  Timestamp,
   doc,
   getDoc,
   getDocs,
@@ -103,7 +104,7 @@ export default class Firestore {
         user_id: user.uid,
       }).then((res) => {
         if (res === "adaug") alert("Adaugat cu succes in cos!");
-        else if (res === "update ok") alert("Update cantitate");
+        else if (res === "update found") alert("Update cantitate");
         else alert("eroare");
       });
     else {
@@ -181,7 +182,7 @@ export default class Firestore {
       await updateDoc(productRef, {
         cantitate: productDoc.get("cantitate") + product.cantitate,
       });
-      return "update ok";
+      return "update found";
     } catch (error) {
       return false;
     }
@@ -294,6 +295,267 @@ export default class Firestore {
       return { id: docSnap.id, ...docSnap.data() };
     }
   }
+  toTimestamp = (strDate) => {
+    const dt = new Date(strDate).getTime();
+    return dt / 1000;
+  };
+
+  async updateViews(id, ip) {
+    if (id) {
+      let post = {};
+      this.getDocById("blog", id).then((res) => {
+        post = res;
+        let found = false;
+        post.views.map((view) => {
+          if (view.ip == ip) {
+            found = true;
+          }
+        });
+        if (!found) {
+          post.views.push({
+            ip: ip,
+            data: Timestamp.now(),
+          });
+          this.updateDocument("blog", id, post).then((res) => {
+            console.log("updated views");
+          });
+        } else {
+          // post.views = [
+          //     {
+          //       ip: "192.168.0.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-01-01T00:00:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-03-15T12:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-10T08:15:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-05-20T17:45:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-11-07T22:10:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-06-03T03:20:30")),
+          //     },
+          //     {
+          //       ip: "192.168.1.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-09-18T16:55:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.2",
+          //       data: Timestamp.fromMillis(Date.parse("2023-02-14T08:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.2",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-25T21:45:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.2",
+          //       data: Timestamp.fromMillis(Date.parse("2023-04-08T10:15:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.2",
+          //       data: Timestamp.fromMillis(Date.parse("2023-12-30T23:45:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.2",
+          //       data: Timestamp.fromMillis(Date.parse("2023-08-02T04:10:30")),
+          //     },
+          //     {
+          //       ip: "192.168.2.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-10-07T12:25:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.3",
+          //       data: Timestamp.fromMillis(Date.parse("2023-03-29T20:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.3",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-18T03:15:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.3",
+          //       data: Timestamp.fromMillis(Date.parse("2023-06-01T14:45:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.3",
+          //       data: Timestamp.fromMillis(Date.parse("2023-12-15T04:20:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.3",
+          //       data: Timestamp.fromMillis(Date.parse("2023-09-03T11:30:30")),
+          //     },
+          //     {
+          //       ip: "192.168.3.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-10-21T05:10:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.4",
+          //       data: Timestamp.fromMillis(Date.parse("2023-02-18T13:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.4",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-06T18:30:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.4",
+          //       data: Timestamp.fromMillis(Date.parse("2023-05-12T09:00:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.4",
+          //       data: Timestamp.fromMillis(Date.parse("2023-11-23T12:15:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.4",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-29T23:50:30")),
+          //     },
+          //     {
+          //       ip: "192.168.4.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-11-11T18:35:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.5",
+          //       data: Timestamp.fromMillis(Date.parse("2023-01-23T07:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.5",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-15T13:45:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.5",
+          //       data: Timestamp.fromMillis(Date.parse("2023-04-29T01:00:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.5",
+          //       data: Timestamp.fromMillis(Date.parse("2023-10-05T08:40:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.5",
+          //       data: Timestamp.fromMillis(Date.parse("2023-06-19T17:20:30")),
+          //     },
+          //     {
+          //       ip: "192.168.5.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-12-06T09:55:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.6",
+          //       data: Timestamp.fromMillis(Date.parse("2023-03-03T16:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.6",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-21T08:00:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.6",
+          //       data: Timestamp.fromMillis(Date.parse("2023-05-09T19:30:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.6",
+          //       data: Timestamp.fromMillis(Date.parse("2023-11-29T23:00:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.6",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-12T06:40:30")),
+          //     },
+          //     {
+          //       ip: "192.168.6.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-10-02T14:05:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.7",
+          //       data: Timestamp.fromMillis(Date.parse("2023-02-28T23:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.7",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-28T10:00:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.7",
+          //       data: Timestamp.fromMillis(Date.parse("2023-05-04T20:15:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.7",
+          //       data: Timestamp.fromMillis(Date.parse("2023-12-21T08:30:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.7",
+          //       data: Timestamp.fromMillis(Date.parse("2023-08-16T13:50:30")),
+          //     },
+          //     {
+          //       ip: "192.168.7.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-10-31T01:25:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.8",
+          //       data: Timestamp.fromMillis(Date.parse("2023-01-15T05:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.8",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-11T16:15:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.8",
+          //       data: Timestamp.fromMillis(Date.parse("2023-04-25T04:45:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.8",
+          //       data: Timestamp.fromMillis(Date.parse("2023-11-17T07:10:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.8",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-07T11:40:30")),
+          //     },
+          //     {
+          //       ip: "192.168.8.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-11-19T15:15:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.9",
+          //       data: Timestamp.fromMillis(Date.parse("2023-02-07T18:30:45")),
+          //     },
+          //     {
+          //       ip: "172.16.0.9",
+          //       data: Timestamp.fromMillis(Date.parse("2023-07-17T01:45:30")),
+          //     },
+          //     {
+          //       ip: "192.0.2.9",
+          //       data: Timestamp.fromMillis(Date.parse("2023-05-28T12:00:00")),
+          //     },
+          //     {
+          //       ip: "198.51.100.9",
+          //       data: Timestamp.fromMillis(Date.parse("2023-12-06T18:20:15")),
+          //     },
+          //     {
+          //       ip: "203.0.113.9",
+          //       data: Timestamp.fromMillis(Date.parse("2023-08-29T03:40:30")),
+          //     },
+          //     {
+          //       ip: "192.168.9.1",
+          //       data: Timestamp.fromMillis(Date.parse("2023-10-14T11:05:00")),
+          //     },
+          //     {
+          //       ip: "10.0.0.10",
+          //       data: Timestamp.fromMillis(Date.parse("2023-01-31T20:30:45")),
+          //     },
+          // ];
+
+          // this.updateDocument("blog", id, post).then((res) => {
+          //   console.log("ok");
+          // });
+          console.log("ip deja gasit");
+        }
+      });
+    }
+  }
+
   async updateDocument(collectionName, documentId, data) {
     const ref = doc(this.db, collectionName, documentId);
     return await updateDoc(ref, data);

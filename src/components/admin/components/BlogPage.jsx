@@ -37,6 +37,7 @@ function BlogPage({ blogs }) {
     let added = {
       titlu,
       //uid: uid,
+      views:[],
       fb,
       insta,
       createAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -215,7 +216,7 @@ function BlogPage({ blogs }) {
                         ajutor={true}
                         key={Math.random() * 92342423}
                         data="fade-right"
-                        link={`/blog/${bl.id}`}
+                        link={`${bl.id}`}
                         poza={bl.images[0]}
                         titlu={bl.titlu}
                         text_scurt={
