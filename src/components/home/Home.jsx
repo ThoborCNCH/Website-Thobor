@@ -32,7 +32,6 @@ const firestore = new Firestore();
 function Home({premii}) {
   const h1 = useRef(null);
 
-  
   useEffect(() => {
     AOS.init();
   }, []);

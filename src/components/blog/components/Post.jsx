@@ -31,9 +31,9 @@ function Post({
             <div className="linie_vert"></div>
             <p>{text_scurt}</p>
           </div>
-          {/* <button onClick={deleted} className="button" style={{ margin: 20 }}>
+          <button onClick={deleted} className="button" style={{ margin: 20 }}>
             delete
-          </button> */}
+          </button>
           <Link to={link} preventScrollReset={true} className="link">
             <div className="coca"></div>
             <span>

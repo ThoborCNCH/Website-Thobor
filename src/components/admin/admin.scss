@@ -11,8 +11,14 @@
     padding: 20px;
     width: calc(100vw - 40px - 226px);
     position: relative;
+    background: url("../../img/cevaidksimcer.png");
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: top;
     min-height: 100vh;
 
+    .chart_part,
+    .users_part,
     .shop_part,
     .premii_part,
     .apps_part,
@@ -194,7 +200,114 @@
     cursor: pointer;
   }
 }
-.press{
+.press {
   color: white;
   font-size: 20px;
+}
+.adminpages .adminpage {
+  table {
+    width: 100%;
+    position: relative;
+    border-collapse: collapse;
+    margin-top: 50px;
+
+    thead {
+      background: $main_green;
+
+      tr {
+        border-bottom: 30px solid $black2;
+
+        th {
+          padding: 12px 15px;
+          font-size: 20px;
+          color: white;
+          text-align: center;
+        }
+      }
+    }
+    tbody {
+      tr {
+        position: relative;
+        display: table-row;
+        background: #4b4b4bcc;
+        border-bottom: 15px solid transparent;
+      }
+      td {
+        padding: 20px 0;
+        text-align: center;
+
+        * {
+          vertical-align: middle;
+        }
+      }
+      .delete {
+        border: none;
+        cursor: pointer;
+        background: #dc3545;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0;
+        border: 2px solid white;
+      }
+    }
+  }
+  .chart {
+    margin: 20px;
+  }
+  .hour {
+    margin: 20px;
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    position: relative;
+    .ll,
+    .rr {
+      padding: 30px;
+      width: 50%;
+      color: white;
+    }
+    .rr {
+      canvas {
+        margin: 30px;
+      }
+    }
+    .ll {
+      height: 100%;
+      .tti {
+        position: relative;
+        width: auto;
+        top: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+          font-size: 30px;
+          color: white;
+          z-index: 2;
+          width: max-content;
+          text-align: center;
+        }
+        .linie {
+          position: absolute;
+          top: 50%;
+          z-index: 1;
+          left: 50%;
+          width: 200px;
+          height: 20px;
+          background-color: $main_green;
+        }
+      }
+      h4 {
+        span {
+          color: $dark_green;
+          font-weight: 900;
+        }
+      }
+    }
+  }
 }

@@ -18,6 +18,9 @@ function Users({ userss }) {
   };
 
   const add = async () => {
+    if(user.email === "" || user.role==="")
+    alert("Completeaza toate campurile")
+    else
     await firestore.addItem("thobor_users", user).then((res) => {
       console.log(res);
       setUsers((old) => [res, ...old]);
@@ -33,19 +36,30 @@ function Users({ userss }) {
   return (
     <>
       <div className="adminpage">
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => update(e.target.value, "email")}
-        />
-        <input
-          type="text"
-          placeholder="Rol"
-          onChange={(e) => update(e.target.value, "role")}
-        />
-        <button onClick={add}>Submit</button>
-        <br />
-        <br />
+        <div className="users_part">
+          <div className="form">
+            <h1>FOR USERS</h1>
+            <h4>Scrie emailul persoanei din echipa</h4>
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={(e) => update(e.target.value, "email")}
+            />
+            <h4>Alege departamentul</h4>
+            <select onChange={(e) => update(e.target.value, "role")}>
+              <option value="">Departamente</option>
+              <option value="programare">Programare</option>
+              <option value="mecanica">Mecanica</option>
+              <option value="proiectare">Proiectare</option>
+              <option value="caiet">Caiet</option>
+              <option value="marketing">Marketing</option>
+              <option value="admin">Admin</option>
+            </select>
+            <button className="button" type="submit" onClick={add}>
+              Submit
+            </button>
+          </div>
+        </div>
         <table>
           <thead>
             <tr>
@@ -56,12 +70,16 @@ function Users({ userss }) {
           </thead>
           <tbody>
             {users &&
-              users .map((user) => {
+              users.map((user) => {
                 return (
                   <>
                     <tr>
-                      <td>{user.email}</td>
-                      <td>{user.role}</td>
+                      <td>
+                        <p>{user.email}</p>
+                      </td>
+                      <td>
+                        <h4>{user.role}</h4>
+                      </td>
                       <td>
                         <button
                           className="delete"
