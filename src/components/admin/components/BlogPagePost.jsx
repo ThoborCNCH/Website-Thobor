@@ -52,7 +52,7 @@ function BlogPagePost() {
   const { id } = useParams();
   const [post, setPost] = useState({});
   let [data, setData] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const [data2, setData2] = useState([
+  let [data2, setData2] = useState([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
   let [ok, setOk] = useState(true);
@@ -99,12 +99,12 @@ function BlogPagePost() {
       for (let i = 0; i < res.views.length && ok; i++) {
         data[res.views[i].data.toDate().getMonth()] =
           data[res.views[i].data.toDate().getMonth()] + 1;
-        const index = res.views[i].data.toDate().getHours();
-        setData2([data2[index]++]);
+        // const index = res.views[i].data.toDate().getHours();
+        // setData2([data2[index]++]);
         // increment(index);
 
-        // test2[res.views[i].data.toDate().getHours()] =
-        //   test2[res.views[i].data.toDate().getHours()] + 1;
+        data2[res.views[i].data.toDate().getHours()] =
+          data2[res.views[i].data.toDate().getHours()] + 1;
       }
       if (ok) {
         setChartData2({
@@ -176,7 +176,38 @@ function BlogPagePost() {
         </div>
       </div>
       <h2 style={{ color: "white" }}>Vizualizari din ultimul an</h2>
-      <Chart className="chart" type="line" data={chartData} />
+      <Chart
+        className="chart"
+        type="line"
+        data={chartData}
+        options={{
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              ticks: {
+                color: "white",
+                beginAtZero: true,
+                font: {
+                  family: "montserrat",
+                  size: 13,
+                  weight: 400,
+                },
+              },
+            },
+            x: {
+              ticks: {
+                color: "white",
+                beginAtZero: true,
+                font: {
+                  family: "montserrat",
+                  size: 13,
+                  weight: 400,
+                },
+              },
+            },
+          },
+        }}
+      />
       <div className="hour">
         <div className="ll">
           {" "}
@@ -190,7 +221,7 @@ function BlogPagePost() {
             show
           </button> */}
           <div className="tti">
-          <h3 data-aos="fade-down">Vizualizari detaliate</h3>
+            <h3 data-aos="fade-down">Vizualizari detaliate</h3>
             <div data-aos="fade-left" className="linie"></div>
           </div>
           <h4>
@@ -206,7 +237,37 @@ function BlogPagePost() {
           </h4>
         </div>
         <div className="rr">
-          <Chart type="polarArea" data={chartData2} />
+          <Chart
+            type="polarArea"
+            data={chartData2}
+            options={{
+                plugins: { legend: { display: false } },
+                scales: {
+                  y: {
+                    ticks: {
+                      color: "white",
+                      beginAtZero: true,
+                      font: {
+                        family: "montserrat",
+                        size: 13,
+                        weight: 400,
+                      },
+                    },
+                  },
+                  x: {
+                    ticks: {
+                      color: "white",
+                      beginAtZero: true,
+                      font: {
+                        family: "montserrat",
+                        size: 13,
+                        weight: 400,
+                      },
+                    },
+                  },
+                },
+              }}
+          />
         </div>
       </div>
     </div>

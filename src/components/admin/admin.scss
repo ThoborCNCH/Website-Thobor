@@ -280,6 +280,7 @@
         position: relative;
         width: auto;
         top: 0;
+        margin-bottom: 30px;
         z-index: 2;
         display: flex;
         justify-content: center;
@@ -304,7 +305,7 @@
       }
       h4 {
         span {
-          color: $dark_green;
+          color: $light_green;
           font-weight: 900;
         }
       }
