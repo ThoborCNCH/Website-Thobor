@@ -30,10 +30,14 @@ function AdminPages({ emails }) {
         <h1>Se incarca </h1>
       ) : user ? (
         k ? (
-          <div className="adminpages">
-            <SideNav />
+          !window.location.href.includes("meet") ? (
+            <div className="adminpages">
+              <SideNav />
+              <Outlet />
+            </div>
+          ) : (
             <Outlet />
-          </div>
+          )
         ) : (
           <div className="err">
             <h1>Nu ai acces aici! </h1>

@@ -27,6 +27,10 @@ import Navbar from "./components/utils/Navbar";
 import Users from "./components/admin/components/Users";
 import BlogPagePost from "./components/admin/components/BlogPagePost";
 import Crm from "./components/admin/components/Crm";
+import CreateRoom from "./components/admin/components/Meet/CreateRoom";
+import EndMeet from "./components/admin/components/Meet/EndMeet";
+import Room from "./components/admin/components/Meet/Room";
+import Errors from "./components/admin/components/Meet/Errors";
 
 const firestore = new Firestore();
 
@@ -136,7 +140,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      {!window.location.href.includes("meet") && <Navbar />}{" "}
       <Routes>
         <Route path="/" element={<Home premii={premii} />} />
         <Route path="/blog" element={<Blog blog={blog} />} />
@@ -183,10 +187,14 @@ function App() {
             element={<SponsorsPage sponsorss={spon} />}
           />
           <Route path="/admin/ani" element={<AniPage anii={ani} />} />
+          <Route path="/admin/meet" element={<CreateRoom />} />
+          <Route path="/admin/meet/m/:roomID" element={<Room />} />
+          <Route path="/admin/meet/end" element={<EndMeet />} />
+          <Route path="/admin/meet/error/:type" element={<Errors />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {!window.location.href.includes("meet") && <Footer />}
     </BrowserRouter>
   );
 }

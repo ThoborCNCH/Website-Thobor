@@ -80,16 +80,22 @@ function Crm({ taskss }) {
       return updatedArray;
     });
   };
-  const preia = async (id) => {
+  const preia = async (task) => {
+    task.aprobat = false;
     await firestore
-      .updateDocument("tasks", id, { preluat: true, de: user.email })
+      .updateDocument("tasks", task.id, { preluat: true, de: user.email })
       .then((res) => {
-        updateFieldById(id, "preluat", true);
+        updateFieldById(task.id, "preluat", true);
+        setMyTasks((old) => [...old, task]);
+        alert("task preluat");
       });
-    alert("task preluat");
   };
+
   const updatenewTask = (field, e) => {
-    setNewTask((old) => [...old, ([field] = e)]);
+    setNewTask((old) => ({
+      ...old,
+      [field]: e,
+    }));
   };
 
   const [rezolvare, setRezolvare] = useState({
@@ -113,15 +119,43 @@ function Crm({ taskss }) {
       obj["file"] = url;
     } catch (error) {}
     await firestore
-      .updateDocument("tasks", id, { rezolvare: obj })
+      .updateDocument("tasks", id, { rezolvare: obj, stare: "terminat" })
       .then((res) => {
+        setTasksGeneral((prevArray) => {
+          const updatedArray = prevArray.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                ["stare"]: "terminat",
+              };
+            }
+            return item;
+          });
+
+          return updatedArray;
+        });
+        setMyTasks((prevArray) => {
+          const updatedArray = prevArray.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                ["stare"]: "terminat",
+              };
+            }
+            return item;
+          });
+
+          return updatedArray;
+        });
         alert("rezolvare trimisa");
       });
   };
 
   const decide = async (id, decizie) => {
+    let stare = "in lucru";
+    if (decizie) stare = "terminat";
     await firestore
-      .updateDocument("tasks", id, { aprobat: true })
+      .updateDocument("tasks", id, { aprobat: decizie, stare: stare })
       .then((res) => {
         setTasksGeneral((prevArray) => {
           const updatedArray = prevArray.map((item) => {
@@ -136,9 +170,76 @@ function Crm({ taskss }) {
 
           return updatedArray;
         });
-        decizie
-          ? alert("Ai aprobat acest task")
-          : alert("Ai refuzar acest task");
+        setMyTasks((prevArray) => {
+          const updatedArray = prevArray.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                ["aprobat"]: decizie,
+              };
+            }
+            return item;
+          });
+
+          return updatedArray;
+        });
+        if (decizie) {
+          setTasksGeneral((prevArray) => {
+            const updatedArray = prevArray.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  ["stare"]: "terminat",
+                };
+              }
+              return item;
+            });
+
+            return updatedArray;
+          });
+          setMyTasks((prevArray) => {
+            const updatedArray = prevArray.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  ["stare"]: "terminat",
+                };
+              }
+              return item;
+            });
+
+            return updatedArray;
+          });
+          alert("Ai aprobat acest task");
+        } else {
+          setTasksGeneral((prevArray) => {
+            const updatedArray = prevArray.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  ["stare"]: "in lucru",
+                };
+              }
+              return item;
+            });
+
+            return updatedArray;
+          });
+          setMyTasks((prevArray) => {
+            const updatedArray = prevArray.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  ["stare"]: "in lucru",
+                };
+              }
+              return item;
+            });
+
+            return updatedArray;
+          });
+          alert("Ai refuzat acest task");
+        }
       });
   };
   const delete_task = async (id) => {
@@ -149,32 +250,81 @@ function Crm({ taskss }) {
     });
   };
 
+  const refuza = async (id) => {
+    await firestore
+      .updateDocument("tasks", id, {
+        preluat: false,
+        de: "",
+        stare: "neinceput",
+      })
+      .then((res) => {
+        updateFieldById(id, "preluat", false);
+        setMyTasks(myTasks.filter((item) => item.id !== id));
+        alert("task refuzat");
+      });
+  };
+  const incepe_task = async (id) => [
+    await firestore
+      .updateDocument("tasks", id, { stare: "in lucru" })
+      .then((res) => {
+        setTasksGeneral((prevArray) => {
+          const updatedArray = prevArray.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                ["stare"]: "in lucru",
+              };
+            }
+            return item;
+          });
+
+          return updatedArray;
+        });
+        setMyTasks((prevArray) => {
+          const updatedArray = prevArray.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                ["stare"]: "in lucru",
+              };
+            }
+            return item;
+          });
+
+          return updatedArray;
+        });
+        alert("Ai inceput un task");
+      }),
+  ];
+
   return (
     <div className="adminpage">
       {isAllowed && (
-        <div className="prompt">
-          <input
-            type="text"
-            onChange={(e) => updatenewTask("cerinta", e.target.value)}
-          />
-          <textarea
-            cols="30"
-            rows="10"
-            onChange={(e) => updatenewTask("detalii", e.target.value)}
-          ></textarea>
-          <select
-            onChange={(e) => updatenewTask("departament", e.target.value)}
-          >
-            <option value="">Departamente</option>
-            <option value="programare">Programare</option>
-            <option value="mecanica">Mecanica</option>
-            <option value="proiectare">Proiectare</option>
-            <option value="caiet">Caiet</option>
-            <option value="marketing">Marketing</option>
-          </select>
-          <button className="button" onClick={addNewTask}>
-            submit
-          </button>
+        <div className="crm_part">
+          <div className="form">
+            <input
+              type="text"
+              onChange={(e) => updatenewTask("cerinta", e.target.value)}
+            />
+            <textarea
+              cols="30"
+              rows="10"
+              onChange={(e) => updatenewTask("detalii", e.target.value)}
+            ></textarea>
+            <select
+              onChange={(e) => updatenewTask("departament", e.target.value)}
+            >
+              <option value="">Departamente</option>
+              <option value="programare">Programare</option>
+              <option value="mecanica">Mecanica</option>
+              <option value="proiectare">Proiectare</option>
+              <option value="caiet">Caiet</option>
+              <option value="marketing">Marketing</option>
+            </select>
+            <button className="button" onClick={addNewTask}>
+              submit
+            </button>
+          </div>
         </div>
       )}
       <div className="lista">
@@ -191,9 +341,11 @@ function Crm({ taskss }) {
                       <p>{task.cerinta}</p>
                       <h4>preluat: {task.preluat ? task.de : "false"}</h4>
                     </div>
-                    <button className="button" onClick={() => preia(task.id)}>
-                      Preia task
-                    </button>
+                    {!task.preluat && (
+                      <button className="button" onClick={() => preia(task)}>
+                        Preia task
+                      </button>
+                    )}
                   </div>
                 </>
               );
@@ -253,27 +405,57 @@ function Crm({ taskss }) {
                         task dat de <span>{task.user}</span>
                       </h2>
                       <p>{task.cerinta}</p>
-                      <h2>rezolvare</h2>
-                      <textarea
-                        cols="30"
-                        rows="10"
-                        onChange={(e) =>
-                          updateRezolvare("explicatie", e.target.value)
-                        }
-                      ></textarea>
-                      <input
-                        type="file"
-                        onChange={(e) =>
-                          updateRezolvare("file", e.target.files[0])
-                        }
-                      />
-                      <button
-                        className="button"
-                        onClick={() => setrezolvare(task.id)}
-                      >
-                        submit
-                      </button>
-                      <button className="button">refuza task</button>
+                      {task.stare === "in lucru" ? (
+                        <div className="rezz">
+                          <h2>rezolvare</h2>
+                          <textarea
+                            cols="30"
+                            rows="10"
+                            onChange={(e) =>
+                              updateRezolvare("explicatie", e.target.value)
+                            }
+                          ></textarea>
+                          <input
+                            type="file"
+                            onChange={(e) =>
+                              updateRezolvare("file", e.target.files[0])
+                            }
+                          />
+                          <button
+                            className="button"
+                            onClick={() => setrezolvare(task.id)}
+                          >
+                            submit
+                          </button>
+
+                          <button
+                            className="button"
+                            onClick={() => refuza(task.id)}
+                          >
+                            refuza task
+                          </button>
+                        </div>
+                      ) : task.stare === "neinceput" ? (
+                        <>
+                          <button
+                            className="button"
+                            onClick={() => incepe_task(task.id)}
+                          >
+                            Incepe task
+                          </button>
+
+                          <button
+                            className="button"
+                            onClick={() => refuza(task.id)}
+                          >
+                            refuza task
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <h1>Asteapta decizia lui {task.user}</h1>
+                        </>
+                      )}
                     </div>
                   </>
                 );
@@ -313,9 +495,9 @@ function Crm({ taskss }) {
                           </button>
                         </div>
                       )}
-                       <button onClick={() => delete_task(task.id)}>
-                            Sterge task
-                          </button>
+                      <button onClick={() => delete_task(task.id)}>
+                        Sterge task
+                      </button>
                     </div>
                     <hr />
                   </>
