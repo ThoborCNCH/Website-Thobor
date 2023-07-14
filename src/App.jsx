@@ -25,8 +25,8 @@ import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
 import Navbar from "./components/utils/Navbar";
 import Users from "./components/admin/components/Users";
-import Graphs from "./components/admin/components/Graphs";
 import BlogPagePost from "./components/admin/components/BlogPagePost";
+import Crm from "./components/admin/components/Crm";
 
 const firestore = new Firestore();
 
@@ -116,6 +116,13 @@ function App() {
       setUsers(res);
     });
   });
+  const [tasks, setTasks] = useState([]);
+
+  const getTasks = useMemo(() => async () => {
+    await firestore.readDocuments("tasks").then((res) => {
+      setTasks(res);
+    });
+  });
 
   useEffect(() => {
     getAni();
@@ -124,6 +131,7 @@ function App() {
     getSpon();
     getPremii();
     getUsers();
+    getTasks();
   }, []);
 
   return (
@@ -155,8 +163,8 @@ function App() {
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
         <Route path="/admin" element={<AdminPages emails={users} />}>
-          <Route path="/admin/graphs" element={<Graphs />} />
-          <Route path="/admin/" element={<Index />} />
+          {/* <Route path="/admin/" element={<Index />} /> */}
+          <Route path="/admin/tasks" element={<Crm taskss={tasks} />} />
           <Route path="/admin/users" element={<Users userss={users} />} />
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
           <Route path="/admin/blog/:id" element={<BlogPagePost />} />

@@ -33,12 +33,15 @@ function Sponsors({ spon }) {
       <div className="sponsors">
         {spon &&
           spon.map((sp) => (
+            <>
             <LazyLoadImage
               key={sp.logo}
               src={sp.logo}
               width={300}
               height={"auto"}
             />
+            </>
+
           ))}
       </div>
       <Svg />

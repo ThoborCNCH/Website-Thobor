@@ -18,13 +18,13 @@ function Users({ userss }) {
   };
 
   const add = async () => {
-    if(user.email === "" || user.role==="")
-    alert("Completeaza toate campurile")
+    if (user.email === "" || user.role === "")
+      alert("Completeaza toate campurile");
     else
-    await firestore.addItem("thobor_users", user).then((res) => {
-      console.log(res);
-      setUsers((old) => [res, ...old]);
-    });
+      await firestore.addItem("thobor_users", user).then((res) => {
+        console.log(res);
+        setUsers((old) => [res, ...old]);
+      });
     console.log(users);
   };
 
@@ -54,6 +54,9 @@ function Users({ userss }) {
               <option value="caiet">Caiet</option>
               <option value="marketing">Marketing</option>
               <option value="admin">Admin</option>
+              <option value="ldd">Lider de departament</option>
+              <option value="alumni">Alumni</option>
+              <option value="mentor">Mentor</option>
             </select>
             <button className="button" type="submit" onClick={add}>
               Submit

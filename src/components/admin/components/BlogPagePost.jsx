@@ -335,7 +335,7 @@ function BlogPagePost() {
         </div>
         <div className="rr">
           <Chart
-          data-aos="fade-left"
+            data-aos="fade-left"
             type="polarArea"
             data={chartData2}
             options={{
