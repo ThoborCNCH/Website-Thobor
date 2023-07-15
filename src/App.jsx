@@ -130,18 +130,19 @@ function App() {
   const [isAllowed, setIsAllowed] = useState(false);
   const [role, setRole] = useState("");
 
-  const decide = async () => {
+  const decide = useMemo(() => async () => {
+    if(user && !loading)
     await firestore
       .readDocuments("thobor_users", ["email", "==", user.email])
       .then(async (res) => {
         setRole(res[0].role);
         if (!["ldd", "alumni", "mentor", "admin"].includes(res[0].role)) {
           setIsAllowed(false);
-        }else{
+        } else {
           setIsAllowed(true);
         }
       });
-  };
+  });
 
   useEffect(() => {
     getAni();
@@ -151,8 +152,11 @@ function App() {
     getPremii();
     getUsers();
     getTasks();
-    decide();
   }, []);
+
+  useEffect(() => {
+    decide();
+  }, [, loading,user]);
 
   return (
     <BrowserRouter>
@@ -184,10 +188,16 @@ function App() {
           }
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
-        <Route path="/admin" element={<AdminPages isAllowed={isAllowed} emails={users} />}>
+        <Route
+          path="/admin"
+          element={<AdminPages isAllowed={isAllowed} emails={users} />}
+        >
           <Route path="/admin/" element={<Index />} />
           <Route path="/admin/tasks" element={<Crm taskss={tasks} />} />
-          <Route path="/admin/users" element={<Users isAllowed={isAllowed} userss={users} />} />
+          <Route
+            path="/admin/users"
+            element={<Users isAllowed={isAllowed} userss={users} />}
+          />
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
           <Route path="/admin/blog/:id" element={<BlogPagePost />} />
           <Route path="/admin/shop" element={<ShopPage />} />
