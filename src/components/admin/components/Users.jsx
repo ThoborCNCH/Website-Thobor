@@ -101,7 +101,9 @@ function Users({ userss, isAllowed }) {
       </div>
     </>
   ) : (
-    <h1>Nu ai acces aici</h1>
+    <div className="err">
+      <h1>Nu ai acces aici! </h1>
+    </div>
   );
 }
 
