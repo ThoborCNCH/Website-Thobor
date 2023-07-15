@@ -7,7 +7,7 @@ import SideNav from "./components/SideNav";
 
 const firestore = new Firestore();
 
-function AdminPages({ emails }) {
+function AdminPages({ emails, isAllowed }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [k, setk] = useState(false);
 
@@ -34,7 +34,7 @@ function AdminPages({ emails }) {
           window.location.href.includes("create") ||
           window.location.href.includes("end") ? (
             <div className="adminpages">
-              <SideNav />
+              <SideNav isAllowed={isAllowed} />
               <Outlet />
             </div>
           ) : (

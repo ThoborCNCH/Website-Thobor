@@ -3,7 +3,7 @@ import Firestore from "../../utils/Firestore";
 
 const firestore = new Firestore();
 
-function Users({ userss }) {
+function Users({ userss, isAllowed }) {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({
     email: "",
@@ -33,7 +33,8 @@ function Users({ userss }) {
       setUsers((old) => (old = old.filter((o) => o.id != id)));
     });
   };
-  return (
+
+  return isAllowed ? (
     <>
       <div className="adminpage">
         <div className="users_part">
@@ -99,6 +100,8 @@ function Users({ userss }) {
         </table>
       </div>
     </>
+  ) : (
+    <h1>Nu ai acces aici</h1>
   );
 }
 
