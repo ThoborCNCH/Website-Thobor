@@ -17,9 +17,9 @@ function AdminPages({ emails, isAllowed }) {
       for (let i = 0; i < emails.length && emails; i++) {
         if (emails[i].email === user.email) {
           setk(true);
-          break;
         }
       }
+      console.log(k);
   }, [loading, emails]);
 
   const signInWithGoogle = async () => {
