@@ -259,6 +259,8 @@ function Crm({ taskss }) {
           });
           alert("Ai refuzat acest task");
         }
+        setP(false);
+        setObservatie("");
       });
   };
   const delete_task = async (id) => {
