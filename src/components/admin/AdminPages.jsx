@@ -12,6 +12,7 @@ function AdminPages({ emails, isAllowed }) {
   const [k, setk] = useState(false);
 
   useEffect(() => {
+    console.log(emails);
     if (emails.length > 0 && user && !loading)
       for (let i = 0; i < emails.length && emails; i++) {
         if (emails[i].email === user.email) {
@@ -19,7 +20,7 @@ function AdminPages({ emails, isAllowed }) {
           break;
         }
       }
-  }, [emails]);
+  }, [loading, emails]);
 
   const signInWithGoogle = async () => {
     await firestore.signInWithGoogle();
