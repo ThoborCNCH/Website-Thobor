@@ -13,10 +13,8 @@ function AdminPages({ isAllowed }) {
 
   const getUsers = async () => {
     await firestore.readDocuments("thobor_users").then((res) => {
-      console.log(res);
       if (res.length > 0 && user && !loading)
         for (let i = 0; i < res.length; i++) {
-          console.log(res[i], user);
           if (res[i].email === user.email) {
             setk(true);
           }
