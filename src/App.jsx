@@ -131,17 +131,17 @@ function App() {
   const [role, setRole] = useState("");
 
   const decide = useMemo(() => async () => {
-    if(user && !loading)
-    await firestore
-      .readDocuments("thobor_users", ["email", "==", user.email])
-      .then(async (res) => {
-        setRole(res[0].role);
-        if (!["ldd", "alumni", "mentor", "admin"].includes(res[0].role)) {
-          setIsAllowed(false);
-        } else {
-          setIsAllowed(true);
-        }
-      });
+    if (user && !loading)
+      await firestore
+        .readDocuments("thobor_users", ["email", "==", user.email])
+        .then(async (res) => {
+          setRole(res[0].role);
+          if (!["ldd", "alumni", "mentor", "admin"].includes(res[0].role)) {
+            setIsAllowed(false);
+          } else {
+            setIsAllowed(true);
+          }
+        });
   });
 
   useEffect(() => {
@@ -156,13 +156,18 @@ function App() {
 
   useEffect(() => {
     decide();
-  }, [, loading,user]);
+  }, [, loading, user]);
+
+  const [link, setLink] = useState("");
+  useEffect(() => {
+    setLink(window.location.pathname);
+  }, [window.location]);
 
   return (
     <BrowserRouter>
-      {(!window.location.href.includes("meet") ||
-        window.location.href.includes("create") ||
-        window.location.href.includes("end")) && <Navbar />}{" "}
+      {(!link.includes("meet") ||
+        link.includes("create") ||
+        link.includes("end")) && <Navbar />}
       <Routes>
         <Route path="/" element={<Home premii={premii} />} />
         <Route path="/blog" element={<Blog blog={blog} />} />
@@ -222,9 +227,9 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {(!window.location.href.includes("meet") ||
-        window.location.href.includes("create") ||
-        window.location.href.includes("end")) && <Footer />}
+      {(!link.includes("meet") ||
+        link.includes("create") ||
+        link.includes("end")) && <Footer />}
     </BrowserRouter>
   );
 }

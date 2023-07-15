@@ -24,15 +24,20 @@ function AdminPages({ emails, isAllowed }) {
   const signInWithGoogle = async () => {
     await firestore.signInWithGoogle();
   };
+  const [link, setLink] = useState("");
+  useEffect(() => {
+    setLink(window.location.href);
+  }, [window.location.href]);
+
   return (
     <>
       {loading ? (
         <h1>Se incarca </h1>
       ) : user ? (
         k ? (
-          !window.location.href.includes("meet") ||
-          window.location.href.includes("create") ||
-          window.location.href.includes("end") ? (
+          !link.includes("meet") ||
+          link.includes("create") ||
+          link.includes("end") ? (
             <div className="adminpages">
               <SideNav isAllowed={isAllowed} />
               <Outlet />
