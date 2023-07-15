@@ -35,7 +35,10 @@ function Crm({ taskss }) {
 
   const addNewTask = async () => {
     await firestore.addItem("tasks", newTask).then((res) => {
-      setTasksGeneral((old) => [...old, res]);
+      setTasksGeneral((old) => [res, ...old]);
+      document.querySelectorAll("input, textarea").forEach((input) => {
+        input.value = "";
+      });
       alert("task adaugat");
     });
   };
@@ -51,14 +54,22 @@ function Crm({ taskss }) {
           await firestore
             .readDocuments("tasks", ["de", "==", user.email])
             .then((res) => {
-              setMyTasks(res);
+              setMyTasks(
+                res.sort(function (x, y) {
+                  return y.createdAt - x.createdAt;
+                })
+              );
             });
         } else {
           setIsAllowed(true);
           await firestore
             .readDocuments("tasks", ["user", "==", user.email])
             .then((res) => {
-              setMyTasks(res);
+              setMyTasks(
+                res.sort(function (x, y) {
+                  return y.createdAt - x.createdAt;
+                })
+              );
             });
         }
       });
@@ -69,6 +80,10 @@ function Crm({ taskss }) {
     getMy();
   }, []);
   useEffect(() => {
+    taskss = taskss.sort(function (x, y) {
+      return y.createdAt - x.createdAt;
+    });
+    console.log(taskss);
     setTasksGeneral((old) => (old = taskss));
   }, [taskss]);
 
@@ -94,7 +109,7 @@ function Crm({ taskss }) {
       .updateDocument("tasks", task.id, { preluat: true, de: user.email })
       .then((res) => {
         updateFieldById(task.id, "preluat", true);
-        setMyTasks((old) => [...old, task]);
+        setMyTasks((old) => [task, ...old]);
         alert("task preluat");
       });
   };
@@ -374,6 +389,7 @@ function Crm({ taskss }) {
                         task dat de <span>{task.user}</span>
                       </h2>
                       <p>{task.cerinta}</p>
+                      <p>{task.detalii}</p>
                       {task.preluat ? (
                         <h4>
                           preluat: <span> {task.de}</span>
@@ -398,7 +414,8 @@ function Crm({ taskss }) {
                       <h2>
                         task dat de <span>{task.user}</span>
                       </h2>
-                      <p>{task.cerinta}</p>{" "}
+                      <p>{task.cerinta}</p>
+                      <p>{task.detalii}</p>
                       {task.preluat ? (
                         <h4>
                           preluat: <span> {task.de}</span>

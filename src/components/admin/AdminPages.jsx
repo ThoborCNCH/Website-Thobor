@@ -7,20 +7,34 @@ import SideNav from "./components/SideNav";
 
 const firestore = new Firestore();
 
-function AdminPages({ emails, isAllowed }) {
+function AdminPages({ isAllowed }) {
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [k, setk] = useState(false);
 
-  useEffect(() => {
-    console.log(emails);
-    if (emails.length > 0 && user && !loading)
-      for (let i = 0; i < emails.length && emails; i++) {
-        if (emails[i].email === user.email) {
-          setk(true);
+  const getUsers = async () => {
+    await firestore.readDocuments("thobor_users").then((res) => {
+      console.log(res);
+      if (res.length > 0 && user && !loading)
+        for (let i = 0; i < res.length; i++) {
+          console.log(res[i], user);
+          if (res[i].email === user.email) {
+            setk(true);
+          }
         }
-      }
-      console.log(k);
-  }, [loading, emails]);
+    });
+  };
+
+  useEffect(() => {
+    getUsers();
+
+    // if (emails.length > 0 && user && !loading)
+    //   for (let i = 0; i < emails.length && emails; i++) {
+    //     if (emails[i].email === user.email) {
+    //       setk(true);
+    //     }
+    //   }
+    // console.log(k);
+  }, [, user, loading]);
 
   const signInWithGoogle = async () => {
     await firestore.signInWithGoogle();
