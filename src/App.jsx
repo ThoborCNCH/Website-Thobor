@@ -140,7 +140,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      {!window.location.href.includes("meet") && <Navbar />}{" "}
+      {(!window.location.href.includes("meet") ||
+        window.location.href.includes("create") ||
+        window.location.href.includes("end")) && <Navbar />}{" "}
       <Routes>
         <Route path="/" element={<Home premii={premii} />} />
         <Route path="/blog" element={<Blog blog={blog} />} />
@@ -167,7 +169,7 @@ function App() {
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
         <Route path="/admin" element={<AdminPages emails={users} />}>
-          {/* <Route path="/admin/" element={<Index />} /> */}
+          <Route path="/admin/" element={<Index />} />
           <Route path="/admin/tasks" element={<Crm taskss={tasks} />} />
           <Route path="/admin/users" element={<Users userss={users} />} />
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
@@ -187,14 +189,16 @@ function App() {
             element={<SponsorsPage sponsorss={spon} />}
           />
           <Route path="/admin/ani" element={<AniPage anii={ani} />} />
-          <Route path="/admin/meet" element={<CreateRoom />} />
+          <Route path="/admin/meet/create" element={<CreateRoom />} />
           <Route path="/admin/meet/m/:roomID" element={<Room />} />
           <Route path="/admin/meet/end" element={<EndMeet />} />
           <Route path="/admin/meet/error/:type" element={<Errors />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!window.location.href.includes("meet") && <Footer />}
+      {(!window.location.href.includes("meet") ||
+        window.location.href.includes("create") ||
+        window.location.href.includes("end")) && <Footer />}
     </BrowserRouter>
   );
 }

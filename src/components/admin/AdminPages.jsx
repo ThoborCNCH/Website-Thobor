@@ -30,7 +30,9 @@ function AdminPages({ emails }) {
         <h1>Se incarca </h1>
       ) : user ? (
         k ? (
-          !window.location.href.includes("meet") ? (
+          !window.location.href.includes("meet") ||
+          window.location.href.includes("create") ||
+          window.location.href.includes("end") ? (
             <div className="adminpages">
               <SideNav />
               <Outlet />

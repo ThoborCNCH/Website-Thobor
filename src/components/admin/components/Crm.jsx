@@ -6,10 +6,16 @@ import { async } from "@firebase/util";
 import Text from "../../utils/Text";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import Placeholder from "../../utils/Placeholder";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const firestore = new Firestore();
 
 function Crm({ taskss }) {
+  const returnSizedText = (text) => {
+    if (text.length > 50) return text.slice(0, 50) + "...";
+    return text;
+  };
   const [user, loading, error] = useAuthState(firestore.getuser());
   const [role, setRole] = useState("");
   const [newTask, setNewTask] = useState({
@@ -20,6 +26,7 @@ function Crm({ taskss }) {
     de: "",
     stare: "neinceput",
     aprobat: false,
+    observatii: "",
     preluat: false,
     createdAt: Timestamp.now(),
   });
@@ -58,6 +65,7 @@ function Crm({ taskss }) {
   };
 
   useEffect(() => {
+    AOS.init();
     getMy();
   }, []);
   useEffect(() => {
@@ -151,11 +159,22 @@ function Crm({ taskss }) {
       });
   };
 
+  const [observatie, setObservatie] = useState("");
+  const [p, setP] = useState(false);
+
   const decide = async (id, decizie) => {
+    let obs = "";
     let stare = "in lucru";
     if (decizie) stare = "terminat";
+    else {
+      obs = observatie;
+    }
     await firestore
-      .updateDocument("tasks", id, { aprobat: decizie, stare: stare })
+      .updateDocument("tasks", id, {
+        aprobat: decizie,
+        stare: stare,
+        observatii: obs,
+      })
       .then((res) => {
         setTasksGeneral((prevArray) => {
           const updatedArray = prevArray.map((item) => {
@@ -299,15 +318,25 @@ function Crm({ taskss }) {
 
   return (
     <div className="adminpage">
+      {!isAllowed && (
+        <div className="crm_part">
+          <div className="form">
+            <h1>Tasks</h1>
+          </div>
+        </div>
+      )}
       {isAllowed && (
         <div className="crm_part">
           <div className="form">
+            <h1>Adauga task</h1>
             <input
               type="text"
+              placeholder="Scrie o cerinta"
               onChange={(e) => updatenewTask("cerinta", e.target.value)}
             />
             <textarea
               cols="30"
+              placeholder="Scrie detaliile pentru task"
               rows="10"
               onChange={(e) => updatenewTask("detalii", e.target.value)}
             ></textarea>
@@ -328,6 +357,10 @@ function Crm({ taskss }) {
         </div>
       )}
       <div className="lista">
+        <div className="tti">
+          <h3 data-aos="fade-down">Toate taskurile disponibile</h3>
+          <div data-aos="fade-left" className="linie"></div>
+        </div>
         {tasks_general &&
           tasks_general.map((task) => {
             if (task.departament === role && !isAllowed)
@@ -339,7 +372,13 @@ function Crm({ taskss }) {
                         task dat de <span>{task.user}</span>
                       </h2>
                       <p>{task.cerinta}</p>
-                      <h4>preluat: {task.preluat ? task.de : "false"}</h4>
+                      {task.preluat ? (
+                        <h4>
+                          preluat: <span> {task.de}</span>
+                        </h4>
+                      ) : (
+                        <h4>Nu e preluat de nimeni</h4>
+                      )}
                     </div>
                     {!task.preluat && (
                       <button className="button" onClick={() => preia(task)}>
@@ -358,7 +397,13 @@ function Crm({ taskss }) {
                         task dat de <span>{task.user}</span>
                       </h2>
                       <p>{task.cerinta}</p>{" "}
-                      <h4>preluat: {task.preluat ? task.de : "false"}</h4>
+                      {task.preluat ? (
+                        <h4>
+                          preluat: <span> {task.de}</span>
+                        </h4>
+                      ) : (
+                        <h4>Nu e preluat de nimeni</h4>
+                      )}{" "}
                     </div>
                   </div>
                 </>
@@ -382,10 +427,24 @@ function Crm({ taskss }) {
                 return (
                   task.preluat && (
                     <tr>
-                      <td>{Text.returnSizedText(task.cerinta)}</td>
-                      <td>{task.de}</td>
-                      <td>{task.stare}</td>
-                      <td>{JSON.stringify(task.aprobat)}</td>
+                      <td>
+                        <p>{returnSizedText(task.cerinta)}</p>
+                      </td>
+                      <td>
+                        <h5>{task.de}</h5>
+                      </td>
+                      <td>
+                        <h5>{task.stare}</h5>
+                      </td>
+                      <td>
+                        <b>
+                          {task.aprobat ? (
+                            <span style={{ color: "#6ef188" }}>DA</span>
+                          ) : (
+                            <span style={{ color: "#dc3545" }}>NU</span>
+                          )}
+                        </b>
+                      </td>
                     </tr>
                   )
                 );
@@ -395,22 +454,28 @@ function Crm({ taskss }) {
       </div>
       {!isAllowed && (
         <div className="rezolvare">
-          <div className="tasks">
-            {myTasks &&
-              myTasks.map((task) => {
-                return (
-                  <>
-                    <div className="task">
-                      <h2>
-                        task dat de <span>{task.user}</span>
-                      </h2>
-                      <p>{task.cerinta}</p>
-                      {task.stare === "in lucru" ? (
-                        <div className="rezz">
-                          <h2>rezolvare</h2>
+          {myTasks &&
+            myTasks.map((task) => {
+              return (
+                <>
+                  <div className="taskk">
+                    <h2>
+                      task dat de <span>{task.user}</span>
+                    </h2>
+                    <p>{task.cerinta}</p>
+                    {task.stare === "in lucru" ? (
+                      <div className="rezz">
+                        <h2>rezolvare</h2>
+                        {task.observatii !== "" && (
+                          <div className="obs">
+                            <h3>*{task.observatii}</h3>
+                          </div>
+                        )}
+                        <div className="inputs">
                           <textarea
                             cols="30"
                             rows="10"
+                            placeholder="Descrie rezolvarea ta"
                             onChange={(e) =>
                               updateRezolvare("explicatie", e.target.value)
                             }
@@ -421,89 +486,124 @@ function Crm({ taskss }) {
                               updateRezolvare("file", e.target.files[0])
                             }
                           />
-                          <button
-                            className="button"
-                            onClick={() => setrezolvare(task.id)}
-                          >
-                            submit
-                          </button>
-
-                          <button
-                            className="button"
-                            onClick={() => refuza(task.id)}
-                          >
-                            refuza task
-                          </button>
                         </div>
-                      ) : task.stare === "neinceput" ? (
-                        <>
-                          <button
-                            className="button"
-                            onClick={() => incepe_task(task.id)}
-                          >
-                            Incepe task
-                          </button>
+                        <button
+                          className="button"
+                          onClick={() => setrezolvare(task.id)}
+                        >
+                          submit
+                        </button>
 
-                          <button
-                            className="button"
-                            onClick={() => refuza(task.id)}
-                          >
-                            refuza task
-                          </button>
-                        </>
-                      ) : (
+                        <button
+                          className="delete"
+                          onClick={() => refuza(task.id)}
+                        >
+                          refuza task
+                        </button>
+                      </div>
+                    ) : task.stare === "neinceput" ? (
+                      <>
+                        <button
+                          className="button"
+                          onClick={() => incepe_task(task.id)}
+                        >
+                          Incepe task
+                        </button>
+
+                        <button
+                          className="button"
+                          onClick={() => refuza(task.id)}
+                        >
+                          refuza task
+                        </button>
+                      </>
+                    ) : task.stare === "terminat" && !task.aprobat ? (
+                      <>
+                        <h3>Asteapta decizia lui {task.user}</h3>
+                      </>
+                    ) : (
+                      task.stare === "terminat" &&
+                      task.aprobat && (
                         <>
-                          <h1>Asteapta decizia lui {task.user}</h1>
+                          <h3>
+                            Task aprobat de <span>{task.user}</span>
+                          </h3>
                         </>
-                      )}
-                    </div>
-                  </>
-                );
-              })}
-          </div>
+                      )
+                    )}
+                  </div>
+                </>
+              );
+            })}
         </div>
       )}
 
       {isAllowed && (
         <div className="rezolvare">
-          <div className="tasks">
-            {myTasks &&
-              myTasks.map((task) => {
-                let date = task.createdAt.toDate();
-                return (
-                  <>
-                    <div className="task">
-                      <div className="info">
-                        <h2>
-                          task dat pe{" "}
-                          <span>
-                            {date.getDay()}.{date.getMonth()}.{date.getYear()}
-                          </span>
-                        </h2>
-                        <p>{task.cerinta}</p>
-                      </div>
-                      {task.preluat && (
-                        <div className="rez">
-                          <h2>rezolvare de {task.de}</h2>
-                          <p>{task.rezolvare.explicatie}</p>
-                          <a href={task.rezolvare.file}>Download</a>
-                          <button onClick={() => decide(task.id, true)}>
-                            aprobat
-                          </button>
-                          <button onClick={() => decide(task.id, false)}>
-                            refuzat
-                          </button>
-                        </div>
-                      )}
-                      <button onClick={() => delete_task(task.id)}>
-                        Sterge task
-                      </button>
+          {myTasks &&
+            myTasks.map((task) => {
+              let date = task.createdAt.toDate();
+              return (
+                <>
+                  <div className="taskk">
+                    <div className="info">
+                      <h2>
+                        task dat pe{" "}
+                        <span>
+                          {date.getDay()}.{date.getMonth()}.{date.getYear()}
+                        </span>
+                      </h2>
+                      <p>{task.cerinta}</p>
+                      <p>{task.detalii}</p>
                     </div>
-                    <hr />
-                  </>
-                );
-              })}
-          </div>
+                    {task.preluat && task.stare === "terminat" ? (
+                      <>
+                        <div className="rez">
+                          <h2>
+                            rezolvare de <span> {task.de}</span>
+                          </h2>
+                          {task.rezolvare.explicatie && (
+                            <p>{task.rezolvare.explicatie}</p>
+                          )}
+                          <div className="buttons">
+                            <a href={task.rezolvare.file}>Download</a>
+                            <button onClick={() => decide(task.id, true)}>
+                              aprobat
+                            </button>
+                            <button onClick={() => setP(true)}>refuzat</button>
+                            {p && (
+                              <>
+                                <textarea
+                                  type="text"
+                                  onChange={(e) =>
+                                    setObservatie(e.target.value)
+                                  }
+                                  placeholder="Observatii"
+                                ></textarea>
+                                <button onClick={() => decide(task.id, false)}>
+                                  Send
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <h2 style={{ margin: "10px 0" }}>
+                        Inca nu e terminat acest task
+                      </h2>
+                    )}
+                    <button
+                      onClick={() => delete_task(task.id)}
+                      className="delete"
+                    >
+                      Sterge task
+                    </button>
+                  </div>
+                  <hr />
+                </>
+              );
+            })}
         </div>
       )}
       {/* <div className="crm_part">
