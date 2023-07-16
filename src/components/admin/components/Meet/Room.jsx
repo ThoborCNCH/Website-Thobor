@@ -15,10 +15,10 @@ import {
   BsFillMicMuteFill,
   BsFillCameraVideoOffFill,
 } from "react-icons/bs";
-import { CgNotes } from "react-icons/cg";
+import { BiSolidChalkboard } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
 import { GrUndo } from "react-icons/gr";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const MyVideo = styled.video`
   height: 100%;
@@ -63,6 +63,7 @@ var canvas;
 var lastEvent = "";
 
 const Room = (props) => {
+  let navigate = useNavigate();
   let isDrawing = useRef(false);
   const [localStream, setLocalStream] = useState(null);
   let timeout;
@@ -282,7 +283,7 @@ const Room = (props) => {
           //empty constraints object
           error = "nocamera";
         }
-        props.history.push(`/error/${error}`);
+        navigate(`/error/${error}`);
         console.log(err.name + ": " + err.message);
       });
   }, []);
@@ -736,9 +737,10 @@ const Room = (props) => {
       if (document.body.clientWidth > 550)
         canvas.width = document.body.clientWidth * 0.8;
       else canvas.width = document.body.clientWidth;
-      canvas.height = document.body.clientHeight;
+      canvas.height = 1000;
 
       ctx.fillStyle = "#fff";
+      console.log(canvas.width, canvas.height);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       for (let i = 0; i < drawings.current.length; i++) {
         const line = drawings.current[i];
@@ -794,7 +796,7 @@ const Room = (props) => {
         prevCursorX = event.pageX;
         prevCursorY = event.pageY;
         undoStack.current = drawings.current.length;
-		// drawOnCanvas()
+        // drawOnCanvas()
       }
     }
 
@@ -1179,7 +1181,7 @@ const Room = (props) => {
               changeLayout("whiteboard");
             }}
           >
-            <CgNotes />
+            <BiSolidChalkboard />
           </div>
           <div
             className="control"

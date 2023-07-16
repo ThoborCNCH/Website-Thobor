@@ -24,14 +24,6 @@ function AdminPages({ isAllowed }) {
 
   useEffect(() => {
     getUsers();
-
-    // if (emails.length > 0 && user && !loading)
-    //   for (let i = 0; i < emails.length && emails; i++) {
-    //     if (emails[i].email === user.email) {
-    //       setk(true);
-    //     }
-    //   }
-    // console.log(k);
   }, [, user, loading]);
 
   const signInWithGoogle = async () => {
@@ -40,7 +32,8 @@ function AdminPages({ isAllowed }) {
   const [link, setLink] = useState("");
   useEffect(() => {
     setLink(window.location.href);
-  }, [window.location.href]);
+    console.log("link: ", window.location.origin);
+  }, [, window.location]);
 
   return (
     <>
