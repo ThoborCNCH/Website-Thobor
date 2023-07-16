@@ -471,165 +471,169 @@ function Crm({ taskss }) {
           </tbody>
         </table>
       </div>
-      {!isAllowed && (
-        <div className="rezolvare">
-          {myTasks &&
-            myTasks.map((task) => {
-              return (
-                <>
-                  <div className="taskk">
-                    <h2>
-                      task dat de <span>{task.user}</span>
-                    </h2>
-                    <p>{task.cerinta}</p>
-                    {task.stare === "in lucru" ? (
-                      <div className="rezz">
-                        <h2>rezolvare</h2>
-                        {task.observatii !== "" && (
-                          <div className="obs">
-                            <h3>*{task.observatii}</h3>
-                          </div>
-                        )}
-                        <div className="inputs">
-                          <textarea
-                            cols="30"
-                            rows="10"
-                            placeholder="Descrie rezolvarea ta"
-                            onChange={(e) =>
-                              updateRezolvare("explicatie", e.target.value)
-                            }
-                          ></textarea>
-                          <input
-                            type="file"
-                            onChange={(e) =>
-                              updateRezolvare("file", e.target.files[0])
-                            }
-                          />
-                        </div>
-                        <button
-                          className="button"
-                          onClick={() => setrezolvare(task.id)}
-                        >
-                          submit
-                        </button>
 
-                        <button
-                          className="delete"
-                          onClick={() => refuza(task.id)}
-                        >
-                          refuza task
-                        </button>
-                      </div>
-                    ) : task.stare === "neinceput" ? (
-                      <>
-                        <button
-                          className="button"
-                          onClick={() => incepe_task(task.id)}
-                        >
-                          Incepe task
-                        </button>
-
-                        <button
-                          className="button"
-                          onClick={() => refuza(task.id)}
-                        >
-                          refuza task
-                        </button>
-                      </>
-                    ) : task.stare === "terminat" && !task.aprobat ? (
-                      <>
-                        <h3>Asteapta decizia lui {task.user}</h3>
-                      </>
-                    ) : (
-                      task.stare === "terminat" &&
-                      task.aprobat && (
-                        <>
-                          <h3>
-                            Task aprobat de <span>{task.user}</span>
-                          </h3>
-                        </>
-                      )
-                    )}
-                  </div>
-                </>
-              );
-            })}
+      <div className="rezolvare">
+        <div className="tti">
+          <h3 data-aos="fade-down">Toate taskurile mele</h3>
+          <div data-aos="fade-left" className="linie"></div>
         </div>
-      )}
-
-      {isAllowed && (
-        <div className="rezolvare">
-          {myTasks &&
-            myTasks.map((task) => {
-              let date = task.createdAt.toDate();
-              return (
-                <>
-                  <div className="taskk">
-                    <div className="info">
+        {isAllowed ? (
+          <>
+            {myTasks &&
+              myTasks.map((task) => {
+                let date = task.createdAt.toDate();
+                return (
+                  <>
+                    <div className="taskk">
+                      <div className="info">
+                        <h2>
+                          task dat pe{" "}
+                          <span>
+                            {date.getDay()}.{date.getMonth()}.{date.getYear()}
+                          </span>
+                        </h2>
+                        <p>{task.cerinta}</p>
+                        <p>{task.detalii}</p>
+                      </div>
+                      {task.preluat && task.stare === "terminat" ? (
+                        <>
+                          <div className="rez">
+                            <h2>
+                              rezolvare de <span> {task.de}</span>
+                            </h2>
+                            {task.rezolvare.explicatie && (
+                              <p>{task.rezolvare.explicatie}</p>
+                            )}
+                            <div className="buttons">
+                              <a href={task.rezolvare.file}>Download rezolvare</a>
+                              <button onClick={() => decide(task.id, true)}>
+                                aprobat
+                              </button>
+                              <button onClick={() => setP(true)}>
+                                refuzat
+                              </button>
+                              {p && (
+                                <>
+                                  <textarea
+                                    type="text"
+                                    onChange={(e) =>
+                                      setObservatie(e.target.value)
+                                    }
+                                    placeholder="Observatii"
+                                  ></textarea>
+                                  <button
+                                    onClick={() => decide(task.id, false)}
+                                  >
+                                    Send
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <h2 style={{ margin: "10px 0" }}>
+                          Inca nu e terminat acest task
+                        </h2>
+                      )}
+                      <button
+                        onClick={() => delete_task(task.id)}
+                        className="delete"
+                      >
+                        Sterge task
+                      </button>
+                    </div>
+                    <hr />
+                  </>
+                );
+              })}
+          </>
+        ) : (
+          <>
+            {myTasks &&
+              myTasks.map((task) => {
+                return (
+                  <>
+                    <div className="taskk">
                       <h2>
-                        task dat pe{" "}
-                        <span>
-                          {date.getDay()}.{date.getMonth()}.{date.getYear()}
-                        </span>
+                        task dat de <span>{task.user}</span>
                       </h2>
                       <p>{task.cerinta}</p>
-                      <p>{task.detalii}</p>
-                    </div>
-                    {task.preluat && task.stare === "terminat" ? (
-                      <>
-                        <div className="rez">
-                          <h2>
-                            rezolvare de <span> {task.de}</span>
-                          </h2>
-                          {task.rezolvare.explicatie && (
-                            <p>{task.rezolvare.explicatie}</p>
+                      {task.stare === "in lucru" ? (
+                        <div className="rezz">
+                          <h2>rezolvare</h2>
+                          {task.observatii !== "" && (
+                            <div className="obs">
+                              <h3>*{task.observatii}</h3>
+                            </div>
                           )}
-                          <div className="buttons">
-                            <a href={task.rezolvare.file}>Download</a>
-                            <button onClick={() => decide(task.id, true)}>
-                              aprobat
-                            </button>
-                            <button onClick={() => setP(true)}>refuzat</button>
-                            {p && (
-                              <>
-                                <textarea
-                                  type="text"
-                                  onChange={(e) =>
-                                    setObservatie(e.target.value)
-                                  }
-                                  placeholder="Observatii"
-                                ></textarea>
-                                <button onClick={() => decide(task.id, false)}>
-                                  Send
-                                </button>
-                              </>
-                            )}
+                          <div className="inputs">
+                            <textarea
+                              cols="30"
+                              rows="10"
+                              placeholder="Descrie rezolvarea ta"
+                              onChange={(e) =>
+                                updateRezolvare("explicatie", e.target.value)
+                              }
+                            ></textarea>
+                            <input
+                              type="file"
+                              onChange={(e) =>
+                                updateRezolvare("file", e.target.files[0])
+                              }
+                            />
                           </div>
-                        </div>
-                      </>
-                    ) : (
-                      <h2 style={{ margin: "10px 0" }}>
-                        Inca nu e terminat acest task
-                      </h2>
-                    )}
-                    <button
-                      onClick={() => delete_task(task.id)}
-                      className="delete"
-                    >
-                      Sterge task
-                    </button>
-                  </div>
-                  <hr />
-                </>
-              );
-            })}
-        </div>
-      )}
-      {/* <div className="crm_part">
-            <div className="form">
+                          <button
+                            className="button"
+                            onClick={() => setrezolvare(task.id)}
+                          >
+                            submit
+                          </button>
 
-            </div>
-        </div> */}
+                          <button
+                            className="delete"
+                            onClick={() => refuza(task.id)}
+                          >
+                            refuza task
+                          </button>
+                        </div>
+                      ) : task.stare === "neinceput" ? (
+                        <>
+                          <button
+                            className="button"
+                            onClick={() => incepe_task(task.id)}
+                          >
+                            Incepe task
+                          </button>
+
+                          <button
+                            className="button"
+                            onClick={() => refuza(task.id)}
+                          >
+                            refuza task
+                          </button>
+                        </>
+                      ) : task.stare === "terminat" && !task.aprobat ? (
+                        <>
+                          <h3>Asteapta decizia lui {task.user}</h3>
+                        </>
+                      ) : (
+                        task.stare === "terminat" &&
+                        task.aprobat && (
+                          <>
+                            <h3>
+                              Task aprobat de <span>{task.user}</span>
+                            </h3>
+                          </>
+                        )
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </>
+        )}
+      </div>
     </div>
   );
 }
