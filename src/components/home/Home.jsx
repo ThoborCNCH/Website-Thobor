@@ -15,9 +15,7 @@ import { useState } from "react";
 import Firestore from "../utils/Firestore";
 import Incercare from "../utils/Incercare";
 
-import main from "../../img/first.svg";
-import cerc1 from "../../img/cerc2.svg";
-import cerc2 from "../../img/cercD.svg";
+import main from "../../img/Frame 118asd.png";
 import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
@@ -29,7 +27,7 @@ import {
 
 const firestore = new Firestore();
 
-function Home({premii}) {
+function Home({ premii }) {
   const h1 = useRef(null);
 
   useEffect(() => {
@@ -45,12 +43,16 @@ function Home({premii}) {
     };
   });
 
-  window.addEventListener("scroll", () => {
-    if (document.querySelector(".despre h1") != null)
-      document.querySelector(".despre h1").style.transform = `translateX(${
-        window.innerWidth > 700 ? window.scrollY / 1.6 : window.scrollY / 4.5
-      }px)`;
-  },{passive: true});
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (document.querySelector(".despre1 h1") != null)
+        document.querySelector(".despre1 h1").style.transform = `translateX(${
+          window.innerWidth > 700 ? window.scrollY / 1.6 : window.scrollY / 4.5
+        }px)`;
+    },
+    { passive: true }
+  );
   return (
     <>
       <Incercare id="tsparticles" />
@@ -66,20 +68,6 @@ function Home({premii}) {
         </div>
         <div className="img" data-aos="fade-left">
           <LazyLoadImage src={main} alt="main" width="100%" height="100%" />
-          <LazyLoadImage
-            src={cerc1}
-            width="100%"
-            height="100%"
-            className="cerc"
-            alt="main"
-          />
-          <LazyLoadImage
-            src={cerc2}
-            width="100%"
-            height="100%"
-            className="cerc"
-            alt="main"
-          />
         </div>
       </div>
       <div className="cifre">
@@ -176,11 +164,20 @@ function Home({premii}) {
           </div>
         </div>
       </div>
-      <div className="despre">
+      <div
+        className="despre1"
+        style={{
+          background: "url(../../img/thobor_team.png)",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+        }}
+      >
         <div className="custom-shape-divider-bottom-plm">
           <svg
             className="sucit"
-            data-name="Layer 1"
+            data-name="Layer 21"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1200 120"
             preserveAspectRatio="none"

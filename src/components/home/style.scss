@@ -187,16 +187,16 @@
     }
   }
 }
-.despre {
+.despre1 {
   overflow: hidden;
   width: 100vw;
   position: relative;
   min-height: 800px;
-  background: url(../../img/thobor_team.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  background: url(../../img/thobor_team.png) !important;
+  background-position: center center!important;
+  background-repeat: no-repeat!important;
+  background-size: cover!important;
+  background-attachment: fixed!important;
   display: flex;
   justify-content: center;
   align-items: center;
