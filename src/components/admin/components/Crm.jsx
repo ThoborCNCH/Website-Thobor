@@ -505,7 +505,9 @@ function Crm({ taskss }) {
                               <p>{task.rezolvare.explicatie}</p>
                             )}
                             <div className="buttons">
-                              <a href={task.rezolvare.file}>Download rezolvare</a>
+                              <a href={task.rezolvare.file}>
+                                Download rezolvare
+                              </a>
                               <button onClick={() => decide(task.id, true)}>
                                 aprobat
                               </button>

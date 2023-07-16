@@ -403,6 +403,7 @@ const Room = (props) => {
 
     return peer;
   }
+  const screenSharingStreamRef = useRef(null);
 
   async function shareScreen() {
     var mediaStream;
@@ -412,6 +413,7 @@ const Room = (props) => {
       mediaStream = await navigator.mediaDevices.getDisplayMedia({
         mediaSource: "screen",
       });
+      screenSharingStreamRef.current = mediaStream;
 
       const track = mediaStream.getVideoTracks()[0];
       socketRef.current.emit("open share screen");
@@ -442,6 +444,15 @@ const Room = (props) => {
     console.log("ssss");
     changeLayoutProgramatically();
     console.log("after====ssss");
+  };
+  
+  const stopScreenSharing = () => {
+    if (screenSharingStreamRef.current) {
+      const tracks = screenSharingStreamRef.current.getTracks();
+      tracks.forEach((track) => track.stop());
+
+      screenSharingStreamRef.current = null;
+    }
   };
 
   function changeColor(color) {
@@ -545,7 +556,8 @@ const Room = (props) => {
         socketRef.current.emit("close editor", roomID);
       } else if (lastEvent === "present") {
         console.log("hello");
-        stopShare();
+        // stopShare();
+        stopScreenSharing()
       }
     }
   }
