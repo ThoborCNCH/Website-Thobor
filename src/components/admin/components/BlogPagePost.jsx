@@ -95,7 +95,7 @@ function BlogPagePost() {
     ],
   });
   let [chartData2, setChartData2] = useState({
-    // labels: ore,
+    labels: ore,
     datasets: [
       {
         tension: 0.3,
@@ -304,7 +304,7 @@ function BlogPagePost() {
           >
             show
           </button> */}
-          <h1 data-aos="fade-left">Statistica per saptamana</h1>
+          <h1 data-aos="fade-left">Statistica per ore</h1>
           <h4 data-aos="fade-right">
             numar maxim de vizualizari:{" "}
             <span data-aos-delay={500} data-aos="fade-down">
@@ -414,7 +414,7 @@ function BlogPagePost() {
           >
             show
           </button> */}
-          <h1 data-aos="fade-left">Statistica per ore</h1>
+          <h1 data-aos="fade-left">Statistica per zile</h1>
           <h4 data-aos="fade-right">
             numar maxim de vizualizari:{" "}
             <span data-aos-delay={500} data-aos="fade-down">
