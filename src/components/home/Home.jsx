@@ -11,8 +11,6 @@ import Up from "../utils/Up";
 import Card from "./components/Card";
 import "./style.scss";
 import "firebase/compat/firestore";
-import { useState } from "react";
-import Firestore from "../utils/Firestore";
 import Incercare from "../utils/Incercare";
 
 import main from "../../img/Frame 118asd.png";
@@ -20,12 +18,7 @@ import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
 import control from "../../img/control.svg";
-import {
-  LazyLoadComponent,
-  LazyLoadImage,
-} from "react-lazy-load-image-component";
-
-const firestore = new Firestore();
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Home({ premii }) {
   const h1 = useRef(null);
@@ -35,12 +28,11 @@ function Home({ premii }) {
   }, []);
 
   useEffect(() => {
-    const particule = document.getElementById("tsparticles");
-    particule.style.visibility = "visible";
-
-    return () => {
-      particule.style.visibility = "hidden";
-    };
+    // const particule = document.getElementById("tsparticles");
+    // particule.style.visibility = "visible";
+    // return () => {
+    // particule.style.visibility = "hidden";
+    // };
   });
 
   window.addEventListener(
