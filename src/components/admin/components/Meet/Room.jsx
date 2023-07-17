@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import styled from "styled-components";
-import "./style.css";
+import "./style.scss";
 import Editor from "@monaco-editor/react";
 import { FaRegHandPaper, FaEraser, FaEyeDropper } from "react-icons/fa";
 import { MdModeEditOutline, MdScreenShare } from "react-icons/md";
@@ -130,6 +130,10 @@ const Room = (props) => {
           setPeers(peers);
         });
 
+        socketRef.current.on("user left", (id)=>{
+          console.log(`a user (${id}) left`);
+        })
+
         socketRef.current.on("user joined", (payload) => {
           const k = peersRef.current.map((u) => u.peerID);
           if (!k.includes(payload.callerID)) {
@@ -195,8 +199,11 @@ const Room = (props) => {
         });
 
         socketRef.current.on("open share screen server", (id) => {
-          if (id !== socketRef.current.id)
+          console.log(id, socketRef.current.id);
+          if (id !== socketRef.current.id) {
+            console.log("Asd");
             changeLayoutProgramatically("present");
+          }
         });
 
         // canvasShareReceiver.width = image.width;
@@ -206,10 +213,25 @@ const Room = (props) => {
           if (payload.id !== socketRef.current.id) {
             var canvasShareReceiver = document.getElementById("shareScreen");
             var ctxShareReceiver = canvasShareReceiver.getContext("2d");
-            // canvasShareReceiver.width = '1440';
-            // canvasShareReceiver.height = '2000';
+
+            var l = document.querySelectorAll(".layout-main")[0];
+            var root = document.querySelector(".extention");
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+            root.childNodes[1].style.display = "block";
+
+            l.classList.remove("isNotPresenting");
+            l.classList.add("isPresenting");
+
+            document.querySelectorAll(".control")[2].style.display = "none";
+            document.querySelectorAll(".control")[3].style.display = "none";
+            document.querySelectorAll(".control")[4].style.display = "none";
+            document.querySelectorAll(".control")[5].style.display = "none";
 
             var image = new Image();
+            image.src = payload.data;
+
             image.onload = function () {
               ctxShareReceiver.drawImage(image, 0, 0); //, canvasShareReceiver.width, canvasShareReceiver.height);
             };
@@ -217,13 +239,39 @@ const Room = (props) => {
           }
         });
 
-        socketRef.current.on("stop data share screen", (payload) => {
-          if (payload.id !== socketRef.current.id) {
-          }
-        });
+        // socketRef.current.on("stop data share screen", (payload) => {
+        //   if (payload.id !== socketRef.current.id) {
+        //     // changeLayoutProgramatically();
+        //     {
+        //       changeLayout();
+        //       console.log("11111");
+        //     }
+        //   }
+        // });
 
         socketRef.current.on("close screen share server", (id) => {
-          if (id !== socketRef.current.id) changeLayoutProgramatically();
+          if (id !== socketRef.current.id) {
+            // changeLayoutProgramatically();
+            // console.log("2222");
+            var l = document.querySelectorAll(".layout-main")[0];
+            var root = document.querySelector(".extention");
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+
+            l.classList.remove("isPresenting");
+            l.classList.add("isNotPresenting");
+
+            document.querySelectorAll(".control")[2].style.display = "block";
+            document.querySelectorAll(".control")[3].style.display = "block";
+            document.querySelectorAll(".control")[4].style.display = "block";
+            document.querySelectorAll(".control")[5].style.display = "none";
+
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+            // root.childNodes[1].style.display = "block";
+          }
         });
 
         socketRef.current.on("delete whiteboard", (id) => {
@@ -236,21 +284,88 @@ const Room = (props) => {
         });
 
         socketRef.current.on("open whiteboard server", (id) => {
-          if (id !== socketRef.current.id)
-            changeLayoutProgramatically("whiteboard");
+          if (id !== socketRef.current.id){
+            console.log("asd");
+            // changeLayoutProgramatically("whiteboard");
+            var l = document.querySelectorAll(".layout-main")[0];
+          var root = document.querySelector(".extention");
+          root.childNodes.forEach((div) => {
+            div.style.display = "none";
+          });
+
+          l.classList.remove("isNotPresenting");
+          l.classList.add("isPresenting");
+
+          document.querySelectorAll(".control")[2].style.display = "none";
+          document.querySelectorAll(".control")[3].style.display = "none";
+          document.querySelectorAll(".control")[4].style.display = "none";
+          document.querySelectorAll(".control")[5].style.display = "none";
+
+          root.childNodes[0].style.display = "block";
+        }
         });
 
         socketRef.current.on("close whiteboard server", (id) => {
-          if (id !== socketRef.current.id) changeLayoutProgramatically();
+          if (id !== socketRef.current.id) {
+            var l = document.querySelectorAll(".layout-main")[0];
+            var root = document.querySelector(".extention");
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+
+            l.classList.remove("isPresenting");
+            l.classList.add("isNotPresenting");
+
+            document.querySelectorAll(".control")[2].style.display = "block";
+            document.querySelectorAll(".control")[3].style.display = "block";
+            document.querySelectorAll(".control")[4].style.display = "block";
+            document.querySelectorAll(".control")[5].style.display = "none";
+
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+          };
         });
 
         socketRef.current.on("open editor server", (id) => {
-          if (id !== socketRef.current.id)
-            changeLayoutProgramatically("editor");
+          if (id !== socketRef.current.id){
+          var l = document.querySelectorAll(".layout-main")[0];
+          var root = document.querySelector(".extention");
+          root.childNodes.forEach((div) => {
+            div.style.display = "none";
+          });
+
+          l.classList.remove("isNotPresenting");
+          l.classList.add("isPresenting");
+
+          document.querySelectorAll(".control")[2].style.display = "none";
+          document.querySelectorAll(".control")[3].style.display = "none";
+          document.querySelectorAll(".control")[4].style.display = "none";
+          document.querySelectorAll(".control")[5].style.display = "none";
+
+          root.childNodes[2].style.display = "block";}
         });
 
         socketRef.current.on("close editor server", (id) => {
-          if (id !== socketRef.current.id) changeLayoutProgramatically();
+          if (id !== socketRef.current.id) {
+            var l = document.querySelectorAll(".layout-main")[0];
+            var root = document.querySelector(".extention");
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+
+            l.classList.remove("isPresenting");
+            l.classList.add("isNotPresenting");
+
+            document.querySelectorAll(".control")[2].style.display = "block";
+            document.querySelectorAll(".control")[3].style.display = "block";
+            document.querySelectorAll(".control")[4].style.display = "block";
+            document.querySelectorAll(".control")[5].style.display = "none";
+
+            root.childNodes.forEach((div) => {
+              div.style.display = "none";
+            });
+          }
         });
       })
       .catch(function (err) {
@@ -433,6 +548,7 @@ const Room = (props) => {
       mediaStream.oninactive = () => {
         socketRef.current.emit("close share screen");
         clearInterval(interval.current);
+        stopScreenSharing();
         changeLayoutProgramatically();
       };
     }
@@ -445,8 +561,10 @@ const Room = (props) => {
     changeLayoutProgramatically();
     console.log("after====ssss");
   };
-  
+
   const stopScreenSharing = () => {
+    socketRef.current.emit("close share screen");
+    changeLayoutProgramatically();
     if (screenSharingStreamRef.current) {
       const tracks = screenSharingStreamRef.current.getTracks();
       tracks.forEach((track) => track.stop());
@@ -516,16 +634,18 @@ const Room = (props) => {
         socketRef.current.emit("open whiteboard", roomID);
         root.childNodes[0].style.display = "block";
       } else if (event === "editor") {
-        socketRef.current.emit("open editor", roomID);
+        console.log("asd");
         root.childNodes[2].style.display = "block";
+        document.querySelector("#okk").style.display = "flex";
+        socketRef.current.emit("open editor", roomID);
       } else if (event === "present") {
         if (!("ImageCapture" in window)) {
           alert("Safari nu suporta screen share");
           return;
         }
 
-        shareScreen();
         root.childNodes[1].style.display = "block";
+        shareScreen();
       }
 
       l.classList.remove("isNotPresenting");
@@ -557,7 +677,8 @@ const Room = (props) => {
       } else if (lastEvent === "present") {
         console.log("hello");
         // stopShare();
-        stopScreenSharing()
+        // socketRef.current.emit("close share screen", roomID);
+        stopScreenSharing();
       }
     }
   }
@@ -576,18 +697,20 @@ const Room = (props) => {
       document.querySelectorAll(".control")[2].style.display = "none";
       document.querySelectorAll(".control")[3].style.display = "none";
       document.querySelectorAll(".control")[4].style.display = "none";
-      document.querySelectorAll(".control")[5].style.display = "none";
+      document.querySelectorAll(".control")[5].style.display = "block";
 
       if (event === "whiteboard") {
         root.childNodes[0].style.display = "block";
       } else if (event === "editor") {
         root.childNodes[2].style.display = "block";
       } else if (event === "present") {
+        console.log("asdasdasdadasdasdasdasdad");
         root.childNodes[1].style.display = "block";
       }
 
       lastEvent = event;
     } else {
+      console.log(l.className);
       l.classList.remove("isPresenting");
       l.classList.add("isNotPresenting");
 
@@ -603,6 +726,7 @@ const Room = (props) => {
       if (lastEvent === "whiteboard") {
       } else if (lastEvent === "editor") {
       } else if (lastEvent === "present") {
+        root.childNodes[1].style.display = "block";
       }
     }
   }
@@ -1107,7 +1231,7 @@ const Room = (props) => {
             </div>
           </div>
           <ShareScreenVideo id="shareScreen" width="1400" height="900" />
-          <div className="viewPort">
+          <div className="viewPort" id="okk">
             <select
               className="select-elem"
               onChange={(e) => selectLanguage(e.target.value)}
@@ -1128,10 +1252,11 @@ const Room = (props) => {
               onMount={handleEditorDidMount}
               onValidate={handleEditorValidation}
               options={{
-                autoClosingBrackets: false,
+                autoClosingBrackets: true,
                 renderWhitespace: true,
                 formatOnPaste: true,
                 theme: "vs-dark",
+                bracketPairColorization: 13,
               }}
             />
           </div>
