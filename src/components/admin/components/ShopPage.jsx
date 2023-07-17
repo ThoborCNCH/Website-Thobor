@@ -98,7 +98,7 @@ function ShopPage() {
           const url = await getDownloadURL(storageRef);
           downloadUrls.push(url);
         } catch (error) {
-          alert(error)
+          alert(error);
         }
       }
 
@@ -165,14 +165,13 @@ function ShopPage() {
         const url = await getDownloadURL(storageRef);
         downloadUrls.push(url);
       } catch (error) {
-        alert(error)
+        alert(error);
       }
     }
     let idk = {
       ...updateItem,
       images: updateItem.images.concat(downloadUrls),
     };
-
 
     await firestore.updateDocument("products", idk.id, idk).then((res) => {
       getProducts();
@@ -449,7 +448,12 @@ function ShopPage() {
                     return (
                       <>
                         <div className="imgg">
-                          <LazyLoadImage src={img} style={{ width: 100 }} width={100} height={"auto"} />
+                          <LazyLoadImage
+                            src={img}
+                            style={{ width: 100 }}
+                            width={100}
+                            height={"auto"}
+                          />
                           <button
                             className="delete"
                             onClick={() => handleDelete(index)}
@@ -464,7 +468,12 @@ function ShopPage() {
                     return (
                       <>
                         <div className="imgg">
-                          <LazyLoadImage src={remake(img)} style={{ width: 100 }} width={100} height={"auto"} />
+                          <LazyLoadImage
+                            src={remake(img)}
+                            style={{ width: 100 }}
+                            width={100}
+                            height={"auto"}
+                          />
                           <button
                             className="delete"
                             onClick={() => handleDelete(index)}
@@ -506,7 +515,7 @@ function ShopPage() {
               });
             }}
           >
-            Arata cele mai apreciate produse produsele
+            Arata cele mai apreciate produse
           </button>
         </div>
 
@@ -567,7 +576,8 @@ function ShopPage() {
                                 <LazyLoadImage
                                   src={img}
                                   key={img}
-                                  width={100} height={"auto"} 
+                                  width={100}
+                                  height={"auto"}
                                   style={{ width: 100, margin: 10 }}
                                 />
                               ))}
@@ -587,7 +597,8 @@ function ShopPage() {
                                         {rev.user.img && (
                                           <LazyLoadImage
                                             src={rev.user.img}
-                                            width={45} height={45} 
+                                            width={45}
+                                            height={45}
                                             alt="Image"
                                             style={{
                                               width: 45,

@@ -66,7 +66,6 @@ Start the server
 ## Authors
 
 - [@Drăguțu Matei](https://github.com/DragutuMatei)
-- [@Nașu Teodor Cristian](https://github.com/NasuTeodor)
 
 
 ## Support
