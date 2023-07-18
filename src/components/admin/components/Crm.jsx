@@ -133,45 +133,49 @@ function Crm({ taskss }) {
   };
 
   const setrezolvare = async (id) => {
-    const storage = getStorage();
-    let obj = { ...rezolvare };
-    const storageRef = ref(storage, `crm/${rezolvare.file.name}`);
-    try {
-      await uploadBytes(storageRef, rezolvare.file);
-      const url = await getDownloadURL(storageRef);
-      obj["file"] = url;
-    } catch (error) {}
-    await firestore
-      .updateDocument("tasks", id, { rezolvare: obj, stare: "terminat" })
-      .then((res) => {
-        setTasksGeneral((prevArray) => {
-          const updatedArray = prevArray.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                ["stare"]: "terminat",
-              };
-            }
-            return item;
-          });
+    if (!rezolvare.explicatie || !rezolvare.file) {
+      alert("trebuie sa explici sau sa urci un fisier!");
+    } else {
+      const storage = getStorage();
+      let obj = { ...rezolvare };
+      const storageRef = ref(storage, `crm/${rezolvare.file.name}`);
+      try {
+        await uploadBytes(storageRef, rezolvare.file);
+        const url = await getDownloadURL(storageRef);
+        obj["file"] = url;
+      } catch (error) {}
+      await firestore
+        .updateDocument("tasks", id, { rezolvare: obj, stare: "terminat" })
+        .then((res) => {
+          setTasksGeneral((prevArray) => {
+            const updatedArray = prevArray.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  ["stare"]: "terminat",
+                };
+              }
+              return item;
+            });
 
-          return updatedArray;
-        });
-        setMyTasks((prevArray) => {
-          const updatedArray = prevArray.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                ["stare"]: "terminat",
-              };
-            }
-            return item;
+            return updatedArray;
           });
+          setMyTasks((prevArray) => {
+            const updatedArray = prevArray.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  ["stare"]: "terminat",
+                };
+              }
+              return item;
+            });
 
-          return updatedArray;
+            return updatedArray;
+          });
+          alert("rezolvare trimisa");
         });
-        alert("rezolvare trimisa");
-      });
+    }
   };
 
   const [observatie, setObservatie] = useState("");
@@ -505,9 +509,11 @@ function Crm({ taskss }) {
                               <p>{task.rezolvare.explicatie}</p>
                             )}
                             <div className="buttons">
-                              <a href={task.rezolvare.file}>
-                                Download rezolvare
-                              </a>
+                              {task.rezolvare.file && (
+                                <a href={task.rezolvare.file}>
+                                  Download rezolvare
+                                </a>
+                              )}
                               <button onClick={() => decide(task.id, true)}>
                                 aprobat
                               </button>
