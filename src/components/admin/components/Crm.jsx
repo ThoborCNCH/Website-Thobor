@@ -517,7 +517,7 @@ function Crm({ taskss }) {
                               <p>{task.rezolvare.explicatie}</p>
                             )}
                             <div className="buttons">
-                              {typeof task.rezolvare.file === "string"  && (
+                              {typeof task.rezolvare.file === "string" && (
                                 <a href={task.rezolvare.file}>
                                   Download rezolvare
                                 </a>
