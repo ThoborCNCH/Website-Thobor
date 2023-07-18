@@ -118,7 +118,7 @@ function Navbar() {
             ) : (
               <>
                 <li>
-                  <a href="#">{user.displayName}</a>
+                  <a href="#">{user && user.displayName}</a>
                 </li>
                 <li>
                   <a href="#" onClick={logout}>
