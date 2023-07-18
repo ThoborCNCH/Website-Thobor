@@ -299,6 +299,19 @@ export default class Firestore {
     const dt = new Date(strDate).getTime();
     return dt / 1000;
   };
+  // async ad() {
+  //   const posts = await this.readDocuments("blog");
+  //   console.log(posts);
+  //   posts.map(async (post) => {
+  //     if (
+  //       post.id != "m7nULuJl94q5e94gpc3M" ||
+  //       post.id != "eHGD89xwA1JYuP6m7HQI"
+  //     ) {
+  //       post.views = [];
+  //       await this.updateDocument("blog", post.id, post);
+  //     }
+  //   });
+  // }
 
   async updateViews(id, ip) {
     if (id) {
@@ -323,7 +336,7 @@ export default class Firestore {
           // post.views = [
           //     {
           //       ip: "192.168.0.1",
-          //       data: Timestamp.fromMillis(Date.parse("2023-01-01T00:00:00")),
+          //       data: Timestamp.fromMillis(Date.parse("2023-01-02T00:00:00")),
           //     },
           //     {
           //       ip: "10.0.0.1",
