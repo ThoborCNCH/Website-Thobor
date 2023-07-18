@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+  import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPages from "./components/admin/AdminPages";
@@ -43,7 +43,6 @@ function App() {
       setBlog(res);
     });
   });
-  //ma omor bag pula
 
   const addit = useMemo(() => async (id, cant) => {
     await firestore.addit(id, user, cant);
