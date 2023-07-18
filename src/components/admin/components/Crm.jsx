@@ -36,6 +36,7 @@ function Crm({ taskss }) {
   const addNewTask = async () => {
     await firestore.addItem("tasks", newTask).then((res) => {
       setTasksGeneral((old) => [res, ...old]);
+      setMyTasks((old) => [res, ...old]);
       document.querySelectorAll("input, textarea").forEach((input) => {
         input.value = "";
       });

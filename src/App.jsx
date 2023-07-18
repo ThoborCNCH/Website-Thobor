@@ -1,4 +1,4 @@
-  import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPages from "./components/admin/AdminPages";
@@ -192,10 +192,7 @@ function App() {
           }
         />
         <Route path="/prod/:id" element={<ProductPage addit={addit} />} />
-        <Route
-          path="/admin"
-          element={<AdminPages isAllowed={isAllowed} />}
-        >
+        <Route path="/admin" element={<AdminPages isAllowed={isAllowed} />}>
           <Route path="/admin/" element={<Index />} />
           <Route path="/admin/tasks" element={<Crm taskss={tasks} />} />
           <Route
@@ -219,7 +216,10 @@ function App() {
             element={<SponsorsPage sponsorss={spon} />}
           />
           <Route path="/admin/ani" element={<AniPage anii={ani} />} />
-          <Route path="/admin/meet/create" element={<CreateRoom isAllowed={isAllowed} />} />
+          <Route
+            path="/admin/meet/create"
+            element={<CreateRoom isAllowed={isAllowed} />}
+          />
           <Route path="/admin/meet/m/:roomID" element={<Room />} />
           <Route path="/admin/meet/end" element={<EndMeet />} />
         </Route>

@@ -59,7 +59,7 @@ function AdminPages({ isAllowed }) {
       ) : (
         <div className="err">
           <h1>
-            Logheaza-te cu contul echipei de robotica <span> Thobor</span>{" "}
+            Logheaza-te cu contul de Google oferit inregistrat de adminul <span> Thobor</span>{" "}
             pentru a avea acces la pagina de admin!
           </h1>
           <h2 onClick={signInWithGoogle}>Login</h2>
