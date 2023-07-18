@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Firestore from "../../utils/Firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Timestamp } from "firebase/firestore";
@@ -132,14 +132,15 @@ function Crm({ taskss }) {
       return { ...old, [field]: e };
     });
   };
+  const uploadFile = useRef(false);
 
   const setrezolvare = async (id) => {
     if (!rezolvare.explicatie || !rezolvare.file) {
       alert("trebuie sa explici sau sa urci un fisier!");
     } else {
       let obj = { ...rezolvare };
-      // console.log(rezolvare.file, rezolvare.file==={})
-      if (Object.keys(rezolvare.file).length !== 0) {
+      console.log(uploadFile.current)
+      if (uploadFile.current) {
         const storage = getStorage();
         const storageRef = ref(storage, `crm/${rezolvare.file.name}`);
         try {
@@ -147,6 +148,8 @@ function Crm({ taskss }) {
           const url = await getDownloadURL(storageRef);
           obj["file"] = url;
         } catch (error) {}
+      }else{
+        obj["file"] = "";
       }
       await firestore
         .updateDocument("tasks", id, { rezolvare: obj, stare: "terminat" })
@@ -182,6 +185,8 @@ function Crm({ taskss }) {
             file: {},
           });
           alert("rezolvare trimisa");
+        }).catch(er=>{
+          console.log(er);
         });
     }
   };
@@ -575,6 +580,7 @@ function Crm({ taskss }) {
                         task dat de <span>{task.user}</span>
                       </h2>
                       <p>{task.cerinta}</p>
+                      <p>{task.detalii}</p>
                       {task.stare === "in lucru" ? (
                         <div className="rezz">
                           <h2>rezolvare</h2>
@@ -594,9 +600,10 @@ function Crm({ taskss }) {
                             ></textarea>
                             <input
                               type="file"
-                              onChange={(e) =>
+                              onChange={(e) =>{
+                                uploadFile.current = true;
                                 updateRezolvare("file", e.target.files[0])
-                              }
+                              }}
                             />
                           </div>
                           <button
