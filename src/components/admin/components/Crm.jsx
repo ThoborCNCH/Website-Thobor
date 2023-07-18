@@ -136,14 +136,17 @@ function Crm({ taskss }) {
     if (!rezolvare.explicatie || !rezolvare.file) {
       alert("trebuie sa explici sau sa urci un fisier!");
     } else {
-      const storage = getStorage();
       let obj = { ...rezolvare };
-      const storageRef = ref(storage, `crm/${rezolvare.file.name}`);
-      try {
-        await uploadBytes(storageRef, rezolvare.file);
-        const url = await getDownloadURL(storageRef);
-        obj["file"] = url;
-      } catch (error) {}
+      // console.log(rezolvare.file, rezolvare.file==={})
+      if (Object.keys(rezolvare.file).length !== 0) {
+        const storage = getStorage();
+        const storageRef = ref(storage, `crm/${rezolvare.file.name}`);
+        try {
+          await uploadBytes(storageRef, rezolvare.file);
+          const url = await getDownloadURL(storageRef);
+          obj["file"] = url;
+        } catch (error) {}
+      }
       await firestore
         .updateDocument("tasks", id, { rezolvare: obj, stare: "terminat" })
         .then((res) => {
@@ -172,6 +175,10 @@ function Crm({ taskss }) {
             });
 
             return updatedArray;
+          });
+          setRezolvare({
+            explicatie: "",
+            file: {},
           });
           alert("rezolvare trimisa");
         });
@@ -509,7 +516,7 @@ function Crm({ taskss }) {
                               <p>{task.rezolvare.explicatie}</p>
                             )}
                             <div className="buttons">
-                              {task.rezolvare.file && (
+                              {typeof task.rezolvare.file === "string"  && (
                                 <a href={task.rezolvare.file}>
                                   Download rezolvare
                                 </a>
