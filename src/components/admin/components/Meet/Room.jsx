@@ -135,6 +135,7 @@ const Room = (props) => {
         })
 
         socketRef.current.on("user joined", (payload) => {
+          console.log("asdasdasd")
           const k = peersRef.current.map((u) => u.peerID);
           if (!k.includes(payload.callerID)) {
             const peer = addPeer(
