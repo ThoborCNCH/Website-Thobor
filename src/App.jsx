@@ -103,6 +103,8 @@ function App() {
   const getSpon = useMemo(() => async () => {
     await firestore.readDocuments("sponsors").then((res) => {
       setSpon(res);
+    }).catch(er=>{
+      console.log(er);
     });
   });
   const [premii, setPremii] = useState([]);

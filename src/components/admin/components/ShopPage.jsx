@@ -255,6 +255,7 @@ function ShopPage() {
           />
           <h4>Brand: </h4>
           <select required onChange={(e) => modifield("brand", e.target.value)}>
+            <option value="">Alege</option>
             <option value="samsung">Bratari de cauciuc</option>
             <option value="apple">Bratari textile</option>
             <option value="motorola">Brelocuri</option>
@@ -266,7 +267,7 @@ function ShopPage() {
             required
             onChange={(e) => modifield("categories", e.target.value)}
           >
-            <option>Alege o caterogie</option>
+            <option value="">Alege o caterogie</option>
             {categories &&
               categories.map((cat) => (
                 <option key={cat.categorie} value={cat.categorie}>
