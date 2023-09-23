@@ -203,7 +203,9 @@ function App() {
           />
           <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
           <Route path="/admin/blog/:id" element={<BlogPagePost />} />
-          <Route path="/admin/shop" element={<ShopPage />} />
+          {
+            // <Route path="/admin/shop" element={<ShopPage />} />
+          }
           <Route path="/admin/apps" element={<AppsPage appss={apps} />} />
           <Route
             path="/admin/team"

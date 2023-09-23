@@ -80,9 +80,11 @@ function Navbar() {
             <li>
               <Link to="/despre">Despre</Link>
             </li>
-            <li>
-              <Link to="/shop/all">Shop</Link>
-            </li>
+            {
+              // <li>
+              //   <Link to="/shop/all">Shop</Link>
+              // </li>
+            }
             <li>
               <Link to="/apps">Apps</Link>
             </li>
