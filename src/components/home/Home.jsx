@@ -51,7 +51,7 @@ function Home({ premii }) {
       <div className="home">
         <div className="text">
           <h2 data-aos="fade-right" data-aos-delay="300">
-            we are
+            we are the
           </h2>
           <h1 data-aos="fade-right">thobor</h1>
           <h2 data-aos="fade-right" data-aos-delay="300">
@@ -90,7 +90,6 @@ function Home({ premii }) {
           <b>THOBOR</b> in cifre:
         </h3>
         <div className="tab" data-aos="fade-down">
-          <div className="linie">
             <div className="cifra">
               <h1>
                 <span> + </span>
@@ -121,9 +120,7 @@ function Home({ premii }) {
               </h1>
               <h2>Participari la nationala</h2>
             </div>
-          </div>
 
-          <div className="linie">
             <div className="cifra">
               <h1>
                 <span> + </span>
@@ -153,7 +150,6 @@ function Home({ premii }) {
               </h1>
               <h2>Alumni</h2>
             </div>
-          </div>
         </div>
       </div>
       <div
@@ -206,20 +202,15 @@ function Home({ premii }) {
       <div className="cards">
         <div className="card" data-aos="fade-right">
           <LazyLoadImage src={work} width={100} height="auto" alt="main" />
-          <h1>work</h1>
+          <h1>Work</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
-          <LazyLoadImage
-            src={programming}
-            alt="main"
-            width={100}
-            height="auto"
-          />
-          <h1>programming</h1>
+          <LazyLoadImage src={programming} alt="main" width={100} height="auto" />
+          <h1>Programming</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="400">
           <LazyLoadImage src={marketing} alt="main" width={100} height="auto" />
-          <h1>marketing</h1>
+          <h1>Marketing</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="600">
           <LazyLoadImage src={control} alt="main" width={100} height="auto" />

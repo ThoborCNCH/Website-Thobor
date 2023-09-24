@@ -72,7 +72,7 @@ function Navbar() {
           </div>
           <ul className="nav-list">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Acasa</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
@@ -86,13 +86,13 @@ function Navbar() {
               // </li>
             }
             <li>
-              <Link to="/apps">Apps</Link>
+              <Link to="/apps">Aplicatii</Link>
             </li>
             <li>
-              <Link to="/team">Team</Link>
+              <Link to="/team">Echipa</Link>
             </li>
             <li>
-              <Link to="/sponsors">Sponsors</Link>
+              <Link to="/sponsors">Sponsori</Link>
             </li>
             {!isMobile && size.width > 700 && (
               <>
