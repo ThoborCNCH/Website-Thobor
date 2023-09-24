@@ -75,10 +75,16 @@ function Navbar() {
               <Link to="/">Acasa</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/despre">Despre</Link>
             </li>
             <li>
-              <Link to="/despre">Despre</Link>
+              <Link to="/team">Echipa</Link>
+            </li>
+            <li>
+              <Link to="/sponsors">Sponsori</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
             </li>
             {
               // <li>
@@ -87,12 +93,6 @@ function Navbar() {
             }
             <li>
               <Link to="/apps">Aplicatii</Link>
-            </li>
-            <li>
-              <Link to="/team">Echipa</Link>
-            </li>
-            <li>
-              <Link to="/sponsors">Sponsori</Link>
             </li>
             {!isMobile && size.width > 700 && (
               <>
@@ -108,27 +108,28 @@ function Navbar() {
                 </li>
               </>
             )}
-
-            {!loading && !user ? (
-              <>
-                <li>
-                  <a href="#" onClick={signInWithGoogle}>
-                    Login
-                  </a>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <a href="#">{user && user.displayName}</a>
-                </li>
-                <li>
-                  <a href="#" onClick={logout}>
-                    Logout
-                  </a>
-                </li>
-              </>
-            )}
+            {
+            // {!loading && !user ? (
+            //   <>
+            //     <li>
+            //       <a href="#" onClick={signInWithGoogle}>
+            //         Login
+            //       </a>
+            //     </li>
+            //   </>
+            // ) : (
+            //   <>
+            //     <li>
+            //       <a href="#">{user && user.displayName}</a>
+            //     </li>
+            //     <li>
+            //       <a href="#" onClick={logout}>
+            //         Logout
+            //       </a>
+            //     </li>
+            //   </>
+            // )}
+            }
           </ul>
         </nav>
       </div>
