@@ -28,10 +28,14 @@
     background: url("../../img/cevaidksimcer.png") $black2;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     p {
       color: white;
       padding: 0 10px;
+      font-size: 1.4em;
     }
     .title {
       margin: 30px 0 20px 0;
@@ -42,6 +46,8 @@
         z-index: 3;
         color: white;
         font-weight: 800;
+        margin-left: 2vw;
+        // font-size: 2em;
       }
 
       .linie {

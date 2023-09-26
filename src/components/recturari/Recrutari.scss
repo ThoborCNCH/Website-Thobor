@@ -1,0 +1,235 @@
+@import "../utils/styles/base";
+
+$logo-width: min(80vw, 800px);
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $black2;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#main-area {
+  transform: translateY(-10vh);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4vh;
+}
+
+
+#homepage-logo {
+  font-size: 3em;
+  font-family: 'Arial';
+  width: calc($logo-width * 0.8);
+}
+
+#search-bar {
+  width: $logo-width;
+  background-color: whitesmoke;
+  border: 2px solid #0F0F0F;
+  border-radius: 50px;
+  text-align: left;
+  padding: 7px 12px;
+  height: 50px;
+  cursor: pointer;
+  color: gray;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+}
+
+.toggled-scroll-bar {
+  border-radius: 25px 25px 0 0 !important;
+}
+
+#departments-list {
+  position: absolute;
+  width: $logo-width;
+  background-color: #f9f9f9;
+  border: 2px solid #0F0F0F;
+  border-top: 0;
+  z-index: 1;
+  transform-origin: top center;
+  transform: scaleY(0); /* Initially, scale it to 0 in the Y-axis */
+  transition: transform 0.3s ease-in-out; /* Apply transition */
+  border-radius: 3px;
+  border-radius: 0 0 15px 15px;
+
+
+  button:hover, button:visited {
+    background-color: #e0e0e0; 
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+.dropdown-option {
+  padding: 10px;
+  font-size: 1.1em;
+  color: #0f0f0f;
+  background-color: #e9e9e9;
+  font-style: normal;
+  display: block;
+  width: 100%;
+  text-align: start;
+  text-decoration: none;
+
+  a {
+    margin: 0 15px;
+    color: #0f0f0f;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 90%;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.bottom-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 15px 15px;
+  
+}
+
+
+#profile-pic {
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  width: 50px;
+}
+
+.icon {
+  height: 90%;
+}
+
+.shown-popup {
+  // display: inline !important;
+  transform: translateY(0%) !important;
+  opacity: 1.0 !important;
+}
+
+#popup-content {
+  z-index: 99;
+  position: absolute;
+  transition: transform 0.4s ease, opacity 0.2s ease 0.2s;
+  transform: translateY(-60%);
+  opacity: 0.0;
+  // display: none;
+
+  width: min(90%, 800px);
+  height: 80vh;
+  border: 5px solid #0F0F0F;
+  border-radius: 25px;
+  background-color: $black2;
+  overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+  .questions{
+    padding: 2vw;
+    // overflow: scroll;
+    // position: absolute;
+
+    h6 {
+      color: #2358c2;
+      font-size: 1.4em;
+    }
+    p {
+      margin-top: 1vh;
+      color: whitesmoke;
+      margin-bottom: 1vw;
+    }
+  }
+
+  #top-bar {
+    width: 100%;
+    height: 50px;
+    border-bottom: 3px solid #0B0B0B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+    background-color: #1F1F1F;
+    color: whitesmoke;
+    position: sticky;
+    top: 0;
+
+    #closing-button {
+      background-color: #FF3E17;
+      color: whitesmoke;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+#shortcuts {
+  font-size: 0.8em;
+  position: absolute;
+  margin-top: 5vh;
+  transform: translateY(100%);
+  width: min(90%, 800px);
+  display: flex;
+  justify-content: center;
+  // flex-wrap: wrap;
+  gap: 1vw;
+
+  :hover {
+    scale: 120%;
+
+    a, p, .image {
+      scale: 100%;
+    }
+  }
+
+  .shortcut {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    width: calc(100% / 5.5);
+
+    background-color: #0f0f0f;
+    color: whitesmoke;
+    border-radius: 10px;
+
+    p {
+      margin-top: 1vh;
+      text-indent: 0;
+      line-height: 0.8;
+    }
+    .image {
+      width: 60%;
+      height: auto;
+    }
+  }
+}
