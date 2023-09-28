@@ -109,7 +109,12 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 0 0 15px 15px;
-  
+
+  @media screen and (max-width: 700px) {
+    a {
+      font-size: 0.75em;
+    }
+  }
 }
 
 
@@ -130,6 +135,12 @@ button {
   opacity: 1.0 !important;
 }
 
+#popup-content::-webkit-scrollbar {
+    width: 0;
+    display: none;
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+
 #popup-content {
   z-index: 99;
   position: absolute;
@@ -144,11 +155,9 @@ button {
   border-radius: 25px;
   background-color: $black2;
   overflow: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    ::-webkit-scrollbar {
-      display: none;
-    }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
 
   .questions{
     padding: 2vw;
@@ -173,7 +182,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1vw;
+    padding: 0 20px;
     background-color: #1F1F1F;
     color: whitesmoke;
     position: sticky;
@@ -198,14 +207,21 @@ button {
   width: min(90%, 800px);
   display: flex;
   justify-content: center;
-  // flex-wrap: wrap;
   gap: 1vw;
 
-  :hover {
-    scale: 120%;
+  @media screen and (min-width: 800px) {
+    :hover {
+      scale: 120%;
 
-    a, p, .image {
-      scale: 100%;
+      a, p, .image {
+        scale: 100%;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
     }
   }
 
@@ -230,6 +246,23 @@ button {
     .image {
       width: 60%;
       height: auto;
+    }
+
+    @media screen and (max-width: 700px) {
+      p {
+        position: absolute;
+        top: 100%;
+        max-width: 20%;
+
+        :hover {
+          scale: 100%;
+        }
+
+      }
+      .image {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }

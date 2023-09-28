@@ -1,7 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
-import Map from "./Map";
+// import Map from "./Map";
 
 function DateContact() {
   useEffect(() => {
@@ -30,7 +30,9 @@ function DateContact() {
         </ul>
       </div>
       <div className="right">
-        <Map />
+        {
+        // <Map />
+        }
       </div>
     </div>
   );

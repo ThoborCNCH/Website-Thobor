@@ -22,28 +22,111 @@ function Recturati() {
   const [popupQuestions, setPopupQuestions] = useState([]);
 
   
-  const intrebariJurnal = [
+  const intrebariJurnal = [ 
     {
       question: "Care este rolul Departamentului de jurnal în cadrul echipei?",
-      answer: "Rolul Departamentului de jurnal este de a crea jurnalul care cuprinde toată activitatea realizată de echipă în decursul sezonului, atât tehnică cât și non-tehnică."
+      answer: "Rolul Departamentului de jurnal este de a crea jurnalul, care cuprinde toate activitile realizate de echipă în decursul sezonului."
     },
     {
-      question: "Cu ce programe sunt create jurnalele în acest departament?",
-      answer: "Programele folosite pentru conceperea jurnalului Adobe Illustrator, Canva și Adobe Indesign."
+      question: "Cu ce programe sunt create jurnalele?",
+      answer: "Programele folosite pentru conceperea jurnalului sunt: Adobe Illustrator, Canva și Adobe Indesign."
     },
     {
       question: "Care sunt calitățile necesare pentru a deveni un membru al Departamentului de jurnal?",
-      answer: "Calitățile necesare includ creativitatea, dorința de a învăța și experimenta, abilități de comunicare cu oamenii și răbdare."
+      answer: "Calitățile necesare includ creativitatea, dorința de a învăța, abilități de comunicare cu oamenii și răbdare."
     },
     {
-      question: "Ce tipuri de activități sunt incluse în jurnalul creat de acest departament?",
-      answer: "Jurnalul cuprinde absolut tot ce înseamnă activitatea echipei, de la istorie, obiective, mod de lucru, social media până la abslut fiecare detaliu tehnic privind perspectiva de proiectare, ansamblare și programare a robotului. "
+      question: "Ce tipuri de activități sunt incluse în jurnal?",
+      answer: "Jurnalul cuprinde absolut tot ce înseamnă activitatea echipei, de la istorie, obiective, mod de lucru, social media până la absolut fiecare detaliu tehnic privind perspectiva de proiectare, ansamblare și programare a robotului."
     }, {
       question: "Sunt necesare cunoștințe de design sau copywriting?",
-      answer: "Răspunsul este da dar dacă nu există, dobândite prin participarea la activități exterioare de voluntariat, acestea vor fi învățate de la 0, între membrii departamentului prin experiențele celor mai mari."
+      answer: "Răspunsul este da, dar dacă nu există, acestea pot fi învățate de la 0, de la membrii departamentului cu experienta"
     }
   ]
 
+  const intrebariProiectare = [
+    {
+      question: "Trebuie sa ai anumite cunostinte?",
+      answer: "Acest departament nu necesita cunostinte in programe 3D deoarece te vom invata de la 0 dar orice cunostinta e bine venita."
+    },
+    {
+      question: "In ce program lucrati?",
+      answer: "Noi lucram in fusion 360."
+    },
+    {
+      question: "Pot lucra si in alt program?",
+      answer: "Bineinteles ca se poate lucra si in alt program de exemplu avem colegi care lucreaza in Blender. Important e ca proiectarea unei anumite piese sa se faca parametric."
+    },
+    {
+      question: "Vom lucra cu imprimante 3D?",
+      answer: "Da si chiar o sa invatati sa le folositi, noi in echipa avem 6 imprimante."
+    },
+    {
+      question: "Este un departament dificil?",
+      answer: "Din contra este un departament chiar frumos, unde iti poti arata creativitatea si in majoritatea timpului o sa ai cate ceva de facut."
+    },
+  ]
+
+  const intrebariProgramare = [
+    {
+      question: "Ce face mai exact departamentul de programare?",
+      answer: "Departamentul de programare se ocupa de crearea codului pentru manevrarea robotului automat & manual, dar și de aplicatiile și site-ul echipei"
+    },
+    {
+      question: "Ce ași avea nevoie să știu pentru a intra in departament?",
+      answer: "In ciuda unor aparente, departamentul de programare nu caută oameni care știu deja sintaxa ului limbaj de programare specific, ci persoane ce detin capacitatea & creativitatea necesară in rezolvarea problemelor ce vor apărea"
+    },
+    {
+      question: "Trebuie sa invat un anumit limbaj de programare pentru a intra?",
+      answer: "Deși pentru programarea robotului se folosește Java & Kotlin, nu este necesar sa le înveti pentru a intra în departament, dar în același timp, trebuie sa fii dispus sa înveti unul din ele dupa ce intri."
+    },
+    {
+      question: "Trebuie sa am o anumita experienta pentru a participa?",
+      answer: "Chiar daca experienta este utila, nu trebuie sa ai un anumit numar de ore petrecute programand, sau un anumit numar de ani în care ai facut asta."
+    },
+    {
+      question: "Ce hardware ași avea nevoie pentru a lucra?",
+      answer: "Ai avea nevoie de un laptop, dar nu unul foarte performant, daca are un procesor Intel i3, 4GB RAM și un SSD de 120GB, you're good to go!"
+    },
+  ]
+
+  const intrebariMecanica = [
+    {
+      question: "Trebuie sa am cunostinte avansate de fizica?",
+      answer: "Nu, nu e nevoie , trebuie sa cunosti principiile importante si sa ai idee cum se aplica."
+    },
+    {
+      question: "Daca nu am facut mecanica in viata mea pot invata la voi?",
+      answer: "Da, desigur chiar suntem genul de persoane deschise la a invata."
+    },
+    {
+      question: "Imi pot aduce contributia ca boboc?",
+      answer: "Da, chiar asteptam noi propuneri si ideei, nu ne plafonam doar la o idee, mereu o sugestie e bine venita."
+    }
+  ]
+
+  const intrebariMerketing = [
+    {
+      question: "In ce programe lucrati?",
+      answer: "Folosim mai multe programe, de la Illustrator, Photoshop, Canva pana la Premier, dar incercam constant programe noi pentru a evolua continu."
+    },
+    {
+      question: "Este nevoie sa cunosc aceste programe?",
+      answer: "Nu, in cadrul deparatamentului te invatam noi tot ce stim impartasindune cunostintele cu tine."
+    },
+    {
+      question: "E nevoie sa am experienta pentru acest departament?",
+      answer: "Nu, experienta ti-o capeti in timp, aici incepem si crestem impreuna."
+    },
+    {
+      question: "Ce presupune acest departament?",
+      answer: "Marketingul se ocupa cu promovarea echipei de robotica pe social media, cu interactiuni cu alte echipe dar si cu oamenii din afara echipei. Noi organizam evenimentele, deplasarile si orice tine de design si video."
+    },
+    {
+      question: "Pot intra aici chiar daca imi e frica sa vorbesc in public?",
+      answer: "Da. Majoritatea membrilor de la marketing aveau aceasta frica, dar comunicand mereu intre noi dar si cu celelalte departamente ama juns sa ne facem prieteni si sa reusim sa vorbim in public."
+    }
+  ]
 
   return(
     <div id="content">
@@ -59,7 +142,9 @@ function Recturati() {
           <p>Game Manual 1 Remote</p>
         </div>
         <div className="shortcut">
-          <LazyLoadImage src={formularImg} alt="Formular" className="image" />
+          <a target="blank" href="https://docs.google.com/forms/d/1Zc1WewQDLYm5XiTlPbMUK8CvU4Ocb57S5vs5f5RWXd8/prefill">
+            <LazyLoadImage src={formularImg} alt="Formular" className="image" />
+          </a>
           <p>Formular Inscriere</p>
         </div>
         <div className="shortcut">
@@ -82,17 +167,17 @@ function Recturati() {
         </button>
 
         <div id="departments-list" ref={departmentsListRef}>
-          <button onClick={() => {showPopup(); setupPopup("Mecanica");}} className="dropdown-option">
+          <button onClick={() => {showPopup(); setupPopup("Mecanica", intrebariMecanica);}} className="dropdown-option">
               <ClockIcon />
               Mecanica
           </button>
-          <button onClick={() => {showPopup(); setupPopup("Proiectare 3D");}} className="dropdown-option">
+          <button onClick={() => {showPopup(); setupPopup("Proiectare 3D", intrebariProiectare);}} className="dropdown-option">
               <ClockIcon />
               Proiectare 3D</button>
-          <button onClick={() => {showPopup(); setupPopup("Programare");}} className="dropdown-option">
+          <button onClick={() => {showPopup(); setupPopup("Programare", intrebariProgramare);}} className="dropdown-option">
               <ClockIcon />
               Programare</button>
-          <button onClick={() => {showPopup(); setupPopup("Marketing");}} className="dropdown-option">
+          <button onClick={() => {showPopup(); setupPopup("Marketing", intrebariMerketing);}} className="dropdown-option">
               <ClockIcon />
               Marketing & PR</button>
           <button onClick={() => {showPopup(); setupPopup("Jurnal", intrebariJurnal);}} className="dropdown-option">

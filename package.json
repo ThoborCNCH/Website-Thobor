@@ -3,11 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object",
     "@coreui/coreui": "^4.2.6",
     "@emailjs/browser": "^3.11.0",
     "@monaco-editor/react": "^4.5.1",
-    "@react-google-maps/api": "^2.17.1",
     "@react-spring/three": "^9.6.1",
     "@react-three/cannon": "^6.5.0",
     "@react-three/drei": "^9.46.4",
@@ -30,7 +28,6 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
-    "react-google-maps": "^9.4.5",
     "react-icons": "^4.10.1",
     "react-id-generator": "^3.0.2",
     "react-indiana-drag-scroll": "^3.0.3-alpha",
@@ -84,5 +81,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
