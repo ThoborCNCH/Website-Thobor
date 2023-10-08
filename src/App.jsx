@@ -172,7 +172,9 @@ function App() {
         link.includes("end")) && <Navbar />}
       <Routes>
         <Route path="/" element={<Home premii={premii} />} />
-        <Route path="/recrutari" element={<Recrutari />} />
+        {
+          // <Route path="/recrutari" element={<Recrutari />} />
+        }
         <Route path="/blog" element={<Blog blog={blog} />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />

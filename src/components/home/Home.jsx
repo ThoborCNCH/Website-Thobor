@@ -27,13 +27,13 @@ function Home({ premii }) {
     AOS.init();
   }, []);
 
-  useEffect(() => {
-    // const particule = document.getElementById("tsparticles");
-    // particule.style.visibility = "visible";
-    // return () => {
-    // particule.style.visibility = "hidden";
-    // };
-  });
+  // useEffect(() => {
+  //   const particule = document.getElementById("tsparticles");
+  //   particule.style.visibility = "visible";
+  //   return () => {
+  //   particule.style.visibility = "hidden";
+  //   };
+  // });
 
   window.addEventListener(
     "scroll",

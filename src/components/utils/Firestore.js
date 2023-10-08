@@ -25,12 +25,13 @@ import {
 export default class Firestore {
   constructor() {
     const firebaseConfig = {
-      apiKey: process.env.REACT_APP_APIKEY,
-      authDomain: process.env.REACT_APP_AUTHDOMAIN,
-      projectId: process.env.REACT_APP_PROJECTID,
-      storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-      messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
-      appId: process.env.REACT_APP_APPID,
+      apiKey: "AIzaSyBukGVQdvZI-vlAlrKJSLcr1YVzN5bo6O8",
+      authDomain: "thobor-test.firebaseapp.com",
+      projectId: "thobor-test",
+      storageBucket: "thobor-test.appspot.com",
+      messagingSenderId: "1009659565897",
+      appId: "1:1009659565897:web:45da398e7381650a9b2c98",
+      measurementId: "G-EQN62L03G9"
     };
 
     const app = initializeApp(firebaseConfig);

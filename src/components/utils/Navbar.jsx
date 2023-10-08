@@ -74,9 +74,11 @@ function Navbar() {
             <li>
               <Link to="/">Acasa</Link>
             </li>
-            <li>
-              <Link to="/recrutari">Recrutari</Link>
-            </li>
+            {
+              // <li>
+              //   <Link to="/recrutari">Recrutari</Link>
+              // </li>
+            }
             <li>
               <Link to="/despre">Despre</Link>
             </li>

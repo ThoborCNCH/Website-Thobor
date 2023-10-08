@@ -63,7 +63,9 @@ function Despre() {
       </div>
 
       <Stem />
-      <DateContact />
+      {
+        // <DateContact />
+      }
       <Svg/>
       <Contact />
       <Up />
