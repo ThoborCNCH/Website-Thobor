@@ -12,8 +12,8 @@ import PremiiPage from "./components/admin/components/PremiiPage";
 import SponsorsPage from "./components/admin/components/SponsorsPage";
 import Alumni from "./components/alumni/Alumni";
 import Apps from "./components/apps/Apps";
-import Blog from "./components/blog/Blog";
-import BlogPost from "./components/blog/BlogPost";
+// import Blog from "./components/blog/Blog";
+// import BlogPost from "./components/blog/BlogPost";
 import Despre from "./components/despre/Despre";
 import Home from "./components/home/Home";
 import NotFound from "./components/notfound/NotFound";
@@ -25,7 +25,7 @@ import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
 import Navbar from "./components/utils/Navbar";
 import Users from "./components/admin/components/Users";
-import BlogPagePost from "./components/admin/components/BlogPagePost";
+// import BlogPagePost from "./components/admin/components/BlogPagePost";
 import Crm from "./components/admin/components/Crm";
 import CreateRoom from "./components/admin/components/Meet/CreateRoom";
 import EndMeet from "./components/admin/components/Meet/EndMeet";
@@ -174,9 +174,9 @@ function App() {
         <Route path="/" element={<Home premii={premii} />} />
         {
           // <Route path="/recrutari" element={<Recrutari />} />
+          // <Route path="/blog" element={<Blog blog={blog} />} />
+          // <Route path="/blog/:id" element={<BlogPost />} />
         }
-        <Route path="/blog" element={<Blog blog={blog} />} />
-        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/despre" element={<Despre />} />
         <Route path="/apps" element={<Apps apps={apps} />} />
         <Route path="/download" element={<Apps />} />
@@ -207,9 +207,9 @@ function App() {
             path="/admin/users"
             element={<Users isAllowed={isAllowed} userss={users} />}
           />
-          <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
-          <Route path="/admin/blog/:id" element={<BlogPagePost />} />
           {
+          // <Route path="/admin/blog" element={<BlogPage blogs={blog} />} />
+          // <Route path="/admin/blog/:id" element={<BlogPagePost />} />
             // <Route path="/admin/shop" element={<ShopPage />} />
           }
           <Route path="/admin/apps" element={<AppsPage appss={apps} />} />

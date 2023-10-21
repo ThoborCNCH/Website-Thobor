@@ -19,6 +19,7 @@
     user-select: none;
     margin: 0 30px;
 
+
     img {
       width: 100%;
       z-index: 5;
@@ -41,8 +42,7 @@
     margin: 84px 50px;
     user-select: none;
 
-    h1,
-    h2 {
+    h1, h2 {
       text-transform: uppercase;
       font-family: $font_mont;
       font-weight: 800;
@@ -62,12 +62,12 @@
 }
 
 @keyframes roteste {
-  from {
-    transform: rotateZ(0);
-  }
-  to {
-    transform: rotateZ(360deg);
-  }
+from {
+  transform: rotateZ(0);
+}
+to {
+  transform: rotateZ(360deg);
+}
 }
 
 .cifre {
@@ -137,34 +137,34 @@
     //     justify-content: flex-end;
     //   }
 
-      .cifra {
-        // margin: 0 60px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        // width: max-content;
-        justify-content: center;
-        flex-wrap: wrap;
-        overflow-wrap: break-word;
+    .cifra {
+      // margin: 0 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // width: max-content;
+      justify-content: center;
+      flex-wrap: wrap;
+      overflow-wrap: break-word;
 
-        h1 {
-          span {
-            font-weight: 400;
-          }
-          color: $main_green;
-          margin-bottom: 15px;
-        }
-
-        h2 {
-          text-align: center;
+      h1 {
+        span {
           font-weight: 400;
-          font-size: 20px;
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-          white-space: normal;
-          line-height:100%;
         }
+        color: $main_green;
+        margin-bottom: 15px;
       }
+
+      h2 {
+        text-align: center;
+        font-weight: 400;
+        font-size: 20px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        line-height:100%;
+      }
+    }
     // }
   }
 }
@@ -397,7 +397,7 @@
     83deg,
     $main_green 0 97%,
     #fff0 calc(97% + 1px) 100%
-  );
+    );
   position: relative;
   list-style: none;
   display: inline-block;
@@ -412,7 +412,7 @@
     -83deg,
     $main_green 0 97%,
     #fff0 calc(97% + 1px) 100%
-  );
+    );
 }
 
 .thumb {
@@ -572,6 +572,12 @@
       .ful {
         text-shadow: 0 0 5px $black2 !important;
       }
+    }
+  }
+  .img {
+    display: none;
+    img {
+      display: none;
     }
   }
 }

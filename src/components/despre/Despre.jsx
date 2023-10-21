@@ -45,7 +45,7 @@ function Despre() {
               data-aos="fade-right"
               data-aos-delay={window.innerWidth > 700 ? 900 : 0}
               className="linie"
-            ></div>
+            />
           </div>
           <p data-aos-delay="700" data-aos="fade-down">
             Echipa THOBOR a Colegiului Național “Calistrat Hogaş” Tecuci, este
@@ -66,8 +66,10 @@ function Despre() {
       {
         // <DateContact />
       }
-      <Svg/>
-      <Contact />
+      {
+      // <Svg/>
+      // <Contact />
+      }
       <Up />
     </>
   );

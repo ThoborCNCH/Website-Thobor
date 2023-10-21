@@ -82,16 +82,18 @@ function Navbar() {
             <li>
               <Link to="/despre">Despre</Link>
             </li>
-            <li>
-              <Link to="/team">Echipa</Link>
-            </li>
+            {
+            // <li>
+            //   <Link to="/team">Echipa</Link>
+            // </li>
+            }
             <li>
               <Link to="/sponsors">Sponsori</Link>
             </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
             {
+            // <li>
+            //   <Link to="/blog">Blog</Link>
+            // </li>
               // <li>
               //   <Link to="/shop/all">Shop</Link>
               // </li>
@@ -99,20 +101,22 @@ function Navbar() {
             <li>
               <Link to="/apps">Aplicatii</Link>
             </li>
-            {!isMobile && size.width > 700 && (
-              <>
-                <li>
-                  <a target="_blank" href="https://sumulator.netlify.app">
-                    Simulator
-                  </a>
-                </li>
-                <li>
-                  <a target="_blank" href="https://robotsez6.netlify.app">
-                    Robotul din sezonul 6
-                  </a>
-                </li>
-              </>
-            )}
+            {
+              // !isMobile && size.width > 700 && (
+              // <>
+              //   <li>
+              //     <a target="_blank" href="https://sumulator.netlify.app">
+              //       Simulator
+              //     </a>
+              //   </li>
+              //   <li>
+              //     <a target="_blank" href="https://robotsez6.netlify.app">
+              //       Robotul din sezonul 6
+              //     </a>
+              //   </li>
+              // </>
+            // )
+            }
             {
             // {!loading && !user ? (
             //   <>

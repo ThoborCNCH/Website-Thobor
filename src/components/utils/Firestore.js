@@ -53,7 +53,7 @@ export default class Firestore {
   }
 
   async readCosmin() {
-    let q = query(
+    const q = query(
       collection(this.db, "categories"),
       limit(2),
       orderBy("date", "desc")
@@ -70,7 +70,7 @@ export default class Firestore {
   }
 
   async getProductByUser(user) {
-    let cant = [];
+    const cant = [];
     let total = 0;
     if (user) {
       await this.readDocuments("cos", ["user_id", "==", user.uid]).then(
@@ -190,7 +190,7 @@ export default class Firestore {
   }
 
   async sortdata(collectionName, by, how) {
-    let q = query(collection(this.db, collectionName), orderBy(by, how));
+    const q = query(collection(this.db, collectionName), orderBy(by, how));
 
     const querySnapshot = await getDocs(q);
     const documents = [];
