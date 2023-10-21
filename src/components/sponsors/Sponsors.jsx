@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Contact from "../utils/Contact";
 import Up from "../utils/Up";
 import "./sponsors.scss";
 import AOS from "aos";
@@ -14,7 +13,6 @@ import { useState } from "react";
 import Firestore from "../utils/Firestore";
 import banner from "../../img/sponsors_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Svg from "../utils/Svg";
 
 const firestore = new Firestore();
 
@@ -44,8 +42,6 @@ function Sponsors({ spon }) {
 
           ))}
       </div>
-      <Svg />
-      <Contact />
       <Up />
     </div>
   );

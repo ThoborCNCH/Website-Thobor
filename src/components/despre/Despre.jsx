@@ -1,7 +1,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
-import Contact from "../utils/Contact";
 import Up from "../utils/Up";
 import DateContact from "./components/DateContact";
 import Stem from "./components/Stem";
@@ -9,7 +8,6 @@ import "./despre.scss";
 
 import banner from "../../img/despre_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Svg from "../utils/Svg";
 
 function Despre() {
   useEffect(() => {

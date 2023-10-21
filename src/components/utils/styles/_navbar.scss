@@ -48,7 +48,6 @@ nav {
     margin: 0;
     padding: 0;
     li {
-      float: left;
       position: relative;
       a {
         display: block;
@@ -68,8 +67,10 @@ nav {
           bottom: 0px;
         }
 
-        &:hover::before {
-          width: 70%;
+        &:hover{
+          &::before {
+            width: 70%;
+          }
         }
       }
       ul li {
@@ -141,6 +142,7 @@ nav {
   top: 22px;
   cursor: pointer;
   padding: 10px 35px 16px 0px;
+  background-color: transparent;
   span,
   span:before,
   span:after {
@@ -182,6 +184,6 @@ nav {
 
 @media screen and (min-width: 1270px) {
   .nav-list {
-    display: block !important;
+    display: flex !important;
   }
 }

@@ -5,8 +5,6 @@ import CountUp from "react-countup";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { Link } from "react-router-dom";
-import Contact from "../utils/Contact";
-import Svg from "../utils/Svg";
 import Up from "../utils/Up";
 import Card from "./components/Card";
 import "./style.scss";
@@ -62,7 +60,7 @@ function Home({ premii }) {
           <LazyLoadImage src={main} alt="main" width="100%" height="100%" />
         </div>
       </div>
-      <div className="cifre">
+      <div className="sponsori">
         <div className="custom-shape-divider-bottom-1669758197">
           <svg
             data-name="Layer 1"
@@ -87,71 +85,11 @@ function Home({ premii }) {
             />
           </svg>
         </div>
-        <h3 data-aos="fade-down">
-          <b>THOBOR</b> in cifre:
-        </h3>
-        <div className="tab" data-aos="fade-down">
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_ani">
-                  {" "}
-                  <CountUp
-                    end={6}
-                    enableScrollSpy
-                    redraw={true}
-                    scrollSpyDelay={600}
-                  />{" "}
-                </span>
-              </h1>
-              <h2>Ani de experienta</h2>
-            </div>
 
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_nat">
-                  <CountUp
-                    end={6}
-                    redraw={true}
-                    enableScrollSpy
-                    scrollSpyDelay={600}
-                  />
-                </span>
-              </h1>
-              <h2>Participari la nationala</h2>
-            </div>
-
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_mem">
-                  <CountUp
-                    end={24}
-                    redraw={true}
-                    enableScrollSpy
-                    scrollSpyDelay={600}
-                  />
-                </span>
-              </h1>
-              <h2>Membrii</h2>
-            </div>
-
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_al">
-                  <CountUp
-                    end={37}
-                    redraw={true}
-                    enableScrollSpy
-                    scrollSpyDelay={600}
-                  />
-                </span>
-              </h1>
-              <h2>Alumni</h2>
-            </div>
+        <div className="sponsori-slide">
+          
         </div>
+
       </div>
       <div className="despre1" style={{
         background: "url(../../img/thobor_team.png)",
@@ -217,30 +155,25 @@ function Home({ premii }) {
           <h1>Jurnal</h1>
         </div>
       </div>
-      <div className="scrollcnt">
-        <div className="loc_de_premii">
-          <h1>Premii</h1>
-          <div className="coca" />
-          <h2>Since 2017</h2>
-        </div>
-
-        <ScrollContainer className="scc">
-          <div className="poate">
-            <div className="space" />
-            {
-              premii && premii.map((premiu) => (
-                <Card an={premiu.an} text={premiu.text} image={premiu.img} />
-              ))
-            }
-          </div>
-        </ScrollContainer>
-      </div>
-
       {
-      // <div className="al">
-      //   <Svg />
-      //   <Contact />
-      // </div>
+        // <div className="scrollcnt">
+        //   <div className="loc_de_premii">
+        //     <h1>Premii</h1>
+        //     <div className="coca" />
+        //     <h2>Since 2017</h2>
+        //   </div>
+        //
+        // <ScrollContainer className="scc">
+        //   <div className="poate">
+        //     <div className="space" />
+        //     {
+        //       premii && premii.map((premiu) => (
+        //         <Card an={premiu.an} text={premiu.text} image={premiu.img} />
+        //       ))
+        //     }
+        //   </div>
+        // </ScrollContainer>
+        // </div>
       }
 
       <Up />

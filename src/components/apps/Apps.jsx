@@ -1,7 +1,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect, useState } from "react";
-import Contact from "../utils/Contact";
 import Up from "../utils/Up";
 import "./apps.scss";
 import App from "./components/App";
@@ -12,7 +11,6 @@ import Firestore from "../utils/Firestore";
 
 import banner from "../../img/apps_banner.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Svg from "../utils/Svg";
 
 function Apps({ apps }) {
   useEffect(() => {
@@ -40,8 +38,6 @@ function Apps({ apps }) {
             />
           ))}
       </div>
-      <Svg />
-      <Contact />
       <Up />
     </>
   );

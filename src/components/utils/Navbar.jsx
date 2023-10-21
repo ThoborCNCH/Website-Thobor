@@ -16,7 +16,6 @@ const firestore = new Firestore();
 function Navbar() {
   const { pathname } = useLocation();
   const nav = useRef(null);
-  const [user, loading, error] = useAuthState(firestore.getuser());
 
   const size = useWindowSize();
   const nav_click = () => {
@@ -66,9 +65,9 @@ function Navbar() {
         </div>
         <nav>
           <div className="nav-mobile">
-            <a id="nav-toggle" href="#!" onClick={nav_click} ref={nav}>
-              <span></span>
-            </a>
+            <button type="button" id="nav-toggle" href="#!" onClick={nav_click} ref={nav}>
+              <span />
+            </button>
           </div>
           <ul className="nav-list">
             <li>
@@ -82,63 +81,12 @@ function Navbar() {
             <li>
               <Link to="/despre">Despre</Link>
             </li>
-            {
-            // <li>
-            //   <Link to="/team">Echipa</Link>
-            // </li>
-            }
             <li>
               <Link to="/sponsors">Sponsori</Link>
             </li>
-            {
-            // <li>
-            //   <Link to="/blog">Blog</Link>
-            // </li>
-              // <li>
-              //   <Link to="/shop/all">Shop</Link>
-              // </li>
-            }
             <li>
               <Link to="/apps">Aplicatii</Link>
             </li>
-            {
-              // !isMobile && size.width > 700 && (
-              // <>
-              //   <li>
-              //     <a target="_blank" href="https://sumulator.netlify.app">
-              //       Simulator
-              //     </a>
-              //   </li>
-              //   <li>
-              //     <a target="_blank" href="https://robotsez6.netlify.app">
-              //       Robotul din sezonul 6
-              //     </a>
-              //   </li>
-              // </>
-            // )
-            }
-            {
-            // {!loading && !user ? (
-            //   <>
-            //     <li>
-            //       <a href="#" onClick={signInWithGoogle}>
-            //         Login
-            //       </a>
-            //     </li>
-            //   </>
-            // ) : (
-            //   <>
-            //     <li>
-            //       <a href="#">{user && user.displayName}</a>
-            //     </li>
-            //     <li>
-            //       <a href="#" onClick={logout}>
-            //         Logout
-            //       </a>
-            //     </li>
-            //   </>
-            // )}
-            }
           </ul>
         </nav>
       </div>
