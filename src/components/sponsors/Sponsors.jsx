@@ -29,17 +29,13 @@ function Sponsors({ spon }) {
         className="header"
       />
       <div className="sponsors">
-        {spon &&
-          spon.map((sp) => (
-            <>
+        {spon && spon.map((sp) => (
             <LazyLoadImage
               key={sp.logo}
               src={sp.logo}
               width={300}
               height={"auto"}
             />
-            </>
-
           ))}
       </div>
       <Up />

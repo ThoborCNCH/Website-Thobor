@@ -18,20 +18,12 @@ import marketing from "../../img/marketing.svg";
 import control from "../../img/control.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function Home({ premii }) {
+function Home({ premii, spon }) {
   const h1 = useRef(null);
 
   useEffect(() => {
     AOS.init();
   }, []);
-
-  // useEffect(() => {
-  //   const particule = document.getElementById("tsparticles");
-  //   particule.style.visibility = "visible";
-  //   return () => {
-  //   particule.style.visibility = "hidden";
-  //   };
-  // });
 
   window.addEventListener(
     "scroll",
@@ -86,9 +78,27 @@ function Home({ premii }) {
           </svg>
         </div>
 
-        <div className="sponsori-slide">
-          
-        </div>
+          <div className="sponsori-slide">
+            {spon && spon.map((sp) => (
+                <LazyLoadImage
+                  key={sp.logo}
+                  src={sp.logo}
+                  width={300}
+                  height={"auto"}
+                />
+              ))}
+          </div>
+
+          <div className="sponsori-slide">
+            {spon && spon.map((sp) => (
+                <LazyLoadImage
+                  key={sp.logo}
+                  src={sp.logo}
+                  width={300}
+                  height={"auto"}
+                />
+              ))}
+          </div>
 
       </div>
       <div className="despre1" style={{
@@ -156,24 +166,24 @@ function Home({ premii }) {
         </div>
       </div>
       {
-        // <div className="scrollcnt">
-        //   <div className="loc_de_premii">
-        //     <h1>Premii</h1>
-        //     <div className="coca" />
-        //     <h2>Since 2017</h2>
-        //   </div>
-        //
-        // <ScrollContainer className="scc">
-        //   <div className="poate">
-        //     <div className="space" />
-        //     {
-        //       premii && premii.map((premiu) => (
-        //         <Card an={premiu.an} text={premiu.text} image={premiu.img} />
-        //       ))
-        //     }
-        //   </div>
-        // </ScrollContainer>
-        // </div>
+        <div className="scrollcnt">
+          <div className="loc_de_premii">
+            <h1>Premii</h1>
+            <div className="coca" />
+            <h2>Since 2017</h2>
+          </div>
+
+        <ScrollContainer className="scc">
+          <div className="poate">
+            <div className="space" />
+            {
+              premii && premii.map((premiu) => (
+                <Card an={premiu.an} text={premiu.text} image={premiu.img} />
+              ))
+            }
+          </div>
+        </ScrollContainer>
+        </div>
       }
 
       <Up />

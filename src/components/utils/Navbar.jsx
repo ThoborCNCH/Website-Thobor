@@ -82,11 +82,15 @@ function Navbar() {
               <Link to="/despre">Despre</Link>
             </li>
             <li>
-              <Link to="/sponsors">Sponsori</Link>
-            </li>
-            <li>
               <Link to="/apps">Aplicatii</Link>
             </li>
+            {!isMobile && size.width > 700 && (
+                <li>
+                  <a target="0" href="https://robotsez6.netlify.app">
+                    Robotul din sezonul 6
+                  </a>
+                </li>
+            )}
           </ul>
         </nav>
       </div>
