@@ -1,7 +1,6 @@
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import { useCallback, useMemo } from "react";
-// import "./Incercare.css";
 import useWindowSize from "./WindowSize";
 
 const Incercare = (props) => {
@@ -14,7 +13,7 @@ const Incercare = (props) => {
       top: "0",
       left: "0",
     };
-  });
+  }, []);
 
   const options = {
     background: {
