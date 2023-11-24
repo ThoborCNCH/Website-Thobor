@@ -2,7 +2,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
 import Up from "../utils/Up";
-import DateContact from "./components/DateContact";
 import Stem from "./components/Stem";
 import "./despre.scss";
 

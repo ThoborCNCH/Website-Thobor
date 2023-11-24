@@ -6,12 +6,7 @@ import { Link } from "react-router-dom";
 import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
-import { isMobile } from "react-device-detect";
-import Firestore from "./Firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
-const firestore = new Firestore();
 
 function Navbar() {
   const { pathname } = useLocation();
@@ -39,16 +34,9 @@ function Navbar() {
       ul.style.display = "none";
     }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, size.width]);
 
-  const signInWithGoogle = async () => {
-    await firestore.signInWithGoogle();
-  };
-
-  const logout = async () => {
-    await firestore.logout();
-  };
-
+  const d = new Date();
   return (
     <section className="navigation">
       <div className="nav-container">
@@ -74,9 +62,10 @@ function Navbar() {
               <Link to="/">Acasa</Link>
             </li>
             {
-              // <li>
-              //   <Link to="/recrutari">Recrutari</Link>
-              // </li>
+              d.getMonth() === 9 &&
+                <li>
+                  <Link to="/recrutari">Recrutari</Link>
+                </li>
             }
             <li>
               <Link to="/despre">Despre</Link>
@@ -84,13 +73,6 @@ function Navbar() {
             <li>
               <Link to="/apps">Aplicatii</Link>
             </li>
-            {!isMobile && size.width > 700 && (
-                <li>
-                  <a target="0" href="https://robotsez6.netlify.app">
-                    Robotul din sezonul 6
-                  </a>
-                </li>
-            )}
           </ul>
         </nav>
       </div>

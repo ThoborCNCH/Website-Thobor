@@ -1,7 +1,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useRef } from "react";
-import CountUp from "react-countup";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { Link } from "react-router-dom";
@@ -52,7 +51,6 @@ function Home({ premii, spon }) {
           <LazyLoadImage src={main} alt="main" width="100%" height="100%" />
         </div>
       </div>
-      <div className="sponsori">
         <div className="custom-shape-divider-bottom-1669758197">
           <svg
             data-name="Layer 1"
@@ -77,29 +75,27 @@ function Home({ premii, spon }) {
             />
           </svg>
         </div>
-
-          <div className="sponsori-slide">
-            {spon && spon.map((sp) => (
-                <LazyLoadImage
-                  key={sp.logo}
-                  src={sp.logo}
-                  width={300}
-                  height={"auto"}
-                />
-              ))}
-          </div>
-
-          <div className="sponsori-slide">
-            {spon && spon.map((sp) => (
-                <LazyLoadImage
-                  key={sp.logo}
-                  src={sp.logo}
-                  width={300}
-                  height={"auto"}
-                />
-              ))}
-          </div>
-
+      <div className="sponsori">
+        <div className="sponsori-slide">
+          {spon && spon.map((sp) => (
+              <LazyLoadImage
+                key={sp.logo}
+                src={sp.logo}
+                width={300}
+                height={"auto"}
+              />
+            ))}
+        </div>
+        <div className="sponsori-slide">
+          {spon && spon.map((sp) => (
+              <LazyLoadImage
+                key={sp.logo}
+                src={sp.logo}
+                width={300}
+                height={"auto"}
+              />
+            ))}
+        </div>
       </div>
       <div className="despre1" style={{
         background: "url(../../img/thobor_team.png)",
@@ -133,9 +129,6 @@ function Home({ premii, spon }) {
           </svg>
         </div>
         <h1 ref={h1}>Despre</h1>
-        {
-        // <h2 data-aos="zoom-in-up">Despre</h2>
-        }
         <p data-aos="zoom-in-up">
           Echipa de robotică, formată din 15 liceeni ai Colegiului Național
           “Calistrat Hogaș” Tecuci, alături de mentori, îndrăznim să visăm.

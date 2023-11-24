@@ -20,13 +20,13 @@ function App() {
     }).catch(er=>{
       console.log(er);
     });
-  });
+  }, [setSpon]);
   const [premii, setPremii] = useState([]);
   const getPremii = useMemo(() => async () => {
-    await firestore.sortdata("premii", "an", "asc").then((res) => {
+    await firestore.sortdata("premii", "an", "desc").then((res) => {
       setPremii(res);
     });
-  });
+  }, [setPremii]);
 
   const [apps, setApps] = useState([]);
   const getApps = useMemo(() => async () => {
@@ -35,22 +35,15 @@ function App() {
     }).catch(er => {
       console.log(er);
     })
-  })
-
-  const [isAllowed, setIsAllowed] = useState(false);
-  const [role, setRole] = useState("");
+  }, [setApps]);
 
   useEffect(() => {
     getApps();
     getSpon();
     getPremii();
-  }, []);
+  }, [getApps, getSpon, getPremii]);
 
-  const [link, setLink] = useState("");
-  useEffect(() => {
-    setLink(window.location.pathname);
-  }, [window.location]);
-
+  const d = new Date();
   return (
     <BrowserRouter>
       <Navbar />
@@ -60,6 +53,10 @@ function App() {
         <Route path="/apps" element={<Apps apps={apps} />} />
         <Route path="/download" element={<Apps />} />
         <Route path="*" element={<NotFound />} />
+        {
+          d.getMonth() === 9 &&
+            <Route path="/recturari" element={<Recrutari />} />
+        }
       </Routes>
       <Footer/>
     </BrowserRouter>

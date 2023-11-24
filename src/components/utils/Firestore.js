@@ -1,10 +1,7 @@
 import { initializeApp } from "firebase/app";
 import "firebase/firestore";
 import {
-  addDoc,
   collection,
-  deleteDoc,
-  Timestamp,
   doc,
   getDoc,
   getDocs,
@@ -29,7 +26,7 @@ export default class Firestore {
     };
 
     const app = initializeApp(firebaseConfig);
-    this.db = getFirestore();
+    this.db = getFirestore(app);
   }
 
   getDb() {
@@ -69,16 +66,16 @@ export default class Firestore {
   async readDocuments(collectionName, condition, limitare) {
     let q;
 
-    if (condition == undefined || condition[2] === "all") {
+    if (condition === undefined || condition[2] === "all") {
       q = query(collection(this.db, collectionName));
     } else if (
       condition !== undefined &&
-      limitare == undefined &&
+      limitare === undefined &&
       typeof condition[2] !== "number" &&
       condition[2].includes("search")
     ) {
       q = query(collection(this.db, collectionName));
-    } else if (limitare == undefined) {
+    } else if (limitare === undefined) {
       q = query(
         collection(this.db, collectionName),
         where(condition[0], condition[1], condition[2])

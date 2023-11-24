@@ -10,7 +10,7 @@
         
 
 ## Demo
-[link catre site](https://thobor-team.com)
+[link to Website](https://thobor-team.com)
 
 
 ## Tech Stack
@@ -69,5 +69,5 @@ Start the server
 
 ## Support
 
-For support, email thoborcnch@gmail.com.
+For support, email contact@thobor-team.com
 

@@ -87,7 +87,7 @@
   overflow: hidden;
   width: 100vw;
   position: relative;
-  min-height: 400px;
+  height: 400px;
 
   .sponsori-slide {
     height: 400px;
@@ -101,6 +101,22 @@
       width: auto;
       margin: 0 45px;
     }
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  .sponsori {
+    height: 200px;
+    .sponsori-slide {
+      height: 200px;
+
+      img {
+        height: 100px;
+        margin: 0;
+      }
+    }
+
   }
 }
 
@@ -121,6 +137,12 @@
     display: block;
     width: calc(100% + 1.3px);
     height: 137px;
+  }
+
+  @media screen and (max-width: 700px) {
+    svg {
+      height: 70px;
+    }
   }
 
   .shape-fill {
@@ -232,6 +254,10 @@
     display: block;
     width: calc(100% + 1.3px);
     height: 137px;
+
+    @media screen and (max-width: 700px) {
+        height: 70px;
+    }
   }
 
   .custom-shape-divider-bottom-plm .shape-fill {
