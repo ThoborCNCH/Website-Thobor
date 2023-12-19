@@ -7,6 +7,7 @@ import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import MagicText from "./MagicText.jsx"
 
 function Navbar() {
   const { pathname } = useLocation();
@@ -74,7 +75,7 @@ function Navbar() {
               <Link to="/apps">Aplicatii</Link>
             </li>
             <li>
-              <a href="https://thobor-blocks-page.netlify.app/" target="_blank">Blocks! (NEW)</a>
+              <a href="https://thobor-blocks-page.netlify.app/" target="_blank" rel="noreferrer"><MagicText text="Blocks! (NEW)" /></a>
             </li>
           </ul>
         </nav>
