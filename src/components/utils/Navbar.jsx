@@ -63,15 +63,18 @@ function Navbar() {
             </li>
             {
               d.getMonth() === 9 &&
-                <li>
-                  <Link to="/recrutari">Recrutari</Link>
-                </li>
+              <li>
+                <Link to="/recrutari">Recrutari</Link>
+              </li>
             }
             <li>
               <Link to="/despre">Despre</Link>
             </li>
             <li>
               <Link to="/apps">Aplicatii</Link>
+            </li>
+            <li>
+              <a href="https://thobor-blocks-page.netlify.app/" target="_blank">Blocks! (NEW)</a>
             </li>
           </ul>
         </nav>
