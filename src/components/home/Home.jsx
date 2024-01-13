@@ -15,6 +15,7 @@ import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
 import control from "../../img/control.svg";
+import proiectare from "../../img/proiectare.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Home({ premii, spon }) {
@@ -146,14 +147,18 @@ function Home({ premii, spon }) {
           <h1>Mecanica</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
+          <LazyLoadImage src={proiectare} alt="main" width={100} height="auto" />
+          <h1>Proiectare</h1>
+        </div>
+        <div className="card" data-aos="fade-right" data-aos-delay="400">
           <LazyLoadImage src={programming} alt="main" width={100} height="auto" />
           <h1>Programare</h1>
         </div>
-        <div className="card" data-aos="fade-right" data-aos-delay="400">
+        <div className="card" data-aos="fade-right" data-aos-delay="600">
           <LazyLoadImage src={marketing} alt="main" width={100} height="auto" />
           <h1>Marketing</h1>
         </div>
-        <div className="card" data-aos="fade-right" data-aos-delay="600">
+        <div className="card" data-aos="fade-right" data-aos-delay="800">
           <LazyLoadImage src={work} width={100} height="auto" alt="main" />
           <h1>Jurnal</h1>
         </div>
@@ -171,7 +176,7 @@ function Home({ premii, spon }) {
             <div className="space" />
             {
               premii && premii.map((premiu) => (
-                <Card an={premiu.an} text={premiu.text} image={premiu.img} />
+                <Card an={premiu.an} text={premiu.text} image={premiu.img} key={premiu.id}/>
               ))
             }
           </div>

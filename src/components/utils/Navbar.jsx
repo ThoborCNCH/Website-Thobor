@@ -40,17 +40,13 @@ function Navbar() {
   const d = new Date();
   return (
     <section className="navigation">
-      <div className="nav-container">
+      <div id="nav-container">
         <div className="brand">
-          <Link to="/">
-            <LazyLoadImage
-              src={logo}
-              width="180px"
-              height="50px"
-              style={{ width: 180, height: 50 }}
-              alt="logo"
-            />
-          </Link>
+          <LazyLoadImage src={logo} alt="logo" className="logo"/>
+          <div className="headers">
+            <h1><b>Thobor</b></h1>
+            <h1><b>Ro068 | 17871</b></h1>
+          </div>
         </div>
         <nav>
           <div className="nav-mobile">
