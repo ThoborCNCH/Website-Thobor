@@ -5,6 +5,7 @@ import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { Link } from "react-router-dom";
 import Up from "../utils/Up";
+import BuyUsACoffee from "../utils/BuyUsACoffee.jsx";
 import Card from "./components/Card";
 import "./style.scss";
 import "firebase/compat/firestore";
@@ -185,6 +186,7 @@ function Home({ premii, spon }) {
       }
 
       <Up />
+      <BuyUsACoffee />
     </>
   );
 }

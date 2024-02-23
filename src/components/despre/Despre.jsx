@@ -2,6 +2,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
 import Up from "../utils/Up";
+import BuyUsACoffee from "../utils/BuyUsACoffee.jsx";
 import Stem from "./components/Stem";
 import "./despre.scss";
 
@@ -54,6 +55,7 @@ function Despre() {
       </main>
       <Stem />
       <Up />
+      <BuyUsACoffee />
     </>
   );
 }

@@ -2,6 +2,7 @@ import "./apps.scss";
 import React from "react";
 import App from "./components/App";
 import Up from "../utils/Up";
+import BuyUsACoffee from "../utils/BuyUsACoffee.jsx";
 
 function Apps({ apps }) {
   return (
@@ -12,6 +13,7 @@ function Apps({ apps }) {
         ))}
       </div>
       <Up />
+      <BuyUsACoffee />
     </>
   );
 }
