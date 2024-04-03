@@ -10,7 +10,7 @@
         
 
 ## Demo
-[link catre site](https://thobor.ro/)
+[link to Website](https://thobor-team.com)
 
 
 ## Tech Stack
@@ -61,14 +61,13 @@ Start the server
 ![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569705/thobor/jbuehwdj7h5yxec6ccpt.png)
 
 ![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569705/thobor/warbxkwpjwhttamsw8nl.png)
-
-![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569706/thobor/zhmf2iyf2qmzswtsapd8.png)
 ## Authors
 
+- [@Materniuc Alex](https://github.com/MaterniucAlex)
 - [@Drăguțu Matei](https://github.com/DragutuMatei)
 
 
 ## Support
 
-For support, email mateidr7@gmail.com.
+For support, email contact@thobor-team.com
 

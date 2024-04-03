@@ -1,6 +1,4 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import logo from "../../img/logo_thobor_celalalt.png";
 import facebookImage from "../../img/footer/facebook.png"
 import instagramImage from "../../img/footer/instagram.png"
 import youtubeImage from "../../img/footer/youtube.png"
@@ -34,7 +32,7 @@ function Footer() {
 
           <ul className="nav__ul">
             <li>
-              <a className="footer__btn" href="mailto:thoborcnch@gmail.com"> Email Us </a>
+              <a className="footer__btn" href="mailto:contact@thobor-team.com"> Email Us </a>
             </li>
             <li>
               <a href="https://www.facebook.com/ThoborCNCH"><img src={facebookImage} alt="Facebook"/></a>

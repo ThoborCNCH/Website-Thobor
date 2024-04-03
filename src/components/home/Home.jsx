@@ -1,16 +1,13 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useRef } from "react";
-import CountUp from "react-countup";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { Link } from "react-router-dom";
-import Contact from "../utils/Contact";
-import Svg from "../utils/Svg";
 import Up from "../utils/Up";
+import BuyUsACoffee from "../utils/BuyUsACoffee.jsx";
 import Card from "./components/Card";
 import "./style.scss";
-import "firebase/compat/firestore";
 import Incercare from "../utils/Incercare";
 
 import main from "../../img/Frame 118asd.png";
@@ -18,22 +15,15 @@ import work from "../../img/work.svg";
 import programming from "../../img/programming.svg";
 import marketing from "../../img/marketing.svg";
 import control from "../../img/control.svg";
+import proiectare from "../../img/proiectare.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function Home({ premii }) {
+function Home({ premii, spon }) {
   const h1 = useRef(null);
 
   useEffect(() => {
     AOS.init();
   }, []);
-
-  // useEffect(() => {
-  //   const particule = document.getElementById("tsparticles");
-  //   particule.style.visibility = "visible";
-  //   return () => {
-  //   particule.style.visibility = "hidden";
-  //   };
-  // });
 
   window.addEventListener(
     "scroll",
@@ -62,7 +52,6 @@ function Home({ premii }) {
           <LazyLoadImage src={main} alt="main" width="100%" height="100%" />
         </div>
       </div>
-      <div className="cifre">
         <div className="custom-shape-divider-bottom-1669758197">
           <svg
             data-name="Layer 1"
@@ -87,71 +76,30 @@ function Home({ premii }) {
             />
           </svg>
         </div>
-        <h3 data-aos="fade-down">
-          <b>THOBOR</b> in cifre:
-        </h3>
-        <div className="tab" data-aos="fade-down">
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_ani">
-                  {" "}
-                  <CountUp
-                    end={6}
-                    enableScrollSpy
-                    redraw={true}
-                    scrollSpyDelay={600}
-                  />{" "}
-                </span>
-              </h1>
-              <h2>Ani de experienta</h2>
-            </div>
-
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_nat">
-                  <CountUp
-                    end={6}
-                    redraw={true}
-                    enableScrollSpy
-                    scrollSpyDelay={600}
-                  />
-                </span>
-              </h1>
-              <h2>Participari la nationala</h2>
-            </div>
-
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_mem">
-                  <CountUp
-                    end={24}
-                    redraw={true}
-                    enableScrollSpy
-                    scrollSpyDelay={600}
-                  />
-                </span>
-              </h1>
-              <h2>Membrii</h2>
-            </div>
-
-            <div className="cifra">
-              <h1>
-                <span> + </span>
-                <span id="cifra_al">
-                  <CountUp
-                    end={37}
-                    redraw={true}
-                    enableScrollSpy
-                    scrollSpyDelay={600}
-                  />
-                </span>
-              </h1>
-              <h2>Alumni</h2>
-            </div>
+      <div className="sponsori">
+        <div className="sponsori-slide">
+          {spon && spon.map((sp) => (
+              <LazyLoadImage
+                key={sp.logo}
+                src={sp.logo}
+                width={300}
+                height={"auto"}
+              />
+            ))}
         </div>
+        <div className="sponsori-slide">
+          {spon && spon.map((sp) => (
+              <LazyLoadImage
+                key={sp.logo}
+                src={sp.logo}
+                width={300}
+                height={"auto"}
+              />
+            ))}
+        </div>
+      </div>
+      <div className = "ptSponsoriLink">
+        <Link to={"/pentruSponsori"} >Vrei sa devii sponsor?</Link>
       </div>
       <div className="despre1" style={{
         background: "url(../../img/thobor_team.png)",
@@ -185,9 +133,6 @@ function Home({ premii }) {
           </svg>
         </div>
         <h1 ref={h1}>Despre</h1>
-        {
-        // <h2 data-aos="zoom-in-up">Despre</h2>
-        }
         <p data-aos="zoom-in-up">
           Echipa de robotică, formată din 15 liceeni ai Colegiului Național
           “Calistrat Hogaș” Tecuci, alături de mentori, îndrăznim să visăm.
@@ -205,45 +150,45 @@ function Home({ premii }) {
           <h1>Mecanica</h1>
         </div>
         <div className="card" data-aos="fade-right" data-aos-delay="200">
+          <LazyLoadImage src={proiectare} alt="main" width={100} height="auto" />
+          <h1>Proiectare</h1>
+        </div>
+        <div className="card" data-aos="fade-right" data-aos-delay="400">
           <LazyLoadImage src={programming} alt="main" width={100} height="auto" />
           <h1>Programare</h1>
         </div>
-        <div className="card" data-aos="fade-right" data-aos-delay="400">
+        <div className="card" data-aos="fade-right" data-aos-delay="600">
           <LazyLoadImage src={marketing} alt="main" width={100} height="auto" />
           <h1>Marketing</h1>
         </div>
-        <div className="card" data-aos="fade-right" data-aos-delay="600">
+        <div className="card" data-aos="fade-right" data-aos-delay="800">
           <LazyLoadImage src={work} width={100} height="auto" alt="main" />
           <h1>Jurnal</h1>
         </div>
       </div>
-      <div className="scrollcnt">
-        <div className="loc_de_premii">
-          <h1>Premii</h1>
-          <div className="coca" />
-          <h2>Since 2017</h2>
-        </div>
+      {
+        <div className="scrollcnt">
+          <div className="loc_de_premii">
+            <h1>Premii</h1>
+            <div className="coca" />
+            <h2>Since 2017</h2>
+          </div>
 
         <ScrollContainer className="scc">
           <div className="poate">
             <div className="space" />
             {
               premii && premii.map((premiu) => (
-                <Card an={premiu.an} text={premiu.text} image={premiu.img} />
+                <Card an={premiu.an} text={premiu.text} image={premiu.img} key={premiu.id}/>
               ))
             }
           </div>
         </ScrollContainer>
-      </div>
-
-      {
-      // <div className="al">
-      //   <Svg />
-      //   <Contact />
-      // </div>
+        </div>
       }
 
       <Up />
+      <BuyUsACoffee />
     </>
   );
 }

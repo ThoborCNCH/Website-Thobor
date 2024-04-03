@@ -1,84 +1,92 @@
 @import "../utils/styles/base";
+@import "./style/stem";
 
-.part {
-  width: 100vw;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: flex-start;
+main {
+  margin-top: 70px;
+  height: calc(100vh - 70px);
   position: relative;
-  height: 800px;
-  flex-wrap: wrap;
-  top: -10px;
+}
 
-  .text,
-  .img {
-    width: 50%;
-    height: 800px;
-  }
-  .img {
-    background: url("../../img/about_team.svg") $black2;
-    background-position: top right;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
+.card-about::-webkit-scrollbar {
+  display: none;
+}
 
-  .text {
-    padding: 30px;
-    background: url("../../img/cevaidksimcer.png") $black2;
-    background-repeat: no-repeat;
-    background-size: cover;
+.card-about {
+  background-color: $main_green;
+  color: white;
+  text-shadow: 1px 1px 2px $black2;
+  border-radius: 1vw;
+  position: absolute;
+  width: calc(50% - 10vw - 1vw);
+  height: calc(50% - 2vw - 7vh);
+  border: 5px solid black;
+  transition: 1s;
+  z-index: 0;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1%;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;  
+
+  img {
+    aspect-ratio: 1;
+    height: 100%;
+    border-radius: 1vw;
+  }
+  .text-content {
+    text-align: justify;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
 
     p {
-      color: white;
-      padding: 0 10px;
-      font-size: 1.4em;
-    }
-    .title {
-      margin: 30px 0 20px 0;
-      position: relative;
-
-      h1 {
-        position: relative;
-        z-index: 3;
-        color: white;
-        font-weight: 800;
-        margin-left: 2vw;
-        // font-size: 2em;
-      }
-
-      .linie {
-        z-index: 2;
-        position: relative;
-        width: 300px;
-        height: 20px;
-        background: $main_green;
-        left: 80px;
-        bottom: 18px;
-      }
+      padding: 2%;
+      margin: 0 3%;
     }
   }
 }
 
-@media screen and (max-width: 850px) {
-  .part {
-    height: auto;
-    flex-direction: column;
-    .text,
-    .img {
-      width: 100vw;
-    }
-    .img {
-      height: 610px;
-      background-size: 84%;
-    }
-    .text {
-      height: auto;
-    }
-  }
+#top-left {
+  left: 10vw;
+  top: 10%;
+  border-top-left-radius: 3vw;
+}
+
+#top-right {
+  top: 10%;
+  right: 10vw;
+  border-top-right-radius: 3vw;
+  flex-direction: row-reverse;
+}
+
+#bottom-left {
+  bottom: 10%;
+  left: 10vw;
+  border-bottom-left-radius: 3vw;
+}
+
+#bottom-right {
+  bottom: 10%;
+  right: 10vw;
+  border-bottom-right-radius: 3vw;
+  flex-direction: row-reverse;
+}
+
+#top-left:hover,
+#top-right:hover,
+#bottom-left:hover,
+#bottom-right:hover 
+{
+  width:  calc(100% - 20vw);
+  height: calc(100% - 14vh - 2vw);
+  z-index: 99;
+  border-radius: 3vw;
 }
 
 .stem {
@@ -116,6 +124,44 @@
   }
 }
 
-@import "./style/stem";
-@import "./style/slider";
-@import "./style/date";
+@media screen and (max-width: 700px) {
+  .stem {
+    display: none;
+  }
+
+  .card-about {
+    justify-content: left;
+    align-items: left;
+    overflow: hidden;
+    height: calc(48% - 2vw - 7vh);
+    img {
+      width: 100%;
+      aspect-ratio: 1;
+      position: sticky;
+      top: 0;
+    }
+
+    .text-content {
+      text-align: center;
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  #top-left,
+  #top-right,
+  #bottom-left,
+  #bottom-right {
+    flex-direction: column;
+  }
+  #top-left:hover,
+  #top-right:hover,
+  #bottom-left:hover,
+  #bottom-right:hover 
+  {
+    height: calc(96% - 14vh - 2vw);
+    overflow: scroll;
+  }
+}
+
+

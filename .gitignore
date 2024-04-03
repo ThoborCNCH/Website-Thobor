@@ -9,10 +9,11 @@
 /coverage
 
 #database untill db-change
-./src/components/utils/Firestore.js
+# ./src/components/utils/Firestore.js
 
 # production
 /build
+.accessToken
 accessToken
 
 # misc

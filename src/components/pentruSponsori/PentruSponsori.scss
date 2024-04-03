@@ -1,0 +1,232 @@
+@import "../utils/styles/base";
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+html, body {
+  overflow-x: hidden;
+}
+body {
+  // position: relative
+}
+// body {
+  //don't ask...
+  // scroll-snap-type: y mandatory;
+  // scroll-snap-points-y: repeat(100vh);
+// }
+
+.content, .formular{
+  color: whitesmoke;
+  font-size: 1.3em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $black2;
+  min-height: 100vh;
+  overflow: hidden;
+
+}
+
+.formular {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5%;
+
+  background-color: $black1;
+
+  padding: 5%;
+
+  section {
+
+    display: flex;
+    flex-direction: column-reverse;
+    text-indent: 10%;
+    max-width: 95vw;
+
+    input {
+      margin-top: 2%;
+
+      border-radius: 15px;
+      text-indent: 10%;
+      font-size: 1.2em;
+      padding: 5px;
+
+    }
+  }
+
+}
+
+section .buttonSeparator {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  padding-top: 2%;
+
+  input {
+    text-indent: 0;
+    margin: 0;
+    &::file-selector-button {
+      border-radius: 15px;
+      background-color: $main_green;
+      border: 1px solid $black2;
+      padding: 5px 10px;
+      transition: all 0.1s;
+    }
+  }
+}
+
+#Camera {
+  display: none;
+}
+
+#camTxt {
+  display: none;
+  text-wrap: nowrap;
+  text-indent: 5%;
+}
+
+#cameraButton {
+  aspect-ratio: 1;
+  width: 60px;
+  background-image: url("../../img/camera.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+}
+
+
+button {
+  width: 40%;
+  transition: all 0.2s;
+  font-size: 1.6em;
+  border-radius: 15px;
+  background-color: $main_green;
+  padding: 3px;
+}
+
+button:hover, section input[type="file"]::file-selector-button:hover {
+  cursor: pointer;
+  background-color: $light_green;
+}
+
+#sd {
+  &-container {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.0s;
+  }
+}
+
+.arrow {
+  transition: opacity 0s;
+  position: relative;
+  width: 42px;
+  height: 16px;
+  opacity: 0;
+
+  &::before,
+  &::after {
+    content: "";
+    width:21px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  &::before {
+    transform: rotate(45deg) translateX(25%)
+  }
+
+  &::after {
+    transform: rotate(-45deg) translateX(-25%)
+  }
+
+  &:nth-child(1) {
+    top: -50px;
+    opacity: 1;
+    animation: arrow2 1s ease 0s infinite;
+  }
+
+  &:nth-child(2) {
+    top: -25px;
+    animation: arrow1 1s ease 0.25s infinite;
+  }
+}
+
+@keyframes arrow1 {
+  from {
+    opacity: 0;
+    top: -25px;
+  }
+
+  to {
+    opacity: 0;
+    top: 0px;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes arrow2 {
+  from {
+    opacity: 0;
+    top: -35px;
+  }
+
+  to {
+    opacity: 0;
+    top: -10px;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .content {
+    align-items: center;
+    align-content: center;
+
+    h2 {
+      text-align: center;
+      padding: 3%;
+    }
+  }
+
+  .formular {
+    display: flex;
+    flex-direction: column;
+
+    section {
+      margin-top: 3%;
+    }
+
+    .buttonSeparator {
+      justify-content: center;
+      // max-width: 80vw;
+    }
+  }
+
+  #sd {
+    &-container {
+      position: fixed;
+      left: 45%;
+    }
+  }
+}

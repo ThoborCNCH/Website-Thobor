@@ -10,21 +10,29 @@
   padding: 0 40px;
 }
 
-.nav-container {
+#nav-container {
   max-width: 100vw;
   margin: 0 auto;
 }
 
 .brand {
   position: absolute;
-  padding-left: 20px;
+  gap: 20px;
+  color: white;
   float: left;
-  line-height: 70px;
   text-transform: uppercase;
-  font-size: 1.4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  a,
-  a:visited {
+  .headers {
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  a, a:visited {
     color: white;
     text-decoration: none;
     display: flex;
@@ -32,12 +40,14 @@
     align-items: center;
     height: 70px;
 
-    img {
-      width: auto;
-      margin: auto;
-      position: relative;
-      height: 50px;
-    }
+  }
+
+  img {
+    height: 70px;
+    padding: 10px;
+    aspect-ratio: 1;
+    margin: auto;
+    position: relative;
   }
 }
 
@@ -48,7 +58,6 @@ nav {
     margin: 0;
     padding: 0;
     li {
-      float: left;
       position: relative;
       a {
         display: block;
@@ -68,8 +77,10 @@ nav {
           bottom: 0px;
         }
 
-        &:hover::before {
-          width: 70%;
+        &:hover{
+          &::before {
+            width: 70%;
+          }
         }
       }
       ul li {
@@ -141,6 +152,7 @@ nav {
   top: 22px;
   cursor: pointer;
   padding: 10px 35px 16px 0px;
+  background-color: transparent;
   span,
   span:before,
   span:after {
@@ -182,6 +194,6 @@ nav {
 
 @media screen and (min-width: 1270px) {
   .nav-list {
-    display: block !important;
+    display: flex !important;
   }
 }

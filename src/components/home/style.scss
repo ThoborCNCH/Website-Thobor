@@ -3,7 +3,7 @@
 
 .home {
   width: 100vw;
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +12,7 @@
 
   .img {
     position: relative;
+    top: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,6 +35,8 @@
   }
 
   .text {
+    position: relative;
+    top: 5vh;
     z-index: 1;
     width: auto;
     min-height: 30px;
@@ -62,110 +65,88 @@
 }
 
 @keyframes roteste {
-from {
-  transform: rotateZ(0);
-}
-to {
-  transform: rotateZ(360deg);
-}
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
 }
 
-.cifre {
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.sponsori {
+  white-space: nowrap;
+  overflow: hidden;
   width: 100vw;
   position: relative;
-  min-height: 400px;
-  display: flex;
-  background: white;
-  justify-content: space-around;
-  align-items: center;
-  padding: 30px;
-  flex-wrap: wrap;
+  height: 400px;
+  background-color: white;
 
-  .custom-shape-divider-bottom-1669758197 {
-    position: absolute;
-    top: -130px;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    z-index: 2;
-    line-height: 0;
-    transform: rotate(180deg);
+  .sponsori-slide {
+    height: 400px;
+    display: inline-flex;
+    align-items: center;
+    animation: 15s slide infinite linear;
 
+    img {
+      height: 200px;
+      width: auto;
+      margin: 0 45px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  .sponsori {
+    height: 200px;
+    .sponsori-slide {
+      height: 200px;
+
+      img {
+        height: 100px;
+        margin: 0;
+      }
+    }
+
+  }
+}
+
+//wtf is this bullshit
+.custom-shape-divider-bottom-1669758197 {
+  position: relative;
+  bottom: 100%;
+  // outline: 1px solid red;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 2;
+  line-height: 0;
+  transform: rotate(180deg);
+
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 137px;
+  }
+
+  @media screen and (max-width: 700px) {
     svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 137px;
-    }
-
-    .shape-fill {
-      fill: #ffffff;
+      height: 70px;
     }
   }
 
-  h3 {
-    font-size: 30px;
-  }
-
-  .tab {
-    // width: 60vw;
-    // position: relative;
-    height: auto;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 1fr;
-    justify-items:center;
-    grid-gap: 3% 0;
-
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    // flex-wrap: wrap;
-    // gap: 1%;
-
-    // .linie {
-    //   // width: 100%;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   margi80 30px;
-    //   padding: 20px 0;
-    //
-    //   &:last-of-type {
-    //     justify-content: flex-end;
-    //   }
-
-    .cifra {
-      // margin: 0 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      // width: max-content;
-      justify-content: center;
-      flex-wrap: wrap;
-      overflow-wrap: break-word;
-
-      h1 {
-        span {
-          font-weight: 400;
-        }
-        color: $main_green;
-        margin-bottom: 15px;
-      }
-
-      h2 {
-        text-align: center;
-        font-weight: 400;
-        font-size: 20px;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-        line-height:100%;
-      }
-    }
-    // }
+  .shape-fill {
+    fill: #ffffff;
   }
 }
 
@@ -195,11 +176,6 @@ to {
       h1 {
         font-size: 50px;
       }
-    }
-  }
-  .cifre .tab .linie {
-    .cifra {
-      margin: 0 10px;
     }
   }
 }
@@ -278,6 +254,10 @@ to {
     display: block;
     width: calc(100% + 1.3px);
     height: 137px;
+
+    @media screen and (max-width: 700px) {
+        height: 70px;
+    }
   }
 
   .custom-shape-divider-bottom-plm .shape-fill {
@@ -560,6 +540,23 @@ to {
   img {
     width: 100vw;
   }
+}
+
+.ptSponsoriLink {
+  background-color: white;
+  text-align: center;
+  color: $black1;
+  text-decoration: underline;
+
+  a:visited, a:link, a:active {
+    color: $black1;
+    font-size: 1.2em;
+  }
+
+  a:hover {
+    color: $main_green;
+  }
+
 }
 
 @media screen and (max-width: 700px) {
