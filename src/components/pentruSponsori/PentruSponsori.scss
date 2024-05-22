@@ -10,14 +10,22 @@
 html, body {
   overflow-x: hidden;
 }
-body {
-  // position: relative
+
+#casetaVerde {
+    background-color: $main_green;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 15px;
+    color: black;
 }
-// body {
-  //don't ask...
-  // scroll-snap-type: y mandatory;
-  // scroll-snap-points-y: repeat(100vh);
-// }
+
+a {
+  color: whitesmoke;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
 .content, .formular{
   color: whitesmoke;
@@ -31,11 +39,23 @@ body {
   background-color: $black2;
   min-height: 100vh;
   overflow: hidden;
+  border-bottom: 2px solid gray;
+
+  h2 {
+    max-width: 70%;
+    text-align: center;
+  }
 
 }
 
+.clarifyButton {
+  margin-top: 1%;
+  width: 35%;
+  padding: 15px;
+}
+
 .formular {
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5%;
 
@@ -61,6 +81,31 @@ body {
     }
   }
 
+}
+
+.formulareOffline {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+
+  justify-items: center;
+  align-items: center;
+
+  grid-row-gap: 15px;
+
+  a {
+    background-color: $main_green;
+    margin: 1%;
+    padding: 3.5%;
+    border-radius: 15px;
+    transition: 0.2s all;
+
+      color: black;
+    &:hover {
+      text-decoration: underline;
+    background-color: lightgreen;
+    }
+  }
 }
 
 section .buttonSeparator {
@@ -203,14 +248,26 @@ button:hover, section input[type="file"]::file-selector-button:hover {
     align-items: center;
     align-content: center;
 
+    font-size: 65%;
+
     h2 {
       text-align: center;
       padding: 3%;
     }
+
+    p {
+      max-width: 80%;
+    }
+
+    .clarifyButton {
+      font-size: 1em;
+      overflow: hidden;
+    }
   }
 
   .formular {
-    display: flex;
+    margin-top: 15%;
+    display: none;
     flex-direction: column;
 
     section {

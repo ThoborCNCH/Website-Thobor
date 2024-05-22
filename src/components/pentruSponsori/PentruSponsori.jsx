@@ -3,6 +3,7 @@ import { useState } from "react";
 import { addDoc, collection} from "firebase/firestore"; 
 import { ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import { Link } from "react-router-dom";
 
 function PentruSponsori( { storage, dataBase } ) {
 
@@ -28,6 +29,7 @@ function PentruSponsori( { storage, dataBase } ) {
   const [etaj, setEtaj] = useState('');
   const [apartament, setApartament] = useState('');
   const [strada, setStrada] = useState('');
+  const [scara, setScara] = useState('');
   const [numar, setNumar] = useState('');
   const [judet, setJudet] = useState('');
   const [localitate, setLocalitate] = useState('');
@@ -42,7 +44,7 @@ function PentruSponsori( { storage, dataBase } ) {
       return;
     }
 
-    if ((!(bloc && etaj && apartament) || !(strada && numar)) && !(judet && localitate && codPostal)) {
+    if ((!(bloc && etaj && apartament && scara) || !(strada && numar)) && !(judet && localitate && codPostal)) {
       alert("A valid address is required");
       return;
     }
@@ -69,6 +71,7 @@ function PentruSponsori( { storage, dataBase } ) {
       etaj: etaj,
       apartament: apartament,
       strada: strada,
+      scara: scara,
       numar: numar,
       judet: judet,
       localitate: localitate,
@@ -91,6 +94,7 @@ function PentruSponsori( { storage, dataBase } ) {
         setEtaj('');
         setApartament('');
         setStrada('');
+        setScara('');
         setNumar('');
         setJudet('');
         setLocalitate('');
@@ -116,17 +120,26 @@ function PentruSponsori( { storage, dataBase } ) {
     document.getElementById("Camera").click();
   }
 
+  const showFormular = () => {
+    if (window.innerWidth >= 700)
+      document.querySelector(".formular").style.display = "grid";
+    else
+      document.querySelector(".formular").style.display = "flex";
+    document.getElementById("firstPage").style.display = "none";
+  }
+
   return(
     <>
       <div id="sd-container">
         <div className="arrow"></div>
         <div className="arrow"></div>
       </div>
-      <div className = "content">
+      <div className = "content" id="firstPage">
         <h2>Redirecționează online 3.5% din impozitul pe venit</h2>
         <h2>Tu completezi iar noi ne ocupăm să depunem formularul la ANAF.</h2>
+        <br/><br/>
+        <button className = "clarifyButton" onClick = {showFormular}>Completeaza formularul online</button>
       </div>
-
       <div className = "formular" id="test">
         <section>
           <input type="text" id="Name" 
@@ -179,6 +192,11 @@ function PentruSponsori( { storage, dataBase } ) {
           <label htmlFor="Strada">Strada</label>
         </section>
         <section>
+          <input type="text" id="Scara" 
+            onChange = {(e) => setScara(e.target.value) } value = {scara}/>
+          <label htmlFor="Scara">Scara</label>
+        </section>
+        <section>
           <input type="text" id="Numar" 
             onChange = {(e) => setNumar(e.target.value) } value = {numar}/>
           <label htmlFor="Numar">Numar</label>
@@ -224,9 +242,37 @@ function PentruSponsori( { storage, dataBase } ) {
           </div>
 
 
-          <label htmlFor="Semnatura">Semnatura</label>
+          <label htmlFor="Semnatura">O poză cu semnătura</label>
         </section>
         <button onClick = { handleSubmit }>Submit</button>
+        <section>
+          <Link to="/privacyPolicy">Privacy Policy</Link>
+          <Link to="/termsAndConditions">Terms and Conditions</Link>
+        </section>
+      </div>
+      <div className = "content">
+        <h2>
+          <b>Care e obiectivul nostru?</b><br/><br/>
+Echipa de robotică Thobor RO068 din Tecuci își propune să promoveze și să dezvolte educația STEAM local, ajutând tinerii să își construiască un viitor promițător. Prin activități educative și un program de voluntariat, elevii își dezvoltă abilități esențiale și explorează cariere potențiale. Participăm activ la campionatul național First Tech Challenge România, aducând Tecuciul în prim-planul roboticii românești.
+
+Vă invităm să contribuiți la aceste eforturi, direcționând 3,5% din impozitul pe venit către echipa noastră. Susținerea dumneavoastră este esențială pentru continuarea și extinderea programelor noastre.</h2>
+        <br/><br/>
+      <h2>
+        <b>De ce să faci asta?</b><br/><br/>
+        Pentru că e GRATUIT, transparent, iar efectele acțiunii tale se vor vedea reușitele echipei. Dacă nu redirecționezi, el va fi alocat din oficiu către Bugetul General Consolidat, iar modul în care banii vor fi cheltuiți nu este cunoscut și nu se află în controlul tău.
+      </h2>
+      </div>
+      <div className="content">
+        <h2 id="casetaVerde"> Completeaza formularul offline </h2>
+        <br/><br/>
+        <div className = "formulareOffline">
+          <h2>Ai venituri din salariu sau asimilate salariilor?</h2>
+          <h2>Ai venituri din alte surse?</h2>
+          <a href="https://firebasestorage.googleapis.com/v0/b/thobor-website.appspot.com/o/230_OPANAF_15_2021.pdf?alt=media&token=82b214fa-fe35-4d60-ac27-d70868541335" >Descarca formularul 230</a>
+          <a href="https://static.anaf.ro/static/10/Anaf/Declaratii_R/declaratie_unica.html" >Descarca declaratia unica</a>
+        </div>
+        <br/><br/> <br/><br/>
+        <p>Dupa ce v-ati completat datele, trimite-le prin poștă sau depune online dacă ai cont ANAF. Îți mulțumim pentru susținere!</p>
       </div>
     </>
   );

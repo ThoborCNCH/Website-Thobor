@@ -99,7 +99,7 @@ function Home({ premii, spon }) {
         </div>
       </div>
       <div className = "ptSponsoriLink">
-        <Link to={"/pentruSponsori"} >Vrei sa devii sponsor?</Link>
+        <Link to={"/pentruSponsori"} >Doneaza-ne 3.5% din impozitul pe venit</Link>
       </div>
       <div className="despre1" style={{
         background: "url(../../img/thobor_team.png)",

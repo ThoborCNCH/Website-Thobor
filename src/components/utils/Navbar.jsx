@@ -56,7 +56,10 @@ function Navbar() {
           </div>
           <ul className="nav-list">
             <li>
-              <Link to="/">Acasa</Link>
+              <Link to="/">Acasă</Link>
+            </li>
+            <li>
+              <Link to={"/pentruSponsori"} >Ajută-ne!</Link>
             </li>
             {
               d.getMonth() === 9 &&
@@ -68,7 +71,7 @@ function Navbar() {
               <Link to="/despre">Despre</Link>
             </li>
             <li>
-              <Link to="/apps">Aplicatii</Link>
+              <Link to="/apps">Aplicații</Link>
             </li>
             <li>
               <a href="https://thobor-blocks-page.netlify.app/" target="_blank" rel="noreferrer"><MagicText text="Blocks! (NEW)" /></a>

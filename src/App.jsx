@@ -9,6 +9,8 @@ import Footer from "./components/utils/Footer";
 import Navbar from "./components/utils/Navbar";
 import Recrutari from "./components/recturari/Recrutari"
 import PentruSponsori from "./components/pentruSponsori/PentruSponsori"
+import PrivacyPolicy from "./components/pentruSponsori/PrivacyPolicy/PrivacyPolicy"
+import TOS from "./components/pentruSponsori/TOS/TOS"
 
 const firestore = new Firestore();
 
@@ -54,6 +56,8 @@ function App() {
         <Route path="/apps" element={<Apps apps={apps} />} />
         <Route path="/download" element={<Apps />} />
         <Route path="/pentruSponsori" element={<PentruSponsori storage={firestore.storage} dataBase = {firestore.getDb()}/>} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy/>} />
+        <Route path="/termsAndConditions" element={<TOS/>} />
         <Route path="*" element={<NotFound />} />
         {
           d.getMonth() === 9 &&

@@ -8,12 +8,11 @@
 # testing
 /coverage
 
-#database untill db-change
-# ./src/components/utils/Firestore.js
-
 # production
 /build
 .accessToken
+.AccessToken
+.accesstoken
 accessToken
 
 # misc
