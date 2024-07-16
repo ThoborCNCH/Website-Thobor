@@ -74,7 +74,7 @@ function Navbar() {
               <Link to="/apps">Aplicații</Link>
             </li>
             <li>
-              <a href="https://thobor-blocks-page.netlify.app/" target="_blank" rel="noreferrer"><MagicText text="Blocks! (NEW)" /></a>
+              <a href="https://thobor-blocks-page.netlify.app/" target="_blank" rel="noreferrer">Blocks</a>
             </li>
           </ul>
         </nav>
