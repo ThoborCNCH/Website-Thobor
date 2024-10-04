@@ -7,7 +7,7 @@ import NotFound from "./components/notfound/NotFound";
 import Firestore from "./components/utils/Firestore";
 import Footer from "./components/utils/Footer";
 import Navbar from "./components/utils/Navbar";
-import Recrutari from "./components/recturari/Recrutari"
+import Recrutari from "./components/recrutari/Recrutari"
 import PentruSponsori from "./components/pentruSponsori/PentruSponsori"
 import PrivacyPolicy from "./components/pentruSponsori/PrivacyPolicy/PrivacyPolicy"
 import TOS from "./components/pentruSponsori/TOS/TOS"
@@ -60,8 +60,8 @@ function App() {
         <Route path="/termsAndConditions" element={<TOS/>} />
         <Route path="*" element={<NotFound />} />
         {
-          d.getMonth() === 9 &&
-            <Route path="/recturari" element={<Recrutari />} />
+          d.getMonth() >= 9 && d.getMonth() <= 10 &&
+            <Route path="/recrutari" element={<Recrutari />} />
         }
       </Routes>
       <Footer/>
