@@ -6,6 +6,7 @@ import thoborLogo from "../../img/img recrutari/Thobor text logo.png"
 import thoborPfp  from "../../img/img recrutari/Thobor Account Icon.png"
 import formularImg from "../../img/img recrutari/formular.png"
 import pdfImg from "../../img/img recrutari/pdf.png"
+import clipImg from"../../img/img recrutari/clip.png"
 
 let isBarToggled = false;
 let textUpdateTimeout;
@@ -136,6 +137,10 @@ function Recturati() {
         <div className="shortcut" >
           <a target="blank"  href="https://ftc-resources.firstinspires.org/file/ftc/game/manual"><LazyLoadImage src={pdfImg} alt="Formular" className="image" /></a>
           <p>Game Manual</p>
+        </div>
+        <div className="shortcut">
+          <a target="blank" href="https://www.youtube.com/watch?v=ewlDPvRK4U4"><LazyLoadImage src={clipImg} alt="Formular" className="image" /></a>
+          <p>Season Presentation</p>
         </div>
         <div className="shortcut">
           <a target="blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf9Mlb7-QzrtmzhgIvl37yzRtUdd0RTMHWubeI1Plk0dUz03w/viewform">
