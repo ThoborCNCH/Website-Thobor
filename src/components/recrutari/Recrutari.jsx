@@ -134,26 +134,14 @@ function Recturati() {
 
       <div id="shortcuts">
         <div className="shortcut" >
-          <a target="blank"  href="https://firstinspiresst01.blob.core.windows.net/first-in-show-ftc/game-manual-part-1-traditional.pdf"><LazyLoadImage src={pdfImg} alt="Formular" className="image" /></a>
-          <p>Game Manual 1</p>
+          <a target="blank"  href="https://ftc-resources.firstinspires.org/file/ftc/game/manual"><LazyLoadImage src={pdfImg} alt="Formular" className="image" /></a>
+          <p>Game Manual</p>
         </div>
         <div className="shortcut">
-          <a target="blank" href="https://firstinspiresst01.blob.core.windows.net/first-in-show-ftc/game-manual-part-1-remote.pdf"><LazyLoadImage src={pdfImg} alt="Formular" className="image" /></a>
-          <p>Game Manual 1 Remote</p>
-        </div>
-        <div className="shortcut">
-          <a target="blank" href="https://docs.google.com/forms/d/1Zc1WewQDLYm5XiTlPbMUK8CvU4Ocb57S5vs5f5RWXd8/prefill">
+          <a target="blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf9Mlb7-QzrtmzhgIvl37yzRtUdd0RTMHWubeI1Plk0dUz03w/viewform">
             <LazyLoadImage src={formularImg} alt="Formular" className="image" />
           </a>
           <p>Formular Inscriere</p>
-        </div>
-        <div className="shortcut">
-          <a  target="blank" href="https://firstinspiresst01.blob.core.windows.net/first-in-show-ftc/game-manual-part-2-traditional.pdf"><LazyLoadImage src={pdfImg} alt="Formular" className="image" /></a>
-          <p>Game Manual 2</p>
-        </div>
-        <div className="shortcut">
-          <a  target="blank" href="https://firstinspiresst01.blob.core.windows.net/first-in-show-ftc/game-manual-part-2-remote.pdf"><LazyLoadImage src={pdfImg} alt="Formular" className="image" /></a>
-          <p>Game Manual 2 Remote</p>
         </div>
       </div>
 
