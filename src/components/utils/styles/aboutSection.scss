@@ -1,0 +1,125 @@
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+#despre {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: auto;
+    column-gap: 10vh;
+    margin: 0;
+    padding: 80px 20px;
+    padding-bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 12px;
+
+    #despreContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .despreImage {
+        width: 100%;
+        max-width: 40%;
+        height: auto;
+        border-radius: 10px;
+    }
+}
+
+.despreBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    background: rgba(171, 171, 171, 0.7);
+    border: groove 1px rgb(106, 106, 106);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    margin: 130px auto;
+    outline: none;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+
+    p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.87);
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+    }
+
+    &::before {
+        content: '';
+        background: linear-gradient(45deg, #00ff08, #148400, #17e200, #61ec2b, #006b14, #00ff22);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    &.glowing::before {
+        opacity: 1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(#0f0f0f, #202020, #353535);
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+        z-index: -1;
+    }
+}
+
+// Responsive text adjustments
+@media (max-width: 1200px) {
+    .despreBox p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .despreBox p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .despreBox p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 900px) {
+    #despre {
+        flex-direction: column;
+
+        .despreImage {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .despreBox p {
+            font-size: 1rem;
+        }
+    }
+}

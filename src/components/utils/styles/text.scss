@@ -1,0 +1,97 @@
+:root{
+    --textShadow: rgba(35, 35, 35, 0.23);
+    --textShadowGreen: rgba(7, 82, 0, 0.143);
+}
+
+.shadowText{
+    text-shadow: 1px 1px 1px var(--textShadow),
+    1px 2px 1px var(--textShadow),
+    1px 3px 1px var(--textShadow),
+    1px 4px 1px var(--textShadow),
+    1px 5px 1px var(--textShadow),
+    1px 6px 1px var(--textShadow),
+    1px 7px 1px var(--textShadow),
+    1px 8px 1px var(--textShadow),
+    1px 9px 1px var(--textShadow),
+    1px 10px 1px var(--textShadow),
+      1px 18px 6px rgba(16,16,16,0.4),
+      1px 22px 10px rgba(16,16,16,0.2),
+      1px 25px 35px rgba(16,16,16,0.2),
+      1px 30px 60px rgba(16,16,16,0.4),
+      0 0 3px #000000, 0 0 8px #ffffff;
+  }
+  
+.textCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: 50vh; 
+    font-size: 6rem;
+    font-family: inherit;
+    font-weight: 800;
+    font-stretch: extra-expanded;
+    margin: auto;
+    margin-bottom: 25vh;
+    color: white; 
+
+        @media (max-width: 1200px) {
+                font-size: 4rem; 
+        }
+
+        @media (max-width: 900px) {
+                font-size: 3rem; 
+
+        }
+        @media (max-width: 600px) {
+                font-size: 2rem; 
+        }
+
+}
+
+.despreTitlu {
+    font-stretch: extra-expanded;
+    font-family: inherit;
+    font-size: 70px;
+    font-weight: 800;
+    color: inherit;
+    text-align: center;
+    padding-bottom: 30px;
+    align-self: center;
+    margin-right: 20px;
+
+    @media (max-width: 1200px) {
+        font-size: 4rem; 
+    }
+    
+    @media (max-width: 992px) {
+        font-size: 3rem;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 2.5rem; 
+    }
+}
+
+#despreText {
+    font-family: inherit;
+    font-stretch: semi-expanded;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.87);
+    text-align: center;
+    margin: 0;
+    line-height: 1.6;
+    padding: 20px;
+
+    @media (max-width: 1200px) {
+        font-size: 1.3rem; 
+    }
+    
+    @media (max-width: 992px) {
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1rem; 
+    }
+}
