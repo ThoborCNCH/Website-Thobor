@@ -12,7 +12,8 @@ body {
     font-weight: 400;
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-image: radial-gradient(#218d17, #000000);
+    background: radial-gradient(#218d17, #000000);
+    background-repeat: repeat;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     position: relative;
@@ -78,9 +79,16 @@ body {
 }
 
 .dividerIntro {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+
+  img {
+      width: 100vw;
+      height: auto;
+  }
+  
 }
 
 .dividerIntro svg {
@@ -99,7 +107,8 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(#218d17, #000000);
+    background: radial-gradient(#3d3d3d,#000000);
+    background-repeat: repeat;
     z-index: -3;
     overflow: hidden;
   }
@@ -294,14 +303,15 @@ body {
     transform-origin: -16vw 12vh;
     box-shadow: 40vmin 0 6.6034778874vmin currentColor;
   }
-#backgroundCanvas,
-.canvasContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 1;
+
+  .canvasContainer {
+    width: 100vw; /* Full width of the viewport */
+    height: 80vh; /* 80% of the viewport height, can adjust based on needs */
+    max-width: 100vw; /* Ensures it doesn't exceed the viewport width */
+    max-height: 100vh; /* Ensures it doesn't exceed the viewport height */
+    margin-top: calc(10vh); /* Adjust top margin dynamically based on viewport */
+    margin-bottom: calc(-5vh); /* Adjust bottom margin dynamically */
+    margin-left: auto;
+    margin-right: auto;
+    z-index: -1;
 }

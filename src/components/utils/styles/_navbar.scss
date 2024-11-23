@@ -1,3 +1,5 @@
+@import './variabiles';
+
 .navigation {
   user-select: none;
   z-index: 9999;
@@ -6,13 +8,57 @@
   top: 0;
   left: 0;
   width: 100vw;
-  background: $black2;
-  padding: 0 40px;
+  background: rgba(40, 40, 40, 0.5);
+  border-radius: 12px;
+  border-style: groove;
+  border-color: black;
+  box-shadow: 0 1px 15px rgb(0, 0, 0);
+  backdrop-filter: blur(15px);
+  margin: 10px auto;
 }
 
 #nav-container {
   max-width: 100vw;
   margin: 0 auto;
+}
+
+.headerButton {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ccc;
+  padding: 15px 20px;
+  border: 1px solid rgba(61, 61, 61, 0.492);
+  border-radius: 12px;
+  position: relative;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.headerButton::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid rgba(71, 71, 71, 0.69);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.headerButton:hover {
+  text-decoration: none;
+  font-weight: bolder;
+  border: 1px solid rgba(71, 71, 71, 0.774);
+  text-shadow: 0 0 10px #00ff44;
+  transform: scale(1.1) translateY(-2px);
 }
 
 .brand {
@@ -55,33 +101,20 @@ nav {
   float: right;
   ul {
     list-style: none;
-    margin: 0;
+    margin: 10px;
     padding: 0;
+    gap:10px;
     li {
       position: relative;
       a {
         display: block;
         padding: 10px 20px 0 20px;
         line-height: 50px;
-        background: $black2;
+        background: none;
         color: white;
         text-decoration: none;
 
-        &::before {
-          transition: 300ms;
-          height: 5px;
-          content: "";
-          position: absolute;
-          background-color: $main_green;
-          width: 0%;
-          bottom: 0px;
-        }
-
-        &:hover{
-          &::before {
-            width: 70%;
-          }
-        }
+      
       }
       ul li {
         min-width: 190px;
@@ -106,7 +139,7 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  background: $black2;
+  background: none;
   height: 70px;
   width: 70px;
 }

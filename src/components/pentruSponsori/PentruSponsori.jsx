@@ -135,8 +135,8 @@ function PentruSponsori( { storage, dataBase } ) {
         <div className="arrow"></div>
       </div>
       <div className = "content" id="firstPage">
-        <h2>Redirecționează online 3.5% din impozitul pe venit</h2>
-        <h2>Tu completezi iar noi ne ocupăm să depunem formularul la ANAF.</h2>
+        <h2 class = "shadowText">Redirecționează online 3.5% din impozitul pe venit</h2>
+        <h2 class = "shadowText">Tu completezi iar noi ne ocupăm să depunem formularul la ANAF.</h2>
         <br/><br/>
         <button className = "clarifyButton" onClick = {showFormular}>Completeaza formularul online</button>
       </div>
@@ -252,13 +252,13 @@ function PentruSponsori( { storage, dataBase } ) {
       </div>
       <div className = "content">
         <h2>
-          <b>Care e obiectivul nostru?</b><br/><br/>
+          <b class = "shadowText">Care e obiectivul nostru?</b><br/><br/>
 Echipa de robotică Thobor RO068 din Tecuci își propune să promoveze și să dezvolte educația STEAM local, ajutând tinerii să își construiască un viitor promițător. Prin activități educative și un program de voluntariat, elevii își dezvoltă abilități esențiale și explorează cariere potențiale. Participăm activ la campionatul național First Tech Challenge România, aducând Tecuciul în prim-planul roboticii românești.
 
 Vă invităm să contribuiți la aceste eforturi, direcționând 3,5% din impozitul pe venit către echipa noastră. Susținerea dumneavoastră este esențială pentru continuarea și extinderea programelor noastre.</h2>
         <br/><br/>
       <h2>
-        <b>De ce să faci asta?</b><br/><br/>
+        <b class = "shadowText">De ce să faci asta?</b><br/><br/>
         Pentru că e GRATUIT, transparent, iar efectele acțiunii tale se vor vedea reușitele echipei. Dacă nu redirecționezi, el va fi alocat din oficiu către Bugetul General Consolidat, iar modul în care banii vor fi cheltuiți nu este cunoscut și nu se află în controlul tău.
       </h2>
       </div>
@@ -266,8 +266,8 @@ Vă invităm să contribuiți la aceste eforturi, direcționând 3,5% din impozi
         <h2 id="casetaVerde"> Completeaza formularul offline </h2>
         <br/><br/>
         <div className = "formulareOffline">
-          <h2>Ai venituri din salariu sau asimilate salariilor?</h2>
-          <h2>Ai venituri din alte surse?</h2>
+          <h2 class = "shadowText">Ai venituri din salariu sau asimilate salariilor?</h2>
+          <h2 class = "shadowText">Ai venituri din alte surse?</h2>
           <a href="https://firebasestorage.googleapis.com/v0/b/thobor-website.appspot.com/o/230_OPANAF_15_2021.pdf?alt=media&token=82b214fa-fe35-4d60-ac27-d70868541335" >Descarca formularul 230</a>
           <a href="https://static.anaf.ro/static/10/Anaf/Declaratii_R/declaratie_unica.html" >Descarca declaratia unica</a>
         </div>

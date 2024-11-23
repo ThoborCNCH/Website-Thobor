@@ -6,6 +6,8 @@
   
   .timeline {
     display: grid;
+    justify-content: 'center';
+    align-items: 'center';
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     padding: 50px;
@@ -39,7 +41,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(#4b4b4b, #1a1a1a);
+      background: radial-gradient(#44ad3c, #1a1a1a);
       color: #ffffff;
       font-size: 3em;
       font-weight: bold;
@@ -56,7 +58,9 @@
     border-radius: 12px;
     padding: 30px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: groove 1px rgb(106, 106, 106);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   
     &:hover {

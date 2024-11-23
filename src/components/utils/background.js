@@ -12,6 +12,7 @@ const Background = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate the background div with ScrollTrigger
+      /*
       gsap.to(backgroundRef.current, {
         backgroundImage: "radial-gradient(#313131, #000000)",
         color: "#f1f1f1",
@@ -22,8 +23,10 @@ const Background = () => {
           toggleActions: "play none none reverse",
         },
       });
+      */
 
       // Animate spans with individual ScrollTriggers
+      
       spansRef.current.forEach((span, index) => {
         const duration = 2 + Math.random() * 2;
         const randomStartY = `${Math.floor(Math.random() * 100 + 50)}vh`;
@@ -62,9 +65,7 @@ const Background = () => {
 
   return (
     <div className="background" ref={backgroundRef}>
-      {[...Array(32)].map((_, i) => (
-        <span key={i} ref={(el) => (spansRef.current[i] = el)}></span>
-      ))}
+     
     </div>
   );
 };

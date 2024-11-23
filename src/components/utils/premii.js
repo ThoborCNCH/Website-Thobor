@@ -85,7 +85,7 @@ const AwardsSection = () => {
   }, []);
 
   return (
-    <div id="despre" style={{ flexDirection: "column", paddingTop: "20vh" }}>
+    <div>
       <div id="despreContent">
         <h2 className="shadowText despreTitlu" id="premiiText">Premii</h2>
       </div>

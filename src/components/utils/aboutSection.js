@@ -2,6 +2,7 @@ import teamPhoto from '../../images/teamPhoto.png';
 import './styles/aboutSection.scss';
 
 import React, { useEffect, useRef } from 'react';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { gsap } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,6 +10,15 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Application } from '@splinetool/runtime';
 import Spline from '@splinetool/react-spline';
 
+import greenLight from '../../images/greenLight.png';
+import star1 from '../../images/star1.png';
+import star2 from '../../images/star2.png';
+import star3 from '../../images/star3.png';
+import star4 from '../../images/star4.png';
+import star5 from '../../images/star5.png';
+import handRobot from '../../images/handRobot.png';
+import arrowTitle from '../../images/arrowTitle.png';
+import titleChoice from '../../images/titleChoice.png';
 
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin);
 
@@ -41,6 +51,49 @@ const AboutSection = () => {
 
     return (
         <div>
+            <div className="overlay-container">
+                {/* Example: Individual elements */}
+                <LazyLoadImage 
+                    src={greenLight} 
+                    className="element greenLight" 
+                />
+                <LazyLoadImage 
+                    src={star1} 
+                    alt="Star 1" 
+                    className="element star1" 
+                />
+                <LazyLoadImage 
+                    src={star2}  
+                    alt="Star 2" 
+                    className="element star2" 
+                />
+                <LazyLoadImage 
+                    src={star3} 
+                    alt="Shape 1" 
+                    className="element star3" 
+                />
+                <LazyLoadImage 
+                    src={star4} 
+                    alt="Shape 1" 
+                    className="element star4" 
+                />
+                <LazyLoadImage 
+                    src={handRobot} 
+                    alt="Shape 1" 
+                    className="element handRobot" 
+                />
+                <LazyLoadImage 
+                    src={star5} 
+                    alt="Shape 1" 
+                    className="element star5" 
+                />
+                <LazyLoadImage 
+                    src={arrowTitle} 
+                    alt="Shape 1" 
+                    className="element arrowTitle" 
+                />
+                {/* Add more elements as needed */}
+            </div>
             {/* About Us Section */}
             <section id="despre" style={{ flexDirection: 'column' }}>
                 <div id="despreContent">
@@ -54,6 +107,7 @@ const AboutSection = () => {
                     </div>
                 </div>
                 <img src={teamPhoto} alt="Poza de echipa" className="despreImage" />
+                
             </section>
 
             {/* Team History Section */}
@@ -69,11 +123,23 @@ const AboutSection = () => {
                     </div>
                 </div>
                 {/*<canvas ref={canvasRef} id="canvasIstorie" data-engine="three.js r149"></canvas>*/}
-                <Spline scene="https://prod.spline.design/jsF2bgeBbOMYPiYi/scene.splinecode" />
+                <Spline 
+                    scene="https://prod.spline.design/jsF2bgeBbOMYPiYi/scene.splinecode"
+                    className="canvas-istorie "
+                />
             </section>
 
             {/* Why THOBOR Section */}
-            <section id="despre" style={{ flexDirection: 'column' }}>
+            <section 
+            id="despre" 
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+                textAlign: 'center',
+            }}>
                 <div id="despreContent">
                     <h1 className="shadowText despreTitlu" style={{ textAlign: 'center', marginRight: '0' }}>
                         De ce <br /> THOBOR?
@@ -84,6 +150,12 @@ const AboutSection = () => {
                         </p>
                     </div>
                 </div>
+                <LazyLoadImage 
+                    src={titleChoice} 
+                    alt="Shape 1" 
+                    className="titleChoice" 
+                    style={{pointerEvents:'none'}}
+                />
             </section>
         </div>
     );

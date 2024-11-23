@@ -76,22 +76,25 @@
 #despreText {
     font-family: inherit;
     font-stretch: semi-expanded;
-    font-size: 1.2em;
+    font-size: 1em;
     color: rgba(255, 255, 255, 0.87);
     text-align: center;
     margin: 0;
-    line-height: 1.6;
-    padding: 20px;
+    line-height: 1.5;
+    padding: 10px;
+    white-space: normal;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 
     @media (max-width: 1200px) {
-        font-size: 1.3rem; 
+        font-size: 1rem; 
     }
     
     @media (max-width: 992px) {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 
     @media (max-width: 768px) {
-        font-size: 1rem; 
+        font-size: 0.8rem; 
     }
 }

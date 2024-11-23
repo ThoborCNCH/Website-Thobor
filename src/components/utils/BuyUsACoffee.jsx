@@ -1,6 +1,6 @@
 import React from "react";
-import BuyMeACoffee from "../../img/buymeacoffee.svg"
-import HelpUsOut from "../../img/helpUs.svg"
+import BuyMeACoffee from "../../images/buymeacoffee.svg"
+import HelpUsOut from "../../images/helpUs.svg"
 
 const close = () => {
   document.querySelector(".buy-us-a-coffee").style.display = 'none';
