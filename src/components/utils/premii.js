@@ -5,8 +5,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import "./styles/premii.scss";
 import awardsData from "../../premiiData"; 
+import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
 const AwardsSection = () => {
   const [hoverStyles, setHoverStyles] = useState({});
@@ -74,15 +75,11 @@ const AwardsSection = () => {
     });
   };
 
-  useEffect(() => {
-    window.onload = () => {
+  useGSAP(() => {
       initializeAnimations();
-    };
 
-    return () => {
-      window.onload = null; // Cleanup when the component unmounts
-    };
-  }, []);
+  }
+)
 
   return (
     <div>

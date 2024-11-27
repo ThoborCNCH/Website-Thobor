@@ -20,8 +20,50 @@ import thoborProgramare1 from '../../images/thoborProgramare1.png';
 import thoborProgramare2 from '../../images/thoborProgramare2.png';
 import thoborProgramare3 from '../../images/thoborProgramare3.png';
 import thoborProgramare4 from '../../images/thoborProgramare4.png';
+import { gsap } from 'gsap';
+import { CSSPlugin } from 'gsap/CSSPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
 const DepartmentsList = ({ departments }) => {
+    useGSAP(() => {
+
+        gsap.utils.toArray(".element").forEach((element) => {
+        const rect = element.getBoundingClientRect(); 
+        const isOnLeft = rect.x < window.innerWidth / 2; 
+
+        gsap.from(element, {
+            x: isOnLeft ? -100 : 100, 
+            rotation: 25,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+            trigger: element,
+            start: "top 90%",
+            scrub: true,
+            },
+        });
+        });
+      
+        // Animate .despreBox
+        gsap.utils.toArray(".departmentBox").forEach((element) => {
+          gsap.from(element, {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 90%",
+              scrub: true,
+            },
+          });
+        });
+      });
   return (
     <>
      <div className="overlay-container-department">

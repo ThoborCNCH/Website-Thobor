@@ -19,36 +19,70 @@ import star5 from '../../images/star5.png';
 import handRobot from '../../images/handRobot.png';
 import arrowTitle from '../../images/arrowTitle.png';
 import titleChoice from '../../images/titleChoice.png';
+import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
 
 const AboutSection = () => {
-    {/*
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const app = new Application(canvas);
-
-        // Load the first scene
-        app.load('https://prod.spline.design/jsF2bgeBbOMYPiYi/scene.splinecode').then(() => {
-        const obj = app.findObjectByName('Cuerpo');
-        if (obj) {
-            gsap.set(obj.position, { x: -600, y: -800, z: 0 });
-            gsap.set(obj.scale, { x: 1.5, y: 1.5, z: 1.5 });
-
-            gsap.to(canvas, { opacity: 1, duration: 1, delay: 2, ease: 'power2.out' });
+    useGSAP(
+        () => {
+                gsap.utils.toArray(".element").forEach((element) => {
+                    gsap.from(element, {
+                        y: 100, 
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 90%",
+                            scrub: true,
+                        },
+                    });
+                });
+        
+                gsap.utils.toArray(".despreTitlu").forEach((title) => {
+                    gsap.from(title, {
+                        x: -100,
+                        rotate: 15,
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: title,
+                            start: "top 90%",
+                            scrub: true,
+                        },
+                    });
+                });
+        
+                gsap.utils.toArray(".despreBox").forEach((box) => {
+                    gsap.from(box, {
+                        y: 50,
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: box,
+                            start: "top 90%",
+                            scrub: true,
+                        },
+                    });
+                });
+        
+                gsap.from(".canvas-istorie", {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".canvas-istorie",
+                        start: "top 80%",
+                        scrub: true,
+                    },
+                });
         }
-        });
-
-        // Cleanup function
-        return () => {
-        app.dispose(); // Clean up the app instance
-        };
-    }, []);
-    */}
-
+    );
     return (
         <div>
             <div className="overlay-container">
@@ -124,9 +158,12 @@ const AboutSection = () => {
                 </div>
                 {/*<canvas ref={canvasRef} id="canvasIstorie" data-engine="three.js r149"></canvas>*/}
                 <Spline 
-                    scene="https://prod.spline.design/jsF2bgeBbOMYPiYi/scene.splinecode"
-                    className="canvas-istorie "
-                />
+                scene="https://prod.spline.design/jsF2bgeBbOMYPiYi/scene.splinecode"
+                className="canvas-istorie "
+                >
+                   
+
+                </Spline>
             </section>
 
             {/* Why THOBOR Section */}

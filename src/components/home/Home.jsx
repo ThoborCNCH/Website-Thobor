@@ -24,17 +24,8 @@ function Home() {
     >
       <TextIntro customStyle={{ }}/>
       <Spline 
+        className = "canvasContainer"
         scene="https://prod.spline.design/7WrLJQCGAUSYehDT/scene.splinecode" 
-        style={{
-          width: '100vh',
-          height: '100vh', // Set a fixed height for canvas
-          maxHeight: '100vh',
-          marginBottom: '-50vh',
-          marginTop: '-60vh',
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          zIndex: -1,
-        }} 
       />
       <Divider/>
       <AboutSection/>

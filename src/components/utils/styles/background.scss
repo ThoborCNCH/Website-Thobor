@@ -20,25 +20,28 @@ body {
     overflow-x: hidden;
     user-select: none;
 
-    display: flex;
+    display: block;
     flex-direction: column;
     margin: 0;
+    scrollbar-width: thin;
   }
-  ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: transparent; /* Transparent background for scrollbar track */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(100, 100, 100, 0.5); /* Slightly visible scrollbar thumb */
-    border-radius: 6px; /* Rounded corners for the thumb */
+
+  body {
+    background-color: #282c34;
+    color: #ffffff;
+    scrollbar-color: #282c34 #282c34;
   }
   
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(100, 100, 100, 0.7); /* Darker on hover */
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #282c34;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: #f2f2f2;
   }
 
   #backgroundCanvas,
@@ -123,195 +126,42 @@ body {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
-  .background span:nth-child(1) {
-    color: #48b5208a;
-    top: 2%;
-    left: 38%;
-    animation-duration: 10.7s;
-    animation-delay: -0.3s;
-    transform-origin: 18vw 20vh;
-    box-shadow: 40vmin 0 8.0890184333vmin currentColor;
-  }
-  .background span:nth-child(2) {
-    color: #5ae468;
-    top: 37%;
-    left: 8%;
-    animation-duration: 11.1s;
-    animation-delay: -9.1s;
-    transform-origin: -21vw -19vh;
-    box-shadow: 40vmin 0 10.8833737617vmin currentColor;
-  }
-  .background span:nth-child(3) {
-    color: #22cb30;
-    top: 69%;
-    left: 98%;
-    animation-duration: 12.6s;
-    animation-delay: -7.7s;
-    transform-origin: -6vw 9vh;
-    box-shadow: -40vmin 0 7.4904367819vmin currentColor;
-  }
-  .background span:nth-child(4) {
-    color: #1ab124;
-    top: 83%;
-    left: 26%;
-    animation-duration: 15.6s;
-    animation-delay: -4s;
-    transform-origin: 17vw 13vh;
-    box-shadow: 40vmin 0 14.3859885989vmin currentColor;
-  }
-  .background span:nth-child(5) {
-    color: #1f9d0f;
-    top: 82%;
-    left: 84%;
-    animation-duration: 10.3s;
-    animation-delay: -4.6s;
-    transform-origin: 5vw -5vh;
-    box-shadow: 40vmin 0 13.3871843069vmin currentColor;
-  }
-  .background span:nth-child(6) {
-    color: #31da22;
-    top: 68%;
-    left: 47%;
-    animation-duration: 12.7s;
-    animation-delay: -13.5s;
-    transform-origin: -9vw -1vh;
-    box-shadow: 40vmin 0 9.0286855256vmin currentColor;
-  }
-  .background span:nth-child(7) {
-    color: #7ad82e;
-    top: 42%;
-    left: 9%;
-    animation-duration: 14.4s;
-    animation-delay: -13.1s;
-    transform-origin: -17vw -3vh;
-    box-shadow: -40vmin 0 6.3449304307vmin currentColor;
-  }
-  .background span:nth-child(8) {
-    color: #5ad020;
-    top: 87%;
-    left: 66%;
-    animation-duration: 12.5s;
-    animation-delay: -11.5s;
-    transform-origin: -16vw -16vh;
-    box-shadow: -40vmin 0 14.4139551682vmin currentColor;
-  }
-  .background span:nth-child(9) {
-    color: #3ae64e;
-    top: 66%;
-    left: 81%;
-    animation-duration: 15.5s;
-    animation-delay: -10s;
-    transform-origin: 2vw 6vh;
-    box-shadow: -40vmin 0 10.3298850344vmin currentColor;
-  }
-  .background span:nth-child(10) {
-    color: #44c200;
-    top: 3%;
-    left: 17%;
-    animation-duration: 10.2s;
-    animation-delay: -15.5s;
-    transform-origin: -14vw -14vh;
-    box-shadow: -40vmin 0 11.5618141209vmin currentColor;
-  }
-  .background span:nth-child(11) {
-    color: #70e71b;
-    top: 6%;
-    left: 91%;
-    animation-duration: 11.8s;
-    animation-delay: -1.2s;
-    transform-origin: -11vw 3vh;
-    box-shadow: -40vmin 0 5.5190536659vmin currentColor;
-  }
-  .background span:nth-child(12) {
-    color: #7bdb27;
-    top: 37%;
-    left: 27%;
-    animation-duration: 12.6s;
-    animation-delay: -12.2s;
-    transform-origin: -21vw -23vh;
-    box-shadow: 40vmin 0 10.4240626868vmin currentColor;
-  }
-  .background span:nth-child(13) {
-    color: #7ae45a;
-    top: 93%;
-    left: 16%;
-    animation-duration: 13.7s;
-    animation-delay: -9.6s;
-    transform-origin: -6vw -5vh;
-    box-shadow: 40vmin 0 13.3623239498vmin currentColor;
-  }
-  .background span:nth-child(14) {
-    color: #3de853;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
-  .background span:nth-child(15) {
-    color: #3de853;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
-  .background span:nth-child(16) {
-    color: #3de85468;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
-  .background span:nth-child(17) {
-    color: #3de85486;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
-  .background span:nth-child(18) {
-    color: #3de853;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
-  .background span:nth-child(19) {
-    color: #3de853;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
-  .background span:nth-child(20) {
-    color: #3de85488;
-    top: 27%;
-    left: 55%;
-    animation-duration: 11.6s;
-    animation-delay: -14.2s;
-    transform-origin: -16vw 12vh;
-    box-shadow: 40vmin 0 6.6034778874vmin currentColor;
-  }
 
   .canvasContainer {
-    width: 100vw; /* Full width of the viewport */
-    height: 80vh; /* 80% of the viewport height, can adjust based on needs */
-    max-width: 100vw; /* Ensures it doesn't exceed the viewport width */
-    max-height: 100vh; /* Ensures it doesn't exceed the viewport height */
-    margin-top: calc(10vh); /* Adjust top margin dynamically based on viewport */
-    margin-bottom: calc(-5vh); /* Adjust bottom margin dynamically */
+    width: 100vw !important; 
+    height: 100vh !important; /* Relative height */
+    max-width: 100vw !important; /* Prevent overflow */
+    max-height: 100vh !important; /* Cap height at viewport height */
+    margin-top: 10vh !important; /* Responsive margin */
+    margin-bottom: -5vh !important; /* Adjust based on screen height */
     margin-left: auto;
     margin-right: auto;
     z-index: -1;
+
+    @media (max-width: 480px) {
+        height: 50vh !important; /* Slightly smaller for smaller screens */
+        margin-top: 5vh !important;
+        margin-bottom: -2vh;
+    }
+    
+    /* Small Devices (tablets in portrait) */
+    @media (max-width: 768px) and (min-width: 481px) {
+        height: 75vh !important;
+        margin-top: 8vh;
+        margin-bottom: -3vh;
+    }
+    
+    /* Medium Devices (tablets in landscape) */
+    @media (max-width: 1024px) and (min-width: 769px) {
+        height: 80vh !important;
+        margin-top: 9vh;
+        margin-bottom: -4vh;
+    }
+    
+    /* Large Devices (desktops and larger screens) */
+    @media (min-width: 1025px) {
+        height: 100vh !important; /* Keep original height */
+        margin-top: 10vh;
+        margin-bottom: -5vh;
+    }
 }

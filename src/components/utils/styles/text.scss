@@ -25,40 +25,52 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
-    height: 50vh; 
-    font-size: 6rem;
+    align-items: center;
+    height: 40vh;
+    font-size: 6vw; 
     font-family: inherit;
     font-weight: 800;
     font-stretch: extra-expanded;
     margin: auto;
     margin-bottom: 25vh;
-    color: white; 
+    color: white;
+    text-align: center;
 
-        @media (max-width: 1200px) {
-                font-size: 4rem; 
-        }
-
-        @media (max-width: 900px) {
-                font-size: 3rem; 
-
-        }
-        @media (max-width: 600px) {
-                font-size: 2rem; 
-        }
-
+    @media (max-width: 480px) {
+        font-size: 8vw; /* Slightly larger for better readability on smaller screens */
+        margin-bottom: 20vh;
+    }
+    
+    /* Small Devices (tablets in portrait) */
+    @media (max-width: 768px) and (min-width: 481px) {
+        font-size: 7vw; /* Adjust font size proportionally */
+        margin-bottom: 22vh;
+    }
+    
+    /* Medium Devices (tablets in landscape) */
+    @media (max-width: 1024px) and (min-width: 769px) {
+        font-size: 6.5vw;
+        margin-bottom: 24vh;
+    }
+    
+    /* Large Devices (desktops and larger screens) */
+    @media (min-width: 1025px) {
+        font-size: 6vw;
+        margin-bottom: 25vh; /* Use original settings for larger screens */
+    }
 }
 
+
 .despreTitlu {
-    font-stretch: extra-expanded;
-    font-family: inherit;
-    font-size: 70px;
-    font-weight: 800;
-    color: inherit;
-    text-align: center;
-    padding-bottom: 30px;
-    align-self: center;
-    margin-right: 20px;
+  font-stretch: extra-expanded;
+  font-family: inherit;
+  font-size: 4vw; /* Responsive font size */
+  font-weight: 800;
+  color: inherit;
+  text-align: center;
+  padding-bottom: 3vh; /* Relative to viewport height */
+  align-self: center;
+  margin-right: 2vw; /* Adjusted to scale with screen width */
 
     @media (max-width: 1200px) {
         font-size: 4rem; 

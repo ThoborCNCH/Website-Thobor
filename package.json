@@ -5,6 +5,7 @@
   "dependencies": {
     "@coreui/coreui": "^4.2.6",
     "@emailjs/browser": "^3.11.0",
+    "@gsap/react": "^2.1.1",
     "@monaco-editor/react": "^4.5.1",
     "@react-spring/three": "^9.6.1",
     "@react-three/cannon": "^6.5.0",

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import Firestore from "./components/utils/Firestore";
 import Navbar from './components/utils/navbarNew';
 import Footer from './components/utils/Footer';
 import Home from './components/home/Home';
@@ -12,6 +13,8 @@ import TOS from './components/pentruSponsori/TOS/TOS';
 import PrivacyPolicy from './components/pentruSponsori/PrivacyPolicy/PrivacyPolicy';
 import NotFound from './components/notfound/NotFound';
 import { AnimatePresence } from "framer-motion";
+
+const firestore = new Firestore();
 
 function App() {
   return (
@@ -27,6 +30,37 @@ function App() {
 function MainRoutes() {
   const location = useLocation();
 
+    const [spon, setSpon] = useState([]);
+    const getSpon = useMemo(() => async () => {
+      await firestore.readDocuments("sponsori").then((res) => {
+        setSpon(res);
+      }).catch(er=>{
+        console.log(er);
+      });
+    }, [setSpon]);
+    const [premii, setPremii] = useState([]);
+    const getPremii = useMemo(() => async () => {
+      await firestore.sortdata("premii", "an", "desc").then((res) => {
+        setPremii(res);
+      });
+    }, [setPremii]);
+
+    const [apps, setApps] = useState([]);
+    const getApps = useMemo(() => async () => {
+      await firestore.readDocuments("aplicatii").then((res) => {
+        setApps(res);
+      }).catch(er => {
+        console.log(er);
+      })
+    }, [setApps]);
+
+    useEffect(() => {
+      getApps();
+      getSpon();
+      getPremii();
+    }, [getApps, getSpon, getPremii]);
+
+
   return (
     <AnimatePresence mode="wait">
       <Routes>
@@ -34,7 +68,7 @@ function MainRoutes() {
         <Route path="/termsAndConditions" element={<TOS key={location.pathname} />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy key={location.pathname} />} />
         <Route path="/pentruSponsori" element={<PentruSponsori key={location.pathname} />} />
-        <Route path="/apps" element={<Apps key={location.pathname} />} />
+        <Route path="/apps" element={<Apps key={location.pathname} apps={apps} />} />
         <Route path="/departamente" element={<Departamente key={location.pathname} />} />
         <Route path="/roboti"/>
         <Route path="*" element={<NotFound />} />

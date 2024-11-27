@@ -5,6 +5,15 @@ import { ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { Link } from "react-router-dom";
 
+import { motion } from "framer-motion";
+
+const pageVariants = {
+  initial: {  opacity: 0 },
+  animate: {  opacity: 1 },
+  exit: { opacity: 0 },
+};
+
+
 function PentruSponsori( { storage, dataBase } ) {
 
   window.addEventListener(
@@ -129,7 +138,14 @@ function PentruSponsori( { storage, dataBase } ) {
   }
 
   return(
-    <>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+      transition={{ duration: 2 }}
+      style={{ padding: "0px", textAlign: "center" }}
+    >
       <div id="sd-container">
         <div className="arrow"></div>
         <div className="arrow"></div>
@@ -138,7 +154,7 @@ function PentruSponsori( { storage, dataBase } ) {
         <h2 class = "shadowText">Redirecționează online 3.5% din impozitul pe venit</h2>
         <h2 class = "shadowText">Tu completezi iar noi ne ocupăm să depunem formularul la ANAF.</h2>
         <br/><br/>
-        <button className = "clarifyButton" onClick = {showFormular}>Completeaza formularul online</button>
+        <button className = "clarifyButton shadowText" onClick = {showFormular}>Completeaza formularul online</button>
       </div>
       <div className = "formular" id="test">
         <section>
@@ -263,7 +279,7 @@ Vă invităm să contribuiți la aceste eforturi, direcționând 3,5% din impozi
       </h2>
       </div>
       <div className="content">
-        <h2 id="casetaVerde"> Completeaza formularul offline </h2>
+        <h2 id="casetaVerde" class = "shadowText"> Completeaza formularul offline </h2>
         <br/><br/>
         <div className = "formulareOffline">
           <h2 class = "shadowText">Ai venituri din salariu sau asimilate salariilor?</h2>
@@ -274,7 +290,7 @@ Vă invităm să contribuiți la aceste eforturi, direcționând 3,5% din impozi
         <br/><br/> <br/><br/>
         <p>Dupa ce v-ati completat datele, trimite-le prin poștă sau depune online dacă ai cont ANAF. Îți mulțumim pentru susținere!</p>
       </div>
-    </>
+    </motion.div>
   );
 
 }

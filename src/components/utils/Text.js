@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger, CSSPlugin, ScrollToPlugin } from 'gsap/all';
 import './styles/text.scss';
+import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(ScrollTrigger, CSSPlugin, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, CSSPlugin, ScrollToPlugin, useGSAP);
 
 const TextIntro = ({ textContent = "We are THOBOR", customStyle = {} }) => {
-  useEffect(() => {
+  useGSAP(() => {
     const handlePageLoad = () => {
       const text = document.getElementById("introText");
       const lines = text.innerHTML.split("<br>"); // Split the text into lines

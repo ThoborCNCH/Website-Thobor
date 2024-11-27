@@ -7,10 +7,27 @@ import sleepRobot from '../../images/sleepRobotNormal.png';
 import moon from '../../images/moon404.png';
 import earth from '../../images/earthRobots.png';
 import rocket from '../../images/rocket.png';
+import { motion } from "framer-motion";
+
+
+const pageVariants = {
+  initial: {  opacity: 0 },
+  animate: {  opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 
 function NotFound() {
   return (
-    <>
+    
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+      transition={{ duration: 2 }}
+      style={{ padding: "0px", textAlign: "center" }}
+    >
       <div className="central-body">
         <LazyLoadImage
           className="image-404"
@@ -57,7 +74,7 @@ function NotFound() {
         <div className="star"></div>
         <div className="star"></div>
       </div>
-    </>
+    </motion.div>
   );
 }
 

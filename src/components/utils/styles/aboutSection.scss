@@ -26,7 +26,7 @@
             opacity: 0.3;
             width: 100vw;
             height: auto;
-            top: calc(100vh - 5vh);
+            top: calc(0vh - 5vh);
             left: 0;
         }
 
@@ -80,6 +80,11 @@
             height: auto;
             top: calc(288vh - 10vh);
             right: calc(-12vw + 3vw);
+
+            @media(max-width: 480px){
+                width: 80vw;
+                right: calc(-12vw + 3vw);
+            }
         }
 
         /* Arrow Title */
@@ -92,7 +97,6 @@
         }
     }
 }
-
 
 
 
