@@ -1,0 +1,12 @@
+main {
+  color: whitesmoke;
+  padding: 5%;
+  overflow-y: scroll;
+
+
+  &-about::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;  
+}

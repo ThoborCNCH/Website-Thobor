@@ -1,48 +1,19 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
-import React, { useEffect, useState } from "react";
-import Contact from "../utils/Contact";
-import Up from "../utils/Up";
 import "./apps.scss";
+import React from "react";
 import App from "./components/App";
-
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-import Firestore from "../utils/Firestore";
-
-import banner from "../../img/apps_banner.svg";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import Svg from "../utils/Svg";
+import Up from "../utils/Up";
+import BuyUsACoffee from "../utils/BuyUsACoffee.jsx";
 
 function Apps({ apps }) {
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
   return (
     <>
-      <LazyLoadImage
-        src={banner}
-        width={"100vw"}
-        height={"auto"}
-        className="header"
-      />
       <div className="apps">
-        {apps &&
-          apps.map((app) => (
-            <App
-              titlu={app.titlu}
-              codeQR={app.cod_qr}
-              img={app.img}
-              link={app.link}
-              p={app.descriere}
-              txt_link={app.link_text}
-            />
-          ))}
+        {apps && apps.map((app) => (
+          <App name={app.name} image={app.image} adress={app.adress}/>
+        ))}
       </div>
-      <Svg />
-      <Contact />
       <Up />
+      <BuyUsACoffee />
     </>
   );
 }

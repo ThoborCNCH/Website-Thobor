@@ -1,6 +1,5 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import logo from "../../img/logo_thobor_celalalt.png";
+import { Link } from "react-router-dom";
 import facebookImage from "../../img/footer/facebook.png"
 import instagramImage from "../../img/footer/instagram.png"
 import youtubeImage from "../../img/footer/youtube.png"
@@ -8,25 +7,14 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__addr">
-        {
-        // <LazyLoadImage
-        //   src={logo}
-        //   alt=""
-        //   className="footer__logo"
-        // />
-        }
         <div className="legal">
           <p> Copyright &copy; 2022 Thobor #RO068 All rights reserved.</p>
           <ul className="nav__ul">
             <li>
-              <a href="https://www.privacypolicygenerator.info/live.php?token=cESMOyaUosqLvcU5YXQB3NrhQxQsKOB7">
-                Privacy Policy
-              </a>
+              <Link to="/privacyPolicy">Privacy Policy</Link>
             </li>
             <li>
-              <a href="https://www.termsofusegenerator.net/live.php?token=YG1POUZlIVZO7kZW3sRiuAblHWnY2uSS">
-                Terms of Use
-              </a>
+              <Link to="/termsAndConditions">Terms and Conditions</Link>
             </li>
           </ul>
         </div>
@@ -34,7 +22,7 @@ function Footer() {
 
           <ul className="nav__ul">
             <li>
-              <a className="footer__btn" href="mailto:thoborcnch@gmail.com"> Email Us </a>
+              <a className="footer__btn" href="mailto:contact@thobor-team.com"> Email Us </a>
             </li>
             <li>
               <a href="https://www.facebook.com/ThoborCNCH"><img src={facebookImage} alt="Facebook"/></a>
