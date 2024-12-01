@@ -7,7 +7,7 @@ import logo from "../../img/logo_thobor_celalalt.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import MagicText from "./MagicText.jsx"
+//import MagicText from "./MagicText.jsx"
 
 function Navbar() {
   const { pathname } = useLocation();
