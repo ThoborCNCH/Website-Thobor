@@ -12,6 +12,8 @@ import Apps from './components/apps/Apps';
 import TOS from './components/pentruSponsori/TOS/TOS';
 import PrivacyPolicy from './components/pentruSponsori/PrivacyPolicy/PrivacyPolicy';
 import NotFound from './components/notfound/NotFound';
+import Up from "./components/utils/Up.jsx";
+import BuyUsACoffee from "./components/utils/BuyUsACoffee.jsx";
 import { AnimatePresence } from "framer-motion";
 
 const firestore = new Firestore();
