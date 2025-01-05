@@ -41,24 +41,39 @@
   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.headerButton::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
-  border: 1px solid rgba(71, 71, 71, 0.69);
-  border-radius: 12px;
-  pointer-events: none;
-}
-
 .headerButton:hover {
   text-decoration: none;
   font-weight: bolder;
   border: 1px solid rgba(71, 71, 71, 0.774);
   text-shadow: 0 0 10px #00ff44;
   transform: scale(1.1) translateY(-2px);
+}
+
+@media screen and (min-width: 1270px) {
+  .headerButton::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid rgba(71, 71, 71, 0.69);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+}
+
+@media only screen and (max-width: 1270px) {
+  .headerButton {
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.787);
+  }
+
+  .headerButton:hover {
+    transform: scale(1.05) translateY(-1px);
+  }
 }
 
 .brand {
@@ -150,7 +165,7 @@ nav {
   }
   nav {
     width: 100%;
-    padding: 70px 0 15px;
+    padding: 70px 25px 15px;
     ul {
       display: none;
       width: 100vw;

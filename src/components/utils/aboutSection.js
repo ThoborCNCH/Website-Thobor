@@ -165,6 +165,11 @@ const AboutSection = () => {
 
                 </Spline>
             </section>
+            <Spline 
+                scene="https://prod.spline.design/jsF2bgeBbOMYPiYi/scene.splinecode"
+                className="canvas-istorieMobile"
+            ></Spline>
+                   
 
             {/* Why THOBOR Section */}
             <section 
