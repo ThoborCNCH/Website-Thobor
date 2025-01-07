@@ -1,4 +1,4 @@
-import TextIntro from "../utils/text";
+import TextIntro from "../utils/Text";
 import Divider from "../utils/divider";
 import DepartmentsList from "../utils/departmentList";
 import Spline from '@splinetool/react-spline';

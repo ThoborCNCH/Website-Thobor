@@ -1,4 +1,4 @@
-import TextIntro from "../utils/text";
+import TextIntro from "../utils/Text";
 import CanvasIntro from "../utils/canvas";
 import Divider from "../utils/divider";
 import AboutSection from '../utils/aboutSection';

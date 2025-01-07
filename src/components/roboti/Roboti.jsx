@@ -1,16 +1,20 @@
-import TextIntro from "../utils/text";
+import TextIntro from "../utils/Text";
 import CanvasIntro from "../utils/canvas";
 import Divider from "../utils/divider";
-import AboutSection from '../utils/aboutSection';
 import AwardsSection from '../utils/premii';
+import AboutRobot from '../utils/aboutRobot';
 import Spline from '@splinetool/react-spline';
 
 function Roboti() {
   return (
     <>
-      <TextIntro textContent="Roboți" customStyle={{ marginBottom: '25vh' }}/>
+      <TextIntro textContent="Robotul nostru" customStyle={{ marginBottom: '45vh' }}/>
       <Divider />
-      
+      <Spline 
+        className = "canvasContainer"
+        scene="https://prod.spline.design/p3FIKkT2z4dcGPiH/scene.splinecode" 
+      />
+      <AboutRobot />
     </>
   );
 }

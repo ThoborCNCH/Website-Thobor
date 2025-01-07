@@ -72,7 +72,7 @@ function MainRoutes() {
         <Route path="/pentruSponsori" element={<PentruSponsori key={location.pathname} />} />
         <Route path="/apps" element={<Apps key={location.pathname} apps={apps} />} />
         <Route path="/departamente" element={<Departamente key={location.pathname} />} />
-        <Route path="/roboti"/>
+        <Route path="/roboti"  element={<Roboti key={location.pathname} />}  />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

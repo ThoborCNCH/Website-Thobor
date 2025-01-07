@@ -63,6 +63,9 @@ function Navbar() {
             <li>
               <Link className="headerButton shadowText" to={"/pentruSponsori"} >Ajută-ne!</Link>
             </li>
+            <li>
+              <Link className="headerButton shadowText" to="/roboti">Robot</Link>
+            </li>
             {
               d.getMonth() === 9 &&
               <li>

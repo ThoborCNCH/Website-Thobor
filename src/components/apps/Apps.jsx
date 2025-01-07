@@ -1,7 +1,7 @@
 import "./apps.scss";
 import React from "react";
 import App from "./components/App";
-import TextIntro from "../utils/text";
+import TextIntro from "../utils/Text";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
 

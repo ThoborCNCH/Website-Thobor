@@ -86,6 +86,7 @@ const Navbar = () => {
           {[
             { text: 'Acasă', path: '/' },
             { text: 'Departamente', path: '/departamente' },
+            { text: 'Robot', path: '/roboti' },
             { text: 'Aplicații', path: '/aplicatii' },
             { text: 'Blocks', path: '/blocks' },
           ].map(({ text, path }, index) => (
@@ -100,7 +101,7 @@ const Navbar = () => {
         <div className="pie-menu">
           {[
             { text: 'Acasă', path: '/' },
-            { text: 'Roboți', path: '/roboti' },
+            { text: 'Robot', path: '/roboti' },
             { text: 'Departamente', path: '/departamente' },
             { text: 'Aplicații', path: '/aplicatii' },
             { text: 'Blocks', path: '/blocks' },
