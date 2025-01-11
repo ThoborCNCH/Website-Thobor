@@ -56,7 +56,10 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-
+                <Spline 
+                scene="https://prod.spline.design/e0ssBN54M89VhCBi/scene.splinecode"
+                className="canvas-istorie"
+                ></Spline>
             </section>
             {/* Outtake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -70,9 +73,12 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-
+                <Spline 
+                scene="https://prod.spline.design/Ss3iIUOCWRIh3RZ5/scene.splinecode"
+                className="canvas-istorie "
+                ></Spline>
             </section>
-                   
+                 
     </>
     );
 }

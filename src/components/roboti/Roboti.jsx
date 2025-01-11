@@ -12,7 +12,7 @@ function Roboti() {
       <Divider />
       <Spline 
         className = "canvasContainer"
-        scene="https://prod.spline.design/p3FIKkT2z4dcGPiH/scene.splinecode" 
+        scene="https://prod.spline.design/evdl-lHObLom2QcY/scene.splinecode" 
       />
       <AboutRobot />
     </>
