@@ -15,7 +15,7 @@
 
 ## Tech Stack
 
-**Client:** React.js, HTML, SCSS, THREE.js, Cannon.js
+**Client:** React.js, HTML, SCSS, THREE.js, GSAP, Spline, Cannon.js
 
 **Server:** Firebase 
 
@@ -58,11 +58,15 @@ Start the server
 
 ## Screenshots
 
-![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569705/thobor/jbuehwdj7h5yxec6ccpt.png)
+![App Screenshot](https://snipboard.io/TG0tn8.jpg)
 
-![App Screenshot](https://res.cloudinary.com/thobor/image/upload/v1683569705/thobor/warbxkwpjwhttamsw8nl.png)
+![App Screenshot](https://snipboard.io/vAJTG1.jpg)
+
+![App Screenshot](https://snipboard.io/SBPjVZ.jpg)
+
 ## Authors
 
+- [@Bostan Cristian](https://github.com/Crisstians)
 - [@Materniuc Alex](https://github.com/MaterniucAlex)
 - [@Drăguțu Matei](https://github.com/DragutuMatei)
 

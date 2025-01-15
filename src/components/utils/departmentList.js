@@ -25,11 +25,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { useGSAP } from '@gsap/react';
 
-import proiectareVideo from "../../videos/proiectare.webm";
-import marketingVideo from "../../videos/marketing.webm";
-import programareVideo from "../../videos/programare.webm";
-import mecanicaVideo from "../../videos/mecanica.webm";
-import jurnalVideo from "../../videos/jurnal.webm";
+import proiectareVideo from "../../gifs/proiectare.gif";
+import marketingVideo from "../../gifs/marketing.gif";
+import programareVideo from "../../gifs/programare.gif";
+import mecanicaVideo from "../../gifs/mecanica.gif";
+import jurnalVideo from "../../gifs/jurnal.gif";
 
 const departmentVideos = {
   PROIECTARE: proiectareVideo,
@@ -164,20 +164,10 @@ const DepartmentsList = ({ departments }) => {
           <div key={index} className="departmentBox">
             <h1 className="shadowText departmentName">{department.name}</h1>
             <div className="departmentContent">
-              <video
-                width="600"
-                loop
-                autoPlay
-                muted
-                disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen"
-                className="video-responsiveDepartament"
-              >
-                <source
+              <img
+                  className="video-responsiveDepartament"
                   src={departmentVideos[department.name]}
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
+              />
             <p className="departmentDescription">{department.description}</p>
             </div>
           </div>

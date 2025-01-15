@@ -17,7 +17,7 @@ import star5 from '../../images/star5.png';
 import handRobot from '../../images/handRobot.png';
 import arrowTitle from '../../images/arrowTitle.png';
 import titleChoice from '../../images/titleChoice.png';
-import robotAbout from "../../videos/despreNoi.webm";
+import robotAbout from "../../gifs/despreNoi.gif";
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
@@ -155,10 +155,7 @@ const AboutSection = () => {
                         </p>
                     </div>
                 </div>
-                 <video className = "video-responsiveIntro" width="536" weight = "519" loop autoPlay muted disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen">
-                              <source src={robotAbout} type="video/webm" />
-                              Your browser does not support the video tag.
-                </video>
+                <img src={robotAbout} alt="Poza cu robot" className="video-responsiveIntro" />
                 {/*<canvas ref={canvasRef} id="canvasIstorie" data-engine="three.js r149"></canvas>*/}
 
     

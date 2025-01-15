@@ -4,7 +4,7 @@ import Divider from "../utils/divider";
 import AboutSection from '../utils/aboutSection';
 import AwardsSection from '../utils/premii';
 import { motion } from "framer-motion";
-import robotIntro from "../../videos/introRobotHome.webm";
+import robotIntro from "../../gifs/introRobotHome.gif";
 
 const pageVariants = {
   initial: {  opacity: 0 },
@@ -23,10 +23,9 @@ function Home() {
         style={{ padding: "0px", textAlign: "center" }}
     >
       <TextIntro customStyle={{marginBottom: '-10vh' }}/>
-      <video className = "video-responsiveIntro" width="645" loop autoPlay muted disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen">
-              <source src={robotIntro} type="video/webm" />
-              Your browser does not support the video tag.
-      </video>
+      <img className = "video-responsiveIntro" 
+            src={robotIntro}
+      />
       <Divider/>
       <AboutSection/>
       <Divider />

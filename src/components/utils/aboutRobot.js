@@ -6,9 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { useGSAP } from '@gsap/react';
 
-import OuttakeVideo from '../../videos/outtake.webm';
-import IntakeVideo from '../../videos/intake.webm';
-import SasiuVideo from '../../videos/sasiu.webm';
+import OuttakeVideo from '../../images/outtake.png';
+import IntakeVideo from '../../gifs/intake.gif';
+import SasiuVideo from '../../images/Sasiu.png';
 
 
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
@@ -28,10 +28,8 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <video className = "video-responsiveIntro" width="600" loop autoPlay muted playsInline disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen">
-                        <source src={SasiuVideo} type="video/mp4" />
-                        Your browser does not support the video tag.
-                </video>
+                <img className = "video-responsiveIntro" src={SasiuVideo}
+                />
             </section>
             {/* Intake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -45,10 +43,8 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <video className = "video-responsiveIntro" width="600" loop autoPlay muted playsInline disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen">
-                        <source src={IntakeVideo} type="video/mp4" />
-                        Your browser does not support the video tag.
-                </video>
+                <img className = "video-responsiveIntro" src={IntakeVideo}
+                />
             </section>
             {/* Outtake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -62,10 +58,9 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <video className = "video-responsiveIntro"width="600" loop autoPlay muted playsInLine disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen">
-                        <source src={OuttakeVideo} type="video/mp4" />
-                        Your browser does not support the video tag.
-                </video>
+                <img className = "video-responsiveIntro"
+                        src={OuttakeVideo} 
+                />
             </section>
                  
     </>
