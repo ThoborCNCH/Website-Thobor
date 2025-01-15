@@ -1,71 +1,82 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Apps from "./components/apps/Apps";
-import Despre from "./components/despre/Despre";
-import Home from "./components/home/Home";
-import NotFound from "./components/notfound/NotFound";
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Firestore from "./components/utils/Firestore";
-import Footer from "./components/utils/Footer";
-import Navbar from "./components/utils/Navbar";
-import Recrutari from "./components/recrutari/Recrutari"
-import PentruSponsori from "./components/pentruSponsori/PentruSponsori"
-import PrivacyPolicy from "./components/pentruSponsori/PrivacyPolicy/PrivacyPolicy"
-import TOS from "./components/pentruSponsori/TOS/TOS"
+import Navbar from './components/utils/navbarNew';
+import Footer from './components/utils/Footer';
+import Home from './components/home/Home';
+import Roboti from './components/roboti/Roboti';
+import Background from './components/utils/background';
+import Departamente from './components/departamente/Departamente';
+import PentruSponsori from './components/pentruSponsori/PentruSponsori';
+import Apps from './components/apps/Apps';
+import TOS from './components/pentruSponsori/TOS/TOS';
+import PrivacyPolicy from './components/pentruSponsori/PrivacyPolicy/PrivacyPolicy';
+import NotFound from './components/notfound/NotFound';
+import Up from "./components/utils/Up.jsx";
+import BuyUsACoffee from "./components/utils/BuyUsACoffee.jsx";
+import { AnimatePresence } from "framer-motion";
 
 const firestore = new Firestore();
 
 function App() {
-
-  const [spon, setSpon] = useState([]);
-  const getSpon = useMemo(() => async () => {
-    await firestore.readDocuments("sponsori").then((res) => {
-      setSpon(res);
-    }).catch(er=>{
-      console.log(er);
-    });
-  }, [setSpon]);
-  const [premii, setPremii] = useState([]);
-  const getPremii = useMemo(() => async () => {
-    await firestore.sortdata("premii", "an", "desc").then((res) => {
-      setPremii(res);
-    });
-  }, [setPremii]);
-
-  const [apps, setApps] = useState([]);
-  const getApps = useMemo(() => async () => {
-    await firestore.readDocuments("aplicatii").then((res) => {
-      setApps(res);
-    }).catch(er => {
-      console.log(er);
-    })
-  }, [setApps]);
-
-  useEffect(() => {
-    getApps();
-    getSpon();
-    getPremii();
-  }, [getApps, getSpon, getPremii]);
-
-  const d = new Date();
   return (
     <BrowserRouter>
+      <Background />
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home premii={premii} spon = {spon}/>} />
-        <Route path="/despre" element={<Despre />} />
-        <Route path="/apps" element={<Apps apps={apps} />} />
-        <Route path="/download" element={<Apps />} />
-        <Route path="/pentruSponsori" element={<PentruSponsori storage={firestore.storage} dataBase = {firestore.getDb()}/>} />
-        <Route path="/privacyPolicy" element={<PrivacyPolicy/>} />
-        <Route path="/termsAndConditions" element={<TOS/>} />
-        <Route path="*" element={<NotFound />} />
-        {
-          d.getMonth() >= 9 && d.getMonth() <= 10 &&
-            <Route path="/recrutari" element={<Recrutari />} />
-        }
-      </Routes>
-      <Footer/>
+      <MainRoutes />
+      <Footer />
     </BrowserRouter>
   );
 }
+
+function MainRoutes() {
+  const location = useLocation();
+
+    const [spon, setSpon] = useState([]);
+    const getSpon = useMemo(() => async () => {
+      await firestore.readDocuments("sponsori").then((res) => {
+        setSpon(res);
+      }).catch(er=>{
+        console.log(er);
+      });
+    }, [setSpon]);
+    const [premii, setPremii] = useState([]);
+    const getPremii = useMemo(() => async () => {
+      await firestore.sortdata("premii", "an", "desc").then((res) => {
+        setPremii(res);
+      });
+    }, [setPremii]);
+
+    const [apps, setApps] = useState([]);
+    const getApps = useMemo(() => async () => {
+      await firestore.readDocuments("aplicatii").then((res) => {
+        setApps(res);
+      }).catch(er => {
+        console.log(er);
+      })
+    }, [setApps]);
+
+    useEffect(() => {
+      getApps();
+      getSpon();
+      getPremii();
+    }, [getApps, getSpon, getPremii]);
+
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes>
+        <Route path="/" element={<Home key={location.pathname} />} />
+        <Route path="/termsAndConditions" element={<TOS key={location.pathname} />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy key={location.pathname} />} />
+        <Route path="/pentruSponsori" element={<PentruSponsori key={location.pathname} />} />
+        <Route path="/apps" element={<Apps key={location.pathname} apps={apps} />} />
+        <Route path="/departamente" element={<Departamente key={location.pathname} />} />
+        <Route path="/roboti"  element={<Roboti key={location.pathname} />}  />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 export default App;

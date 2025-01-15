@@ -1,4 +1,4 @@
-@import "../utils/styles/base";
+@import "../utils/styles/variabiles";
 
 .apps {
   height: 100vh;
@@ -21,6 +21,10 @@
   outline: none;
   transition: scale 100ms;
   text-align: center;
+  font-weight: 800;
+  font-family: inherit;
+  font-stretch: extra-expanded;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
 
   .card-front-image {
     position: relative;
@@ -36,8 +40,8 @@
 
   h3 {
     color: whitesmoke;
-    font-size: 2em;
-    font-family: $font-roboto;
+    font-size: 1.2em;
+    font-family: inherit;
     transform: translateY(-100%);
     opacity: 0;
     transition: opacity 1s;
@@ -47,7 +51,7 @@
 
   &:hover {
     .card-faders {
-      opacity: 1;
+      opacity: 0.4;
     }
 
     h3 {
@@ -66,7 +70,27 @@
   z-index: 1;
   opacity: 0;
   transition: opacity 1500ms;
+
   pointer-events: none
+}
+
+.app1{
+  width: 10vw;
+  height: auto;
+  top: calc(20vh - 10vh);
+  right: calc(-4vw + 2vw);
+}
+.app2{
+  width: 5vw;
+  height: auto;
+  top: calc(40vh - 10vh);
+  right: calc(-14vw + 2vw);
+}
+.app3{
+  width: 5vw;
+  height: auto;
+  top: calc(40vh - 10vh);
+  left: calc(-14vw + 2vw);
 }
 
 .card:active {

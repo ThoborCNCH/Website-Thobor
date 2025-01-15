@@ -1,0 +1,202 @@
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes glowText {
+    from {
+      text-shadow: 1px 1px 1px var(--textShadowGreen), 1px 2px 1px var(--textShadowGreen), 1px 3px 1px var(--textShadowGreen), 1px 4px 1px var(--textShadowGreen), 1px 5px 1px var(--textShadowGreen), 1px 6px 1px var(--textShadowGreen), 1px 7px 1px var(--textShadowGreen), 1px 8px 1px var(--textShadowGreen), 1px 9px 1px var(--textShadowGreen), 1px 10px 1px var(--textShadowGreen), 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4), 0 0 3px #00ff44;
+    }
+    to {
+      text-shadow: 1px 1px 1px var(--textShadowGreen), 1px 2px 1px var(--textShadowGreen), 1px 3px 1px var(--textShadowGreen), 1px 4px 1px var(--textShadowGreen), 1px 5px 1px var(--textShadowGreen), 1px 6px 1px var(--textShadowGreen), 1px 7px 1px var(--textShadowGreen), 1px 8px 1px var(--textShadowGreen), 1px 9px 1px var(--textShadowGreen), 1px 10px 1px var(--textShadowGreen), 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4), 0 0 3px rgb(102, 255, 142.8);
+    }
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  #header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    margin: 10px auto;
+    padding: 35px 16px;
+    height: 70px;
+    width: 92vw;
+    background: rgba(40, 40, 40, 0.5);
+    border-radius: 12px;
+    border-style: groove;
+    border-color: black;
+    box-shadow: 0 1px 15px rgb(0, 0, 0);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    animation: fadeIn 1s ease-out;
+    transition: background 0.5s ease;
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  #headerButtons {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    padding: 0;
+  }
+  
+  #headerButtons li {
+    margin: 0 5px;
+  }
+  
+  .headerButton {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ccc;
+    padding: 15px 20px;
+    border: 1px solid rgba(61, 61, 61, 0.492);
+    border-radius: 12px;
+    position: relative;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .headerButton::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid rgba(71, 71, 71, 0.69);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+  
+  .headerButton:hover {
+    font-weight: bolder;
+    border: 1px solid rgba(71, 71, 71, 0.774);
+    text-shadow: 0 0 10px #00ff44;
+    transform: scale(1.1) translateY(-2px);
+  }
+  
+  #headerTexts {
+    user-select: none;
+    object-fit: contain;
+    margin-bottom: 5px;
+    height: 40px;
+  }
+  
+  #headerText {
+    font-weight: 800;
+    font-stretch: ultra-expanded;
+    font-size: auto;
+    object-fit: contain;
+    text-shadow: 0 0 5px #010101, 0 0 8px #ffffff, 0 0 9px #19f006;
+  }
+  
+  #headerTextRO {
+    font-stretch: condensed;
+    font-size: auto;
+    height: 50%;
+    object-fit: contain;
+  }
+  
+  #headerLogo {
+    user-select: none;
+    max-height: 7vh;
+    margin-right: 10px;
+    object-fit: contain;
+  }
+  
+  :root {
+    --textShadow: rgba(35, 35, 35, 0.23);
+    --textShadowGreen: rgba(7, 82, 0, 0.143);
+  }
+  
+  .shadowText {
+    text-shadow: 1px 1px 1px var(--textShadow),
+      1px 2px 1px var(--textShadow),
+      1px 3px 1px var(--textShadow),
+      1px 4px 1px var(--textShadow),
+      1px 5px 1px var(--textShadow),
+      1px 6px 1px var(--textShadow),
+      1px 7px 1px var(--textShadow),
+      1px 8px 1px var(--textShadow),
+      1px 9px 1px var(--textShadow),
+      1px 10px 1px var(--textShadow),
+      1px 18px 6px rgba(16, 16, 16, 0.4),
+      1px 22px 10px rgba(16, 16, 16, 0.2),
+      1px 25px 35px rgba(16, 16, 16, 0.2),
+      1px 30px 60px rgba(16, 16, 16, 0.4),
+      0 0 3px #000000, 0 0 8px #ffffff;
+  }
+  
+  @media screen and (max-width: 768px) {
+    #headerButtons {
+      display: none; // Hide buttons for smaller screens
+    }
+  
+    .pie-menu {
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #1a1a1a, #333);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      z-index: 1001;
+    }
+  
+    .pie-menu button {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #555;
+      color: #fff;
+      cursor: pointer;
+      animation: fadeIn 0.5s ease;
+    }
+  
+    .pie-menu button:hover {
+      background: rgba(0, 255, 70, 0.8);
+      box-shadow: 0 0 10px rgba(0, 255, 70, 0.6);
+      transform: scale(1.1);
+    }
+  
+    /* Positions for pie menu buttons */
+    .pie-menu .btn1 { top: 10%; left: 50%; transform: translate(-50%, -50%); }
+    .pie-menu .btn2 { top: 50%; left: 90%; transform: translate(-50%, -50%); }
+    .pie-menu .btn3 { top: 90%; left: 50%; transform: translate(-50%, -50%); }
+    .pie-menu .btn4 { top: 50%; left: 10%; transform: translate(-50%, -50%); }
+  }

@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .timeline {
+    display: grid;
+    justify-content: 'center';
+    align-items: 'center';
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px;
+    max-width: 150vh;
+    margin: 0 auto;
+    background-color: rgba(40, 40, 40, 0.11);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    &-intro {
+      grid-column: span 3;
+      background: radial-gradient(#1E7B1E, #082208);
+      color: #ffffff;
+      padding: 30px;
+      text-align: center;
+      border-radius: 12px 12px 0 0;
+      
+      h2 {
+        font-size: 2.8em;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      
+      p {
+        font-size: 1.3em;
+        line-height: 1.6;
+      }
+    }
+    
+    &-year {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(#44ad3c, #1a1a1a);
+      color: #ffffff;
+      font-size: 3em;
+      font-weight: bold;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: groove 1px rgb(106, 106, 106);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+  }
+  
+  .award-card {
+    background: radial-gradient(#ffffff, #b7b7b7);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    border: groove 1px rgb(106, 106, 106);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+  
+    h3 {
+      font-size: 1.8em;
+      color: #000;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 1.1em;
+      font-stretch: extra-expanded;
+      font-family: inherit;
+      font-size: large;
+      color: #000000;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+  
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  // Media queries for responsiveness
+  @media (max-width: 900px) {
+    .timeline {
+      padding: 30px;
+    }
+  
+    .timeline-intro {
+      padding: 20px;
+  
+      h2 {
+        font-size: 2.2em;
+      }
+  
+      p {
+        font-size: 1.1em;
+      }
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .timeline-intro {
+      h2 {
+        font-size: 1.8em;
+      }
+  
+      p {
+        font-size: 1em;
+      }
+    }
+  
+    .award-card {
+      padding: 20px;
+  
+      h3 {
+        font-size: 1.5em;
+      }
+  
+      p {
+        font-size: 1em;
+      }
+    }
+  }
+  

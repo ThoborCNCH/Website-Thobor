@@ -1,5 +1,5 @@
 import React from "react";
-import up from "../../img/up.svg";
+import up from "../../images/up.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Up() {

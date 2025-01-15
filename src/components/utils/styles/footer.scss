@@ -1,0 +1,76 @@
+.footer {
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(40, 40, 40, 0.5);
+    padding: 10px;
+    color: white;
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    animation: fadeIn 1s ease-out;
+  
+    &__addr {
+      margin-bottom: 10px;
+      text-align: center;
+  
+      .legal {
+        p {
+          margin: 0;
+          font-size: 14px;
+        }
+      }
+    }
+  
+    .nav__ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 20px;
+    }
+  
+    &__btn {
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #ccc;
+      padding: 10px 15px;
+      border: 1px solid rgba(61, 61, 61, 0.492);
+      border-radius: 12px;
+      transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  
+      &:hover {
+        font-weight: bolder;
+        border: 1px solid rgba(71, 71, 71, 0.774);
+        text-shadow: 0 0 10px #00ff44;
+        transform: scale(1.1) translateY(-2px);
+      }
+    }
+  
+    img {
+      width: 30px;
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  
+    a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #00ff44;
+        text-shadow: 0 0 10px #00ff44;
+      }
+    }
+  }
+  

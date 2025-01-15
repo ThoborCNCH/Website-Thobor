@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+}
+
+body {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background: radial-gradient(#218d17, #000000);
+    background-repeat: repeat;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    position: relative;
+    overflow-x: hidden;
+    user-select: none;
+
+    display: block;
+    flex-direction: column;
+    margin: 0;
+    scrollbar-width: thin;
+  }
+
+  body {
+    background-color: #282c34;
+    color: #ffffff;
+    scrollbar-color: #282c34 #282c34;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #282c34;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: #f2f2f2;
+  }
+
+  #backgroundCanvas,
+  .canvasContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    opacity: 1;
+  }
+
+
+
+  #canvasIstorie{
+    pointer-events: none;
+    max-width: 90vh;
+    max-height: 90vh;
+    
+  }
+
+  #canvas3D{
+    opacity: 0;
+  }
+  
+  #backgroundCanvas{
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+.dividerIntro .shape-fill {
+    fill: #218d17;
+}
+
+.dividerIntro path {
+  fill: #218d1778;
+}
+
+.dividerIntro {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+
+  img {
+      width: 100vw;
+      height: auto;
+  }
+  
+}
+
+.dividerIntro svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dividerIntro.inverted {
+  transform: rotate(180deg);
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(#3d3d3d,#000000);
+    background-repeat: repeat;
+    z-index: -3;
+    overflow: hidden;
+  }
+
+  .background span {
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 20vmin;
+    backface-visibility: hidden;
+    position: absolute;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    
+  }
+
+  .robotVid {
+    width: 100%; /* Full width of its container */
+    max-width: 1920px; /* Maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the video */
+    left: 0;
+    right: 0;
+    background: transparent;
+    margin-bottom: -25vh;
+    pointer-events: none;
+  
+    /* Adjust size based on screen width */
+    @media (max-width: 1024px) {
+      max-width: 1600px;
+    }
+  
+    @media (max-width: 768px) {
+      max-width: 600px;
+    }
+  
+    @media (max-width: 480px) {
+      max-width: 300px;
+      margin-bottom: -10vh;
+    }
+  }
+
+  .video-responsiveIntro {
+    width: 100%; /* Full width of its container */
+    max-width: 645px; /* Maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the video */
+    background: transparent;
+    pointer-events: none;
+  
+    /* Adjust size based on screen width */
+    @media (max-width: 1024px) {
+      max-width: 400px;
+    }
+  
+    @media (max-width: 768px) {
+      max-width: 300px;
+    }
+  
+    @media (max-width: 480px) {
+      max-width: 100px;
+    }
+  }
+  
+
+  .canvasContainer {
+    width: 100vw !important; 
+    height: 100vh !important; /* Relative height */
+    max-width: 100vw !important; /* Prevent overflow */
+    max-height: 100vh !important; /* Cap height at viewport height */
+    margin-top: 10vh !important; /* Responsive margin */
+    margin-bottom: -5vh !important; /* Adjust based on screen height */
+    margin-left: auto;
+    margin-right: auto;
+    z-index: -1;
+    pointer-events: none;
+
+    @media (max-width: 480px) {
+        height: 50vh !important; /* Slightly smaller for smaller screens */
+        margin-top: 5vh !important;
+        margin-bottom: -2vh;
+    }
+    
+    /* Small Devices (tablets in portrait) */
+    @media (max-width: 768px) and (min-width: 481px) {
+        height: 75vh !important;
+        margin-top: 8vh;
+        margin-bottom: -3vh;
+    }
+    
+    /* Medium Devices (tablets in landscape) */
+    @media (max-width: 1024px) and (min-width: 769px) {
+        height: 80vh !important;
+        margin-top: 9vh;
+        margin-bottom: -4vh;
+    }
+    
+    /* Large Devices (desktops and larger screens) */
+    @media (min-width: 1025px) {
+        height: 100vh !important; /* Keep original height */
+        margin-top: 10vh;
+        margin-bottom: -5vh;
+    }
+}

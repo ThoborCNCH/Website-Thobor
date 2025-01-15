@@ -1,0 +1,234 @@
+.overlay-container-department {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -3;
+
+    .element {
+        position: absolute;
+        width: auto;
+        height: auto;
+
+        &.programare1 {
+            width: 25vw; /* 25% of viewport width */
+            height: auto;
+            top: calc(220vh - 5vh); /* Position adjusted dynamically */
+            right: calc(-5vw);
+        }
+        &.programare2 {
+            width: 10vw;
+            height: auto;
+            top: calc(270vh - 5vh);
+            right: 0;
+        }
+        &.programare3 {
+            width: 25vw;
+            height: auto;
+            top: calc(260vh - 5vh);
+            left: calc(3vw);
+        }
+        &.programare4 {
+            width: 30vw;
+            height: auto;
+            top: calc(210vh - 5vh);
+            left: calc(0vw);
+        }
+        &.marketing1 {
+            width: 15vw;
+            height: auto;
+            top: calc(370vh - 5vh);
+            right: calc(-5vw);
+        }
+        &.marketing2 {
+            width: 15vw;
+            height: auto;
+            top: calc(300vh - 5vh);
+            right: calc(-5vw);
+        }
+        &.marketing3 {
+            width: 30vw;
+            height: auto;
+            top: calc(320vh - 5vh);
+            left: calc(-5vw);
+        }
+        &.jurnal1 {
+            width: 30vw;
+            height: auto;
+            top: calc(400vh - 5vh);
+            left: calc(-5vw);
+        }
+        &.jurnal3 {
+            width: 20vw;
+            height: auto;
+            top: calc(420vh - 5vh);
+            right: calc(-5vw);
+        }
+        &.jurnal4 {
+            width: 10vw;
+            height: auto;
+            top: calc(460vh - 5vh);
+            right: calc(-2vw);
+        }
+        &.jurnal5 {
+            width: 30vw;
+            height: auto;
+            top: calc(440vh - 5vh);
+            left: calc(-8vw);
+        }
+        &.mecanica1 {
+            width: 25vw;
+            height: auto;
+            top: calc(510vh - 5vh);
+            left: calc(-5vw);
+        }
+        &.mecanica2 {
+            width: 20vw;
+            height: auto;
+            top: calc(510vh - 5vh);
+            right: calc(-5vw);
+        }
+        &.proiectare1 {
+            width: 20vw;
+            height: auto;
+            top: calc(610vh - 5vh);
+            left: calc(3vw);
+        }
+        &.proiectare2 {
+            transform:rotate(45deg);
+            width: 20vw;
+            height: auto;
+            top: calc(610vh - 5vh);
+            left: calc(-3vw);
+        }
+        &.proiectare3 {
+            
+            width: 25vw;
+            height: auto;
+            top: calc(610vh - 5vh);
+            right: calc(-7vw);
+        }
+    }
+}
+
+#departments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    #departmentsContent {
+      text-align: center;
+  
+      .departmentsTitle {
+        margin-bottom: 8vh;
+        font-size: calc(3rem + 1vw);
+      }
+  
+      .departmentBox {
+        margin-bottom: 4vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80vw;
+        max-width: 70vw;
+  
+        .departmentName {
+          text-align: center;
+          font-size: calc(3rem + 2vw);
+          font-stretch: expanded;
+          margin-bottom: 2vh;
+        }
+  
+        .departmentContent {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+  
+          .departmentSpline {
+            width: 90vw;
+            height: calc(70vh + 5vw);
+            max-width: 90vw;
+            margin-bottom: 2vh;
+            pointer-events: none;
+          }
+  
+          .departmentDescription {
+            padding: calc(1rem + 1vw);
+            background: radial-gradient(#0f0f0f, #202020, #353535);
+            border: 1px groove rgba(106, 106, 106, 1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+            border-radius: 1rem;
+            color: rgba(255, 255, 255, 0.87);
+            margin: 0;
+            text-align: center;
+            margin-top: 2vh;
+            font-size: calc(1.2rem + 0.1vw);
+          }
+        }
+      }
+    }
+
+  }
+  /* Responsive adjustments for tablets (768px and below) */
+@media (max-width: 768px) {
+    .departmentDescription {
+      font-size: calc(1rem + 0.3vw); /* Smaller font size */
+      padding: calc(0.8rem + 0.5vw); /* Reduced padding */
+      margin-top: 2vh; /* Slightly increased margin for spacing */
+    }
+  }
+  
+  /* Responsive adjustments for mobile devices (480px and below) */
+  @media (max-width: 480px) {
+    .departmentDescription {
+      font-size: calc(0.1rem + 0.1vw); /* Even smaller font size */
+      padding: calc(0.3rem + 0.4vw); /* Further reduced padding */
+      border-radius: 0.1rem; /* Smaller border radius for compact view */
+    }
+  }
+  .video-responsiveMainDepartament {
+    display: block;
+    width: 100%; /* Full width of its container */
+    max-width: 1200px; /* Maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the video */
+    background: transparent;
+  
+    /* Adjust size based on screen width */
+    @media (max-width: 1024px) {
+      max-width: 1100px;
+    }
+  
+    @media (max-width: 768px) {
+      max-width: 1000px;
+    }
+  
+    @media (max-width: 480px) {
+      max-width:800px;
+    }
+  }
+  .video-responsiveDepartament {
+    width: 100%; /* Full width of its container */
+    max-width: 600px; /* Maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the video */
+    background: transparent;
+  
+    /* Adjust size based on screen width */
+    @media (max-width: 1024px) {
+      max-width: 500px;
+    }
+  
+    @media (max-width: 768px) {
+      max-width: 400px;
+    }
+  
+    @media (max-width: 480px) {
+      max-width: 200px;
+    }
+  }

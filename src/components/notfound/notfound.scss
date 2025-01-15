@@ -1,4 +1,4 @@
-@import "../utils/styles/base";
+@import "../utils/styles/variabiles";
 
 @-moz-keyframes rocket-movement {
   100% {
@@ -158,7 +158,7 @@
 .object_rocket {
   z-index: 95;
   position: absolute;
-  transform: translateX(-50px);
+  transform: translateX(-50px) rotate(95deg);
   top: 75%;
   pointer-events: none;
   animation: rocket-movement 200s linear infinite both running;

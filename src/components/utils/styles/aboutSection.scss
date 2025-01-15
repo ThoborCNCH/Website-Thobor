@@ -1,0 +1,273 @@
+// Keyframes for glowing effect
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -3;
+
+    .element {
+        position: absolute;
+        width: auto;
+        height: auto;
+
+        /* Green Light Element */
+        &.greenLight {
+            opacity: 0.3;
+            width: 100vw;
+            height: auto;
+            top: calc(0vh - 5vh);
+            left: 0;
+        }
+
+        /* Star 1 */
+        &.star1 {
+            width: 20vw;
+            height: auto;
+            top: calc(190vh - 10vh);
+            left: calc(-4vw + 2vw);
+        }
+
+        /* Star 2 */
+        &.star2 {
+            width: 15vw;
+            height: auto;
+            top: calc(140vh - 5vh);
+            right: calc(-9vw + 3vw);
+            transform: rotate(8deg);
+        }
+
+        /* Star 3 */
+        &.star3 {
+            width: 10vw;
+            height: auto;
+            top: calc(140vh - 8vh);
+            left: calc(8vw + 1vw);
+            transform: rotate(18deg);
+        }
+
+        /* Star 4 */
+        &.star4 {
+            width: 30vw;
+            height: auto;
+            top: calc(270vh - 15vh);
+            left: calc(-10vw + 5vw);
+            transform: rotate(18deg);
+        }
+
+        /* Star 5 */
+        &.star5 {
+            width: 25vw;
+            height: auto;
+            top: calc(220vh - 12vh);
+            right: calc(-10vw + 4vw);
+            transform: rotate(25deg);
+        }
+
+        /* Hand Robot */
+        &.handRobot {
+            width: 50vw;
+            height: auto;
+            top: calc(320vh - 10vh);
+            right: calc(-15vw + 3vw);
+
+            @media(max-width: 480px){
+                width: 80vw;
+                right: calc(-12vw + 3vw);
+            }
+            @media only screen and (max-width: 1270px) {
+                display: none;
+            }
+        }
+
+        /* Arrow Title */
+        &.arrowTitle {
+            width: 35vw;
+            height: auto;
+            top: calc(330vh - 20vh);
+            left: calc(-15vw + 5vw);
+            transform: rotate(-20deg);
+            @media only screen and (max-width: 1270px) {
+                top: calc(410vh - 20vh);
+            }
+        }
+    }
+}
+
+
+
+.titleChoice{
+ width: 80vw;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+ 
+}
+
+#despre {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: calc(5vh + 2vw); /* Dynamic gap based on viewport size */
+    padding: calc(8vh + 2vw) calc(4vw); /* Scales padding proportionally */
+    margin: 0 auto; /* Center the content */
+    width: 100%;
+    max-width: 80vw; /* Limit maximum width based on viewport width */
+    background: transparent;
+    border-radius: calc(1vw + 8px); /* Dynamically rounded corners */
+
+
+    // Nested content styles
+    #despreContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: calc(3vh + 1vw); /* Space between content scales with viewport */
+    }
+
+    .despreImage {
+        width: 100%;
+        max-width: calc(50vw + 100px); /* Scales with a max cap */
+        height: auto;
+        border-radius: 10px;
+        margin: 0 auto; // Center image
+    }
+}
+
+// Box styling
+.canvas-istorieMobile{
+       display: none;
+}
+.despreBox {
+    position: absolute;
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    max-width: calc(90vw + 10vh);
+    padding: 20px;
+    background: rgba(171, 171, 171, 0.7);
+    border: 3px groove rgb(133, 232, 99);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 0;
+    border-radius: 50px;
+    margin: 0 auto; // Center the box
+
+    height: auto; /* Height auto expands */
+    min-height: 100px; /* Optional: Set a minimum height */
+    max-height: none; /* Remove max height constraint */
+
+    p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.87);
+        margin: 0;
+        text-align: center;
+    }
+
+    &::before {
+        content: '';
+        background: linear-gradient(45deg, #00ff08, #148400, #17e200, #61ec2b, #006b14, #00ff22);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    &.glowing::before {
+        opacity: 1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(#0f0f0f, #202020, #353535);
+        border: 1px groove rgba(106, 106, 106, 1);
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+        z-index: -1;
+    }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+    .despreBox p {
+        font-size: 1.1rem;
+    }
+}
+
+@media only screen and (max-width: 1270px) {
+    #despre {
+        display: grid;
+        grid-template-columns: 1fr; /* Stack elements vertically */
+        place-items: center; /* Center elements horizontally and vertically */
+        text-align: center; /* Center-align text */
+        
+    }
+    .canvas-istorie{
+        display: none;
+    }
+    .canvas-istorieMobile{
+       display: block;
+       position: relative;
+    }
+    div.canvas-istorieMobile canvas {
+        display:unset !important;
+    }
+
+    .despreImage {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .despreBox p {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .despreBox p {
+        font-size: 0.5rem;
+    }
+}
+
+.spline-canvas {
+    width: 80vh;
+    height: 70vh;
+    max-height: 70vh;
+    position: relative;
+    z-index: -1;
+  }
+  
+  @media (max-width: 992px) {
+    .spline-canvas {
+      width: 100vw;
+      height: 50vh;
+    }
+  }
