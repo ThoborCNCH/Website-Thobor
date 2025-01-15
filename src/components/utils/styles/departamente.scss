@@ -15,100 +15,225 @@
         &.programare1 {
             width: 25vw; /* 25% of viewport width */
             height: auto;
-            top: calc(220vh - 5vh); /* Position adjusted dynamically */
+            top: calc(210vh - 5vh); /* Position adjusted dynamically */
             right: calc(-5vw);
+            @media (max-width: 1024px) {
+              top: calc(110vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              top: calc(80vh - 5vh);
+            }
         }
         &.programare2 {
             width: 10vw;
             height: auto;
-            top: calc(270vh - 5vh);
+            top: calc(260vh - 5vh);
             right: 0;
+            @media (max-width: 1024px) {
+              top: calc(140vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              top: calc(110vh - 5vh);
+            }
         }
         &.programare3 {
             width: 25vw;
             height: auto;
-            top: calc(260vh - 5vh);
+            top: calc(240vh - 5vh);
             left: calc(3vw);
+            @media (max-width: 1024px) {
+              top: calc(150vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              top: calc(120vh - 5vh);
+            }
         }
         &.programare4 {
             width: 30vw;
             height: auto;
-            top: calc(210vh - 5vh);
+            top: calc(160vh - 5vh);
             left: calc(0vw);
+            @media (max-width: 1024px) {
+              top: calc(100vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              top: calc(70vh - 5vh);
+            }
         }
         &.marketing1 {
             width: 15vw;
             height: auto;
             top: calc(370vh - 5vh);
             right: calc(-5vw);
+            @media (max-width: 1024px) {
+              top: calc(210vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 20vw;
+              top: calc(180vh - 5vh);
+            }
         }
         &.marketing2 {
             width: 15vw;
             height: auto;
             top: calc(300vh - 5vh);
             right: calc(-5vw);
+            @media (max-width: 1024px) {
+              top: calc(160vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 25vw;
+              top: calc(130vh - 5vh);
+            }
         }
         &.marketing3 {
             width: 30vw;
             height: auto;
             top: calc(320vh - 5vh);
             left: calc(-5vw);
+            @media (max-width: 1024px) {
+              width: 35vw;
+              top: calc(170vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 35vw;
+              top: calc(135vh - 5vh);
+            }
         }
         &.jurnal1 {
             width: 30vw;
             height: auto;
             top: calc(400vh - 5vh);
             left: calc(-5vw);
+            @media (max-width: 1024px) {
+              top: calc(260vh - 5vh);
+              left: calc(-15vw);
+              width: 40vw;
+            }
+            @media (max-width: 480px) {
+              width: 45vw;
+              left: calc(-20vw);
+              top: calc(190vh - 5vh);
+            }
         }
         &.jurnal3 {
             width: 20vw;
             height: auto;
             top: calc(420vh - 5vh);
             right: calc(-5vw);
+            @media (max-width: 1024px) {
+              width: 35vw;
+              right: calc(-10vw);
+              top: calc(270vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 35vw;
+              right: calc(-10vw);
+              top: calc(200vh - 5vh);
+            }
         }
         &.jurnal4 {
             width: 10vw;
             height: auto;
             top: calc(460vh - 5vh);
             right: calc(-2vw);
+            @media (max-width: 1024px) {
+              width: 15vw;
+              right: calc(-5vw);
+              top: calc(320vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 15vw;
+              right: calc(-5vw);
+              top: calc(240vh - 5vh);
+            }
         }
         &.jurnal5 {
             width: 30vw;
             height: auto;
             top: calc(440vh - 5vh);
             left: calc(-8vw);
+            @media (max-width: 1024px) {
+              width: 22vw;
+              right: calc(-14vw);
+              top: calc(320vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 45vw;
+              left: calc(-20vw);
+              top: calc(245vh - 5vh);
+            }
         }
         &.mecanica1 {
             width: 25vw;
             height: auto;
             top: calc(510vh - 5vh);
             left: calc(-5vw);
+            @media (max-width: 1024px) {
+              width: 35vw;
+              left: calc(-5vw);
+              top: calc(350vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 45vw;
+              left: calc(-20vw);
+              top: calc(265vh - 5vh);
+            }
         }
         &.mecanica2 {
             width: 20vw;
             height: auto;
             top: calc(510vh - 5vh);
             right: calc(-5vw);
+            @media (max-width: 1024px) {
+              width: 35vw;
+              right: calc(-5vw);
+              top: calc(350vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 35vw;
+              top: calc(265vh - 5vh);
+            }
         }
         &.proiectare1 {
             width: 20vw;
             height: auto;
-            top: calc(610vh - 5vh);
+            top: calc(650vh - 5vh);
             left: calc(3vw);
+            @media (max-width: 1024px) {
+              width: 25vw;
+              left: calc(-3vw);
+              top: calc(430vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 35vw;
+              left: calc(-15vw);
+              top: calc(315vh - 5vh);
+            }
         }
         &.proiectare2 {
             transform:rotate(45deg);
             width: 20vw;
             height: auto;
-            top: calc(610vh - 5vh);
+            top: calc(650vh - 5vh);
             left: calc(-3vw);
         }
         &.proiectare3 {
             
             width: 25vw;
             height: auto;
-            top: calc(610vh - 5vh);
+            top: calc(640vh - 5vh);
             right: calc(-7vw);
+            @media (max-width: 1024px) {
+              width: 35vw;
+              right: calc(-10vw);
+              top: calc(430vh - 5vh);
+            }
+            @media (max-width: 480px) {
+              width: 40vw;
+              right: calc(-12vw);
+              top: calc(315vh - 5vh);
+            }
         }
     }
 }
@@ -138,7 +263,7 @@
   
         .departmentName {
           text-align: center;
-          font-size: calc(3rem + 2vw);
+          font-size: 5vw;
           font-stretch: expanded;
           margin-bottom: 2vh;
         }
@@ -167,30 +292,17 @@
             margin: 0;
             text-align: center;
             margin-top: 2vh;
-            font-size: calc(1.2rem + 0.1vw);
+            font-size: 1.2rem;
+            @media (max-width: 480px) {
+              font-size: 2.5vw;
+            }
           }
         }
       }
     }
 
   }
-  /* Responsive adjustments for tablets (768px and below) */
-@media (max-width: 768px) {
-    .departmentDescription {
-      font-size: calc(1rem + 0.3vw); /* Smaller font size */
-      padding: calc(0.8rem + 0.5vw); /* Reduced padding */
-      margin-top: 2vh; /* Slightly increased margin for spacing */
-    }
-  }
-  
-  /* Responsive adjustments for mobile devices (480px and below) */
-  @media (max-width: 480px) {
-    .departmentDescription {
-      font-size: calc(0.1rem + 0.1vw); /* Even smaller font size */
-      padding: calc(0.3rem + 0.4vw); /* Further reduced padding */
-      border-radius: 0.1rem; /* Smaller border radius for compact view */
-    }
-  }
+
   .video-responsiveMainDepartament {
     display: block;
     width: 100%; /* Full width of its container */

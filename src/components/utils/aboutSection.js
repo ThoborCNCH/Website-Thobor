@@ -155,7 +155,7 @@ const AboutSection = () => {
                         </p>
                     </div>
                 </div>
-                <img src={robotAbout} alt="Poza cu robot" className="video-responsiveIntro" />
+                <img src={robotAbout} alt="Poza cu robot" className="video-responsiveIntro video-responsiveAbout" />
                 {/*<canvas ref={canvasRef} id="canvasIstorie" data-engine="three.js r149"></canvas>*/}
 
     

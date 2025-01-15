@@ -149,10 +149,11 @@ body {
     }
   
     @media (max-width: 480px) {
-      max-width: 300px;
-      margin-bottom: -10vh;
+      max-width: 600px;
+      margin-bottom: -5vh;
     }
   }
+
 
   .video-responsiveIntro {
     width: 100%; /* Full width of its container */
@@ -172,7 +173,16 @@ body {
     }
   
     @media (max-width: 480px) {
-      max-width: 100px;
+      max-width: 300px;
+    }
+  }
+
+  .video-responsiveAbout{
+    @media (max-width: 480px) {
+      margin-bottom: -40vh;
+    }
+    @media (max-width: 1024px) {
+      margin-bottom: -30vh;
     }
   }
   

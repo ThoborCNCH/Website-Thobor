@@ -28,6 +28,9 @@
             height: auto;
             top: calc(0vh - 5vh);
             left: 0;
+            @media(max-width: 480px){
+                display: none;
+            }
         }
 
         /* Star 1 */
@@ -36,24 +39,48 @@
             height: auto;
             top: calc(190vh - 10vh);
             left: calc(-4vw + 2vw);
+            @media(max-width: 480px){
+                width: 30vw;
+                top: calc(90vh - 10vh); 
+            }
+            @media(max-width: 1024px){
+                width: 30vw;
+                top: calc(150vh - 10vh); 
+            }
         }
 
         /* Star 2 */
         &.star2 {
             width: 15vw;
             height: auto;
-            top: calc(140vh - 5vh);
+            top: calc(180vh - 5vh);
             right: calc(-9vw + 3vw);
             transform: rotate(8deg);
+            @media(max-width: 480px){
+                width: 30vw;
+                top: calc(130vh - 10vh); 
+            }
+            @media(max-width: 1024px){
+                width: 30vw;
+                top: calc(120vh - 10vh); 
+            }
         }
 
         /* Star 3 */
         &.star3 {
             width: 10vw;
             height: auto;
-            top: calc(140vh - 8vh);
+            top: calc(180vh - 8vh);
             left: calc(8vw + 1vw);
             transform: rotate(18deg);
+            @media(max-width: 480px){
+                width: 20vw;
+                top: calc(160vh - 10vh); 
+            }
+            @media(max-width: 1024px){
+                width: 20vw;
+                top: calc(90vh - 10vh); 
+            }
         }
 
         /* Star 4 */
@@ -63,6 +90,10 @@
             top: calc(270vh - 15vh);
             left: calc(-10vw + 5vw);
             transform: rotate(18deg);
+            @media(max-width: 1024px){
+                width: 30vw;
+                top: calc(230vh - 10vh); 
+            }
         }
 
         /* Star 5 */
@@ -100,6 +131,13 @@
             @media only screen and (max-width: 1270px) {
                 top: calc(410vh - 20vh);
             }
+            @media(max-width: 1024px){
+                width: 30vw;
+                top: calc(250vh - 10vh); 
+            }
+            @media (max-width: 480px) {
+                top: calc(290vh - 20vh);
+            }
         }
     }
 }
@@ -107,11 +145,26 @@
 
 
 .titleChoice{
- width: 80vw;
-  display: flex;
-  justify-content: center;
-  opacity: 1;
- 
+    width: 100%; /* Full width of its container */
+    max-width: 1200px; /* Maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the video */
+    background: transparent;
+    pointer-events: none;
+  
+    /* Adjust size based on screen width */
+    @media (max-width: 1024px) {
+      max-width: 600px;
+    }
+  
+    @media (max-width: 768px) {
+      max-width: 500px;
+    }
+  
+    @media (max-width: 480px) {
+      max-width: 400px;
+      margin-bottom: -200px;
+    }
 }
 
 #despre {
