@@ -28,13 +28,13 @@ function TOS() {
           <p><strong>Service</strong> refers to the Website.</p>
         </li>
         <li>
-          <p><strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the <a href="https://www.freeprivacypolicy.com/free-terms-and-conditions-generator/" target="_blank">Free Terms and Conditions Generator</a>.</p>
+          <p><strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the <a href="https://www.freeprivacypolicy.com/free-terms-and-conditions-generator/" target="_blank" rel="noreferrer">Free Terms and Conditions Generator</a>.</p>
         </li>
         <li>
           <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
         </li>
         <li>
-          <p><strong>Website</strong> refers to Thobor TEAM, accessible from <a href="https://thobor-team.com/" rel="external nofollow noopener" target="_blank">https://thobor-team.com/</a></p>
+          <p><strong>Website</strong> refers to Thobor TEAM, accessible from <a href="https://thobor-team.com/" rel="external nofollow noopener noreferrer" target="_blank">https://thobor-team.com/</a></p>
         </li>
         <li>
           <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>

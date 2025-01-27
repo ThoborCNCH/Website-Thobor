@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { gsap } from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -21,7 +21,6 @@ const AwardsSection = () => {
 
   const handleMouseMove = (e, index) => {
     const card = e.target;
-    const img = card.querySelector("img");
     const { left, top, width, height } = card.getBoundingClientRect();
     const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
@@ -45,7 +44,6 @@ const AwardsSection = () => {
     gsap.set(".award-card", { opacity: 1, y: 0 });
 
     awardsData.forEach((award, i) => {
-      const yearTrigger = document.querySelector(`#timeline-year-${award.year}`);
       const awardCard = document.querySelector(`.award-card-${i}`);
 
 

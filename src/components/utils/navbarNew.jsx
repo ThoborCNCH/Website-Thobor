@@ -7,7 +7,6 @@ import logo from "../../images/logo.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import MagicText from "./MagicText.jsx"
 
 import './styles/_navbar.scss';
 

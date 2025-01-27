@@ -4,7 +4,6 @@ import './styles/departamente.scss';
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import thoborProiectare1  from '../../images/proiectare1.png';
-import thoborProiectare2  from '../../images/proiectare2.png';
 import thoborProiectare3  from '../../images/proiectare3.png';
 import thoborMecanica1 from '../../images/mecanica1.png';
 import thoborMecanica2 from '../../images/mecanica2.png';
@@ -167,6 +166,7 @@ const DepartmentsList = ({ departments }) => {
               <img
                   className="video-responsiveDepartament"
                   src={departmentVideos[department.name]}
+                  alt=""
               />
             <p className="departmentDescription">{department.description}</p>
             </div>

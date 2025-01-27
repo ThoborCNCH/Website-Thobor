@@ -1,6 +1,7 @@
 import React from "react";
 import BuyMeACoffee from "../../images/buymeacoffee.svg"
 import HelpUsOut from "../../images/helpUs.svg"
+import "../utils/styles/_buyUsACoffee.scss"
 
 const close = () => {
   document.querySelector(".buy-us-a-coffee").style.display = 'none';

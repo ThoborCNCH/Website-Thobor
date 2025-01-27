@@ -4,7 +4,7 @@ import DepartmentsList from "../utils/departmentList";
 import { departments } from '../../departmentData';
 import { motion } from "framer-motion";
 import robotiDepart from "../../gifs/roboti-section.gif";
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const pageVariants = {
   initial: { opacity: 0,  },
@@ -26,9 +26,7 @@ function Departamente() {
     >
 
       <TextIntro textContent="Departamente" customStyle={{ marginBottom: '-25vh' }}/>
-            <img className = "video-responsiveMainDepartament"
-                   src={robotiDepart}
-            />
+            <img className = "video-responsiveMainDepartament" src={robotiDepart} alt=""/>
       <Divider />
       <DepartmentsList departments={departments} />
     </motion.div>

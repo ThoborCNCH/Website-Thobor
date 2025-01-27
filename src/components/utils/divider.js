@@ -6,7 +6,7 @@ const Divider = () => {
     return (
         <div>
             <div className="dividerIntro">
-                <img src={dividerImage}/>
+                <img src={dividerImage} alt=""/>
             </div>
         </div>
     );

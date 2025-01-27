@@ -1,7 +1,7 @@
 import teamPhoto from '../../images/teamPhoto.png';
 import './styles/aboutSection.scss';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { gsap } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';

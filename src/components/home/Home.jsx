@@ -1,5 +1,4 @@
 import TextIntro from "../utils/Text";
-import CanvasIntro from "../utils/canvas";
 import Divider from "../utils/divider";
 import AboutSection from '../utils/aboutSection';
 import AwardsSection from '../utils/premii';
@@ -23,9 +22,7 @@ function Home() {
         style={{ padding: "0px", textAlign: "center" }}
     >
       <TextIntro customStyle={{marginBottom: '-10vh' }}/>
-      <img className = "video-responsiveIntro" 
-            src={robotIntro}
-      />
+      <img className = "video-responsiveIntro" src={robotIntro} alt=""/>
       <Divider/>
       <AboutSection/>
       <Divider />

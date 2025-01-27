@@ -1,5 +1,5 @@
 import './styles/aboutSection.scss';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { gsap } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -28,8 +28,7 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro" src={SasiuVideo}
-                />
+                <img className = "video-responsiveIntro" src={SasiuVideo} alt=""/>
             </section>
             {/* Intake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -43,8 +42,7 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro" src={IntakeVideo}
-                />
+                <img className = "video-responsiveIntro" src={IntakeVideo} alt=""/>
             </section>
             {/* Outtake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -58,9 +56,7 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro"
-                        src={OuttakeVideo} 
-                />
+                <img className = "video-responsiveIntro" src={OuttakeVideo} alt=""/>
             </section>
                  
     </>
