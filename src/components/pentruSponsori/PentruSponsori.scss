@@ -79,12 +79,36 @@ a {
   }
 
 }
+.formulareOffline2{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column; /* Stacks elements vertically */
+  align-items: center;    /* Centers horizontally */
+  justify-content: center; /* Centers vertically (if parent has height) */
+  text-align: center;  
+  gap: 20px;
 
+
+  a {
+    background-color: $main_green;
+    margin: 1%;
+    padding: 3.5%;
+    border-radius: 15px;
+    transition: 0.2s all;
+
+      color: white;
+    &:hover {
+      text-decoration: underline;
+    background-color: lightgreen;
+    }
+  }
+}
 .formulareOffline {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-
+    place-items: center; 
+    text-align: center;
   justify-items: center;
   align-items: center;
 

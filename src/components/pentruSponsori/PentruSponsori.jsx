@@ -3,7 +3,7 @@ import { useState } from "react";
 import { addDoc, collection} from "firebase/firestore"; 
 import { ref, uploadBytesResumable } from "firebase/storage";
 import { v4 } from "uuid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
@@ -15,6 +15,7 @@ const pageVariants = {
 
 
 function PentruSponsori( { storage, dataBase } ) {
+  const navigate = useNavigate();
 
   window.addEventListener(
     "scroll",
@@ -158,7 +159,7 @@ function PentruSponsori( { storage, dataBase } ) {
         <h2 className = "shadowText">Redirecționează online 3.5% din impozitul pe venit</h2>
         <h2 className = "shadowText">Tu completezi iar noi ne ocupăm să depunem formularul la ANAF.</h2>
         <br/><br/>
-        <button className = "clarifyButton shadowText" onClick = {showFormular}>Completeaza formularul online</button>
+        <button className = "clarifyButton shadowText" onClick={() => navigate("/formularOnline")}>Completeaza formularul online</button>
       </div>
       <div className = "formular" id="test">
         <section>

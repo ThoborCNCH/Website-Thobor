@@ -13,6 +13,7 @@ import TOS from './components/pentruSponsori/TOS/TOS';
 import PrivacyPolicy from './components/pentruSponsori/PrivacyPolicy/PrivacyPolicy';
 import NotFound from './components/notfound/NotFound';
 import BuyUsACoffee from "./components/utils/BuyUsACoffee.jsx";
+import FormularOnline from "./components/pentruSponsori/formularOnline/formularOnline";
 import { AnimatePresence } from "framer-motion";
 
 const firestore = new Firestore();
@@ -69,6 +70,7 @@ function MainRoutes() {
         <Route path="/termsAndConditions" element={<TOS            key={location.pathname} />} />
         <Route path="/privacyPolicy"      element={<PrivacyPolicy  key={location.pathname} />} />
         <Route path="/pentruSponsori"     element={<PentruSponsori key={location.pathname} storage={firestore.storage} dataBase={firestore.getDb()}/>} />
+        <Route path="/formularOnline"     element={<FormularOnline key={location.pathname} storage={firestore.storage} dataBase={firestore.getDb()}/>} />
         <Route path="/apps"               element={<Apps           key={location.pathname} apps={apps} />} />
         <Route path="/departamente"       element={<Departamente   key={location.pathname} />} />
         <Route path="/roboti"             element={<Roboti         key={location.pathname} />}  />
