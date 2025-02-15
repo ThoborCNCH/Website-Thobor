@@ -1,0 +1,138 @@
+
+  
+  $--p-1: #33cc2d;
+$--p-2: #27b33e;
+$--p-3: #30ca44;
+$--p-4: #35bb35;
+
+$--b-1: #47ac44;
+$--b-2: #2cd82c;
+$--b-3: #33ce14;
+$--b-4: #2b7c05;
+
+$--g-1: #b2dd57;
+$--g-2: #57c443;
+$--g-3: #05b853;
+$--g-4: #19962e;
+
+$--y-1: #2efd4a;
+$--y-2: #69fd2e;
+$--y-3: #3dd538;
+$--y-4: #349117;
+
+$--s-1: #3bdf2c;
+$--s-2: #3eb80e;
+$--s-3: #459e2f;
+$--s-4: #137420;
+
+$colors: (
+  $--p-1,
+  $--p-2,
+  $--p-3,
+  $--p-4,
+  $--b-1,
+  $--b-2,
+  $--b-3,
+  $--b-4,
+  $--g-1,
+  $--g-2,
+  $--g-3,
+  $--g-4,
+  $--y-1,
+  $--y-2,
+  $--y-3,
+  $--y-4,
+);
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    z-index: 10;
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 24px;
+    background: #1b1b1b;
+  }
+
+h2 {
+  display: block;
+  color: white;
+  font-weight: 100;
+  //margin-right: 2rem;
+  text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+
+.mosaic-loader {
+  --cell-size: 64px;
+  --cell-spacing: 1px;
+  --border-width: 1px;
+  --cells: 4;
+  --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
+  
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--total-size);
+  height: var(--total-size);
+  
+  > .cell {
+    --cell-color: white;
+    flex: 0 0 var(--cell-size);
+    margin: var(--cell-spacing);
+    background-color: transparent;
+    box-sizing: border-box;
+    border: var(--border-width) solid var(--cell-color);
+    
+    animation: 1.5s ripple ease infinite;
+    
+    $delays: (2 * 4) - 2;
+    @for $i from 1 through $delays {
+      &.d-#{$i} {
+        animation-delay: $i * 100ms;
+      }
+    }
+    
+    @for $i from 1 through length($colors) {
+      &:nth-child(#{$i}) {
+        --cell-color: #{nth($colors, $i)};
+      }
+    }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    background-color: transparent;
+  }
+  
+  30% {
+    background-color: var(--cell-color);
+  }
+  
+  60% {
+    background-color: transparent;
+  }
+  
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(90deg);
+    }
+  }

@@ -2,7 +2,12 @@
     --textShadow: rgba(35, 35, 35, 0.23);
     --textShadowGreen: rgba(7, 82, 0, 0.143);
 }
-
+@font-face {
+    font-family: 'Designer';
+    
+    src: url('../../../fonts/Designer.otf') format('opentype'); 
+  }
+  
 .shadowText{
     text-shadow: 1px 1px 1px var(--textShadow),
     1px 2px 1px var(--textShadow),
@@ -28,7 +33,7 @@
     align-items: center;
     height: 40vh;
     font-size: 6vw; 
-    font-family: inherit;
+    font-family: Designer;
     font-weight: 800;
     font-stretch: extra-expanded;
     margin: auto;
@@ -66,6 +71,7 @@
   font-family: inherit;
   font-size: 4vw; /* Responsive font size */
   font-weight: 800;
+  font-family: Designer;
   color: inherit;
   text-align: center;
   padding-bottom: 3vh; /* Relative to viewport height */

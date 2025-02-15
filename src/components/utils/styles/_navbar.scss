@@ -1,5 +1,17 @@
 @import './variabiles';
 
+@font-face {
+  font-family: 'Designer';
+  
+  src: url('../../../fonts/Designer.otf') format('opentype'); 
+}
+@font-face {
+  font-family: 'Sono';
+  
+  src: url('../../../fonts/Sono-Light.ttf') format('truetype'); 
+}
+
+
 .navigation {
   user-select: none;
   z-index: 9999;
@@ -8,13 +20,12 @@
   top: 0;
   left: 0;
   width: 100vw;
-  background: rgba(40, 40, 40, 0.5);
+  background: rgba(40, 40, 40, 1);
   border-radius: 12px;
   border-style: groove;
   border-color: black;
   box-shadow: 0 1px 15px rgb(0, 0, 0);
   backdrop-filter: blur(15px);
-  margin: 10px auto;
 }
 
 #nav-container {
@@ -23,7 +34,7 @@
 }
 
 .headerButton {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Sono, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 800;
   line-height: 1;
   justify-content: center;
@@ -35,7 +46,7 @@
   position: relative;
   font-size: 16px;
   text-align: center;
-  cursor: pointer;
+  cursor: none;
   overflow: hidden;
   text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
@@ -87,10 +98,15 @@
   align-items: center;
 
   .headers {
+    font-family: Designer;
     font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+  }
+  .headerSmall{
+    font-size: 0.7rem;
   }
 
   a, a:visited {

@@ -51,6 +51,7 @@
     transition: background 0.5s ease;
     grid-column: 1 / -1;
     display: flex;
+    cursor:none;
     align-items: center; 
     justify-content: center;
   }
@@ -58,11 +59,13 @@
   #headerButtons {
     display: flex;
     list-style: none;
+    cursor:none;
     margin-left: auto;
     padding: 0;
   }
   
   #headerButtons li {
+    cursor:none;
     margin: 0 5px;
   }
   
@@ -79,7 +82,7 @@
     position: relative;
     font-size: 16px;
     text-align: center;
-    cursor: pointer;
+    cursor: none;
     overflow: hidden;
     text-decoration: none;
     transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
@@ -95,12 +98,14 @@
     border: 1px solid rgba(71, 71, 71, 0.69);
     border-radius: 12px;
     pointer-events: none;
+    cursor: none;
   }
   
   .headerButton:hover {
     font-weight: bolder;
     border: 1px solid rgba(71, 71, 71, 0.774);
     text-shadow: 0 0 10px #00ff44;
+    cursor: none;
     transform: scale(1.1) translateY(-2px);
   }
   
@@ -184,7 +189,7 @@
       background: rgba(0, 0, 0, 0.6);
       border: 1px solid #555;
       color: #fff;
-      cursor: pointer;
+      cursor: none;
       animation: fadeIn 0.5s ease;
     }
   
@@ -192,6 +197,7 @@
       background: rgba(0, 255, 70, 0.8);
       box-shadow: 0 0 10px rgba(0, 255, 70, 0.6);
       transform: scale(1.1);
+      cursor: none;
     }
   
     /* Positions for pie menu buttons */

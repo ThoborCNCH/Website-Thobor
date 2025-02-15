@@ -1,5 +1,6 @@
 .footer {
   display: flex;
+  cursor:none;
   justify-content: space-between;
   background-color: #1f1f1f;
   flex-flow: row ;
@@ -93,6 +94,7 @@
 
   .footer__btn {
     display: flex;
+    cursor:none;
     align-items: center;
     justify-content: center;
     height: 36px;

@@ -23,7 +23,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
 
-const AboutSection = () => {
+const AboutSection = ({handleImageLoad }) => {
     useGSAP(
         () => {
                 gsap.utils.toArray(".element").forEach((element) => {
@@ -89,6 +89,7 @@ const AboutSection = () => {
                 <LazyLoadImage 
                     src={greenLight} 
                     className="element greenLight" 
+                   
                 />
                 <LazyLoadImage 
                     src={star1} 
@@ -139,7 +140,7 @@ const AboutSection = () => {
                         </p>
                     </div>
                 </div>
-                <img src={teamPhoto} alt="Poza de echipa" className="despreImage" />
+                <img src={teamPhoto} alt="Poza de echipa" className="despreImage" onLoad={handleImageLoad}  />
                 
             </section>
 
@@ -155,7 +156,7 @@ const AboutSection = () => {
                         </p>
                     </div>
                 </div>
-                <img src={robotAbout} alt="Poza cu robot" className="video-responsiveIntro video-responsiveAbout" />
+                <img src={robotAbout} alt="Poza cu robot" className="video-responsiveIntro video-responsiveAbout" onLoad={handleImageLoad} />
                 {/*<canvas ref={canvasRef} id="canvasIstorie" data-engine="three.js r149"></canvas>*/}
 
     

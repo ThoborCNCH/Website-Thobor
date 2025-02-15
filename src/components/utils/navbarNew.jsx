@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../../images/iconOld.png";
 import { useRef } from "react";
 import useWindowSize from "./WindowSize";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -46,7 +46,7 @@ function Navbar() {
           <LazyLoadImage src={logo} alt="logo" className="logo"/>
           <div className="headers">
             <h1 className = "shadowText"><b>Thobor</b></h1>
-            <h1 className = "shadowText"><b>Ro068 | 17871</b></h1>
+            <h1 className = "shadowText headerSmall"><b>Ro068 | 17871</b></h1>
           </div>
         </div>
         <nav>

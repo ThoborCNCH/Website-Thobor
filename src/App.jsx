@@ -4,6 +4,7 @@ import Firestore from "./components/utils/Firestore";
 import Navbar from './components/utils/navbarNew';
 import Footer from './components/utils/Footer';
 import Home from './components/home/Home';
+import LoadingScreen from "./components/loading/loading";
 import Roboti from './components/roboti/Roboti';
 import Background from './components/utils/background';
 import Departamente from './components/departamente/Departamente';
@@ -14,6 +15,7 @@ import PrivacyPolicy from './components/pentruSponsori/PrivacyPolicy/PrivacyPoli
 import NotFound from './components/notfound/NotFound';
 import BuyUsACoffee from "./components/utils/BuyUsACoffee.jsx";
 import FormularOnline from "./components/pentruSponsori/formularOnline/formularOnline";
+import CustomCursor from "./components/utils/cursor";
 import { AnimatePresence } from "framer-motion";
 
 const firestore = new Firestore();
@@ -65,6 +67,7 @@ function MainRoutes() {
 
   return (
     <AnimatePresence mode="wait">
+      <CustomCursor/>
       <Routes>
         <Route path="/"                   element={<Home           key={location.pathname} />} />
         <Route path="/termsAndConditions" element={<TOS            key={location.pathname} />} />

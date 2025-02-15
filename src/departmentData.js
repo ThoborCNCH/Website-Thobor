@@ -21,7 +21,7 @@ export const departments = [
       videoFile: 'jurnal.webm',
     },
     {
-      name: 'MECANICĂ',
+      name: 'MECANICA',
       description:
         'Echipa noastră de mecanică este responsabilă de construcția fizică a robotului, asigurându-se că toate componentele sunt perfect integrate și funcționează în mod optim. Ne concentrăm pe dezvoltarea și optimizarea sistemelor mecanice, de la structura robotului până la mecanismele complexe de mișcare, garantându-ne că robotul poate îndeplini sarcinile sale cu precizie și eficiență. Utilizăm tehnologii avansate de modelare 3D și imprimare 3D pentru a crea prototipuri și pentru a testa diverse soluții, astfel încât să avem cele mai bune rezultate în competiții. În plus, gestionăm întreținerea și ajustarea continuă a componentelor mecanice pe parcursul sezonului, pentru a ne asigura că robotul rămâne în parametri optimi de funcționare în toate etapele competiției.',
       splineLink: 'https://prod.spline.design/5RxDZ8hfOFlFe1du/scene.splinecode',

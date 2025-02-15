@@ -11,23 +11,15 @@ import app3 from "../../images/apps3.png";
 function Apps({ apps }) {
   return (
     <>
-      <TextIntro textContent="Aplicații" customStyle={{ marginBottom: '-20vh' }}/>
+      <TextIntro textContent="JOCURI" customStyle={{ marginBottom: '-20vh' }}/>
     <div className="overlay-container">
                 {/* Example: Individual elements */}
                 <LazyLoadImage 
                     src={app1} 
                     className="element app1" 
                 />
-                <LazyLoadImage 
-                    src={app2} 
-                    alt="Star 1" 
-                    className="element app2" 
-                />
-                <LazyLoadImage 
-                    src={app3}  
-                    alt="Star 2" 
-                    className="element app3" 
-                />
+              
+                
       </div>
       <div className="apps">
         {apps && apps.map((app) => (

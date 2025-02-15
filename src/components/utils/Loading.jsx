@@ -1,14 +1,20 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 
-function Loading() {
-    return (
-        <div class="spinner">
-        <div class="top-left"></div>
-        <div class="left-bot"></div>
-        <div class="bot-right"></div>
-        <div class="right-top"></div>
-    </div>
-  )
-}
+const useLoadingManager = (totalImages) => {
+  const [loadedImages, setLoadedImages] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
-export default Loading
+  useEffect(() => {
+    if (loadedImages >= totalImages) {
+      setTimeout(() => setIsLoading(false), 500);
+    }
+  }, [loadedImages, totalImages]);
+
+  const handleImageLoad = () => {
+    setLoadedImages((prev) => prev + 1);
+  };
+
+  return { isLoading, handleImageLoad };
+};
+
+export default useLoadingManager;

@@ -34,13 +34,13 @@ const departmentVideos = {
   PROIECTARE: proiectareVideo,
   MARKETING: marketingVideo,
   PROGRAMARE: programareVideo,
-  MECANICĂ: mecanicaVideo, 
+  MECANICA: mecanicaVideo, 
   JURNAL: jurnalVideo,
 };
 
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
-const DepartmentsList = ({ departments }) => {
+const DepartmentsList = ({ departments, handleImageLoad }) => {
     useGSAP(() => {
 
         gsap.utils.toArray(".element").forEach((element) => {
@@ -166,6 +166,7 @@ const DepartmentsList = ({ departments }) => {
               <img
                   className="video-responsiveDepartament"
                   src={departmentVideos[department.name]}
+                  onLoad={handleImageLoad}
                   alt=""
               />
             <p className="departmentDescription">{department.description}</p>

@@ -4,10 +4,22 @@
     box-sizing: border-box;
     scrollbar-width: thin;
     scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+    cursor:none;
+}
+
+@font-face {
+  font-family: 'Designer';
+  
+  src: url('../../../fonts/Designer.otf') format('opentype'); 
+}
+@font-face {
+  font-family: 'Sono';
+  
+  src: url('../../../fonts/Sono-Light.ttf') format('truetype'); 
 }
 
 body {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Sono, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
     color-scheme: light dark;
@@ -19,11 +31,25 @@ body {
     position: relative;
     overflow-x: hidden;
     user-select: none;
+    cursor:none;
 
     display: block;
     flex-direction: column;
     margin: 0;
     scrollbar-width: thin;
+
+  }
+  body button{
+    cursor:none;
+  }
+  body a{
+    cursor:none;
+  }
+  body ul{
+    cursor: none;
+  }
+  body li{
+    cursor:none;
   }
 
   body {

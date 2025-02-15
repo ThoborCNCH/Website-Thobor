@@ -13,14 +13,14 @@ import SasiuVideo from '../../images/Sasiu.png';
 
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
-const AboutRobot = () => {
+const AboutRobot = ({handleImageLoad}) => {
     return (
     <>
          {/* Sasiu Section */}
          <section id="despre" style={{ flexDirection: 'column' }}>
                 <div id="despreContent">
                     <h1 className="shadowText despreTitlu" style={{ textAlign: 'center', marginRight: '0' }}>
-                        Șasiu
+                        Sasiu
                     </h1>
                     <div className="despreBox" style={{ marginBottom: '4vh' }}>
                         <p id="despreText">
@@ -28,7 +28,7 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro" src={SasiuVideo} alt=""/>
+                <img className = "video-responsiveIntro" src={SasiuVideo} onLoad = {handleImageLoad} alt=""/>
             </section>
             {/* Intake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -42,7 +42,7 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro" src={IntakeVideo} alt=""/>
+                <img className = "video-responsiveIntro" src={IntakeVideo} onLoad = {handleImageLoad} alt=""/>
             </section>
             {/* Outtake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
@@ -56,7 +56,7 @@ const AboutRobot = () => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro" src={OuttakeVideo} alt=""/>
+                <img className = "video-responsiveIntro" src={OuttakeVideo} onLoad = {handleImageLoad}  alt=""/>
             </section>
                  
     </>

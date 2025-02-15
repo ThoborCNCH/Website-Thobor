@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Designer';
+  
+  src: url('../../../fonts/Designer.otf') format('opentype'); 
+}
+
 .overlay-container-department {
     position: absolute;
     top: 0;
@@ -263,6 +269,7 @@
   
         .departmentName {
           text-align: center;
+          font-family: Designer;
           font-size: 5vw;
           font-stretch: expanded;
           margin-bottom: 2vh;

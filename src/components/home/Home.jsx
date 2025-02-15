@@ -3,6 +3,8 @@ import Divider from "../utils/divider";
 import AboutSection from '../utils/aboutSection';
 import AwardsSection from '../utils/premii';
 import { motion } from "framer-motion";
+import LoadingScreen from "../loading/loading";
+import useLoadingManager from "../utils/Loading";
 import robotIntro from "../../gifs/introRobotHome.gif";
 
 const pageVariants = {
@@ -11,7 +13,10 @@ const pageVariants = {
   exit: { opacity: 0 },
 };
 
+const totalImages = 3;
 function Home() {
+  const { isLoading, handleImageLoad } = useLoadingManager(totalImages);
+
   return (
     <motion.div
         initial="initial"
@@ -21,10 +26,11 @@ function Home() {
         transition={{ duration: 2 }}
         style={{ padding: "0px", textAlign: "center" }}
     >
+      {isLoading && <LoadingScreen />}
       <TextIntro customStyle={{marginBottom: '-10vh' }}/>
-      <img className = "video-responsiveIntro" src={robotIntro} alt=""/>
+      <img className = "video-responsiveIntro" src={robotIntro} onLoad={handleImageLoad} alt=""/>
       <Divider/>
-      <AboutSection/>
+      <AboutSection  handleImageLoad={handleImageLoad}/>
       <Divider />
       <AwardsSection/>
     </motion.div>
