@@ -22,14 +22,14 @@
           height: auto;
           top: calc(190vh - 10vh);
           left: calc(-12vw + 2vw);
-          @media(max-width: 480px){
-              width: 30vw;
-              top: calc(90vh - 10vh); 
-          }
           @media(max-width: 1024px){
               width: 30vw;
               top: calc(150vh - 10vh); 
           }
+          @media(max-width: 480px){
+              width: 60vw;
+              top: calc(160vh - 10vh); 
+         }
       }
 
       &.sponsorizare2 {
@@ -38,13 +38,13 @@
           top: calc(180vh - 5vh);
           right: calc(-9vw + 3vw);
           transform: rotate(8deg);
-          @media(max-width: 480px){
-              width: 30vw;
-              top: calc(130vh - 10vh); 
-          }
           @media(max-width: 1024px){
               width: 30vw;
               top: calc(120vh - 10vh); 
+          }
+          @media(max-width: 480px){
+            width: 70vw;
+            top: calc(80vh - 10vh); 
           }
       }
       &.sponsorizare3 {
@@ -83,13 +83,14 @@
     top: calc(270vh - 5vh);
     left: calc(-17vw + 3vw);
     transform: rotate(8deg);
-    @media(max-width: 480px){
-        width: 30vw;
-        top: calc(130vh - 10vh); 
-    }
     @media(max-width: 1024px){
         width: 50vw;
         top: calc(40vh - 10vh); 
+    }
+    @media(max-width: 480px){
+      width: 90vw;
+      top: calc(200vh - 10vh); 
+      left: calc(-45vw + 3vw);
     }
 }
 &.sponsorizare6 {
@@ -98,14 +99,15 @@
   top: calc(280vh - 5vh);
   right: calc(-10vw + 3vw);
   transform: rotate(8deg);
-  @media(max-width: 480px){
-      width: 30vw;
-      top: calc(130vh - 10vh); 
-  }
   @media(max-width: 1024px){
       width: 50vw;
       top: calc(40vh - 10vh); 
   }
+  @media(max-width: 480px){
+    width: 70vw;
+    right: calc(-30vw + 3vw);
+    top: calc(250vh - 10vh); 
+    }
 }
 
   }
@@ -149,6 +151,9 @@ a {
   h2 {
     max-width: 70%;
     text-align: center;
+    @media(max-width: 480px){
+      font-size: 1rem;
+    }
   }
   b{
     font-stretch: ultra-expanded;
