@@ -28,7 +28,7 @@ function Home() {
     >
       {isLoading && <LoadingScreen />}
       <TextIntro customStyle={{marginBottom: '-10vh' }}/>
-      <img className = "video-responsiveIntro" src={robotIntro} onLoad={handleImageLoad} alt=""/>
+      <img className = "video-responsiveIntro" src={robotIntro} onLoad={handleImageLoad} alt=""/> 
       <Divider/>
       <AboutSection  handleImageLoad={handleImageLoad}/>
       <Divider />

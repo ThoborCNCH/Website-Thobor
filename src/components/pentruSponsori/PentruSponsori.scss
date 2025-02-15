@@ -1,6 +1,119 @@
 @import "../utils/styles/variabiles";
 
 
+
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -3;
+
+  .element {
+      position: absolute;
+      width: auto;
+      height: auto;
+
+      &.sponsorizare1 {
+          width: 35vw;
+          height: auto;
+          top: calc(190vh - 10vh);
+          left: calc(-12vw + 2vw);
+          @media(max-width: 480px){
+              width: 30vw;
+              top: calc(90vh - 10vh); 
+          }
+          @media(max-width: 1024px){
+              width: 30vw;
+              top: calc(150vh - 10vh); 
+          }
+      }
+
+      &.sponsorizare2 {
+          width: 30vw;
+          height: auto;
+          top: calc(180vh - 5vh);
+          right: calc(-9vw + 3vw);
+          transform: rotate(8deg);
+          @media(max-width: 480px){
+              width: 30vw;
+              top: calc(130vh - 10vh); 
+          }
+          @media(max-width: 1024px){
+              width: 30vw;
+              top: calc(120vh - 10vh); 
+          }
+      }
+      &.sponsorizare3 {
+        width: 35vw;
+        height: auto;
+        top: calc(25vh - 5vh);
+        left: calc(-15vw + 3vw);
+        transform: rotate(8deg);
+        @media(max-width: 480px){
+            width: 30vw;
+            top: calc(130vh - 10vh); 
+        }
+        @media(max-width: 1024px){
+            width: 35vw;
+            top: calc(40vh - 10vh); 
+        }
+    }
+    &.sponsorizare4 {
+      width: 50vw;
+      height: auto;
+      top: calc(20vh - 5vh);
+      right: calc(-27vw + 3vw);
+      transform: rotate(8deg);
+      @media(max-width: 480px){
+          width: 30vw;
+          top: calc(130vh - 10vh); 
+      }
+      @media(max-width: 1024px){
+          width: 50vw;
+          top: calc(40vh - 10vh); 
+      }
+  }
+  &.sponsorizare5 {
+    width: 40vw;
+    height: auto;
+    top: calc(270vh - 5vh);
+    left: calc(-17vw + 3vw);
+    transform: rotate(8deg);
+    @media(max-width: 480px){
+        width: 30vw;
+        top: calc(130vh - 10vh); 
+    }
+    @media(max-width: 1024px){
+        width: 50vw;
+        top: calc(40vh - 10vh); 
+    }
+}
+&.sponsorizare6 {
+  width: 30vw;
+  height: auto;
+  top: calc(280vh - 5vh);
+  right: calc(-10vw + 3vw);
+  transform: rotate(8deg);
+  @media(max-width: 480px){
+      width: 30vw;
+      top: calc(130vh - 10vh); 
+  }
+  @media(max-width: 1024px){
+      width: 50vw;
+      top: calc(40vh - 10vh); 
+  }
+}
+
+  }
+}
+
+
+
+
 #casetaVerde {
     background-color: $main_green;
     margin: 1%;
@@ -44,11 +157,21 @@ a {
 }
 
 .clarifyButton {
-  margin-top: 1%;
-  width: 35%;
-  padding: 15px;
-  color: white;
-  font-family: inherit;
+    font-family: Designer, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ccc;
+    padding: 15px 20px;
+    border: 1px solid rgba(61, 61, 61, 0.492);
+    border-radius: 12px;
+    position: relative;
+    text-align: center;
+    cursor: none;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .formular {
@@ -115,16 +238,21 @@ a {
   grid-row-gap: 15px;
 
   a {
-    background-color: $main_green;
-    margin: 1%;
-    padding: 3.5%;
-    border-radius: 15px;
-    transition: 0.2s all;
+    font-family: Designer;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ccc;
+    padding: 15px 20px;
+    border: 1px solid rgba(61, 61, 61, 0.492);
+    border-radius: 12px;
+
 
       color: white;
     &:hover {
-      text-decoration: underline;
-    background-color: lightgreen;
+      font-weight: bolder;
+      border: 1px solid rgba(71, 71, 71, 0.774);
+      text-shadow: 0 0 10px #00ff44;
+      cursor: none;
+      transform: scale(1.1) translateY(-2px);
     }
   }
 }
@@ -177,10 +305,33 @@ button {
   border-radius: 15px;
   background-color: $main_green;
   padding: 3px;
+
 }
 
+
+.clarifyButton::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid rgba(71, 71, 71, 0.69);
+  border-radius: 12px;
+  pointer-events: none;
+  cursor: none;
+}
+
+.clarifyButton:hover {
+  font-weight: bolder;
+  border: 1px solid rgba(71, 71, 71, 0.774);
+  background-color: rgba(39, 39, 39, 0.3);
+  text-shadow: 0 0 10px #00ff44;
+  cursor: none;
+  transform: scale(1.1) translateY(-2px);
+}
 button:hover, section input[type="file"]::file-selector-button:hover {
-  cursor: pointer;
+  cursor: none;
   background-color: $light_green;
 }
 

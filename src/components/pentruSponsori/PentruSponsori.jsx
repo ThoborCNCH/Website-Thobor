@@ -1,146 +1,38 @@
-import "./PentruSponsori.scss"
+import "./PentruSponsori.scss";
+import "../utils/styles/aboutSection.scss";
 import { useState } from "react";
 import { addDoc, collection} from "firebase/firestore"; 
 import { ref, uploadBytesResumable } from "firebase/storage";
+import LoadingScreen from "../loading/loading";
+import useLoadingManager from "../utils/Loading";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+
+import sponsorizare1 from '../../images/sponsorizare1.png';
+import sponsorizare2 from '../../images/sponsorizare2.png';
+import sponsorizare3 from '../../images/sponsorizare3.png';
+import sponsorizare4 from '../../images/sponsorizare4.png';
+import sponsorizare5 from "../../images/sponsorizare5.png";
+import sponsorizare6 from "../../images/sponsorizare6.png";
+
 import { v4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
-
+import TextIntro from "../utils/Text";
+import Divider from "../utils/divider";
 import { motion } from "framer-motion";
-
+import robotIntro from "../../gifs/sponsorizare.gif";
 const pageVariants = {
   initial: {  opacity: 0 },
   animate: {  opacity: 1 },
   exit: { opacity: 0 },
 };
 
-
+const totalImages = 1;
 function PentruSponsori( { storage, dataBase } ) {
   const navigate = useNavigate();
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (window.scrollY > 100) {
-        document.querySelector("#sd-container").style.opacity = "0%";
-      } else {
-        document.querySelector("#sd-container").style.opacity = "100%";
-      }
-    },
-    { passive: true }
-  );
-
-  const [name, setName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [initial, setInitial] = useState('');
-  const [cnp, setCNP] = useState('');
-  const [email, setEmail] = useState('');
-  const [tel, setTel] = useState('');
-  const [bloc, setBloc] = useState('');
-  const [etaj, setEtaj] = useState('');
-  const [apartament, setApartament] = useState('');
-  const [strada, setStrada] = useState('');
-  const [scara, setScara] = useState('');
-  const [numar, setNumar] = useState('');
-  const [judet, setJudet] = useState('');
-  const [localitate, setLocalitate] = useState('');
-  const [codPostal, setCodPostal] = useState('');
-  const [semnatura, setSemnatura] = useState(null);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!name || !firstName) {
-      alert("A full name is required");
-      return;
-    }
-
-    if ((!(bloc && etaj && apartament && scara) || !(strada && numar)) && !(judet && localitate && codPostal)) {
-      alert("A valid address is required");
-      return;
-    }
-
-    if (!semnatura) { 
-      alert("A signature is required");
-      return; 
-    }
-
-    if (!hasHandledImageUpload()) {
-      alert("Image could not be uploaded properly!");
-      return;
-    }
-
-    // Construct data object to be sent to Firebase
-    const data = {
-      name: name,
-      firstName: firstName,
-      initial: initial,
-      cnp: cnp,
-      email: email,
-      tel: tel,
-      bloc: bloc,
-      etaj: etaj,
-      apartament: apartament,
-      strada: strada,
-      scara: scara,
-      numar: numar,
-      judet: judet,
-      localitate: localitate,
-      codPostal: codPostal,
-    };
+  const { isLoading, handleImageLoad } = useLoadingManager(totalImages);
 
 
-    addDoc(collection(dataBase, 'ANAF'), data)
-      .then(() => {
-
-        alert('Data sent successfully!');
-
-        setName('');
-        setFirstName('');
-        setInitial('');
-        setCNP('');
-        setEmail('');
-        setTel('');
-        setBloc('');
-        setEtaj('');
-        setApartament('');
-        setStrada('');
-        setScara('');
-        setNumar('');
-        setJudet('');
-        setLocalitate('');
-        setCodPostal('');
-        setSemnatura('');
-      })
-      .catch((error) => {
-        alert('Error sending data: ', error);
-      });
-  };
-
-  const hasHandledImageUpload = () => {
-    const metadata = {
-      contentType: 'image/jpeg'
-    };
-    const storageRef = ref(storage, `semnaturi-pt-anaf/${name}_${firstName}___${v4()}`)
-    uploadBytesResumable(storageRef, semnatura, metadata)
-      .catch((error) => {
-        console.log('Error uploading image: ', error);
-        return false;
-      });
-
-    return true;
-  };
-
-  const handleCameraClick = () => {
-    document.getElementById("Camera").click();
-  }
-
-  const showFormular = () => {
-    if (window.innerWidth >= 700)
-      document.querySelector(".formular").style.display = "grid";
-    else
-      document.querySelector(".formular").style.display = "flex";
-    document.getElementById("firstPage").style.display = "none";
-  }
 
   return(
     <motion.div
@@ -151,126 +43,56 @@ function PentruSponsori( { storage, dataBase } ) {
       transition={{ duration: 2 }}
       style={{ padding: "0px", textAlign: "center" }}
     >
-      <div id="sd-container">
-        <div className="arrow"></div>
-        <div className="arrow"></div>
+       {isLoading && <LoadingScreen />}
+       <div className="overlay-container">
+                      <LazyLoadImage 
+                          src={sponsorizare1} 
+                          alt="" 
+                          handleImageLoad={handleImageLoad}
+                          className="element sponsorizare1" 
+                      />
+                      <LazyLoadImage 
+                          src={sponsorizare2}  
+                          alt="" 
+                          handleImageLoad={handleImageLoad}
+                          className="element sponsorizare2" 
+                      />
+                      <LazyLoadImage 
+                          src={sponsorizare3}  
+                          alt="" 
+                          handleImageLoad={handleImageLoad}
+                          className="element sponsorizare3" 
+                      />
+                      <LazyLoadImage 
+                          src={sponsorizare4}  
+                          alt="" 
+                          handleImageLoad={handleImageLoad}
+                          className="element sponsorizare4" 
+                      />
+                       <LazyLoadImage 
+                          src={sponsorizare5}  
+                          alt="" 
+                          handleImageLoad={handleImageLoad}
+                          className="element sponsorizare5" 
+                      />
+                      <LazyLoadImage 
+                          src={sponsorizare6}  
+                          alt=""
+                          handleImageLoad={handleImageLoad} 
+                          className="element sponsorizare6" 
+                      />
       </div>
+       <TextIntro textContent="Sustine echipa!" customStyle={{ marginBottom: '-15vh' }}/>
+      <img className = "video-responsiveIntro" onLoad={handleImageLoad} src={robotIntro} alt=""/> 
+      <Divider/>
+     
       <div className = "content" id="firstPage">
         <h2 className = "shadowText">Redirecționează online 3.5% din impozitul pe venit</h2>
         <h2 className = "shadowText">Tu completezi iar noi ne ocupăm să depunem formularul la ANAF.</h2>
         <br/><br/>
         <button className = "clarifyButton shadowText" onClick={() => navigate("/formularOnline")}>Completeaza formularul online</button>
       </div>
-      <div className = "formular" id="test">
-        <section>
-          <input type="text" id="Name" 
-            onChange = {(e) => setName(e.target.value)} value = {name} />
-          <label htmlFor="Name">Nume</label>
-        </section>
-        <section>
-          <input type="text" id="Prenume" 
-            onChange = {(e) => setFirstName(e.target.value) }  value = {firstName} />
-          <label htmlFor="Prenume">Prenume</label>
-        </section>
-        <section>
-          <input type="text" id="InitialaTatalui" 
-            onChange = {(e) => setInitial(e.target.value) } value = {initial}/>
-          <label htmlFor="InitialaTatalui">Initiala Tatalui</label>
-        </section>
-        <section>
-          <input type="text" id="CNP" 
-            onChange = {(e) => setCNP(e.target.value) } value = {cnp}/>
-          <label htmlFor="CNP">CNP</label>
-        </section>
-        <section>
-          <input type="email" id="Email" 
-            onChange = {(e) => setEmail(e.target.value) } value = {email}/>
-          <label htmlFor="Email">Email</label>
-        </section>
-        <section>
-          <input type="tel" id="NrTelefon" 
-            onChange = {(e) => setTel(e.target.value) } value = {tel}/>
-          <label htmlFor="NrTelefon">Numar de Telefon</label>
-        </section>
-        <section>
-          <input type="text" id="Bloc" 
-            onChange = {(e) => setBloc(e.target.value) } value = {bloc}/>
-          <label htmlFor="Bloc">Bloc</label>
-        </section>
-        <section>
-          <input type="text" id="Etaj" 
-            onChange = {(e) => setEtaj(e.target.value) } value = {etaj}/>
-          <label htmlFor="Etaj">Etaj</label>
-        </section>
-        <section>
-          <input type="text" id="Apartament" 
-            onChange = {(e) => setApartament(e.target.value) } value = {apartament}/>
-          <label htmlFor="Apartament">Apartament</label>
-        </section>
-        <section>
-          <input type="text" id="Strada" 
-            onChange = {(e) => setStrada(e.target.value) } value = {strada}/>
-          <label htmlFor="Strada">Strada</label>
-        </section>
-        <section>
-          <input type="text" id="Scara" 
-            onChange = {(e) => setScara(e.target.value) } value = {scara}/>
-          <label htmlFor="Scara">Scara</label>
-        </section>
-        <section>
-          <input type="text" id="Numar" 
-            onChange = {(e) => setNumar(e.target.value) } value = {numar}/>
-          <label htmlFor="Numar">Numar</label>
-        </section>
-        <section>
-          <input type="text" id="Judet" 
-            onChange = {(e) => setJudet(e.target.value) } value = {judet}/>
-          <label htmlFor="Judet">Judet</label>
-        </section>
-        <section>
-          <input type="text" id="Localitate" 
-            onChange = {(e) => setLocalitate(e.target.value) } value = {localitate}/>
-          <label htmlFor="Localitate">Localitate</label>
-        </section>
-        <section>
-          <input type="number" id="CodPostal" 
-            onChange = {(e) => setCodPostal(e.target.value) } value = {codPostal}/>
-          <label htmlFor="CodPostal">Cod Postal</label>
-        </section>
-        <section id="image">
-
-          <input 
-            type="file" 
-            id="Camera" 
-            onChange = {(e) => {
-              setSemnatura(e.target.files[0])
-              document.getElementById("Semnatura").style.display='none'
-              document.getElementById("camTxt").style.display='inline'
-
-            } }
-            accept = "image/*" capture = "camera" 
-          />
-          <div className = "buttonSeparator">
-            <span id="camTxt">Image Loaded Succesfully!</span>
-            <input 
-              type="file" 
-              id = "Semnatura" 
-              onChange = {(e) => setSemnatura(e.target.files[0]) }
-              accept = "image/*" 
-            />
-
-            <button id = "cameraButton" onClick = {handleCameraClick} />
-          </div>
-
-
-          <label htmlFor="Semnatura">O poză cu semnătura</label>
-        </section>
-        <button onClick = { handleSubmit }>Submit</button>
-        <section>
-          <Link to="/privacyPolicy">Privacy Policy</Link>
-          <Link to="/termsAndConditions">Terms and Conditions</Link>
-        </section>
-      </div>
+    
       <div className = "content">
         <h2>
           <b className = "shadowText">Care e obiectivul nostru?</b><br/><br/>
@@ -283,8 +105,8 @@ Vă invităm să contribuiți la aceste eforturi, direcționând 3,5% din impozi
         Pentru că e GRATUIT, transparent, iar efectele acțiunii tale se vor vedea reușitele echipei. Dacă nu redirecționezi, el va fi alocat din oficiu către Bugetul General Consolidat, iar modul în care banii vor fi cheltuiți nu este cunoscut și nu se află în controlul tău.
       </h2>
       </div>
+      <TextIntro textContent="Formulare offline" customStyle={{ marginBottom: '-25vh' }}/>
       <div className="content">
-        <h2 id="casetaVerde" className = "shadowText"> Completeaza formularul offline </h2>
         <br/><br/>
         <div className = "formulareOffline">
           <h2 className = "shadowText">Ai venituri din salariu sau asimilate salariilor?</h2>

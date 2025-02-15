@@ -1,5 +1,5 @@
 import './styles/aboutSection.scss';
-import React from 'react';
+import {React, useEffect} from 'react';
 import { gsap } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,6 +14,13 @@ import SasiuVideo from '../../images/Sasiu.png';
 gsap.registerPlugin(CSSPlugin, ScrollTrigger, ScrollToPlugin, useGSAP);
 
 const AboutRobot = ({handleImageLoad}) => {
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/@splinetool/viewer@1.9.68/build/spline-viewer.js";
+        script.type = "module";
+        document.body.appendChild(script);
+      }, []);
+
     return (
     <>
          {/* Sasiu Section */}
@@ -42,7 +49,7 @@ const AboutRobot = ({handleImageLoad}) => {
                         </p>
                     </div>
                 </div>
-                <img className = "video-responsiveIntro" src={IntakeVideo} onLoad = {handleImageLoad} alt=""/>
+                <spline-viewer className = "video-responsiveIntro" url="https://prod.spline.design/e0ssBN54M89VhCBi/scene.splinecode"></spline-viewer>
             </section>
             {/* Outtake Section */}
             <section id="despre" style={{ flexDirection: 'row' }}>
