@@ -5,15 +5,15 @@ import cursorHoverImage from "../../images/hover.png";
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [cursorType, setCursorType] = useState(cursorImage);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isDisabled, setIsDisabled] = useState(window.innerWidth < 1024);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsDisabled(window.innerWidth < 1024);
     };
 
     const updateCursor = (e) => {
-      if (isMobile) return; // Stop updating cursor on mobile
+      if (isDisabled) return; // Stop updating cursor if disabled
 
       setPosition({ x: e.clientX, y: e.clientY });
 
@@ -36,9 +36,22 @@ const CustomCursor = () => {
       window.removeEventListener("mousemove", updateCursor);
       window.removeEventListener("resize", handleResize);
     };
-  }, [cursorType, isMobile]);
+  }, [cursorType, isDisabled]);
 
-  if (isMobile) return null; // Don't render cursor on mobile
+  // Apply CSS to hide system cursor on small screens
+  useEffect(() => {
+    if (isDisabled) {
+      document.body.style.cursor = "none"; // Hide system cursor
+    } else {
+      document.body.style.cursor = "default"; // Reset cursor when back on desktop
+    }
+
+    return () => {
+      document.body.style.cursor = "default"; // Ensure cursor resets when component unmounts
+    };
+  }, [isDisabled]);
+
+  if (isDisabled) return null; // Don't render custom cursor on mobile
 
   return (
     <div
