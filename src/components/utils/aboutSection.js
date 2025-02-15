@@ -9,6 +9,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 import greenLight from '../../images/greenLight.png';
+import seasonDesign1 from '../../images/seasonDesign1.png';
+import seasonDesign2 from '../../images/seasonDesign2.png';
 import star1 from '../../images/star1.png';
 import star2 from '../../images/star2.png';
 import star3 from '../../images/star3.png';
@@ -84,11 +86,26 @@ const AboutSection = ({handleImageLoad }) => {
     );
     return (
         <div>
-            <div className="overlay-container">
+            <div className="overlay-container1">
                 {/* Example: Individual elements */}
                 <LazyLoadImage 
                     src={greenLight} 
                     className="element greenLight" 
+                   
+                />
+                  <LazyLoadImage 
+                    src={seasonDesign1} 
+                    className="element seasonDesign1" 
+                   
+                />
+                  <LazyLoadImage 
+                    src={seasonDesign2} 
+                    className="element seasonDesign2" 
+                   
+                />
+                <LazyLoadImage 
+                    src={greenLight} 
+                    className="element greenLight2" 
                    
                 />
                 <LazyLoadImage 

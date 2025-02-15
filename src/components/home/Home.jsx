@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import LoadingScreen from "../loading/loading";
 import useLoadingManager from "../utils/Loading";
 import robotIntro from "../../gifs/introRobotHome.gif";
+import ImaginiEchipa from "../utils/imaginiEchipa";
 
 const pageVariants = {
   initial: {  opacity: 0 },
@@ -29,7 +30,8 @@ function Home() {
       {isLoading && <LoadingScreen />}
       <TextIntro customStyle={{marginBottom: '-10vh' }}/>
       <img className = "video-responsiveIntro" src={robotIntro} onLoad={handleImageLoad} alt=""/> 
-      <Divider/>
+      <ImaginiEchipa/>
+ 
       <AboutSection  handleImageLoad={handleImageLoad}/>
       <Divider />
       <AwardsSection/>
