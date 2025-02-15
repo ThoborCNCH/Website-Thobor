@@ -1,35 +1,44 @@
 import React, { useEffect, useState } from "react";
-import cursorImage from "../../images/cursor.png"; 
-import cursorHoverImage from "../../images/hover.png"; 
+import cursorImage from "../../images/cursor.png";
+import cursorHoverImage from "../../images/hover.png";
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [cursorType, setCursorType] = useState(cursorImage);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     const updateCursor = (e) => {
+      if (isMobile) return; // Stop updating cursor on mobile
+
       setPosition({ x: e.clientX, y: e.clientY });
 
-      // Check if hovering over interactive elements
-      const hoverElements = ["button", "a", "input", "textarea", "select", ".clickable","headerButton"];
+      const hoverElements = ["button", "a", "input", "textarea", "select", ".clickable", "headerButton"];
       const isHovering = hoverElements.some((selector) => e.target.closest(selector));
 
       if (isHovering) {
         if (cursorType !== cursorHoverImage) {
-          setCursorType(cursorHoverImage); // Change cursor on hover
+          setCursorType(cursorHoverImage);
         }
       } else {
-        setCursorType(cursorImage); // Default cursor otherwise
+        setCursorType(cursorImage);
       }
     };
 
-
     window.addEventListener("mousemove", updateCursor);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", updateCursor);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [cursorType]);
+  }, [cursorType, isMobile]);
+
+  if (isMobile) return null; // Don't render cursor on mobile
 
   return (
     <div
@@ -37,14 +46,14 @@ const CustomCursor = () => {
         position: "fixed",
         left: position.x,
         top: position.y,
-        width: "32px", // Adjust size if needed
+        width: "32px",
         height: "32px",
         backgroundImage: `url(${cursorType})`,
         backgroundSize: "cover",
-        pointerEvents: "none", // Prevents interference
-        transform: "translate(-50%, -50%)", // Centers cursor
-        zIndex: "999999999", // Ensures it stays on top
-        transition: "background-image 0.2s ease", // Smooth transition
+        pointerEvents: "none",
+        transform: "translate(-50%, -50%)",
+        zIndex: "999999999",
+        transition: "background-image 0.2s ease",
       }}
     />
   );
