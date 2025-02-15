@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useLoadingManager = (totalImages, timeoutDuration = 8000) => {
+const useLoadingManager = (totalImages, timeoutDuration = 4000) => {
   const [loadedImages, setLoadedImages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [timeoutReached, setTimeoutReached] = useState(false);
