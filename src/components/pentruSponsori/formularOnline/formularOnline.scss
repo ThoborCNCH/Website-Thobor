@@ -48,11 +48,35 @@ input:focus {
 
 .signature-canvas {
     width: 100%;
-    height: 120px;
+    max-width: 500px;  /* Prevents it from being too large on bigger screens */
+    height: 45vh;  /* Default height */
+    max-height: 300px; /* Limits height on large screens */
     border: 1px solid #ccc;
-    background: white;
-    border-radius: 6px;
+    background: rgb(36, 36, 36);
+    border-radius: 15px;
+    border-style: groove;
+    margin: auto; /* Centers it */
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .signature-canvas {
+        width: 90%; /* Adjust width for smaller screens */
+        height: 35vh; /* Adjust height */
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signature-canvas {
+        width: 100%;
+        height: 35vh; /* Reduce height further for very small screens */
+        max-height: 300px;
+    }
+}
+
+
+
 .button {
     padding: 12px;
     font-size: 16px;

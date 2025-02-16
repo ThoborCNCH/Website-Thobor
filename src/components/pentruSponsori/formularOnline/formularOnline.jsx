@@ -127,8 +127,8 @@ function FormularOnline({ storage, dataBase }) {
         <input type="text" placeholder="Localitate" value={localitate} onChange={(e) => setLocalitate(e.target.value)} required />
         <input type="text" placeholder="Cod Poștal" value={codPostal} onChange={(e) => setCodPostal(e.target.value)} required />
         <h2 className="shadowText">Semnătură online</h2>
-        <div className="border border-gray-100 rounded-lg p-1">
-          <SignatureCanvas ref={sigCanvas} penColor="white" onEnd={checkSignature} canvasProps={{ className: "signatureCanvas" }} />
+        <div className="signature-canvas">
+          <SignatureCanvas ref={sigCanvas} penColor="white" onEnd={checkSignature} canvasProps={{ className: "signature-canvas" }} />
         </div>
         <button type="button" className="shadowText button button-clear" onClick={clearSignature}>
           Șterge Semnătura
