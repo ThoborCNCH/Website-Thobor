@@ -60,7 +60,7 @@ function Navbar() {
               <Link className="headerButton shadowText" to="/">Acasă</Link>
             </li>
             <li>
-              <Link className="headerButton shadowText" to={"/pentruSponsori"} >Ajută-ne!</Link>
+              <Link className="headerButton shadowText" to={"/sponsori"} >Ajută-ne!</Link>
             </li>
             <li>
               <Link className="headerButton shadowText" to="/roboti">Robot</Link>

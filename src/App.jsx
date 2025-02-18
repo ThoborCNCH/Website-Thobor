@@ -72,7 +72,7 @@ function MainRoutes() {
         <Route path="/"                   element={<Home           key={location.pathname} />} />
         <Route path="/termsAndConditions" element={<TOS            key={location.pathname} />} />
         <Route path="/privacyPolicy"      element={<PrivacyPolicy  key={location.pathname} />} />
-        <Route path="/pentruSponsori"     element={<PentruSponsori key={location.pathname} storage={firestore.storage} dataBase={firestore.getDb()}/>} />
+        <Route path="/sponsori"     element={<PentruSponsori key={location.pathname} storage={firestore.storage} dataBase={firestore.getDb()}/>} />
         <Route path="/formularOnline"     element={<FormularOnline key={location.pathname} storage={firestore.storage} dataBase={firestore.getDb()}/>} />
         <Route path="/apps"               element={<Apps           key={location.pathname} apps={apps} />} />
         <Route path="/departamente"       element={<Departamente   key={location.pathname} />} />

@@ -36,14 +36,14 @@
         &.seasonDesign1 {
             width: 80vw;
             height: auto;
-            top: calc(-120vh);
+            top: calc(-125vh);
             right: -20vw;
             @media(max-width: 800px){
-                top: calc(-110vh);
+                top: calc(-115vh);
                 width: 90vw;
             }
             @media(max-width: 480px){
-                top: calc(-110vh);
+                top: calc(-115vh);
                 width: 140vw;
                 right: -40vw;
             }
