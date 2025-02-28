@@ -153,7 +153,7 @@ const AboutSection = ({handleImageLoad }) => {
                     </h1>
                     <div className="despreBox" style={{ marginBottom: '4vh' }}>
                         <p id="despreText">
-                        Echipa Thobor a Colegiului Național “Calistrat Hogaș” Tecuci este formată din 50 de liceeni, voluntari și membri și 4 mentori care au îndrăznit să viseze!
+                        Echipa Thobor a Colegiului Național “Calistrat Hogaș” Tecuci este formată din 50 de liceeni, voluntari, membri și 4 mentori care au îndrăznit să viseze!
                         </p>
                     </div>
                 </div>
